@@ -24,16 +24,19 @@ public class PlayerStats : ScriptableObject
 
     [Header("Don't change any of these in code.")]
     public float Speed;
+    public float DashForce;
 
     public int HealthPoints;
 
     public float DashRechargeSeconds;
 
-    public float PrimaryAttackDamage;
+    public int PrimaryAttackDamage;
     [Tooltip("Seconds for Primary attack to complete")]
     public float PrimaryAttackSpeed;
 
-    public float SecondaryAttackDamage;
+    public int SecondaryAttackDamage;
     [Tooltip("Seconds for Secondary attack to complete")]
     public float SecondaryAttackSpeed;
+
+    public float KnockBackForce;
 }

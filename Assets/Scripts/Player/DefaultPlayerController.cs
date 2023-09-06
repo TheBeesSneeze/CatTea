@@ -14,13 +14,13 @@
 * TODO:
 * Dashing
 * Other input settings
-* Default character stats Scriptable Object
-*   reset stats function
 * PAUSE
+* player invincible while dashing
 *****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -45,10 +45,12 @@ public class DefaultPlayerController : MonoBehaviour
     // components:
     protected Rigidbody2D myRigidbody;
     protected PlayerBehaviour playerBehaviour;
+    public Gamepad myGamepad;
 
     // etcetera:
     protected Vector2 moveDirection;
     protected bool moving;
+    protected bool ignoreMove;
     protected Coroutine movingCoroutine; //shared between SlideMovementDirection and SlowMovement intentionally. They shouldnt run at the same time.
 
     /// <summary>
@@ -58,10 +60,11 @@ public class DefaultPlayerController : MonoBehaviour
     {
         //initialize a lot of variables
         myRigidbody = GetComponent<Rigidbody2D>();
-        playerBehaviour = GetComponent<PlayerBehaviour>();  
+        playerBehaviour = GetComponent<PlayerBehaviour>();
 
         //Initialize input stuff
         playerInput = GetComponent<PlayerInput>();
+        myGamepad = playerInput.GetDevice<Gamepad>();
         playerInput.currentActionMap.Enable();
 
         move = playerInput.currentActionMap.FindAction("Move");
@@ -117,7 +120,16 @@ public class DefaultPlayerController : MonoBehaviour
 
     protected virtual void Dash_started(InputAction.CallbackContext obj)
     {
-        //TODO
+        ignoreMove = true;
+        myRigidbody.AddForce(moveDirection * playerBehaviour.DashForce, ForceMode2D.Impulse);
+
+        //test
+        if (myGamepad != null)
+        {
+            myGamepad.SetMotorSpeeds(0.3f, 0.3f);
+        }
+
+        StartCoroutine(NoMovementRoutine(0.2f));
     }
 
     protected virtual void Dash_canceled(InputAction.CallbackContext obj)
@@ -136,13 +148,16 @@ public class DefaultPlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// transitions the players movement velocity by doing cool math stuff
+    /// transitions the players movement velocity by doing cool math stuff.
+    /// then just becomes regular movement
     /// </summary>
     /// <param name="obj"></param>
     /// <returns></returns>
     protected IEnumerator SlideMovementDirection(InputAction.CallbackContext obj)
     {
-        Vector2 newMoveDiection = obj.ReadValue<Vector2>();
+        Vector2 newMoveDiection = obj.ReadValue<Vector2>() * playerBehaviour.Speed;
+
+        //cool slide
         for (int i = 0; i < 10 && moving; i++)
         {
             moveDirection = BlendMovementDirections(moveDirection, newMoveDiection, slideAmount);
@@ -150,6 +165,17 @@ public class DefaultPlayerController : MonoBehaviour
 
             yield return new WaitForSeconds(slideSeconds/10);
         }
+
+        //regular movement
+        while(moving)
+        {
+            if(!ignoreMove)
+            {
+                myRigidbody.velocity = newMoveDiection;
+            }
+            yield return null;
+        }
+
         movingCoroutine = null;
     }
 
@@ -163,7 +189,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected Vector2 BlendMovementDirections(Vector2 OldMoveDirection, Vector2 newReadValue, float slideWeight)
     {
         Vector2 a = OldMoveDirection * slideWeight;                         // 10 * 0.7 = 7
-        Vector2 b = newReadValue * playerBehaviour.Speed * (1-slideAmount); // 10 * 0.3 = 3
+        Vector2 b = newReadValue * (1-slideAmount); // 10 * 0.3 = 3
 
         return a + b;                                                       // 7 + 3 = 10
     }
@@ -184,5 +210,22 @@ public class DefaultPlayerController : MonoBehaviour
         myRigidbody.velocity = Vector2.zero;
         movingCoroutine = null;
     }
-    
+
+    /// <summary>
+    /// no movement for dash reasons
+    /// </summary>
+    /// <param name="Seconds">length of dash ig</param>
+    private IEnumerator NoMovementRoutine(float Seconds)
+    {
+        ignoreMove = true;
+        yield return new WaitForSeconds(Seconds);
+        ignoreMove = false;
+
+        //test
+        if (myGamepad != null)
+        {
+            myGamepad.SetMotorSpeeds(0f, 0f);
+        }
+
+    }
 }

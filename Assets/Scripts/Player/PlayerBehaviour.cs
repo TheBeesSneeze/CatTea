@@ -15,16 +15,17 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : CharacterBehaviour
 {
     //Player Stats
     public PlayerStats CurrentPlayerStats;
     [Header("Derived from PlayerStats, do not tweak in editor")]
-    public float Speed;
-    public int HealthPoints;
     public float DashRechargeSeconds;
+    public float DashForce;
 
     public float PrimaryAttackDamage;
     public float PrimaryAttackSpeed;
@@ -32,12 +33,14 @@ public class PlayerBehaviour : MonoBehaviour
     public float SecondaryAttackSpeed;
 
     //components
-    DefaultPlayerController playerController;
+    private DefaultPlayerController playerController;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         playerController = GetComponent<DefaultPlayerController>();
+        SetStatsToDefaults();
     }
 
     public void SetStatsToDefaults()
@@ -45,6 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
         Speed = CurrentPlayerStats.Speed;
         HealthPoints = CurrentPlayerStats.HealthPoints;
         DashRechargeSeconds = CurrentPlayerStats.DashRechargeSeconds;
+        DashForce = CurrentPlayerStats.DashForce;
         
         PrimaryAttackDamage = CurrentPlayerStats.PrimaryAttackDamage;
         PrimaryAttackSpeed = CurrentPlayerStats.PrimaryAttackSpeed;
