@@ -43,7 +43,7 @@ public class PlayerBehaviour : CharacterBehaviour
         SetStatsToDefaults();
     }
 
-    public void SetStatsToDefaults()
+    public override void SetStatsToDefaults()
     {
         Speed = CurrentPlayerStats.Speed;
         HealthPoints = CurrentPlayerStats.HealthPoints;

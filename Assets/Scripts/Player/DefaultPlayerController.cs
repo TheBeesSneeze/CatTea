@@ -52,6 +52,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected bool moving;
     protected bool ignoreMove;
     protected Coroutine movingCoroutine; //shared between SlideMovementDirection and SlowMovement intentionally. They shouldnt run at the same time.
+    protected bool canDash=true;
 
     /// <summary>
     /// Start is called before the first frame update
@@ -120,16 +121,8 @@ public class DefaultPlayerController : MonoBehaviour
 
     protected virtual void Dash_started(InputAction.CallbackContext obj)
     {
-        ignoreMove = true;
-        myRigidbody.AddForce(moveDirection * playerBehaviour.DashForce, ForceMode2D.Impulse);
-
-        //test
-        if (myGamepad != null)
-        {
-            myGamepad.SetMotorSpeeds(0.3f, 0.3f);
-        }
-
-        StartCoroutine(NoMovementRoutine(0.2f));
+        if(canDash)
+            StartCoroutine(PerformDash());
     }
 
     protected virtual void Dash_canceled(InputAction.CallbackContext obj)
@@ -158,7 +151,7 @@ public class DefaultPlayerController : MonoBehaviour
         Vector2 newMoveDiection = obj.ReadValue<Vector2>() * playerBehaviour.Speed;
 
         //cool slide
-        for (int i = 0; i < 10 && moving; i++)
+        for (int i = 0; i < 10 && moving && !ignoreMove; i++)
         {
             moveDirection = BlendMovementDirections(moveDirection, newMoveDiection, slideAmount);
             myRigidbody.velocity = moveDirection;
@@ -166,8 +159,11 @@ public class DefaultPlayerController : MonoBehaviour
             yield return new WaitForSeconds(slideSeconds/10);
         }
 
+        //may fuck things up:
+        moveDirection = newMoveDiection;
+
         //regular movement
-        while(moving)
+        while (moving)
         {
             if(!ignoreMove)
             {
@@ -211,6 +207,28 @@ public class DefaultPlayerController : MonoBehaviour
         movingCoroutine = null;
     }
 
+    protected virtual IEnumerator PerformDash()
+    {
+        canDash = false;
+
+        if(movingCoroutine != null)
+            StopCoroutine(movingCoroutine);
+
+        ignoreMove = true;
+        myRigidbody.AddForce(moveDirection * playerBehaviour.DashForce, ForceMode2D.Impulse);
+
+        //test
+        if (myGamepad != null)
+        {
+            myGamepad.SetMotorSpeeds(0.3f, 0.3f);
+        }
+
+        StartCoroutine(NoMovementRoutine(0.2f));
+
+        yield return new WaitForSeconds(playerBehaviour.DashRechargeSeconds);
+        canDash = true;
+    }
+    
     /// <summary>
     /// no movement for dash reasons
     /// </summary>
@@ -227,5 +245,11 @@ public class DefaultPlayerController : MonoBehaviour
             myGamepad.SetMotorSpeeds(0f, 0f);
         }
 
+        if (moving)
+            myRigidbody.velocity = moveDirection;
+        else
+            movingCoroutine = StartCoroutine(SlowMovement());
+
     }
+
 }

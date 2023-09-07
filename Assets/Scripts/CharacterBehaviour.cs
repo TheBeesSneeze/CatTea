@@ -15,9 +15,11 @@ public class CharacterBehaviour : MonoBehaviour
 {
     public bool TakeKnockback = true;
 
+    [Header("Don't touch these in editor")]
     public int HealthPoints;
     public float Speed;
     public float KnockbackForce;
+    
 
     //lame stuff
     protected Rigidbody2D myRigidbody2D;
@@ -25,6 +27,8 @@ public class CharacterBehaviour : MonoBehaviour
     protected virtual void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
+
+        SetStatsToDefaults();
     }
 
     /// <summary>
@@ -33,13 +37,25 @@ public class CharacterBehaviour : MonoBehaviour
     /// <param name="damage">Amt of damage taken</param>
     /// <param name="damageSourcePosition">Ideally the players transform</param>
     /// <returns>true if character died</returns>
-    public virtual bool TakeDamage(int damage, Vector3 damageSourcePosition)
+    public virtual bool TakeDamage(int Damage, Vector3 DamageSourcePosition)
     {
-        if (TakeDamage(damage))
+        return TakeDamage(Damage, DamageSourcePosition, KnockbackForce);
+    }
+
+    /// <summary>
+    /// Decreases the characters health. Knocks back the character
+    /// </summary>
+    /// <param name="damage">Amt of damage taken</param>
+    /// <param name="damageSourcePosition">Ideally the players transform</param>
+    /// <param name="KnockBackForce"></param>
+    /// <returns>true if character died</returns>
+    public virtual bool TakeDamage(int Damage, Vector3 DamageSourcePosition, float KnockBackForce)
+    {
+        if (TakeDamage(Damage))
             return true;
 
         if (TakeKnockback)
-            KnockBack(this.gameObject, damageSourcePosition);
+            KnockBack(this.gameObject, DamageSourcePosition, KnockBackForce);
 
         return false;
     }
@@ -79,9 +95,10 @@ public class CharacterBehaviour : MonoBehaviour
     /// <param name="Force">how much to multiply knockback by</param>
     public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
     {
-        Vector3 positionDifference = target.transform.position - damageSourcePosition;
+        Vector2 positionDifference = target.transform.position - damageSourcePosition;
+        positionDifference.Normalize();
 
-        if(myRigidbody2D != null)
+        if (myRigidbody2D != null)
             myRigidbody2D.AddForce(positionDifference * Force, ForceMode2D.Impulse);
     }
 
@@ -91,5 +108,10 @@ public class CharacterBehaviour : MonoBehaviour
     public virtual void Die()
     {
         Debug.LogWarning("Override this function");
+    }
+
+    public virtual void SetStatsToDefaults()
+    {
+        Debug.LogWarning("Override me!");
     }
 }
