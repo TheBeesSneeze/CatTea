@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerStats", menuName = "Player Stats")]
+[CreateAssetMenu(fileName = "EnemyStats", menuName = "Enemy Stats")]
 
 public class EnemyStats : ScriptableObject
 {
@@ -12,6 +12,9 @@ public class EnemyStats : ScriptableObject
 
     [Tooltip("Amount of damage the enemies attack deals")]
     public int Damage;
+    public int ContactDamage;
 
     public float KnockBackForce;
+
+    public bool DealContactDamage;
 }
