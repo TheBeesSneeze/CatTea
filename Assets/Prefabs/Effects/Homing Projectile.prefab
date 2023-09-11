@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5988756503436904003}
   m_Layer: 0
   m_Name: Homing Projectile
-  m_TagString: Untagged
+  m_TagString: Enemy Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9021548887123074165
 SpriteRenderer:
@@ -99,9 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf7c215e82ed034a914f73a9e74ca24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyBullet: 1
+  EnemyAttack: 1
+  Damage: 1
   Target: {fileID: 0}
-  Speed: 2
+  Speed: 2.2
   TimeUntilDestroyed: 12
   Angle: 0.12
 --- !u!50 &3437011088008853731

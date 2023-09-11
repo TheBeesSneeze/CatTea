@@ -1,13 +1,18 @@
+/*******************************************************************************
+* File Name :         HomingProjectile.cs
+* Author(s) :         Toby Schamberger
+* Creation Date :     9/6/2023
+*
+* Brief Description : 
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class HomingProjectile : MonoBehaviour
+public class HomingProjectile : AttackType
 {
-    [Tooltip("true if this bullet came from an enemy")]
-    public bool EnemyBullet;
-
     public Transform Target;
     public float Speed;
 
@@ -19,7 +24,7 @@ public class HomingProjectile : MonoBehaviour
 
     private void Start()
     {
-        if(EnemyBullet)
+        if(EnemyAttack)
             Target = GameObject.FindAnyObjectByType<PlayerBehaviour>().transform;
 
         rb = GetComponent<Rigidbody2D>();

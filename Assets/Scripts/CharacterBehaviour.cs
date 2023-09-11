@@ -23,10 +23,14 @@ public class CharacterBehaviour : MonoBehaviour
 
     //lame stuff
     protected Rigidbody2D myRigidbody2D;
+    protected SpriteRenderer mySpriteRenderer;
+
+    private Coroutine hitAnimationCoroutine;
 
     protected virtual void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
 
         SetStatsToDefaults();
     }
@@ -51,6 +55,8 @@ public class CharacterBehaviour : MonoBehaviour
     /// <returns>true if character died</returns>
     public virtual bool TakeDamage(int Damage, Vector3 DamageSourcePosition, float KnockBackForce)
     {
+        
+
         if (TakeDamage(Damage))
             return true;
 
@@ -67,6 +73,11 @@ public class CharacterBehaviour : MonoBehaviour
     /// <returns>true if character died</returns>
     public virtual bool TakeDamage(int damage)
     {
+        if (hitAnimationCoroutine != null)
+            StopCoroutine(hitAnimationCoroutine);
+
+        hitAnimationCoroutine = StartCoroutine(HitAnimation());
+
         HealthPoints -= damage;
 
         if (HealthPoints <= 0)
@@ -100,6 +111,15 @@ public class CharacterBehaviour : MonoBehaviour
 
         if (myRigidbody2D != null)
             myRigidbody2D.AddForce(positionDifference * Force, ForceMode2D.Impulse);
+    }
+
+    public virtual IEnumerator HitAnimation()
+    {
+        mySpriteRenderer.color = new Color(1, 0.3f, 0.3f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        mySpriteRenderer.color = new Color(1, 1,1);
     }
 
     /// <summary>
