@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Melee Player Stats
   m_EditorClassIdentifier: 
   Speed: 3.5
+  DashForce: 5
   HealthPoints: 10
   DashRechargeSeconds: 0.75
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 0
   SecondaryAttackDamage: 0
   SecondaryAttackSpeed: 0
+  KnockBackForce: 0
