@@ -29,10 +29,13 @@ public class DefaultPlayerController : MonoBehaviour
 {
     //Really boring settings:
     [Tooltip("The amount of slippiness the player experiences when changing movement directions (THIS VALUE MUST BE BETWEEN 0 and 1)")]
-    private static float slideAmount = 0.7f; // this needs to be a number between 0 and 1
+    private static float slideAmount = 0.75f; // this needs to be a number between 0 and 1. higher number for more slidey
     private static float slideSeconds = 0.6f;
+    private static float slideIterations = 25;
     private static float slowAmount = 0.3f; //also a number between 0 and 1
     private static float slowSeconds = 0.1f;
+
+    
 
     //Player input:
     protected PlayerInput playerInput;
@@ -154,12 +157,12 @@ public class DefaultPlayerController : MonoBehaviour
         Vector2 newMoveDiection = obj.ReadValue<Vector2>() * playerBehaviour.Speed;
 
         //cool slide
-        for (int i = 0; i < 10 && moving && !ignoreMove; i++)
+        for (int i = 0; i < slideIterations && moving && !ignoreMove; i++)
         {
             moveDirection = BlendMovementDirections(moveDirection, newMoveDiection, slideAmount);
             myRigidbody.velocity = moveDirection;
 
-            yield return new WaitForSeconds(slideSeconds/10);
+            yield return new WaitForSeconds(slideSeconds/ slideIterations);
         }
 
         //may fuck things up:

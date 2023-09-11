@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [Tooltip("0 - 8, for how many times the players died")]
     public int RunNumber;
 
+    [Header("Player Defined Settings")]
+    public bool Rumble;
 
     private void Awake()
     {
