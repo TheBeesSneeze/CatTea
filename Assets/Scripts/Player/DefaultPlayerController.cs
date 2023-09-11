@@ -20,6 +20,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -41,6 +42,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected InputAction primary;
     protected InputAction secondary;
     protected InputAction pause;
+    public InputAction Select;
 
     // components:
     protected Rigidbody2D myRigidbody;
@@ -73,6 +75,7 @@ public class DefaultPlayerController : MonoBehaviour
         primary = playerInput.currentActionMap.FindAction("Primary Attack");
         secondary = playerInput.currentActionMap.FindAction("Secondary Attack");
         pause = playerInput.currentActionMap.FindAction("Pause");
+        Select = playerInput.currentActionMap.FindAction("Select");
 
         move.performed += Move_performed;
         move.canceled += Move_canceled;
