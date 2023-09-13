@@ -203,11 +203,6 @@ public class NPCBehaviour : MonoBehaviour
         }
     }
 
-
-    public void SetScript(NPCScript Script)
-    {
-
-    }
     public void LoadScript(NPCScript Script)
     {
         TextList = Script.TextList;

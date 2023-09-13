@@ -13,12 +13,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NPCScript", menuName = "NPC Script")]
 public class NPCScript : ScriptableObject
 {
-    [SerializeField][TextArea] public List<string> TextList = new List<string>();
+    [SerializeField][TextArea] public List<string> TextList;
 
-    public List<NPCBehaviour.Talking> WhoIsTalking = new List<NPCBehaviour.Talking>();
+    public List<NPCBehaviour.Talking> WhoIsTalking;
 
     [Tooltip("Leave a sprite null to make it not change")]
-    public List<Sprite> PlayerTalkingSprites = new List<Sprite>();
+    public List<Sprite> PlayerTalkingSprites;
     [Tooltip("Leave a sprite null to make it not change")]
-    public List<Sprite> NPCTalkingSprites = new List<Sprite>();
+    public List<Sprite> NPCTalkingSprites;
 }
