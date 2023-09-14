@@ -2020,6 +2020,67 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &996807877
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 125848749813268421, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_Name
+      value: Ranged Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.975333
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.6779773
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 286321620757031755, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
 --- !u!1 &1132044086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,7 +2094,7 @@ GameObject:
   - component: {fileID: 1132044089}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Player Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2368,7 +2429,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1606679071
 GameObject:
@@ -2831,7 +2892,7 @@ RectTransform:
   - {fileID: 1288743078}
   - {fileID: 425536253}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3015,6 +3076,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 3925151371789819585, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: TextBox
       value: 
@@ -3146,9 +3211,9 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  AttackLength: 0.2
+  PrimaryStrikeAngle: 100
   StrikeFrames: 30
-  Sword: {fileID: 1132044089}
+  SwordCollider: {fileID: 1132044089}
   RotatePoint: {fileID: 2051343386}
 --- !u!114 &9045134161805166286
 MonoBehaviour:
@@ -3171,5 +3236,7 @@ MonoBehaviour:
   DashForce: 0
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 0
+  PrimaryAttackCoolDown: 0
   SecondaryAttackDamage: 0
   SecondaryAttackSpeed: 0
+  SecondaryAttackCoolDown: 0

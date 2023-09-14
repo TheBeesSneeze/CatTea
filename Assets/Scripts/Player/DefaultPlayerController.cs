@@ -35,8 +35,6 @@ public class DefaultPlayerController : MonoBehaviour
     private static float slowAmount = 0.3f; //also a number between 0 and 1
     private static float slowSeconds = 0.1f;
 
-    
-
     //Player input:
     protected PlayerInput playerInput;
 
@@ -50,7 +48,7 @@ public class DefaultPlayerController : MonoBehaviour
     // components:
     protected Rigidbody2D myRigidbody;
     protected PlayerBehaviour playerBehaviour;
-    public Gamepad myGamepad;
+    public Gamepad MyGamepad;
 
     // etcetera:
     protected Vector2 moveDirection;
@@ -58,6 +56,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected bool ignoreMove;
     protected Coroutine movingCoroutine; //shared between SlideMovementDirection and SlowMovement intentionally. They shouldnt run at the same time.
     protected bool canDash=true;
+    protected bool canAttack = true;
 
     /// <summary>
     /// Start is called before the first frame update
@@ -70,7 +69,7 @@ public class DefaultPlayerController : MonoBehaviour
 
         //Initialize input stuff
         playerInput = GetComponent<PlayerInput>();
-        myGamepad = playerInput.GetDevice<Gamepad>();
+        MyGamepad = playerInput.GetDevice<Gamepad>();
         playerInput.currentActionMap.Enable();
 
         move = playerInput.currentActionMap.FindAction("Move");
@@ -224,9 +223,9 @@ public class DefaultPlayerController : MonoBehaviour
         myRigidbody.AddForce(moveDirection * playerBehaviour.DashForce, ForceMode2D.Impulse);
 
         //test
-        if (myGamepad != null)
+        if (MyGamepad != null)
         {
-            myGamepad.SetMotorSpeeds(0.3f, 0.3f);
+            MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
         }
 
         StartCoroutine(NoMovementRoutine(0.2f));
@@ -246,9 +245,9 @@ public class DefaultPlayerController : MonoBehaviour
         ignoreMove = false;
 
         //test
-        if (myGamepad != null)
+        if (MyGamepad != null)
         {
-            myGamepad.SetMotorSpeeds(0f, 0f);
+            MyGamepad.SetMotorSpeeds(0f, 0f);
         }
 
         if (moving)
