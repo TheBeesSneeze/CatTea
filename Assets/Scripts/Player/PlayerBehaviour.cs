@@ -50,8 +50,6 @@ public class PlayerBehaviour : CharacterBehaviour
     {
         string tag = collision.tag;
 
-        Debug.Log(tag);
-
         if(tag.Equals("Enemy Attack"))
         {
             AttackType attack = collision.GetComponent<AttackType>();

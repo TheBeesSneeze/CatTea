@@ -7,6 +7,7 @@
 * ever TA wrote the sword swinging code.
 * 
 * TODO: rumble
+* Make sword stop more smooth
 *****************************************************************************/
 
 using System.Collections;
@@ -18,7 +19,7 @@ public class MeleePlayerController : DefaultPlayerController
 {
     [Header("Settings")]
     public float PrimaryStrikeAngle = 90;
-    public float StrikeFrames = 30;
+    public float StrikeFrames = 10;
 
     [Header("Unity Stuff")]
     public Collider2D SwordCollider;
@@ -92,12 +93,13 @@ public class MeleePlayerController : DefaultPlayerController
         }
 
         //RotatePoint.transform.eulerAngles = originalPoint;
-        //RotatePoint.rotation = swordRotation;
 
         StartCoroutine(StopAttack());
     }
 
     /// <summary>
+    /// TODO: THIS CODE DOESNT REALLY WORK THAT WELL YET
+    /// 
     /// stops attack - turns sword inactive
     /// rotates sword back to where it goes oh yeah
     /// </summary>
@@ -109,16 +111,28 @@ public class MeleePlayerController : DefaultPlayerController
         SwordCollider.enabled = false;
         Attacking = false;
 
+        /*
+
         float moveSwordBackSeconds = playerBehaviour.PrimaryAttackCoolDown / 2;
 
         float startAngle = RotatePoint.transform.eulerAngles.z;
-        float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        float targetAngle = (Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg);
 
-        for (int i = 0; i < 15; i++) 
+        startAngle = (startAngle+360) % 360;
+        targetAngle = (targetAngle+360) % 360;
+
+        Debug.Log(startAngle);
+        Debug.Log(targetAngle);
+
+        //return sword to where it started
+        for (int i = 0; i < 20; i++) 
         {
+            float target = Mathf.Lerp(startAngle, targetAngle, i / StrikeFrames);
+            RotatePoint.transform.eulerAngles = new Vector3(0,0,target);
 
-            yield return new WaitForSeconds(moveSwordBackSeconds / 15);
+            yield return new WaitForSeconds(moveSwordBackSeconds / 20);
         }
+        */
 
         RotatingSwordCoroutine = StartCoroutine(RotateSword());
 

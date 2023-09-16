@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Enemy Attack
   - Player Attack
+  - Primary Player Attack
+  - Secondary Player Attack
   layers:
   - Default
   - TransparentFX
