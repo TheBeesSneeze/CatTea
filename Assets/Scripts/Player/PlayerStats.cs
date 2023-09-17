@@ -32,13 +32,13 @@ public class PlayerStats : ScriptableObject
     [Tooltip("Seconds for Primary attack to complete")]
     public float PrimaryAttackSpeed;
     public float PrimaryAttackCoolDown;
+    public float PrimaryAttackKnockback;
 
     public int SecondaryAttackDamage;
     [Tooltip("Seconds for Secondary attack to complete")]
     public float SecondaryAttackSpeed;
     public float SecondaryAttackCoolDown;
-
-    public float KnockBackForce;
+    public float SecondaryAttackKnockback;
 
     public int ExampleVariableName;
     private int exampleVariableName; 

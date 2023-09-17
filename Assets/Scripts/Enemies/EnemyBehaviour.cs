@@ -13,16 +13,18 @@ using UnityEngine;
 
 public class EnemyBehaviour : CharacterBehaviour
 {
-    [Header("Eenemy Stat Sheet:")]
     public EnemyStats CurrentEnemyStats;
 
-    [Header("Don't touch these in editor")]
-    public int Damage;
-    public bool EnemyMove; // if enemy should be stationary or nah
-    public float TimeBetweenMovements;
-    protected int contactDamage;
-    protected bool dealContactDamage;
+    [HideInInspector] public int DifficultyCost;
+    [HideInInspector] public int Damage;
+    [HideInInspector] public bool EnemyMove; // if enemy should be stationary or nah
+    [HideInInspector] public float TimeBetweenMovements;
+    [HideInInspector] protected int contactDamage;
+    [HideInInspector] protected bool dealContactDamage;
 
+    [HideInInspector] public EnemyRoom Room;
+
+    //weird stuff
     private PlayerBehaviour playerBehavior;
 
     protected override void Start()
@@ -38,6 +40,23 @@ public class EnemyBehaviour : CharacterBehaviour
     }
 
     /// <summary>
+    /// Runs when enemy is spawned in.
+    /// </summary>
+    public virtual void OnSpawn()
+    {
+        //TODO
+    }
+
+    public override void Die()
+    {
+        if(Room!= null) 
+            Room.OnEnemyDeath();
+
+        StopAllCoroutines();
+        Destroy(this.gameObject);
+    }
+
+    /// <summary>
     /// runs when player collides with enemy.
     /// </summary>
     protected virtual void OnPlayerCollision(Collider2D collision)
@@ -49,7 +68,7 @@ public class EnemyBehaviour : CharacterBehaviour
 
     protected virtual void OnPrimaryAttackCollision(Collider2D collision)
     {
-
+        TakeDamage(playerBehavior.PrimaryAttackDamage, collision.transform.position, playerBehavior.PrimaryAttackKnockback);
     }
 
     protected virtual void OnSecondaryAttackCollision(Collider2D collision)
@@ -89,6 +108,8 @@ public class EnemyBehaviour : CharacterBehaviour
 
     public override void SetStatsToDefaults()
     {
+        DifficultyCost = CurrentEnemyStats.DifficultyCost;
+
         Speed = CurrentEnemyStats.Speed;
         EnemyMove = CurrentEnemyStats.EnemyMove;
         TimeBetweenMovements = CurrentEnemyStats.TimeBetweenMovements;

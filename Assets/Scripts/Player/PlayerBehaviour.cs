@@ -27,13 +27,15 @@ public class PlayerBehaviour : CharacterBehaviour
     public float DashRechargeSeconds;
     public float DashForce;
 
-    public float PrimaryAttackDamage;
+    public int PrimaryAttackDamage;
     public float PrimaryAttackSpeed;
     public float PrimaryAttackCoolDown;
+    public float PrimaryAttackKnockback;
 
-    public float SecondaryAttackDamage;
+    public int SecondaryAttackDamage;
     public float SecondaryAttackSpeed;
     public float SecondaryAttackCoolDown;
+    public float SecondaryAttackKnockback;
 
     //components
     private DefaultPlayerController playerController;
@@ -78,9 +80,11 @@ public class PlayerBehaviour : CharacterBehaviour
         PrimaryAttackDamage = CurrentPlayerStats.PrimaryAttackDamage;
         PrimaryAttackSpeed = CurrentPlayerStats.PrimaryAttackSpeed;
         PrimaryAttackCoolDown = CurrentPlayerStats.PrimaryAttackCoolDown;
+        PrimaryAttackKnockback = CurrentPlayerStats.PrimaryAttackKnockback;
 
-        SecondaryAttackDamage = CurrentPlayerStats.SecondaryAttackSpeed;
-        SecondaryAttackSpeed = CurrentPlayerStats.SecondaryAttackDamage;
+        SecondaryAttackDamage = CurrentPlayerStats.SecondaryAttackDamage;
+        SecondaryAttackSpeed = CurrentPlayerStats.SecondaryAttackSpeed;
         SecondaryAttackCoolDown = CurrentPlayerStats.SecondaryAttackCoolDown;
+        SecondaryAttackKnockback = CurrentPlayerStats.SecondaryAttackKnockback;
     }
 }

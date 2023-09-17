@@ -92,7 +92,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6356557012152807734}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -114,7 +114,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -289,19 +289,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca29a21acd99204f86213e607e1464b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TakeKnockback: 1
   HealthPoints: 0
   Speed: 0
   KnockbackForce: 0
+  TakeKnockback: 1
   CurrentPlayerStats: {fileID: 11400000, guid: 1fdc94ae238db11429f476f525f0b01c, type: 2}
   DashRechargeSeconds: 0
   DashForce: 0
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 0
   PrimaryAttackCoolDown: 0
+  PrimaryAttackKnockback: 0
   SecondaryAttackDamage: 0
   SecondaryAttackSpeed: 0
   SecondaryAttackCoolDown: 0
+  SecondaryAttackKnockback: 0
 --- !u!114 &2781609931599703193
 MonoBehaviour:
   m_ObjectHideFlags: 0

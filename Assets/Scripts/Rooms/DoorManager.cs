@@ -36,6 +36,8 @@ public class DoorManager : MonoBehaviour
         }
 
         open = ThisRoom.OpenDoorsOnStart;
+
+        ThisRoom.Door = this;
     }
 
     /// <summary>

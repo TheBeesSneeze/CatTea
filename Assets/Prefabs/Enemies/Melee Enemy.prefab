@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5031474660235917660}
+  - component: {fileID: 6875845485230333082}
   - component: {fileID: 5998327919602947467}
   - component: {fileID: 166793015827229265}
   - component: {fileID: 316760858480339235}
-  - component: {fileID: 6875845485230333082}
   m_Layer: 0
   m_Name: Melee Enemy
   m_TagString: Enemy
@@ -35,6 +35,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6875845485230333082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576159590035733606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1fdcbdcf7e640a4a9b3b4c81c113200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeKnockback: 1
+  HealthPoints: 0
+  Speed: 0
+  KnockbackForce: 0
+  CurrentEnemyStats: {fileID: 11400000, guid: dcd49d474ec1afc4387687701cae0283, type: 2}
+  Damage: 0
+  EnemyMove: 0
+  TimeBetweenMovements: 0
 --- !u!212 &5998327919602947467
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -149,23 +169,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6875845485230333082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7576159590035733606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fdcbdcf7e640a4a9b3b4c81c113200, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TakeKnockback: 1
-  HealthPoints: 0
-  Speed: 0
-  KnockbackForce: 0
-  CurrentEnemyStats: {fileID: 11400000, guid: dcd49d474ec1afc4387687701cae0283, type: 2}
-  Damage: 0
-  EnemyMove: 0
-  TimeBetweenMovements: 0

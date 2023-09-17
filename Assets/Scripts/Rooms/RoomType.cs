@@ -16,6 +16,9 @@ public class RoomType : MonoBehaviour
     //public bool RoomLoaded;
     public bool OpenDoorsOnStart;
 
+    [Tooltip("This should be assigned automatically in the door's script.")]
+    [HideInInspector] public DoorManager Door;
+
     public Transform CameraCenterPoint;
     public Transform PlayerSpawnPoint;
 

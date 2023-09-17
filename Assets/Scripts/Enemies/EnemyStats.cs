@@ -14,6 +14,9 @@ using UnityEngine;
 
 public class EnemyStats : ScriptableObject
 {
+    [Tooltip("How many challenge points to spend")]
+    public int DifficultyCost;
+    
     public float Speed;
     [Tooltip("Make true if enemy moves towards player")]
     public bool EnemyMove;

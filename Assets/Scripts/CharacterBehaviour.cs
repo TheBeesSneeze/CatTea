@@ -13,13 +13,10 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
 {
-    public bool TakeKnockback = true;
-
-    [Header("Don't touch these in editor")]
-    public int HealthPoints;
-    public float Speed;
-    public float KnockbackForce;
-    
+    /*[HideInInspector]*/ public int HealthPoints;
+    [HideInInspector] public float Speed;
+    [HideInInspector] public float KnockbackForce;
+    [HideInInspector] public bool TakeKnockback = true;
 
     //lame stuff
     protected Rigidbody2D myRigidbody2D;
@@ -55,8 +52,6 @@ public class CharacterBehaviour : MonoBehaviour
     /// <returns>true if character died</returns>
     public virtual bool TakeDamage(int Damage, Vector3 DamageSourcePosition, float KnockBackForce)
     {
-        
-
         if (TakeDamage(Damage))
             return true;
 
@@ -117,7 +112,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         mySpriteRenderer.color = new Color(1, 0.3f, 0.3f);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
 
         mySpriteRenderer.color = new Color(1, 1,1);
     }

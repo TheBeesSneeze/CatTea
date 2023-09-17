@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c16334250edfb714db1236322a856f06, type: 3}
-  m_Name: Ranged Enemy Stats
+  m_Name: Test Melee Enemy Stats
   m_EditorClassIdentifier: 
-  Speed: 1
-  HealthPoints: 5
-  Damage: 1
-  ContactDamage: 0
-  KnockBackForce: 35
+  DifficultyCost: 1
+  Speed: 2
+  EnemyMove: 0
+  TimeBetweenMovements: 2
+  HealthPoints: 3
+  Damage: 2
+  ContactDamage: 1
+  KnockBackForce: 3
   DealContactDamage: 0
