@@ -12,13 +12,13 @@ using UnityEngine;
 
 public class RangedEnemyBehaviour : EnemyBehaviour
 {
+    public GameObject BulletPrefab;
+
     [Tooltip("How many bullets to spawn in a burst")]
     public int BulletsSpawned;
 
     [Tooltip("Seconds between each spawning of bullets")]
     public int BulletSpawnInterval;
-
-    public GameObject BulletPrefab;
 
     // Start is called before the first frame update
     protected override void Start()

@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("0 - 8, for how many times the players died")]
     public int RunNumber;
 
+    [Header("Player Defined Settings")]
+    public bool Rumble;
+
+    public int DefaultChallengePoints;
+    public int CurrentChallengePoints;
 
     private void Awake()
     {
@@ -31,5 +36,10 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    private void Start()
+    {
+        CurrentChallengePoints = DefaultChallengePoints;
     }
 }

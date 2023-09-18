@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 286321620757031755}
-  - component: {fileID: 755530039258399283}
   - component: {fileID: 8511488418765957527}
+  - component: {fileID: 755530039258399283}
   - component: {fileID: 9110568108937901456}
   - component: {fileID: 5018335208605520462}
   m_Layer: 0
@@ -35,6 +35,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8511488418765957527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125848749813268421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fea91d97d1b1634b82699be37ae8f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthPoints: 0
+  Speed: 0
+  KnockbackForce: 0
+  TakeKnockback: 1
+  CurrentEnemyStats: {fileID: 11400000, guid: 8640edc5d4300f049bcfc159443e4a32, type: 2}
+  DifficultyCost: 0
+  Damage: 0
+  EnemyMove: 0
+  TimeBetweenMovements: 0
+  Room: {fileID: 0}
+  BulletPrefab: {fileID: 2738865446770433985, guid: 4cb68da3901ab3f498c176d409300afe, type: 3}
+  BulletsSpawned: 3
+  BulletSpawnInterval: 3
 --- !u!212 &755530039258399283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,27 +112,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8511488418765957527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125848749813268421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fea91d97d1b1634b82699be37ae8f20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TakeKnockback: 1
-  HealthPoints: 0
-  Speed: 0
-  KnockbackForce: 0
-  CurrentEnemyStats: {fileID: 11400000, guid: dcd49d474ec1afc4387687701cae0283, type: 2}
-  Damage: 0
-  BulletsSpawned: 3
-  BulletSpawnInterval: 3
-  BulletPrefab: {fileID: 2738865446770433985, guid: 4cb68da3901ab3f498c176d409300afe, type: 3}
 --- !u!58 &9110568108937901456
 CircleCollider2D:
   m_ObjectHideFlags: 0

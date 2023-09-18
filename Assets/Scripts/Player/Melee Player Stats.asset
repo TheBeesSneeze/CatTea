@@ -16,8 +16,11 @@ MonoBehaviour:
   DashForce: 5
   HealthPoints: 10
   DashRechargeSeconds: 0.75
-  PrimaryAttackDamage: 0
-  PrimaryAttackSpeed: 0
-  SecondaryAttackDamage: 0
-  SecondaryAttackSpeed: 0
-  KnockBackForce: 0
+  PrimaryAttackDamage: 3
+  PrimaryAttackSpeed: 0.15
+  PrimaryAttackCoolDown: 0.3
+  SecondaryAttackDamage: 5
+  SecondaryAttackSpeed: 1
+  SecondaryAttackCoolDown: 0
+  KnockBackForce: 3
+  ExampleVariableName: 0

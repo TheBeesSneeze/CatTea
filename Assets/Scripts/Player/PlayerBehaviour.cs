@@ -23,14 +23,18 @@ public class PlayerBehaviour : CharacterBehaviour
 {
     //Player Stats
     public PlayerStats CurrentPlayerStats;
-    [Header("Derived from PlayerStats, do not tweak in editor")]
-    public float DashRechargeSeconds;
-    public float DashForce;
+    [HideInInspector] public float DashRechargeSeconds;
+    [HideInInspector] public float DashForce;
 
-    public float PrimaryAttackDamage;
-    public float PrimaryAttackSpeed;
-    public float SecondaryAttackDamage;
-    public float SecondaryAttackSpeed;
+    [HideInInspector] public int PrimaryAttackDamage;
+    [HideInInspector] public float PrimaryAttackSpeed;
+    [HideInInspector] public float PrimaryAttackCoolDown;
+    [HideInInspector] public float PrimaryAttackKnockback;
+
+    [HideInInspector] public int SecondaryAttackDamage;
+    [HideInInspector] public float SecondaryAttackSpeed;
+    [HideInInspector] public float SecondaryAttackCoolDown;
+    [HideInInspector] public float SecondaryAttackKnockback;
 
     //components
     private DefaultPlayerController playerController;
@@ -46,8 +50,6 @@ public class PlayerBehaviour : CharacterBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.tag;
-
-        Debug.Log(tag);
 
         if(tag.Equals("Enemy Attack"))
         {
@@ -76,7 +78,12 @@ public class PlayerBehaviour : CharacterBehaviour
         
         PrimaryAttackDamage = CurrentPlayerStats.PrimaryAttackDamage;
         PrimaryAttackSpeed = CurrentPlayerStats.PrimaryAttackSpeed;
-        SecondaryAttackDamage = CurrentPlayerStats.SecondaryAttackSpeed;
-        SecondaryAttackSpeed = CurrentPlayerStats.SecondaryAttackDamage;
+        PrimaryAttackCoolDown = CurrentPlayerStats.PrimaryAttackCoolDown;
+        PrimaryAttackKnockback = CurrentPlayerStats.PrimaryAttackKnockback;
+
+        SecondaryAttackDamage = CurrentPlayerStats.SecondaryAttackDamage;
+        SecondaryAttackSpeed = CurrentPlayerStats.SecondaryAttackSpeed;
+        SecondaryAttackCoolDown = CurrentPlayerStats.SecondaryAttackCoolDown;
+        SecondaryAttackKnockback = CurrentPlayerStats.SecondaryAttackKnockback;
     }
 }

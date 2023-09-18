@@ -21,8 +21,6 @@ using UnityEngine;
 public class PlayerStats : ScriptableObject
 {
     //obviously most of these stats wont apply to the default player
-
-    [Header("Don't change any of these in code.")]
     public float Speed;
     public float DashForce;
 
@@ -33,10 +31,17 @@ public class PlayerStats : ScriptableObject
     public int PrimaryAttackDamage;
     [Tooltip("Seconds for Primary attack to complete")]
     public float PrimaryAttackSpeed;
+    public float PrimaryAttackCoolDown;
+    public float PrimaryAttackKnockback;
 
     public int SecondaryAttackDamage;
     [Tooltip("Seconds for Secondary attack to complete")]
     public float SecondaryAttackSpeed;
+    public float SecondaryAttackCoolDown;
+    public float SecondaryAttackKnockback;
 
-    public float KnockBackForce;
+    public int ExampleVariableName;
+    private int exampleVariableName; 
+    protected int exampleVariabIeName; 
+
 }

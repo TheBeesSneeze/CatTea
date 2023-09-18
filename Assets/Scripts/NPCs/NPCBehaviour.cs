@@ -205,6 +205,9 @@ public class NPCBehaviour : MonoBehaviour
 
     public void LoadScript(NPCScript Script)
     {
+        if (Script == null)
+            return;
+
         TextList = Script.TextList;
 
         WhoIsTalking = Script.WhoIsTalking;
