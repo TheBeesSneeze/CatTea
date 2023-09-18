@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name :         PlayerHealthBar.cs
-* Author(s) :         Alex Bell
+* Author(s) :         Alex Bell, Toby Schamberger
 * Creation Date :     9/18/2023
 *
 * Brief Description : The Player's health bar.
@@ -21,13 +21,14 @@ public class PlayerHealthBar : MonoBehaviour
     void Start()
     {
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
-        MaxHealth = playerBehaviour.HealthPoints;
-        healthBar.maxValue = MaxHealth;
+        
         UpdateHealth();
     }
 
     public void UpdateHealth()
     {
+        MaxHealth = playerBehaviour.MaxHealthPoints;
+        healthBar.maxValue = MaxHealth;
         healthBar.value = playerBehaviour.HealthPoints;
     }
 }
