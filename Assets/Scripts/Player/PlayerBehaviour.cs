@@ -39,11 +39,14 @@ public class PlayerBehaviour : CharacterBehaviour
     //components
     private DefaultPlayerController playerController;
 
+    private PlayerHealthBar healthBar;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         playerController = GetComponent<DefaultPlayerController>();
+        healthBar = GameObject.FindObjectOfType<PlayerHealthBar>();
         SetStatsToDefaults();
     }
 
