@@ -39,12 +39,27 @@ public class PlayerBehaviour : CharacterBehaviour
     //components
     private DefaultPlayerController playerController;
 
+    private PlayerHealthBar healthBar;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         playerController = GetComponent<DefaultPlayerController>();
+
+        try { healthBar = GameObject.FindObjectOfType<PlayerHealthBar>(); }
+        catch { Debug.LogWarning("No Player Health Bar in Scene"); }
+        
         SetStatsToDefaults();
+    }
+
+    public override void SetHealth(int Value)
+    {
+        Debug.Log("Health Set");
+        base.SetHealth(Value);
+
+        if (healthBar != null) 
+            healthBar.UpdateHealth();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -72,6 +87,7 @@ public class PlayerBehaviour : CharacterBehaviour
     public override void SetStatsToDefaults()
     {
         Speed = CurrentPlayerStats.Speed;
+        MaxHealthPoints = CurrentPlayerStats.MaxHealthPoints;
         HealthPoints = CurrentPlayerStats.HealthPoints;
         DashRechargeSeconds = CurrentPlayerStats.DashRechargeSeconds;
         DashForce = CurrentPlayerStats.DashForce;

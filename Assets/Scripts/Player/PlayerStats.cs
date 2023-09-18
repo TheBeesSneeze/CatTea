@@ -25,6 +25,7 @@ public class PlayerStats : ScriptableObject
     public float DashForce;
 
     public int HealthPoints;
+    public int MaxHealthPoints;
 
     public float DashRechargeSeconds;
 
