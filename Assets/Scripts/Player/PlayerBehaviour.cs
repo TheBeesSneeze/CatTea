@@ -23,19 +23,18 @@ public class PlayerBehaviour : CharacterBehaviour
 {
     //Player Stats
     public PlayerStats CurrentPlayerStats;
-    [Header("Derived from PlayerStats, do not tweak in editor")]
-    public float DashRechargeSeconds;
-    public float DashForce;
+    [HideInInspector] public float DashRechargeSeconds;
+    [HideInInspector] public float DashForce;
 
-    public int PrimaryAttackDamage;
-    public float PrimaryAttackSpeed;
-    public float PrimaryAttackCoolDown;
-    public float PrimaryAttackKnockback;
+    [HideInInspector] public int PrimaryAttackDamage;
+    [HideInInspector] public float PrimaryAttackSpeed;
+    [HideInInspector] public float PrimaryAttackCoolDown;
+    [HideInInspector] public float PrimaryAttackKnockback;
 
-    public int SecondaryAttackDamage;
-    public float SecondaryAttackSpeed;
-    public float SecondaryAttackCoolDown;
-    public float SecondaryAttackKnockback;
+    [HideInInspector] public int SecondaryAttackDamage;
+    [HideInInspector] public float SecondaryAttackSpeed;
+    [HideInInspector] public float SecondaryAttackCoolDown;
+    [HideInInspector] public float SecondaryAttackKnockback;
 
     //components
     private DefaultPlayerController playerController;

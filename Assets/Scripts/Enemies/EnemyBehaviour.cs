@@ -66,16 +66,6 @@ public class EnemyBehaviour : CharacterBehaviour
         playerBehavior.TakeDamage(contactDamage, this.transform.position, KnockbackForce);
     }
 
-    protected virtual void OnPrimaryAttackCollision(Collider2D collision)
-    {
-        TakeDamage(playerBehavior.PrimaryAttackDamage, collision.transform.position, playerBehavior.PrimaryAttackKnockback);
-    }
-
-    protected virtual void OnSecondaryAttackCollision(Collider2D collision)
-    {
-
-    }
-
     protected virtual void StartMovingToPlayer()
     {
         // @TODO (elda)
@@ -93,12 +83,6 @@ public class EnemyBehaviour : CharacterBehaviour
 
         if (tag.Equals("Player"))
             OnPlayerCollision(collision);
-
-        if (tag.Equals("Primary Player Attack"))
-            OnPrimaryAttackCollision(collision);
-
-        if (tag.Equals("Secondary Player Attack"))
-            OnPrimaryAttackCollision(collision);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
