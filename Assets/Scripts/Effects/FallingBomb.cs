@@ -20,6 +20,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine.Rendering;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.UI;
 
 public class FallingBomb : MonoBehaviour
 {
@@ -44,11 +45,19 @@ public class FallingBomb : MonoBehaviour
     public float FallingAcceleration;
 
     private Vector3 shadowTargetScaleTarget;
+    private float targetShadowOpacity;
+    private SpriteRenderer shadowSprite;
+
+    private float initialShadowOpacity = 0.3f;
 
     private void Start()
     {
         shadowTargetScaleTarget = Shadow.transform.localScale;
-        Shadow.transform.localScale = Vector3.zero;
+        Shadow.transform.localScale = Shadow.transform.localScale / 2;
+
+        shadowSprite = Shadow.GetComponent<SpriteRenderer>();
+        targetShadowOpacity = shadowSprite.color.a;
+        shadowSprite.color = new Color(shadowSprite.color.r, shadowSprite.color.g, shadowSprite.color.b, initialShadowOpacity);
 
         StartCoroutine(InitializeBomb());
 
@@ -59,6 +68,7 @@ public class FallingBomb : MonoBehaviour
     /// <summary>
     /// Stage 1.
     /// Lerps the bombs opacity 0 > 1 and moves it up 1 unit.
+    /// Slightly expands shadow
     /// </summary>
     /// <returns></returns>
     public IEnumerator InitializeBomb()
@@ -68,12 +78,15 @@ public class FallingBomb : MonoBehaviour
         float unitsUp = 1;
 
         float t = 0;
-        Vector3 newPos;
+        Vector3 newBombPosition;
+
+        Vector3 targetShadowSize = Shadow.transform.localScale;
+        Color targetShadowColor = new Color(shadowSprite.color.r, shadowSprite.color.g, shadowSprite.color.b, initialShadowOpacity);
 
         SpriteRenderer bombSprite = Bomb.GetComponent<SpriteRenderer>();
         Color bombColor = bombSprite.color;
 
-        bombColor.a = 0f;
+        bombColor.a = 0;
         bombSprite.color = bombColor;
 
         //make bomb more clear over waiting time
@@ -89,9 +102,13 @@ public class FallingBomb : MonoBehaviour
             bombSprite.color = bombColor;
 
             //move up slightly
-            newPos = Bomb.transform.position;
-            newPos.y += unitsUp / opacityFrames;
-            Bomb.transform.position = newPos;
+            newBombPosition = Bomb.transform.position;
+            newBombPosition.y += unitsUp / opacityFrames;
+            Bomb.transform.position = newBombPosition;
+
+            //expand shadow slightly
+            Shadow.transform.localScale = Vector3.Lerp(Vector3.zero, targetShadowSize, t);
+            shadowSprite.color = Color.Lerp(shadowSprite.color, targetShadowColor, t) ; //guys i am fucking losing it
 
             yield return new WaitForSeconds(SuspendedTime / opacityFrames);
         }
@@ -111,8 +128,9 @@ public class FallingBomb : MonoBehaviour
         Vector3 bombStart = Bomb.transform.position;
         Vector3 bombTarget = Shadow.transform.position;
 
-        SpriteRenderer shadowSprite = Shadow.GetComponent<SpriteRenderer>();
-        float targetShadowOpacity = shadowSprite.color.a;
+        Vector3 ShadowStartSize = Shadow.transform.localScale;
+
+        float shadowStartOpacity = shadowSprite.color.a;
 
         //drop bomb. expand shadow. expand opacity
         while (t < 1)
@@ -122,10 +140,10 @@ public class FallingBomb : MonoBehaviour
             float tScaled = Mathf.Pow(t, FallingAcceleration);
 
             Bomb.transform.position = Vector3.Lerp(bombStart, bombTarget, tScaled);
-            Shadow.transform.localScale = Vector3.Lerp(Vector3.zero, shadowTargetScaleTarget, tScaled);
+            Shadow.transform.localScale = Vector3.Lerp(ShadowStartSize, shadowTargetScaleTarget, tScaled);
 
             Color shadowColor = shadowSprite.color;
-            shadowColor.a = Mathf.Lerp(0,targetShadowOpacity,tScaled);
+            shadowColor.a = Mathf.Lerp(shadowStartOpacity, targetShadowOpacity,tScaled);
             shadowSprite.color = shadowColor;
 
             yield return new WaitForSeconds(FallingTime / FallingFrames);
