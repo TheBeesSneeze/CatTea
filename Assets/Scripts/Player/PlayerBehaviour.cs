@@ -55,7 +55,6 @@ public class PlayerBehaviour : CharacterBehaviour
 
     public override void SetHealth(int Value)
     {
-        Debug.Log("Health Set");
         base.SetHealth(Value);
 
         if (healthBar != null) 

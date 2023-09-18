@@ -27,6 +27,9 @@ public class PlayerHealthBar : MonoBehaviour
 
     public void UpdateHealth()
     {
+        if(playerBehaviour == null)
+            return;
+            
         MaxHealth = playerBehaviour.MaxHealthPoints;
         healthBar.maxValue = MaxHealth;
         healthBar.value = playerBehaviour.HealthPoints;
