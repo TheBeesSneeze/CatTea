@@ -134,7 +134,7 @@ MonoBehaviour:
   Shadow: {fileID: 2220068137735516666}
   ExplosionPrefab: {fileID: 4254857575187743282, guid: f61a03b7b3c8b1e41b1845f5c325afba, type: 3}
   RotateBomb: 1
-  SuspendedTime: 1.75
+  SuspendedTime: 2
   FallingTime: 0.75
   ExplosionTime: 0.25
   FallingFrames: 250

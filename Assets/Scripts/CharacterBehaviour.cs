@@ -13,7 +13,13 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
 {
-    /*[HideInInspector]*/ public int HealthPoints;
+    private int _healthPoints;
+    public int HealthPoints
+    {
+        get {  return _healthPoints; }
+        set { SetHealth(value); }
+    }
+    [HideInInspector] public int MaxHealthPoints;
     [HideInInspector] public float Speed;
     [HideInInspector] public float KnockbackForce;
     [HideInInspector] public bool TakeKnockback = true;
@@ -81,6 +87,11 @@ public class CharacterBehaviour : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public virtual void SetHealth(int Value)
+    {
+        _healthPoints = Value;
     }
 
     /// <summary>
