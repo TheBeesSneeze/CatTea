@@ -272,4 +272,8 @@ public class DefaultPlayerController : MonoBehaviour
         }
     }
 
+    public void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 }
