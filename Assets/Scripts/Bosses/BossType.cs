@@ -1,7 +1,7 @@
 /*******************************************************************************
-* File Name :         BossRoom.cs
+* File Name :         BossType.cs
 * Author(s) :         Toby Schamberger
-* Creation Date :     9/13/2023
+* Creation Date :     9/18/2023
 *
 * Brief Description : 
 *****************************************************************************/
@@ -10,15 +10,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossRoom : EnemyRoom
+public class BossType : CharacterBehaviour
 {
-
-    public override void EnterRoom()
+    // Start is called before the first frame update
+    void Start()
     {
-        //copy and paste the code from roomType
-        cameraManager.MoveCamera(CameraCenterPoint);
-        playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+        
     }
 
-
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }
