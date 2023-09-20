@@ -695,22 +695,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1925222844586266794, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1925222844586266794, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1925222844586266794, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7730861872080579021, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8692218365587620245, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1573,6 +1557,10 @@ PrefabInstance:
     - target: {fileID: 2486012825115492236, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
+      propertyPath: DefaultChallengePoints
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

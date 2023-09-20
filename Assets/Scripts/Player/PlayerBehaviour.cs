@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : CharacterBehaviour
 {
@@ -59,6 +60,10 @@ public class PlayerBehaviour : CharacterBehaviour
 
         if (healthBar != null) 
             healthBar.UpdateHealth();
+        if(HealthPoints <= 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
