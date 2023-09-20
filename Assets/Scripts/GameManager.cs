@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [Header("Player Defined Settings")]
     public bool Rumble;
 
+    public int DefaultChallengePoints;
+    public int CurrentChallengePoints;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -33,5 +36,10 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    private void Start()
+    {
+        CurrentChallengePoints = DefaultChallengePoints;
     }
 }

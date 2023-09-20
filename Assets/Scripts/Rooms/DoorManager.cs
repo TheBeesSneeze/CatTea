@@ -1,3 +1,13 @@
+/*******************************************************************************
+* File Name :         DoorManager.cs
+* Author(s) :         Toby Schamberger
+* Creation Date :     9/13/2023
+*
+* Brief Description : can be set to open/closed. stores this room and an output room.
+* 
+* TODO: animations, probably
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +20,24 @@ public class DoorManager : MonoBehaviour
     public RoomType ThisRoom;
 
     [Tooltip("If player can go through the door")]
-    private bool open;
+    [SerializeField] private bool open;
+
+    //gross... unity...
+    private PlayerBehaviour playerBehaviour;
 
     private void Start()
     {
+        playerBehaviour = GameObject.FindAnyObjectByType<PlayerBehaviour>();
+
+        if(ThisRoom == null)
+        {
+            Debug.LogWarning("No Room Assigned to door!");
+            return;
+        }
+
         open = ThisRoom.OpenDoorsOnStart;
+
+        ThisRoom.Door = this;
     }
 
     /// <summary>
@@ -24,6 +47,7 @@ public class DoorManager : MonoBehaviour
     public void OpenDoor()
     {
         open = true;
+        //TODO: ANIMATION STUFF
     }
 
     /// <summary>
@@ -31,14 +55,38 @@ public class DoorManager : MonoBehaviour
     /// </summary>
     public void EnterDoor()
     {
-        if (!open)
-            return;
-
         if(OutputRoom == null)
         {
             Debug.LogWarning("No output room!");
-            OutputRoom.EnterRoom();
+            return;
         }
-            
+
+        if(!open)
+            return;
+        
+        OutputRoom.EnterRoom();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        string tag = collision.gameObject.tag;
+
+        if(tag.Equals("Player"))
+        {
+            AttemptEnterDoor();
+        }
+    }
+
+    /// <summary>
+    /// Tries to let player open door
+    /// </summary>
+    private void AttemptEnterDoor()
+    {
+        if (OutputRoom == null)
+            return;
+
+        open = ThisRoom.CheckRoomCleared();
+
+        EnterDoor();
     }
 }
