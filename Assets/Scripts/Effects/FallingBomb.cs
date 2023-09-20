@@ -118,11 +118,14 @@ public class FallingBomb : MonoBehaviour
 
     /// <summary>
     /// Stage 2.
-    /// Makes bomb fall
+    /// Makes bomb fall.
+    /// Stops being a child.
     /// </summary>
     /// <returns></returns>
     public IEnumerator DropBomb()
     {
+        transform.SetParent(null);
+
         float t = 0;
 
         Vector3 bombStart = Bomb.transform.position;
