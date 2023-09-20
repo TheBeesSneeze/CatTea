@@ -19,5 +19,5 @@ MonoBehaviour:
   HealthPoints: 5
   Damage: 1
   ContactDamage: 0
-  KnockBackForce: 35
+  KnockBackForce: 3
   DealContactDamage: 0
