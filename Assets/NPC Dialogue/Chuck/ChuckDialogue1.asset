@@ -34,10 +34,8 @@ MonoBehaviour:
     list."
   - How did they know about our prototype? Where did they go?
   - Why are you asking me?
-  - "It\u2019s not like they walked up to me and started spouting some sort of evil
-    monologue about how they knew we were making this and it would be wonderful for
-    their evil plan to kill everyone at these exact coordinates before shooting me
-    in the head."
+  - It's not like they spouted the exact coordinates of their evil plan right before
+    shooting me in the head.
   - That would have been nice though.
   - "*sigh* Okay. This is a bit of a stretch but it\u2019s the only lead I have. "
   - I heard down the grapevine that the Accord have been planning on holding some
@@ -49,13 +47,10 @@ MonoBehaviour:
   - Yeah, I am. Come on, Jade. I thought you were the smart one here.
   - "I am. I\u2019ll handle it. Thanks for the info."
   - No problem. Try not to die.
-  - Hahaha. Still ignoring the whole dying thing?
-  - "Let\u2019s try to focus on one problem at a time. "
-  - Getting that gun back is top priority.
-  - We can talk about the whole coming back to life thing when you get back.
-  - Fine. See ya later alligator.
-  - ...Yeah. Whatever. Bye.
-  WhoIsTalking: 0000000001000000000000000100000000000000000000000100000000000000000000000000000000000000000000000100000000000000010000000000000000000000000000000100000001000000010000000100000000000000010000000000000001000000000000000100000001000000010000000000000001000000
+  - Hahaha. Very funny. See ya later alligator.
+  - You're hilarious.
+  - Bye.
+  WhoIsTalking: 0000000001000000000000000100000000000000000000000100000000000000000000000000000000000000000000000100000000000000010000000000000000000000000000000100000001000000010000000100000000000000010000000000000001000000000000000100000001000000
   PlayerTalkingSprites:
   - {fileID: 0}
   NPCTalkingSprites:

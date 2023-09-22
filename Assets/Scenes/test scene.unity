@@ -6356,6 +6356,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1606679073}
     - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: LoopText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: NPCSprite
       value: 
       objectReference: {fileID: 1288743079}
@@ -6367,6 +6371,10 @@ PrefabInstance:
       propertyPath: DialogueCanvas
       value: 
       objectReference: {fileID: 1909267493}
+    - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: DefaultDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: a72b41e6721fb394dbb24a870fc6c046, type: 2}
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_RootOrder
       value: 3
