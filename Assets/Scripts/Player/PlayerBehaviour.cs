@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : CharacterBehaviour
 {
@@ -39,12 +40,30 @@ public class PlayerBehaviour : CharacterBehaviour
     //components
     private DefaultPlayerController playerController;
 
+    private PlayerHealthBar healthBar;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         playerController = GetComponent<DefaultPlayerController>();
+
+        try { healthBar = GameObject.FindObjectOfType<PlayerHealthBar>(); }
+        catch { Debug.LogWarning("No Player Health Bar in Scene"); }
+        
         SetStatsToDefaults();
+    }
+
+    public override void SetHealth(int Value)
+    {
+        base.SetHealth(Value);
+
+        if (healthBar != null) 
+            healthBar.UpdateHealth();
+        if(HealthPoints <= 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -72,6 +91,7 @@ public class PlayerBehaviour : CharacterBehaviour
     public override void SetStatsToDefaults()
     {
         Speed = CurrentPlayerStats.Speed;
+        MaxHealthPoints = CurrentPlayerStats.MaxHealthPoints;
         HealthPoints = CurrentPlayerStats.HealthPoints;
         DashRechargeSeconds = CurrentPlayerStats.DashRechargeSeconds;
         DashForce = CurrentPlayerStats.DashForce;

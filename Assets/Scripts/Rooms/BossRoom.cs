@@ -12,10 +12,13 @@ using UnityEngine;
 
 public class BossRoom : EnemyRoom
 {
+
     public override void EnterRoom()
     {
         //copy and paste the code from roomType
         cameraManager.MoveCamera(CameraCenterPoint);
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
     }
+
+
 }

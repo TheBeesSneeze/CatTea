@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3.5
   DashForce: 5
-  HealthPoints: 10
+  HealthPoints: 25
+  MaxHealthPoints: 25
   DashRechargeSeconds: 0.75
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 0
+  PrimaryAttackCoolDown: 0
+  PrimaryAttackKnockback: 0
   SecondaryAttackDamage: 0
   SecondaryAttackSpeed: 0
-  KnockBackForce: 0
+  SecondaryAttackCoolDown: 0
+  SecondaryAttackKnockback: 0
+  ExampleVariableName: 0

@@ -49,6 +49,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected Rigidbody2D myRigidbody;
     protected PlayerBehaviour playerBehaviour;
     public Gamepad MyGamepad;
+    protected Animator myAnimator;
 
     // etcetera:
     protected Vector2 moveDirection;
@@ -66,6 +67,7 @@ public class DefaultPlayerController : MonoBehaviour
         //initialize a lot of variables
         myRigidbody = GetComponent<Rigidbody2D>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
+        myAnimator = GetComponent<Animator>();
 
         //Initialize input stuff
         playerInput = GetComponent<PlayerInput>();
@@ -92,6 +94,8 @@ public class DefaultPlayerController : MonoBehaviour
         secondary.canceled += Secondary_canceled;
 
         pause.started += Pause_started;
+
+        StartCoroutine(UpdateAnimation());
     }
 
     /// <summary>
@@ -163,6 +167,7 @@ public class DefaultPlayerController : MonoBehaviour
 
             yield return new WaitForSeconds(slideSeconds/ slideIterations);
         }
+
 
         //may fuck things up:
         moveDirection = newMoveDiection;
@@ -257,4 +262,18 @@ public class DefaultPlayerController : MonoBehaviour
 
     }
 
+    protected IEnumerator UpdateAnimation()
+    {
+        while (true)
+        {
+            myAnimator.SetFloat("XMovement", moveDirection.x);
+            myAnimator.SetFloat("YMovement", moveDirection.y);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    public void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 }
