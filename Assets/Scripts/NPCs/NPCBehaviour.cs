@@ -48,9 +48,11 @@ public class NPCBehaviour : MonoBehaviour
     public GameObject DialogueCanvas;
     public Image PlayerSprite;
     public Image NPCSprite;
+    private DefaultPlayerController player;
 
     private void Start()
     {
+        player = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<DefaultPlayerController>();    
         LoadScript(DefaultDialogue);
     }
 
@@ -66,8 +68,9 @@ public class NPCBehaviour : MonoBehaviour
             if(ButtonPrompt != null)
                 ButtonPrompt.SetActive(true);
 
-            DefaultPlayerController player = collision.GetComponent<DefaultPlayerController>();
+            player = collision.GetComponent<DefaultPlayerController>();
             player.Select.started += ActivateSpeech;
+            player.Pause.started += Exit_text;
         }
     }
 
@@ -86,13 +89,15 @@ public class NPCBehaviour : MonoBehaviour
             if (ButtonPrompt != null)
                 ButtonPrompt.SetActive(false);
 
-            DefaultPlayerController player = collision.GetComponent<DefaultPlayerController>();
             player.Select.started -= ActivateSpeech;
+            player.Pause.started -= Exit_text;
         }
     }
 
     public void CancelSpeech()
     {
+        player.IgnoreAllInputs = false;
+
         textIndex = 0;
         if (ButtonPrompt != null)
             ButtonPrompt.SetActive(true);
@@ -106,6 +111,8 @@ public class NPCBehaviour : MonoBehaviour
     /// <param name="obj"></param>
     public void ActivateSpeech(InputAction.CallbackContext obj)
     {
+        player.IgnoreAllInputs = true;
+
         //if end dialogue
         if (!LoopText && textIndex == TextList.Count)
         {
@@ -120,6 +127,11 @@ public class NPCBehaviour : MonoBehaviour
 
         if(ButtonPrompt!=null)
             ButtonPrompt.SetActive(false);
+    }
+
+    public void Exit_text(InputAction.CallbackContext obj) 
+    {
+        CancelSpeech();
     }
 
     /// <summary>
