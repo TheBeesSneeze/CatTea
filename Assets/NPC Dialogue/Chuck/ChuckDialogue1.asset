@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
+  m_Name: ChuckDialogue1
+  m_EditorClassIdentifier: 
+  TextList:
+  - Hey! What the fuck is going on!?
+  - Huh? What do you mean? What happened?
+  - Some Crimson Accord fuckers decided to drop by my shop and steal the prototype.
+  - Are you serious?
+  - "No, of course I\u2019m joking."
+  - "And along with not raiding my shop they also didn\u2019t kill me and I totally
+    didn\u2019t come back to life."
+  - Can you talk normally for one second and just tell me what happened?
+  - '*sigh* I was in my shop working on the prototype. '
+  - Some guys from the Crimson Accord came in and said they were looking for your
+    prototype.
+  - They then proceeded to take the gun and kill me.
+  - "I then came back to life in front of this weird fucking machine that had this
+    screen with the number 9 on it and my face and I have no idea what\u2019s going
+    on."
+  - "So my day\u2019s been great. How \u2018bout you?"
+  - Ok. I'm just going to ignore the coming back to life thing for now.
+  - "Great. Glad the Crimson Accord killing me doesn\u2019t make your top priorities
+    list."
+  - How did they know about our prototype? Where did they go?
+  - Why are you asking me?
+  - It's not like they spouted the exact coordinates of their evil plan right before
+    shooting me in the head.
+  - That would have been nice though.
+  - "*sigh* Okay. This is a bit of a stretch but it\u2019s the only lead I have. "
+  - I heard down the grapevine that the Accord have been planning on holding some
+    sort of event.
+  - "I don\u2019t know the exact location of this event, but I think it should be
+    somewhere about a mile north from here."
+  - I would suggest going there and searching the area.
+  - "That\u2019s it? You\u2019re joking."
+  - Yeah, I am. Come on, Jade. I thought you were the smart one here.
+  - "I am. I\u2019ll handle it. Thanks for the info."
+  - No problem. Try not to die.
+  - Hahaha. Very funny. See ya later alligator.
+  - You're hilarious.
+  - Bye.
+  WhoIsTalking: 0000000001000000000000000100000000000000000000000100000000000000000000000000000000000000000000000100000000000000010000000000000000000000000000000100000001000000010000000100000000000000010000000000000001000000000000000100000001000000
+  PlayerTalkingSprites:
+  - {fileID: 0}
+  NPCTalkingSprites:
+  - {fileID: 0}

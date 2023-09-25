@@ -24,8 +24,12 @@ public class PlayerBehaviour : CharacterBehaviour
 {
     //Player Stats
     public PlayerStats CurrentPlayerStats;
+
+    [HideInInspector] public float InvincibilitySeconds;
+
     [HideInInspector] public float DashRechargeSeconds;
-    [HideInInspector] public float DashForce;
+    [HideInInspector] public float DashTime;
+    [HideInInspector] public float DashUnits;
 
     [HideInInspector] public int PrimaryAttackDamage;
     [HideInInspector] public float PrimaryAttackSpeed;
@@ -52,6 +56,7 @@ public class PlayerBehaviour : CharacterBehaviour
         catch { Debug.LogWarning("No Player Health Bar in Scene"); }
         
         SetStatsToDefaults();
+        HealthPoints = MaxHealthPoints;
     }
 
     public override void SetHealth(int Value)
@@ -64,6 +69,15 @@ public class PlayerBehaviour : CharacterBehaviour
         {
             SceneManager.LoadScene(3);
         }
+    }
+
+    public override bool TakeDamage(int Damage)
+    {
+        bool died = base.TakeDamage(Damage);
+
+        BecomeInvincible(InvincibilitySeconds);
+
+        return died;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -92,9 +106,11 @@ public class PlayerBehaviour : CharacterBehaviour
     {
         Speed = CurrentPlayerStats.Speed;
         MaxHealthPoints = CurrentPlayerStats.MaxHealthPoints;
-        HealthPoints = CurrentPlayerStats.HealthPoints;
+        InvincibilitySeconds = CurrentPlayerStats.InvincibilitySeconds;
+
         DashRechargeSeconds = CurrentPlayerStats.DashRechargeSeconds;
-        DashForce = CurrentPlayerStats.DashForce;
+        DashUnits = CurrentPlayerStats.DashUnits;
+        DashTime = CurrentPlayerStats.DashTime;
         
         PrimaryAttackDamage = CurrentPlayerStats.PrimaryAttackDamage;
         PrimaryAttackSpeed = CurrentPlayerStats.PrimaryAttackSpeed;

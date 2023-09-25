@@ -106,6 +106,7 @@ public class NPCBehaviour : MonoBehaviour
     /// <param name="obj"></param>
     public void ActivateSpeech(InputAction.CallbackContext obj)
     {
+        
         //if end dialogue
         if (!LoopText && textIndex == TextList.Count)
         {

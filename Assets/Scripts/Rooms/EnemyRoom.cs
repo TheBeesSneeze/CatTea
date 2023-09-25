@@ -17,31 +17,32 @@ public class EnemyRoom : RoomType
     [SerializeField] private List<GameObject> EnemySpawnPool;
     [SerializeField] private List<Transform> EnemySpawnPoints;
 
-    public int AliveEnemies;
-    public int WavesLeft;
-    private int challengePointsPerWave;
+    [Header("Debug")]
+    [SerializeField] private int aliveEnemies;
+    [SerializeField] private int wavesLeft;
+    [SerializeField] private int challengePointsPerWave;
 
     public override void EnterRoom()
     {
         base.EnterRoom();
 
-        WavesLeft = Random.Range(3, 6);
-        challengePointsPerWave = GameManager.Instance.CurrentChallengePoints / WavesLeft;
+        wavesLeft = Random.Range(3, 6);
+        challengePointsPerWave = GameManager.Instance.CurrentChallengePoints / wavesLeft;
 
-        Debug.Log(WavesLeft + " waves, " + challengePointsPerWave + " challenge points per wave");
+        Debug.Log(wavesLeft + " waves, " + challengePointsPerWave + " challenge points per wave");
 
         SpawnNewWaveOfEnemies();
     }
 
     public override bool CheckRoomCleared()
     {
-        return (AliveEnemies <= 0);
+        return (aliveEnemies <= 0);
     }
 
     public virtual void SpawnNewWaveOfEnemies()
     {
         int challengePointsLeft = challengePointsPerWave;
-        AliveEnemies = 0;
+        aliveEnemies = 0;
 
         if(EnemySpawnPool.Count <= 0)
         {
@@ -62,9 +63,9 @@ public class EnemyRoom : RoomType
     /// </summary>
     public virtual void OnEnemyDeath()
     {
-        AliveEnemies--;
+        aliveEnemies--;
 
-        if (AliveEnemies <= 0)
+        if (aliveEnemies <= 0)
         {
             Debug.Log("All enemies died! Opening door");
             Door.OpenDoor();
@@ -143,7 +144,7 @@ public class EnemyRoom : RoomType
         newEnemyBehaviour.OnSpawn();
         newEnemyBehaviour.Room = this;
 
-        AliveEnemies++;
+        aliveEnemies++;
         ChallengePointsLeft -= newEnemyBehaviour.DifficultyCost;
     }
 

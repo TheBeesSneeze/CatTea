@@ -9,6 +9,7 @@ TagManager:
   - Primary Player Attack
   - Secondary Player Attack
   - General Attack
+  - Boss
   layers:
   - Default
   - TransparentFX

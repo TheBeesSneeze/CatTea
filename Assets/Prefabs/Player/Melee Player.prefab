@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2369b28f28a03da45b7b48baeac9878e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  KnockbackForce: 0
+  Damage: 3
+  KnockbackForce: 1
   DamageOnCollision: 1
   Attacker: 0
 --- !u!1 &7506299912694804307
@@ -307,13 +307,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca29a21acd99204f86213e607e1464b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthPoints: 0
+  Invincible: 0
   MaxHealthPoints: 0
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
   CurrentPlayerStats: {fileID: 11400000, guid: 1fdc94ae238db11429f476f525f0b01c, type: 2}
+  InvincibilitySeconds: 0
   DashRechargeSeconds: 0
-  DashForce: 0
+  DashTime: 0
+  DashUnits: 0
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 0
   PrimaryAttackCoolDown: 0
