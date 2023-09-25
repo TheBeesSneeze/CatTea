@@ -38,6 +38,8 @@ public class MeleePlayerController : DefaultPlayerController
 
     protected override void Primary_performed(InputAction.CallbackContext obj)
     {
+        if(IgnoreAllInputs) return;
+
         //if not already attacking
         if (Attacking || !canAttack)
         {
@@ -61,14 +63,19 @@ public class MeleePlayerController : DefaultPlayerController
     }
     protected override void Primary_canceled(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
         //TODO
     }
     protected override void Secondary_performed(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
+
         //TODO
     }
     protected override void Secondary_canceled(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
+
         //TODO
     }
 

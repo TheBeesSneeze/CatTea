@@ -49,6 +49,7 @@ public class NPCBehaviour : MonoBehaviour
     public Image PlayerSprite;
     public Image NPCSprite;
     private DefaultPlayerController player;
+    private bool SkipText;
 
     private void Start()
     {
@@ -71,6 +72,7 @@ public class NPCBehaviour : MonoBehaviour
             player = collision.GetComponent<DefaultPlayerController>();
             player.Select.started += ActivateSpeech;
             player.Pause.started += Exit_text;
+            player.SkipText.started += Skip_text;
         }
     }
 
@@ -91,6 +93,7 @@ public class NPCBehaviour : MonoBehaviour
 
             player.Select.started -= ActivateSpeech;
             player.Pause.started -= Exit_text;
+            player.SkipText.started -= Skip_text;
         }
     }
 
@@ -134,6 +137,12 @@ public class NPCBehaviour : MonoBehaviour
         CancelSpeech();
     }
 
+    public void Skip_text(InputAction.CallbackContext obj)
+    {
+        if(typing)  
+            SkipText = true;
+    }
+
     /// <summary>
     /// coroutine that does the scrolly text
     /// </summary>
@@ -150,6 +159,13 @@ public class NPCBehaviour : MonoBehaviour
         //typewriter text
         for (int i = 0; i < TextList[textIndex].Length + 1; i++)
         {
+            if(SkipText)
+            {
+                SkipText = false;
+                TextBox.text = TextList[textIndex];
+                break;
+            }
+            
             TextBox.text = TextList[textIndex].Substring(0, i);
             yield return new WaitForSeconds(ScrollSpeed);
         }

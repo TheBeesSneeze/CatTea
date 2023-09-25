@@ -65,11 +65,24 @@ public class EnemyRoom : RoomType
     {
         aliveEnemies--;
 
-        if (aliveEnemies <= 0)
+        if(aliveEnemies <= 0)
+        {
+            OnWaveEnd();
+        }
+    }
+
+    private void OnWaveEnd()
+    {
+        wavesLeft--;
+
+        if (wavesLeft <= 0)
         {
             Debug.Log("All enemies died! Opening door");
             Door.OpenDoor();
+            return;
         }
+
+        SpawnNewWaveOfEnemies();
     }
 
     /// <summary>
