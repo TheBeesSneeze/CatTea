@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16334250edfb714db1236322a856f06, type: 3}
   m_Name: Test Ranged Enemy Stats
   m_EditorClassIdentifier: 
-  DifficultyCost: 2
+  DifficultyCost: 3
   Speed: 1
   EnemyMove: 0
   TimeBetweenMovements: 5
