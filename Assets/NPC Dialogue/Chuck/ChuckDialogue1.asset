@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ChuckDialogue1
   m_EditorClassIdentifier: 
   TextList:
-  - Hey! What the fuck is going on!?
+  - Hey! What's going on!?
   - Huh? What do you mean? What happened?
-  - Some Crimson Accord fuckers decided to drop by my shop and steal the prototype.
+  - Some idiots from the Crimson Accord decided to drop by my shop and steal the
+    prototype.
   - Are you serious?
   - "No, of course I\u2019m joking."
   - "And along with not raiding my shop they also didn\u2019t kill me and I totally
@@ -25,9 +26,8 @@ MonoBehaviour:
   - Some guys from the Crimson Accord came in and said they were looking for your
     prototype.
   - They then proceeded to take the gun and kill me.
-  - "I then came back to life in front of this weird fucking machine that had this
-    screen with the number 9 on it and my face and I have no idea what\u2019s going
-    on."
+  - "I then came back to life in front of this weird machine that had this screen
+    with the number 9 on it and my face and I have no idea what\u2019s going on."
   - "So my day\u2019s been great. How \u2018bout you?"
   - Ok. I'm just going to ignore the coming back to life thing for now.
   - "Great. Glad the Crimson Accord killing me doesn\u2019t make your top priorities
