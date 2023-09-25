@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Default Player Stats
   m_EditorClassIdentifier: 
   Speed: 3.5
-  DashForce: 2.5
-  HealthPoints: 25
   MaxHealthPoints: 25
+  DashTime: 0.2
+  DashUnits: 2
   DashRechargeSeconds: 0.75
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 0
@@ -25,4 +25,3 @@ MonoBehaviour:
   SecondaryAttackSpeed: 0
   SecondaryAttackCoolDown: 0
   SecondaryAttackKnockback: 0
-  ExampleVariableName: 0

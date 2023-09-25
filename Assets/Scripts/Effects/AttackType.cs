@@ -85,6 +85,16 @@ public class AttackType : MonoBehaviour
         }
     }
 
+    public virtual void OnBossCollision(Collider2D collision)
+    {
+        if (Attacker.Equals(AttackSource.Player))
+        {
+            BossBehaviour boss = collision.GetComponent<BossBehaviour>();
+
+            boss.TakeDamage(Damage, this.transform.position, KnockbackForce);
+        }
+    }
+
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -99,6 +109,12 @@ public class AttackType : MonoBehaviour
         if(tag.Equals("Enemy"))
         {
             OnEnemyCollision(collision);
+            return;
+        }
+
+        if (tag.Equals("Boss"))
+        {
+            OnBossCollision(collision);
             return;
         }
     }
