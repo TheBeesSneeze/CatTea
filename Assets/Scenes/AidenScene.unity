@@ -40021,6 +40021,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1012952913046944209, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
+      propertyPath: Pause.m_Id
+      value: 1042955e-f2ec-487c-adf4-9b82c65b9aef
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012952913046944209, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
+      propertyPath: Pause.m_Name
+      value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012952913046944209, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
+      propertyPath: SkipText.m_Id
+      value: b917d1a7-160e-48ba-9d85-78a48713d0c7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012952913046944209, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
+      propertyPath: SkipText.m_Name
+      value: Skip Text
+      objectReference: {fileID: 0}
     - target: {fileID: 8692218365587620245, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
       propertyPath: m_RootOrder
       value: 3
