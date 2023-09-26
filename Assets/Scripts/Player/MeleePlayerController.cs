@@ -63,12 +63,9 @@ public class MeleePlayerController : DefaultPlayerController
     }
     protected override void Primary_canceled(InputAction.CallbackContext obj)
     {
-<<<<<<< Updated upstream
         if (IgnoreAllInputs) return;
         //TODO
-=======
         StartCoroutine(StopAttack());
->>>>>>> Stashed changes
     }
     protected override void Secondary_performed(InputAction.CallbackContext obj)
     {
