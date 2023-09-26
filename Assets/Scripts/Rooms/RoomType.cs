@@ -28,12 +28,14 @@ public class RoomType : MonoBehaviour
 
     protected PlayerBehaviour playerBehaviour;
     protected CameraManager cameraManager;
+    protected GameManager gameManager;
 
     public virtual void Start()
     {
         roomCleared = OpenDoorsOnStart;
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         cameraManager = GameObject.FindObjectOfType<CameraManager>();
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     /// <summary>
@@ -41,6 +43,8 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual void EnterRoom()
     {
+        gameManager.CurrentRoom = this;
+
         cameraManager.MoveCamera(CameraCenterPoint);
         
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
@@ -57,5 +61,14 @@ public class RoomType : MonoBehaviour
     {
         Debug.LogWarning("Override this function!");
         return roomCleared;
+    }
+
+    /// <summary>
+    /// Kills all the enemies or something
+    /// </summary>
+    public virtual void Cheat()
+    {
+        roomCleared = true;
+        OpenDoorsOnStart = true;
     }
 }

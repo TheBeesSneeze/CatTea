@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public GameObject MeleePlayerPrefab;
     public GameObject RangedPlayerPrefab;
 
+    public RoomType CurrentRoom;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
