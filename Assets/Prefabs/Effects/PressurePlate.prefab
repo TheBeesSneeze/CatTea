@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 8863932306315625857}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3291346439667333517
 SpriteRenderer:
@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e13521886f3837449818d5c21700526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapOn: {fileID: 4464462622687758563}
+  ActivationObject: {fileID: 0}
+  SecondsUntilActivation: 0
+  SecondsUntilDeactivation: 0
 --- !u!61 &8968125434765402762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -291,4 +293,5 @@ MonoBehaviour:
   Damage: 2
   KnockbackForce: 0
   DamageOnCollision: 1
+  DestroyedByWalls: 0
   Attacker: 0

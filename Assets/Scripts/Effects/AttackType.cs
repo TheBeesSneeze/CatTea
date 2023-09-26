@@ -20,7 +20,12 @@ public class AttackType : MonoBehaviour
 {
     public int Damage;
     public float KnockbackForce;
+    [Tooltip("If characters will take damage when colliding with the effect")]
     public bool DamageOnCollision = true;
+    [Tooltip("If true, the effect will be destroyed by colliders with the 'Wall' tag")]
+    public bool DestroyedByWalls = true;
+    [Tooltip("If true, gameobject will be destroyed after attacking something")]
+    public bool DestroyedAfterAttack = true;
 
     public enum AttackSource { General, Enemy, Player};
     //public enum PlayerAttack { NA, Primary, Secondary };
@@ -72,6 +77,9 @@ public class AttackType : MonoBehaviour
             PlayerBehaviour player = collision.GetComponent<PlayerBehaviour>();
 
             player.TakeDamage(Damage, this.transform.position, KnockbackForce);
+
+            if (DestroyedAfterAttack)
+                Destroy(this.gameObject);
         }
     }
 
@@ -82,6 +90,9 @@ public class AttackType : MonoBehaviour
             EnemyBehaviour enemy = collision.GetComponent<EnemyBehaviour>();
 
             enemy.TakeDamage(Damage, this.transform.position, KnockbackForce);
+
+            if (DestroyedAfterAttack)
+                Destroy(this.gameObject);
         }
     }
 
@@ -92,6 +103,9 @@ public class AttackType : MonoBehaviour
             BossBehaviour boss = collision.GetComponent<BossBehaviour>();
 
             boss.TakeDamage(Damage, this.transform.position, KnockbackForce);
+
+            if (DestroyedAfterAttack)
+                Destroy(this.gameObject);
         }
     }
 
@@ -99,6 +113,13 @@ public class AttackType : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.tag;
+
+        if(tag.Equals("Wall"))
+        {
+            StopAllCoroutines();
+            Destroy(this.gameObject);
+            return;
+        }
 
         if(tag.Equals("Player"))
         {

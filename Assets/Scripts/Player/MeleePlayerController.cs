@@ -34,6 +34,7 @@ public class MeleePlayerController : DefaultPlayerController
     {
         base.Start();
         RotatingSwordCoroutine = StartCoroutine(RotateSword());
+        playerBehaviour.PlayerWeapon = PlayerBehaviour.WeaponType.Melee;
     }
 
     protected override void Primary_performed(InputAction.CallbackContext obj)

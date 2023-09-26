@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3.5
   MaxHealthPoints: 25
+  InvincibilitySeconds: 0.1
   DashTime: 0.2
   DashUnits: 2
   DashRechargeSeconds: 0.75

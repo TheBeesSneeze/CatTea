@@ -1,3 +1,14 @@
+/*******************************************************************************
+* File Name :         EnemyPathFinding.cs
+* Author(s) :         Elda Osami, Toby Schamberger
+* Creation Date :     9/24/2023
+*
+* Brief Description : Routes the enemies towards the player.
+* 
+* TODO: implement cycles of waiting.
+* Ranged enemies should be distanced from player
+*****************************************************************************/
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,19 +24,26 @@ public class EnemyPathFinding : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        player = GameObject.Find("Melee Player");
+        player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        StartCoroutine(UpdateTarget());
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual IEnumerator UpdateTarget()
     {
-        SetTargetPoisiton();
-        SetAgentPosition();
+        //sorry for changing this. i just have personal beef with update
+        while(this != null)
+        {
+            SetTargetPoisiton();
+            SetAgentPosition();
+            yield return null;
+        }
         
     }
+
 
     private void SetTargetPoisiton()
     {

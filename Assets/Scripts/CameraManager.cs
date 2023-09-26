@@ -23,7 +23,6 @@ public class CameraManager : MonoBehaviour
     public Vector2 CameraCenterPos;
 
     //boring settings
-    [SerializeField]private float followPlayerFrames=50;
     private GameObject player;
 
     private void Start()

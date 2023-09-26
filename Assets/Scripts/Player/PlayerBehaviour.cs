@@ -43,6 +43,8 @@ public class PlayerBehaviour : CharacterBehaviour
 
     //components
     private DefaultPlayerController playerController;
+    public enum WeaponType { Default, Melee, Ranged };
+    [HideInInspector] public WeaponType PlayerWeapon; //assigned automatically. Default by, well, default
 
     private PlayerHealthBar healthBar;
 
@@ -122,4 +124,17 @@ public class PlayerBehaviour : CharacterBehaviour
         SecondaryAttackCoolDown = CurrentPlayerStats.SecondaryAttackCoolDown;
         SecondaryAttackKnockback = CurrentPlayerStats.SecondaryAttackKnockback;
     }
+}
+
+
+/*******************************************************************************
+* Class Name :        PlayerData
+* Author(s) :         Toby Schamberger
+* Creation Date :     9/26/2023
+*
+* Brief Description : hell if i know man
+*****************************************************************************/
+public class PlayerData
+{
+
 }

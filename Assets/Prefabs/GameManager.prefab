@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7250060864491448804
 MonoBehaviour:
@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RunNumber: 0
   Rumble: 0
-  DefaultChallengePoints: 20
-  CurrentChallengePoints: 20
+  DefaultChallengePoints: 30
+  CurrentChallengePoints: 30
+  MeleePlayerPrefab: {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
+  RangedPlayerPrefab: {fileID: 4325281325424801726, guid: b3e37ec06361c7c44bd94d2270560a80, type: 3}
