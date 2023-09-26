@@ -18,8 +18,6 @@ public class RangedPlayerController : DefaultPlayerController
 {
     [Header("Ranged Settings")]
     public GameObject BulletPrefab;
-    public float BulletVelocity;
-    public float SecondsBetweenShots;
 
     [Header("Unity stuff")]
     public Transform MirrorPivot;
@@ -44,8 +42,12 @@ public class RangedPlayerController : DefaultPlayerController
         if (primaryShooting)
             return;
 
-        primaryShooting = true;
-        shootingCoroutine = StartCoroutine(RepeatedFire());
+        if(shootingCoroutine == null)
+        {
+            primaryShooting = true;
+            shootingCoroutine = StartCoroutine(RepeatedFire());
+        }
+            
     }
     protected override void Primary_canceled(InputAction.CallbackContext obj)
     {
@@ -53,8 +55,7 @@ public class RangedPlayerController : DefaultPlayerController
 
         if (IgnoreAllInputs) return;
 
-        if(shootingCoroutine != null)
-            StopCoroutine(shootingCoroutine);
+        //shootingCoroutine = null;
     }
     protected override void Secondary_performed(InputAction.CallbackContext obj)
     {
@@ -124,8 +125,9 @@ public class RangedPlayerController : DefaultPlayerController
         while(primaryShooting)
         {
             ShootBullet();
-            yield return new WaitForSeconds(SecondsBetweenShots);
+            yield return new WaitForSeconds(playerBehaviour.PrimaryAttackCoolDown);
         }
+        shootingCoroutine = null;
     }
 
     /// <summary>
@@ -141,7 +143,7 @@ public class RangedPlayerController : DefaultPlayerController
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
 
         //fix the thing
-        bulletRigidbody.velocity = shootingDirection * BulletVelocity;
+        bulletRigidbody.velocity = shootingDirection * playerBehaviour.PrimaryAttackSpeed;
         float Angle = Vector2.SignedAngle(Vector2.right, shootingDirection);
 
         Vector3 TargetRotation = new Vector3(0, 0, Angle);

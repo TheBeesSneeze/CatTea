@@ -15,12 +15,12 @@ MonoBehaviour:
   Speed: 3.5
   MaxHealthPoints: 25
   InvincibilitySeconds: 0.1
-  DashTime: 0
-  DashUnits: 0
+  DashTime: 0.2
+  DashUnits: 1.5
   DashRechargeSeconds: 0.75
   PrimaryAttackDamage: 0
-  PrimaryAttackSpeed: 0
-  PrimaryAttackCoolDown: 0
+  PrimaryAttackSpeed: 5
+  PrimaryAttackCoolDown: 0.75
   PrimaryAttackKnockback: 0
   SecondaryAttackDamage: 0
   SecondaryAttackSpeed: 0
