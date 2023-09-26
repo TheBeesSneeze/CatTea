@@ -82,7 +82,8 @@ public class DefaultPlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         MyGamepad = playerInput.GetDevice<Gamepad>();
         playerInput.currentActionMap.Enable();
-        gameManager = GetComponent<GameManager>();
+
+        gameManager = GameObject.FindObjectOfType<GameManager>();
 
         InitializeControls();
 
@@ -222,7 +223,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected virtual void Cheat_started(InputAction.CallbackContext obj)
     {
         if (IgnoreAllInputs) return;
-        gameManager.SwapPlayerAttackType(playerBehaviour);
+        gameManager.CurrentRoom.Cheat();
     }
 
     /// <summary>
