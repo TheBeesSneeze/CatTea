@@ -128,7 +128,7 @@ public class MeleePlayerController : DefaultPlayerController
 
         float moveSwordBackSeconds = playerBehaviour.PrimaryAttackCoolDown / 2;
 
-        float startAngle = RotatePoint.transform.eulerAngles.z;
+        float startAngle = MirrorPivot.transform.eulerAngles.z;
         float targetAngle = (Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg);
 
         startAngle = (startAngle+360) % 360;
@@ -141,7 +141,7 @@ public class MeleePlayerController : DefaultPlayerController
         for (int i = 0; i < 20; i++) 
         {
             float target = Mathf.Lerp(startAngle, targetAngle, i / StrikeFrames);
-            RotatePoint.transform.eulerAngles = new Vector3(0,0,target);
+            MirrorPivot.transform.eulerAngles = new Vector3(0,0,target);
 
             yield return new WaitForSeconds(moveSwordBackSeconds / 20);
         }
