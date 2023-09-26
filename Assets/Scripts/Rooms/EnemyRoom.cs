@@ -42,6 +42,9 @@ public class EnemyRoom : RoomType
     public virtual void SpawnNewWaveOfEnemies()
     {
         int challengePointsLeft = challengePointsPerWave;
+
+        Debug.Log("New wave! Using " + challengePointsLeft);
+
         aliveEnemies = 0;
 
         if(EnemySpawnPool.Count <= 0)
@@ -65,11 +68,24 @@ public class EnemyRoom : RoomType
     {
         aliveEnemies--;
 
-        if (aliveEnemies <= 0)
+        if(aliveEnemies <= 0)
+        {
+            OnWaveEnd();
+        }
+    }
+
+    private void OnWaveEnd()
+    {
+        wavesLeft--;
+
+        if (wavesLeft <= 0)
         {
             Debug.Log("All enemies died! Opening door");
             Door.OpenDoor();
+            return;
         }
+
+        SpawnNewWaveOfEnemies();
     }
 
     /// <summary>
@@ -83,6 +99,9 @@ public class EnemyRoom : RoomType
     /// </summary>
     private void SpawnOneEnemy(ref int ChallengePointsLeft, ref List<Transform>SpawnPointsAvailable)
     {// my first ref use!! 9/16/2023
+
+        Debug.Log("Spawning one enemy");
+
         if(SpawnPointsAvailable.Count <= 0) 
         {
             Debug.LogWarning("Not enough enemy spawn spots");
@@ -92,31 +111,7 @@ public class EnemyRoom : RoomType
         
         int randomIndex = Random.Range(0, EnemySpawnPool.Count);
 
-        int cost = GetEnemyCostByPoolIndex(randomIndex);
-
-        //if enemy can be afforded
-        if(cost <= ChallengePointsLeft)
-        {
-            SpawnEnemyByPoolIndex(randomIndex, ref ChallengePointsLeft, ref SpawnPointsAvailable);
-            return;
-        }
-
-        //if first random enemy couldnt be afforded
-        for(int i=0; i<EnemySpawnPool.Count; i++)
-        {
-            cost = GetEnemyCostByPoolIndex(i);
-
-            if (cost <= ChallengePointsLeft)
-            {
-                SpawnEnemyByPoolIndex(i, ref ChallengePointsLeft, ref SpawnPointsAvailable);
-                return;
-            }
-        }
-
-        //this code should ideally run:
-        Debug.Log("Not enough enemies for ChallengePoints");
-        ChallengePointsLeft = 0;
-        return;
+        SpawnEnemyByPoolIndex(randomIndex, ref ChallengePointsLeft, ref SpawnPointsAvailable);
     }
 
     /// <summary>
@@ -124,6 +119,8 @@ public class EnemyRoom : RoomType
     /// </summary>
     protected void SpawnEnemyByPoolIndex(int Index, ref int ChallengePointsLeft, ref List<Transform> SpawnPointsAvailable)
     {
+        Debug.Log(ChallengePointsLeft);
+
         if(SpawnPointsAvailable.Count <= 0)
         {
             ChallengePointsLeft = 0;
@@ -145,17 +142,29 @@ public class EnemyRoom : RoomType
         newEnemyBehaviour.Room = this;
 
         aliveEnemies++;
-        ChallengePointsLeft -= newEnemyBehaviour.DifficultyCost;
+
+        int cost = GetEnemyCost(newEnemy);
+        ChallengePointsLeft -= cost;
     }
 
     /// <summary>
     /// Returns enemies difficulty cost from pool index :)
     /// </summary>
-    protected int GetEnemyCostByPoolIndex(int Index)
+    protected int GetEnemyCost(GameObject Enemy)
     {
         //move this function to roomtype if it needs it
-        GameObject Enemy = EnemySpawnPool[Index];
         EnemyBehaviour enemyBehaviour = Enemy.GetComponent<EnemyBehaviour>();
-        return enemyBehaviour.DifficultyCost;
+
+        int cost = enemyBehaviour.CurrentEnemyStats.DifficultyCost;
+
+        Debug.Log(cost);
+
+        if (cost <= 0)
+        {
+            Debug.LogWarning(Enemy.name + " has a difficulty cost of zero! Don't do this a million enemies will spawn");
+            cost = 1;
+        }
+
+        return cost;
     }
 }

@@ -45,8 +45,9 @@ public class DefaultPlayerController : MonoBehaviour
     protected InputAction dash;
     protected InputAction primary;
     protected InputAction secondary;
-    protected InputAction pause;
+    public InputAction Pause;
     public InputAction Select;
+    public InputAction SkipText;
 
     // components:
     protected Rigidbody2D myRigidbody;
@@ -62,6 +63,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected bool canAttack = true;
 
     private bool ignoreMove;
+    [HideInInspector]public bool IgnoreAllInputs;
 
     /// <summary>
     /// Start is called before the first frame update
@@ -82,8 +84,9 @@ public class DefaultPlayerController : MonoBehaviour
         dash = playerInput.currentActionMap.FindAction("Dash");
         primary = playerInput.currentActionMap.FindAction("Primary Attack");
         secondary = playerInput.currentActionMap.FindAction("Secondary Attack");
-        pause = playerInput.currentActionMap.FindAction("Pause");
+        Pause = playerInput.currentActionMap.FindAction("Pause");
         Select = playerInput.currentActionMap.FindAction("Select");
+        SkipText = playerInput.currentActionMap.FindAction("Skip Text");
 
         move.performed += Move_performed;
         move.canceled += Move_canceled;
@@ -97,7 +100,7 @@ public class DefaultPlayerController : MonoBehaviour
         secondary.performed += Secondary_performed;
         secondary.canceled += Secondary_canceled;
 
-        pause.started += Pause_started;
+        Pause.started += Pause_started;
 
         StartCoroutine(UpdateAnimation());
     }
@@ -109,7 +112,7 @@ public class DefaultPlayerController : MonoBehaviour
     /// <param name="obj"></param>
     protected virtual void Move_performed(InputAction.CallbackContext obj)
     {
-        if(ignoreMove)
+        if(ignoreMove || IgnoreAllInputs)
             return;
 
         //formatting it like this bc we'll need this variable for animation stuff probably
@@ -126,6 +129,8 @@ public class DefaultPlayerController : MonoBehaviour
 
     protected virtual void Move_canceled(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
+
         moving = false;
 
         if(movingCoroutine != null)
@@ -136,23 +141,36 @@ public class DefaultPlayerController : MonoBehaviour
 
     protected virtual void Dash_started(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
+
         if(canDash)
             StartCoroutine(PerformDash());
     }
 
     protected virtual void Dash_canceled(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
+
         //TODO
     }
 
-    protected virtual void Primary_performed(InputAction.CallbackContext obj){Debug.Log("Primary Attack Button pressed");}
-    protected virtual void Primary_canceled(InputAction.CallbackContext obj){Debug.Log("Primary Attack Button released");}
-    protected virtual void Secondary_performed(InputAction.CallbackContext obj){Debug.Log("Secondary Attack Button pressed");}
-    protected virtual void Secondary_canceled(InputAction.CallbackContext obj){Debug.Log("Secondary Attack Button released");}
+    protected virtual void Primary_performed(InputAction.CallbackContext obj)
+    {
+        if (IgnoreAllInputs)
+            return;
+    }
+    protected virtual void Primary_canceled(InputAction.CallbackContext obj){ if (IgnoreAllInputs) return; }
+    protected virtual void Secondary_performed(InputAction.CallbackContext obj)
+    {
+        if (IgnoreAllInputs)
+            return;
+    }
+    protected virtual void Secondary_canceled(InputAction.CallbackContext obj){ if (IgnoreAllInputs) return; }
 
     protected virtual void Pause_started(InputAction.CallbackContext obj)
     {
-        //TODO
+        if (IgnoreAllInputs)
+            return;
     }
 
     /// <summary>

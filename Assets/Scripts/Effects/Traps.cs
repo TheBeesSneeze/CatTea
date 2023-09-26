@@ -1,39 +1,45 @@
+/*******************************************************************************
+* File Name :         Traps.cs
+* Author(s) :         Alex Bell, Toby Schamberger
+* Creation Date :     9/25/2023
+*
+* Brief Description : Activates some spikes (or whatever) when the player 
+* collides with the object this script is on.
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Traps : MonoBehaviour
 {
-    public GameObject trapOn;
+    [Tooltip("Object that is set active when character collides with this")]
+    public GameObject ActivationObject;
+    public float SecondsUntilActivation;
+    public float SecondsUntilDeactivation;
 
     // Start is called before the first frame update
     void Start()
     {
-        trapOn.SetActive(false);
+        ActivationObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
-    {
-        StartCoroutine("Delay");
-
-        if (collision.gameObject.CompareTag("Player"))
+        string tag = collision.tag;
+        if (tag.Equals("Player") || tag.Equals("Enemy") || tag.Equals("Boss"))
         {
-            StartCoroutine("Delay");
+            StartCoroutine(Delay());
         }
     }
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(.5f);
-        trapOn.SetActive(true);
+        yield return new WaitForSeconds(SecondsUntilActivation);
+        ActivationObject.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
-        trapOn.SetActive(false);
+        yield return new WaitForSeconds(SecondsUntilDeactivation);
+        ActivationObject.SetActive(false);
     }
 }
