@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxHealthPoints: 25
   InvincibilitySeconds: 0.1
   DashTime: 0.2
-  DashUnits: 2
+  DashUnits: 1.5
   DashRechargeSeconds: 0.75
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 0

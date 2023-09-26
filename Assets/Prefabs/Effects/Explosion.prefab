@@ -102,6 +102,7 @@ MonoBehaviour:
   KnockbackForce: 1
   DamageOnCollision: 1
   DestroyedByWalls: 0
+  DestroyedAfterAttack: 0
   Attacker: 0
 --- !u!58 &5456073523674893132
 CircleCollider2D:
