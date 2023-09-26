@@ -50,7 +50,7 @@ public class MeleePlayerController : DefaultPlayerController
         Attacking = true;
         canAttack = false;
 
-        StartCoroutine(SwingSword());
+        StartCoroutine(HoldMeleeAttack());
 
         /*
         if (GameManager.Instance.Rumble && MyGamepad != null)
@@ -63,8 +63,12 @@ public class MeleePlayerController : DefaultPlayerController
     }
     protected override void Primary_canceled(InputAction.CallbackContext obj)
     {
+<<<<<<< Updated upstream
         if (IgnoreAllInputs) return;
         //TODO
+=======
+        StartCoroutine(StopAttack());
+>>>>>>> Stashed changes
     }
     protected override void Secondary_performed(InputAction.CallbackContext obj)
     {
@@ -79,29 +83,34 @@ public class MeleePlayerController : DefaultPlayerController
         //TODO
     }
 
-    /// <summary>
-    /// swings sword all sword like
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator SwingSword()
+    private IEnumerator HoldMeleeAttack()
     {
         Vector3 startAngle = RotatePoint.rotation.eulerAngles;
         Vector3 endAngle = RotatePoint.rotation.eulerAngles;
 
-        startAngle.z += PrimaryStrikeAngle/2;
-        endAngle.z += -PrimaryStrikeAngle/2;
+        startAngle.z += PrimaryStrikeAngle / 2;
+        endAngle.z += -PrimaryStrikeAngle / 2;
 
-        for (int i = 0; i < StrikeFrames; i++)
+        while(Attacking)
         {
-            Vector3 target = Vector3.Lerp(startAngle, endAngle, i / StrikeFrames);
-            RotatePoint.transform.eulerAngles = target;
+            for (int i = 0; i < StrikeFrames && Attacking; i++)
+            {
+                Vector3 target = Vector3.Lerp(startAngle, endAngle, i / StrikeFrames);
+                RotatePoint.transform.eulerAngles = target;
 
-            yield return new WaitForSeconds(playerBehaviour.PrimaryAttackSpeed / StrikeFrames);
+                yield return new WaitForSeconds(playerBehaviour.PrimaryAttackSpeed / StrikeFrames);
+            }
+
+            for (int i = 0; i < StrikeFrames && Attacking; i++)
+            {
+                Vector3 target = Vector3.Lerp(endAngle, startAngle, i / StrikeFrames);
+                RotatePoint.transform.eulerAngles = target;
+
+                yield return new WaitForSeconds(playerBehaviour.PrimaryAttackSpeed / StrikeFrames);
+            }
         }
 
-        //RotatePoint.transform.eulerAngles = originalPoint;
-
-        StartCoroutine(StopAttack());
+        
     }
 
     /// <summary>
