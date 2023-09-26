@@ -34,6 +34,7 @@ public class RangedPlayerController : DefaultPlayerController
     {
         base.Start();
         StartCoroutine(CorrectGunPosition());
+        playerBehaviour.PlayerWeapon = PlayerBehaviour.WeaponType.Ranged;
     }
 
     protected override void Primary_performed(InputAction.CallbackContext obj)

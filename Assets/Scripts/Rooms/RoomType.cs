@@ -17,6 +17,8 @@ public class RoomType : MonoBehaviour
     public bool OpenDoorsOnStart;
     [Tooltip("If true, camera will follow the player")]
     public bool CameraFollowPlayer;
+    [Tooltip("Zooms in and out")]
+    public float CameraSize = 5;
 
     [Tooltip("This should be assigned automatically in the door's script.")]
     [HideInInspector] public DoorManager Door;
@@ -42,6 +44,7 @@ public class RoomType : MonoBehaviour
         cameraManager.MoveCamera(CameraCenterPoint);
         
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+        Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)
             cameraManager.StartFollowPlayer();

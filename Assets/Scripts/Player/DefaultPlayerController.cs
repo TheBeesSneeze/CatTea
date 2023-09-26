@@ -20,12 +20,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.UI.Image;
 
 public class DefaultPlayerController : MonoBehaviour
 {
@@ -36,7 +33,6 @@ public class DefaultPlayerController : MonoBehaviour
     private static float slideIterations = 25;
     private static float slowAmount = 0.3f; //also a number between 0 and 1
     private static float slowSeconds = 0.1f;
-    private static float dashFrames = 50;
 
     //Player input:
     protected PlayerInput playerInput;
@@ -48,12 +44,14 @@ public class DefaultPlayerController : MonoBehaviour
     [HideInInspector] public InputAction Pause;
     [HideInInspector] public InputAction Select;
     [HideInInspector] public InputAction SkipText;
+    protected InputAction swapWeapon;
 
     // components:
     protected Rigidbody2D myRigidbody;
     protected PlayerBehaviour playerBehaviour;
     public Gamepad MyGamepad;
     protected Animator myAnimator;
+    protected GameManager gameManager;
 
     protected enum ControllerType {Keyboard, Controller};
     protected ControllerType PlayerControllerType;
@@ -83,6 +81,7 @@ public class DefaultPlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         MyGamepad = playerInput.GetDevice<Gamepad>();
         playerInput.currentActionMap.Enable();
+        gameManager = GetComponent<GameManager>();
 
         InitializeControls();
 
@@ -103,6 +102,7 @@ public class DefaultPlayerController : MonoBehaviour
         Pause = playerInput.currentActionMap.FindAction("Pause");
         Select = playerInput.currentActionMap.FindAction("Select");
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
+        swapWeapon = playerInput.currentActionMap.FindAction("Swap Weapon");
 
         move.performed += Move_performed;
         move.canceled += Move_canceled;
@@ -117,11 +117,15 @@ public class DefaultPlayerController : MonoBehaviour
         secondary.canceled += Secondary_canceled;
 
         Pause.started += Pause_started;
+
+        swapWeapon.started += SwapWeapon_started;
     }
 
     protected void DetectInputDevice()
     {
-        MyGamepad = playerInput.GetDevice<Gamepad>();
+        try { MyGamepad = playerInput.GetDevice<Gamepad>(); }
+        catch { MyGamepad = null; }
+        
 
         bool isKeyboardAndMouse = false ;
         if (MyGamepad == null)
@@ -203,6 +207,12 @@ public class DefaultPlayerController : MonoBehaviour
     {
         if (IgnoreAllInputs)
             return;
+    }
+
+    protected virtual void SwapWeapon_started(InputAction.CallbackContext obj) 
+    {
+        if (IgnoreAllInputs) return;
+        gameManager.SwapPlayerAttackType(playerBehaviour);
     }
 
     /// <summary>
@@ -337,13 +347,25 @@ public class DefaultPlayerController : MonoBehaviour
         }
     }
 
-    private void OnControlsChanged()
-    {
-        DetectInputDevice();
-    }
 
     public void OnDestroy()
     {
         StopAllCoroutines();
+
+        move.performed -= Move_performed;
+        move.canceled -= Move_canceled;
+
+        dash.performed -= Dash_started;
+        dash.canceled -= Dash_canceled;
+
+        primary.performed -= Primary_performed;
+        primary.canceled -= Primary_canceled;
+
+        secondary.performed -= Secondary_performed;
+        secondary.canceled -= Secondary_canceled;
+
+        Pause.started -= Pause_started;
+
+        swapWeapon.started -= SwapWeapon_started;
     }
 }
