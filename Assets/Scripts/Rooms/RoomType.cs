@@ -15,6 +15,8 @@ public class RoomType : MonoBehaviour
     protected bool roomCleared;
     //public bool RoomLoaded;
     public bool OpenDoorsOnStart;
+    [Tooltip("If true, camera will follow the player")]
+    public bool CameraFollowPlayer;
 
     [Tooltip("This should be assigned automatically in the door's script.")]
     [HideInInspector] public DoorManager Door;
@@ -28,8 +30,8 @@ public class RoomType : MonoBehaviour
     public virtual void Start()
     {
         roomCleared = OpenDoorsOnStart;
-        playerBehaviour = GameObject.FindAnyObjectByType<PlayerBehaviour>();
-        cameraManager = GameObject.FindAnyObjectByType<CameraManager>();
+        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
+        cameraManager = GameObject.FindObjectOfType<CameraManager>();
     }
 
     /// <summary>
@@ -38,7 +40,11 @@ public class RoomType : MonoBehaviour
     public virtual void EnterRoom()
     {
         cameraManager.MoveCamera(CameraCenterPoint);
+        
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+
+        if (CameraFollowPlayer)
+            cameraManager.StartFollowPlayer();
     }
 
     /// <summary>

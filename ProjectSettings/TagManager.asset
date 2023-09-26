@@ -9,6 +9,8 @@ TagManager:
   - Primary Player Attack
   - Secondary Player Attack
   - General Attack
+  - Boss
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Button
-  - 
+  - Player
   - 
   - 
   - 

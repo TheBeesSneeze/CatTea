@@ -252,7 +252,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.30922037, g: 0.44551122, b: 0.8113208, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenDoorsOnStart: 1
+  CameraFollowPlayer: 0
   Door: {fileID: 0}
   CameraCenterPoint: {fileID: 1702104715}
   PlayerSpawnPoint: {fileID: 541025127}
@@ -397,6 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenDoorsOnStart: 1
+  CameraFollowPlayer: 1
   Door: {fileID: 0}
   CameraCenterPoint: {fileID: 970272211}
   PlayerSpawnPoint: {fileID: 266365857}
@@ -567,7 +569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce59b48fe243e4eb90a6fd666a70c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraSpeed: 1.03
   CameraCenterPos: {x: 0, y: 0}
+  followPlayerFrames: 50
 --- !u!1001 &418350759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -996,6 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenDoorsOnStart: 0
+  CameraFollowPlayer: 0
   Door: {fileID: 0}
   CameraCenterPoint: {fileID: 865758087}
   PlayerSpawnPoint: {fileID: 1418757480}
@@ -1008,8 +1013,9 @@ MonoBehaviour:
   - {fileID: 1695344614}
   - {fileID: 1383215739}
   - {fileID: 1135147996}
-  AliveEnemies: 0
-  WavesLeft: 0
+  aliveEnemies: 0
+  wavesLeft: 0
+  challengePointsPerWave: 0
 --- !u!1 &1244597808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1132,7 @@ Transform:
   - {fileID: 1571611678}
   - {fileID: 942231771}
   - {fileID: 304821980}
+  - {fileID: 1461194169}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1142,13 +1149,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenDoorsOnStart: 0
+  CameraFollowPlayer: 0
   Door: {fileID: 0}
   CameraCenterPoint: {fileID: 942231771}
   PlayerSpawnPoint: {fileID: 304821980}
   EnemySpawnPool: []
   EnemySpawnPoints: []
-  AliveEnemies: 0
-  WavesLeft: 0
+  aliveEnemies: 0
+  wavesLeft: 0
+  challengePointsPerWave: 0
+  BossPool:
+  - {fileID: 4651791696064841288, guid: 4cba3d58350b1ee4d874b88dd4328c12, type: 3}
+  BossSpawnPosition: {fileID: 1461194169}
 --- !u!4 &1286146216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
@@ -1245,6 +1257,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1162584290}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1461194168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1461194169}
+  m_Layer: 0
+  m_Name: Boss Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1461194169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461194168}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.164, y: 0.101, z: 0.0055043204}
+  m_LocalScale: {x: 0.08010953, y: 0.08010953, z: 0.08010953}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1283110153}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1512054465
@@ -1440,8 +1483,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
+      propertyPath: CurrentChallengePoints
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: DefaultChallengePoints
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

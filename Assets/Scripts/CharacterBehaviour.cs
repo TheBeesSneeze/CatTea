@@ -13,12 +13,16 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
 {
-    private int _healthPoints;
+    [SerializeField]private int _healthPoints;
     public int HealthPoints
     {
         get {  return _healthPoints; }
         set { SetHealth(value); }
     }
+
+    //[Tooltip("Ignores damage if true")]
+    [HideInInspector] public bool Invincible;
+
     [HideInInspector] public int MaxHealthPoints;
     [HideInInspector] public float Speed;
     [HideInInspector] public float KnockbackForce;
@@ -29,13 +33,42 @@ public class CharacterBehaviour : MonoBehaviour
     protected SpriteRenderer mySpriteRenderer;
 
     private Coroutine hitAnimationCoroutine;
+    private Coroutine invincibleCoroutine;
 
     protected virtual void Start()
     {
+        _healthPoints = MaxHealthPoints;
+
         myRigidbody2D = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
 
         SetStatsToDefaults();
+    }
+
+    /// <summary>
+    /// Takes damage without any knockback.
+    /// Checks for invincibility
+    /// </summary>
+    /// <param name="damage">Amt of damage taken</param>
+    /// <returns>true if character died</returns>
+    public virtual bool TakeDamage(int damage)
+    {
+        if (Invincible)
+            return false;
+
+        if (hitAnimationCoroutine != null)
+            StopCoroutine(hitAnimationCoroutine);
+
+        hitAnimationCoroutine = StartCoroutine(HitAnimation());
+
+        HealthPoints -= damage;
+
+        if (HealthPoints <= 0)
+        {
+            Die();
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -67,32 +100,7 @@ public class CharacterBehaviour : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// Takes damage without any knockback
-    /// </summary>
-    /// <param name="damage">Amt of damage taken</param>
-    /// <returns>true if character died</returns>
-    public virtual bool TakeDamage(int damage)
-    {
-        if (hitAnimationCoroutine != null)
-            StopCoroutine(hitAnimationCoroutine);
-
-        hitAnimationCoroutine = StartCoroutine(HitAnimation());
-
-        HealthPoints -= damage;
-
-        if (HealthPoints <= 0)
-        {
-            Die();
-            return true;
-        }
-        return false;
-    }
-
-    public virtual void SetHealth(int Value)
-    {
-        _healthPoints = Value;
-    }
+    
 
     /// <summary>
     /// Knocks back target away from damageSourcePosition
@@ -109,14 +117,14 @@ public class CharacterBehaviour : MonoBehaviour
     /// </summary>
     /// <param name="target">who is getting knockedback</param>
     /// <param name="damageSourcePosition">where they are getting knocked back from</param>
-    /// <param name="Force">how much to multiply knockback by</param>
-    public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
+    /// <param name="force">how much to multiply knockback by</param>
+    public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition, float force)
     {
         Vector2 positionDifference = target.transform.position - damageSourcePosition;
         positionDifference.Normalize();
 
         if (myRigidbody2D != null)
-            myRigidbody2D.AddForce(positionDifference * Force, ForceMode2D.Impulse);
+            myRigidbody2D.AddForce(positionDifference * force, ForceMode2D.Impulse);
     }
 
     public virtual IEnumerator HitAnimation()
@@ -136,8 +144,33 @@ public class CharacterBehaviour : MonoBehaviour
         Debug.LogWarning("Override this function");
     }
 
+    public virtual void SetHealth(int value)
+    {
+        _healthPoints = value;
+    }
+
     public virtual void SetStatsToDefaults()
     {
-        Debug.LogWarning("Override me!");
+        //Debug.LogWarning("Override me!");
+    }
+
+    /// <summary>
+    /// Makes the character invincible over invincibilitySeconds
+    /// </summary>
+    /// <param name="invincibilitySeconds">Length of invincibility</param>
+    public virtual void BecomeInvincible(float invincibilitySeconds)
+    {
+        Invincible = true;
+
+        if (invincibleCoroutine != null)
+            StopCoroutine(invincibleCoroutine);
+
+        StartCoroutine(BecomeVincible(invincibilitySeconds));
+    }
+
+    private IEnumerator BecomeVincible(float invincibilitySeconds)
+    {
+        yield return new WaitForSeconds(invincibilitySeconds);
+        Invincible = false;
     }
 }
