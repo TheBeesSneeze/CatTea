@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
 
     public void GameSceneLoad()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
 
     public void GameEndScreenLoad()
