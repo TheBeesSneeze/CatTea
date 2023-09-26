@@ -45,6 +45,7 @@ public class DefaultPlayerController : MonoBehaviour
     [HideInInspector] public InputAction Select;
     [HideInInspector] public InputAction SkipText;
     protected InputAction swapWeapon;
+    protected InputAction cheat;
 
     // components:
     protected Rigidbody2D myRigidbody;
@@ -103,6 +104,7 @@ public class DefaultPlayerController : MonoBehaviour
         Select = playerInput.currentActionMap.FindAction("Select");
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
         swapWeapon = playerInput.currentActionMap.FindAction("Swap Weapon");
+        cheat = playerInput.currentActionMap.FindAction("Cheat");
 
         move.performed += Move_performed;
         move.canceled += Move_canceled;
@@ -119,6 +121,8 @@ public class DefaultPlayerController : MonoBehaviour
         Pause.started += Pause_started;
 
         swapWeapon.started += SwapWeapon_started;
+
+        cheat.started += Cheat_started;
     }
 
     protected void DetectInputDevice()
@@ -210,6 +214,12 @@ public class DefaultPlayerController : MonoBehaviour
     }
 
     protected virtual void SwapWeapon_started(InputAction.CallbackContext obj) 
+    {
+        if (IgnoreAllInputs) return;
+        //gameManager.SwapPlayerAttackType(playerBehaviour);
+    }
+
+    protected virtual void Cheat_started(InputAction.CallbackContext obj)
     {
         if (IgnoreAllInputs) return;
         gameManager.SwapPlayerAttackType(playerBehaviour);
@@ -367,5 +377,7 @@ public class DefaultPlayerController : MonoBehaviour
         Pause.started -= Pause_started;
 
         swapWeapon.started -= SwapWeapon_started;
+
+        cheat.started -= Cheat_started;
     }
 }

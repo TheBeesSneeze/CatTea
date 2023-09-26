@@ -167,4 +167,19 @@ public class EnemyRoom : RoomType
 
         return cost;
     }
+
+    /// <summary>
+    /// kills every enemy
+    /// </summary>
+    public override void Cheat()
+    {
+        base.Cheat();
+
+        EnemyBehaviour[] allEnemies = GameObject.FindObjectsOfType<EnemyBehaviour>();
+
+        foreach(EnemyBehaviour enemy in allEnemies) 
+        {
+            enemy.Die();
+        }
+    }
 }
