@@ -30,6 +30,7 @@ public class EnemyBehaviour : CharacterBehaviour
     protected override void Start()
     {
         base.Start();
+        transform.eulerAngles = Vector3.zero;
 
         if(EnemyMove) 
         {
