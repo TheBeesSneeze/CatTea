@@ -48,9 +48,12 @@ public class NPCBehaviour : MonoBehaviour
     public GameObject DialogueCanvas;
     public Image PlayerSprite;
     public Image NPCSprite;
+    private DefaultPlayerController player;
+    private bool SkipText;
 
     private void Start()
     {
+        player = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<DefaultPlayerController>();    
         LoadScript(DefaultDialogue);
     }
 
@@ -66,8 +69,10 @@ public class NPCBehaviour : MonoBehaviour
             if(ButtonPrompt != null)
                 ButtonPrompt.SetActive(true);
 
-            DefaultPlayerController player = collision.GetComponent<DefaultPlayerController>();
+            player = collision.GetComponent<DefaultPlayerController>();
             player.Select.started += ActivateSpeech;
+            player.Pause.started += Exit_text;
+            player.SkipText.started += Skip_text;
         }
     }
 
@@ -86,13 +91,16 @@ public class NPCBehaviour : MonoBehaviour
             if (ButtonPrompt != null)
                 ButtonPrompt.SetActive(false);
 
-            DefaultPlayerController player = collision.GetComponent<DefaultPlayerController>();
             player.Select.started -= ActivateSpeech;
+            player.Pause.started -= Exit_text;
+            player.SkipText.started -= Skip_text;
         }
     }
 
     public void CancelSpeech()
     {
+        player.IgnoreAllInputs = false;
+
         textIndex = 0;
         if (ButtonPrompt != null)
             ButtonPrompt.SetActive(true);
@@ -106,7 +114,8 @@ public class NPCBehaviour : MonoBehaviour
     /// <param name="obj"></param>
     public void ActivateSpeech(InputAction.CallbackContext obj)
     {
-        
+        player.IgnoreAllInputs = true;
+
         //if end dialogue
         if (!LoopText && textIndex == TextList.Count)
         {
@@ -121,6 +130,17 @@ public class NPCBehaviour : MonoBehaviour
 
         if(ButtonPrompt!=null)
             ButtonPrompt.SetActive(false);
+    }
+
+    public void Exit_text(InputAction.CallbackContext obj) 
+    {
+        CancelSpeech();
+    }
+
+    public void Skip_text(InputAction.CallbackContext obj)
+    {
+        if(typing)  
+            SkipText = true;
     }
 
     /// <summary>
@@ -139,6 +159,13 @@ public class NPCBehaviour : MonoBehaviour
         //typewriter text
         for (int i = 0; i < TextList[textIndex].Length + 1; i++)
         {
+            if(SkipText)
+            {
+                SkipText = false;
+                TextBox.text = TextList[textIndex];
+                break;
+            }
+            
             TextBox.text = TextList[textIndex].Substring(0, i);
             yield return new WaitForSeconds(ScrollSpeed);
         }

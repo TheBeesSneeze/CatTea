@@ -45,8 +45,9 @@ public class DefaultPlayerController : MonoBehaviour
     protected InputAction dash;
     protected InputAction primary;
     protected InputAction secondary;
-    protected InputAction pause;
-    public InputAction Select;
+    [HideInInspector] public InputAction Pause;
+    [HideInInspector] public InputAction Select;
+    [HideInInspector] public InputAction SkipText;
 
     // components:
     protected Rigidbody2D myRigidbody;
@@ -54,14 +55,19 @@ public class DefaultPlayerController : MonoBehaviour
     public Gamepad MyGamepad;
     protected Animator myAnimator;
 
+    protected enum ControllerType {Keyboard, Controller};
+    protected ControllerType PlayerControllerType;
+
     // etcetera:
     protected Vector2 moveDirection;
+    protected Vector2 inputDirection;
     protected bool moving; //if a movement key is being pressed rn
     protected Coroutine movingCoroutine; //shared between SlideMovementDirection and SlowMovement intentionally. They shouldnt run at the same time.
     protected bool canDash=true;
     protected bool canAttack = true;
 
     private bool ignoreMove;
+    [HideInInspector]public bool IgnoreAllInputs;
 
     /// <summary>
     /// Start is called before the first frame update
@@ -78,12 +84,25 @@ public class DefaultPlayerController : MonoBehaviour
         MyGamepad = playerInput.GetDevice<Gamepad>();
         playerInput.currentActionMap.Enable();
 
+        InitializeControls();
+
+        DetectInputDevice();
+
+        StartCoroutine(UpdateAnimation());
+    }
+
+    /// <summary>
+    /// Sorry Start was getting crowded
+    /// </summary>
+    private void InitializeControls()
+    {
         move = playerInput.currentActionMap.FindAction("Move");
         dash = playerInput.currentActionMap.FindAction("Dash");
         primary = playerInput.currentActionMap.FindAction("Primary Attack");
         secondary = playerInput.currentActionMap.FindAction("Secondary Attack");
-        pause = playerInput.currentActionMap.FindAction("Pause");
+        Pause = playerInput.currentActionMap.FindAction("Pause");
         Select = playerInput.currentActionMap.FindAction("Select");
+        SkipText = playerInput.currentActionMap.FindAction("Skip Text");
 
         move.performed += Move_performed;
         move.canceled += Move_canceled;
@@ -97,9 +116,22 @@ public class DefaultPlayerController : MonoBehaviour
         secondary.performed += Secondary_performed;
         secondary.canceled += Secondary_canceled;
 
-        pause.started += Pause_started;
+        Pause.started += Pause_started;
+    }
 
-        StartCoroutine(UpdateAnimation());
+    protected void DetectInputDevice()
+    {
+        MyGamepad = playerInput.GetDevice<Gamepad>();
+
+        bool isKeyboardAndMouse = false ;
+        if (MyGamepad == null)
+            isKeyboardAndMouse = true;
+        //bool isKeyboardAndMouse = MyGamepad.description.deviceClass.Equals("Keyboard") || MyGamepad.description.deviceClass.Equals("Mouse");
+
+        if (isKeyboardAndMouse)
+            PlayerControllerType = ControllerType.Keyboard;
+        else
+            PlayerControllerType = ControllerType.Controller;
     }
 
     /// <summary>
@@ -109,7 +141,7 @@ public class DefaultPlayerController : MonoBehaviour
     /// <param name="obj"></param>
     protected virtual void Move_performed(InputAction.CallbackContext obj)
     {
-        if(ignoreMove)
+        if(ignoreMove || IgnoreAllInputs)
             return;
 
         //formatting it like this bc we'll need this variable for animation stuff probably
@@ -117,7 +149,10 @@ public class DefaultPlayerController : MonoBehaviour
             StopCoroutine(movingCoroutine);
 
         if (!moving)
-            moveDirection = obj.ReadValue<Vector2>() * playerBehaviour.Speed / 2;
+        {
+            inputDirection = obj.ReadValue<Vector2>();
+            moveDirection = inputDirection * playerBehaviour.Speed / 2;
+        }
 
         moving = true;
 
@@ -126,6 +161,8 @@ public class DefaultPlayerController : MonoBehaviour
 
     protected virtual void Move_canceled(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
+
         moving = false;
 
         if(movingCoroutine != null)
@@ -136,23 +173,36 @@ public class DefaultPlayerController : MonoBehaviour
 
     protected virtual void Dash_started(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
+
         if(canDash)
             StartCoroutine(PerformDash());
     }
 
     protected virtual void Dash_canceled(InputAction.CallbackContext obj)
     {
+        if (IgnoreAllInputs) return;
+
         //TODO
     }
 
-    protected virtual void Primary_performed(InputAction.CallbackContext obj){Debug.Log("Primary Attack Button pressed");}
-    protected virtual void Primary_canceled(InputAction.CallbackContext obj){Debug.Log("Primary Attack Button released");}
-    protected virtual void Secondary_performed(InputAction.CallbackContext obj){Debug.Log("Secondary Attack Button pressed");}
-    protected virtual void Secondary_canceled(InputAction.CallbackContext obj){Debug.Log("Secondary Attack Button released");}
+    protected virtual void Primary_performed(InputAction.CallbackContext obj)
+    {
+        if (IgnoreAllInputs)
+            return;
+    }
+    protected virtual void Primary_canceled(InputAction.CallbackContext obj){ if (IgnoreAllInputs) return; }
+    protected virtual void Secondary_performed(InputAction.CallbackContext obj)
+    {
+        if (IgnoreAllInputs)
+            return;
+    }
+    protected virtual void Secondary_canceled(InputAction.CallbackContext obj){ if (IgnoreAllInputs) return; }
 
     protected virtual void Pause_started(InputAction.CallbackContext obj)
     {
-        //TODO
+        if (IgnoreAllInputs)
+            return;
     }
 
     /// <summary>
@@ -161,7 +211,8 @@ public class DefaultPlayerController : MonoBehaviour
     /// </summary>
     protected IEnumerator SlideMovementDirection(InputAction.CallbackContext obj)
     {
-        Vector2 newMoveDiection = obj.ReadValue<Vector2>() * playerBehaviour.Speed;
+        inputDirection = obj.ReadValue<Vector2>();
+        Vector2 newMoveDiection = inputDirection * playerBehaviour.Speed;
 
         //cool slide
         for (int i = 0; i < slideIterations && moving; i++)
@@ -240,6 +291,8 @@ public class DefaultPlayerController : MonoBehaviour
 
         myRigidbody.velocity = Vector2.zero;
         //myRigidbody.AddForce(moveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
+
+        moveDirection = inputDirection * playerBehaviour.Speed;
         myRigidbody.AddForce(moveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);
 
         if (MyGamepad != null)
@@ -278,10 +331,15 @@ public class DefaultPlayerController : MonoBehaviour
     {
         while (true)
         {
-            myAnimator.SetFloat("XMovement", moveDirection.x);
-            myAnimator.SetFloat("YMovement", moveDirection.y);
+            myAnimator.SetFloat("XMovement", inputDirection.x);
+            myAnimator.SetFloat("YMovement", inputDirection.y);
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    private void OnControlsChanged()
+    {
+        DetectInputDevice();
     }
 
     public void OnDestroy()

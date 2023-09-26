@@ -64,7 +64,7 @@ public class EnemyBehaviour : CharacterBehaviour
     {
         Debug.Log("player on enemy contact???");
 
-        playerBehavior.TakeDamage(contactDamage, this.transform.position, KnockbackForce);
+        playerBehavior.TakeDamage(contactDamage, this.transform.position, 1);
     }
 
     protected virtual void StartMovingToPlayer()

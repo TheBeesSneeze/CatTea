@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenDoorsOnStart: 1
+  CameraFollowPlayer: 0
   Door: {fileID: 0}
   CameraCenterPoint: {fileID: 1702104715}
   PlayerSpawnPoint: {fileID: 541025127}
@@ -397,6 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenDoorsOnStart: 1
+  CameraFollowPlayer: 1
   Door: {fileID: 0}
   CameraCenterPoint: {fileID: 970272211}
   PlayerSpawnPoint: {fileID: 266365857}
@@ -567,7 +569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce59b48fe243e4eb90a6fd666a70c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraSpeed: 1.03
   CameraCenterPos: {x: 0, y: 0}
+  followPlayerFrames: 50
 --- !u!1001 &418350759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -996,6 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenDoorsOnStart: 0
+  CameraFollowPlayer: 0
   Door: {fileID: 0}
   CameraCenterPoint: {fileID: 865758087}
   PlayerSpawnPoint: {fileID: 1418757480}
@@ -1144,6 +1149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpenDoorsOnStart: 0
+  CameraFollowPlayer: 0
   Door: {fileID: 0}
   CameraCenterPoint: {fileID: 942231771}
   PlayerSpawnPoint: {fileID: 304821980}
@@ -1420,37 +1426,6 @@ Transform:
   m_Father: {fileID: 249712672}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1963840835
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1963840836}
-  m_Layer: 0
-  m_Name: pivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1963840836
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963840835}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5733058, y: -0.55823255, z: 0.13091423}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &680123397096382815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1508,8 +1483,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
+      propertyPath: CurrentChallengePoints
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: DefaultChallengePoints
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
