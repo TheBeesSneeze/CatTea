@@ -21,6 +21,7 @@ public class RangedPlayerController : DefaultPlayerController
 
     [Header("Unity stuff")]
     public Transform MirrorPivot;
+    public Transform RotationPivot;
     public GameObject Gun;
 
     //etc
@@ -113,6 +114,8 @@ public class RangedPlayerController : DefaultPlayerController
         MousePosition = MousePosition.normalized;
 
         shootingDirection = MousePosition;
+
+
     }
 
     private void UpdateShootingDirectionByController()

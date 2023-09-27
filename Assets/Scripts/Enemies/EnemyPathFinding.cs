@@ -41,7 +41,6 @@ public class EnemyPathFinding : MonoBehaviour
             SetAgentPosition();
             yield return null;
         }
-        
     }
 
 
