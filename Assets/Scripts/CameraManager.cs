@@ -64,6 +64,7 @@ public class CameraManager : MonoBehaviour
         followingPlayer=true;
         //StartCoroutine(FollowPlayer());
         transform.SetParent(player.transform);
+        transform.localPosition = new Vector3(0,0, transform.localPosition.z);
     }
 
     /*
