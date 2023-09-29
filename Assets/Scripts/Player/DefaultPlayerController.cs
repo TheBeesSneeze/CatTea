@@ -232,7 +232,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected IEnumerator SlideMovementDirection(InputAction.CallbackContext obj)
     {
         inputDirection = obj.ReadValue<Vector2>();
-        Vector2 newMoveDiection = inputDirection * playerBehaviour.Speed;
+        Vector2 newMoveDiection = inputDirection;
 
         //cool slide
         for (int i = 0; i < slideIterations && moving; i++)
@@ -240,7 +240,7 @@ public class DefaultPlayerController : MonoBehaviour
             moveDirection = BlendMovementDirections(moveDirection, newMoveDiection, slideAmount);
 
             if(!ignoreMove)
-                myRigidbody.velocity = moveDirection;
+                myRigidbody.velocity = moveDirection * playerBehaviour.Speed;
 
             yield return new WaitForSeconds(slideSeconds/ slideIterations);
         }
@@ -260,7 +260,7 @@ public class DefaultPlayerController : MonoBehaviour
         {
             if (!ignoreMove)
             {
-                myRigidbody.velocity = moveDirection;
+                myRigidbody.velocity = moveDirection * playerBehaviour.Speed;
             }
             yield return null;
         }
@@ -347,7 +347,7 @@ public class DefaultPlayerController : MonoBehaviour
 
     }
 
-    protected IEnumerator UpdateAnimation()
+    protected virtual IEnumerator UpdateAnimation()
     {
         while (true)
         {
