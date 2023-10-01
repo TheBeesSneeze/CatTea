@@ -8,11 +8,9 @@
 * Moving is slightly slippery, slippiness can be changed in code (make the variables
 * public if it bothers you)
 * 
-* Controls Include: Movement, Dashing, Primary weapon function (does nothing),
-* Secondary weapon function (does nothing), Pause.
+* Controls Include: Movement, Dashing, Pause.
 *
 * TODO:
-* Dashing
 * Other input settings
 * PAUSE
 * player invincible while dashing
@@ -25,6 +23,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Unity")]
+    public SpriteRenderer GunSprite;
+    public SpriteRenderer SwordSprite;
+
     //Really boring settings:
     [Tooltip("The amount of slippiness the player experiences when changing movement directions (THIS VALUE MUST BE BETWEEN 0 and 1)")]
     private static float slideAmount = 0.75f; // this needs to be a number between 0 and 1. higher number for more slidey
@@ -43,7 +45,6 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public InputAction Pause;
     [HideInInspector] public InputAction Select;
     [HideInInspector] public InputAction SkipText;
-    protected InputAction swapWeapon;
     protected InputAction cheat;
 
     // components:
@@ -97,16 +98,19 @@ public class PlayerController : MonoBehaviour
 
         gameManager = GameObject.FindObjectOfType<GameManager>();
 
+        StartGunMode();
+
         InitializeControls();
 
         DetectInputDevice();
 
-        UpdateShootingDirection();
+        UpdateAimingDirection();
         StartCoroutine(UpdateAnimation());
     }
 
     /// <summary>
-    /// Sorry Start was getting crowded
+    /// Sorry Start was getting crowded.
+    /// initalizes every control from every player script
     /// </summary>
     private void InitializeControls()
     {
@@ -117,7 +121,6 @@ public class PlayerController : MonoBehaviour
         Pause = playerInput.currentActionMap.FindAction("Pause");
         Select = playerInput.currentActionMap.FindAction("Select");
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
-        swapWeapon = playerInput.currentActionMap.FindAction("Swap Weapon");
         cheat = playerInput.currentActionMap.FindAction("Cheat");
 
         move.performed += Move_performed;
@@ -133,8 +136,6 @@ public class PlayerController : MonoBehaviour
         secondary.canceled += meleePlayerController.Sword_canceled;
 
         Pause.started += Pause_started;
-
-        swapWeapon.started += SwapWeapon_started;
 
         cheat.started += Cheat_started;
     }
@@ -214,22 +215,37 @@ public class PlayerController : MonoBehaviour
             return;
     }
 
-    protected virtual void SwapWeapon_started(InputAction.CallbackContext obj) 
-    {
-        if (IgnoreAllInputs) return;
-        //gameManager.SwapPlayerAttackType(playerBehaviour);
-    }
-
     protected virtual void Cheat_started(InputAction.CallbackContext obj)
     {
         if (IgnoreAllInputs) return;
+
         gameManager.CurrentRoom.Cheat();
+    }
+
+    /// <summary>
+    /// Hides sword and brings out gun.
+    /// Does not do any attacking.
+    /// </summary>
+    public void StartGunMode()
+    {
+        GunSprite.enabled = true;
+        SwordSprite.enabled = false;
+    }
+
+    /// <summary>
+    /// Hides gun and brings out sword.
+    /// Does not do any attacking.
+    /// </summary>
+    public void StartSwordMode()
+    {
+        GunSprite.enabled = false;
+        SwordSprite.enabled = true;
     }
 
     /// <summary>
     /// Kind of unnessecary rn, but im cooking, ok
     /// </summary>
-    public void UpdateShootingDirection()
+    public void UpdateAimingDirection()
     {
         if (aimingCoroutine != null)
             StopCoroutine(aimingCoroutine);
@@ -268,8 +284,6 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.Atan2(MousePosition.y, MousePosition.x) * Mathf.Rad2Deg;
             angle = Mathf.Clamp(angle, rangedPlayerController.MaxDownAngle, rangedPlayerController.MaxUpAngle);
             rangedPlayerController.RotationPivot.transform.localEulerAngles = new Vector3(0, 0, angle);
-
-            rangedPlayerController.CorrectGunPosition();
 
             yield return null;
         }
@@ -413,14 +427,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    protected virtual IEnumerator UpdateAnimation()
+    protected IEnumerator UpdateAnimation()
     {
-        myAnimator.SetFloat("XMovement", AimingDirection.x);
-        myAnimator.SetFloat("YMovement", AimingDirection.y);
-        
-        yield return new WaitForSeconds(0.1f);
-    }
+        while(true)
+        {
+            myAnimator.SetFloat("XMovement", AimingDirection.x);
+            myAnimator.SetFloat("YMovement", AimingDirection.y);
 
+            rangedPlayerController.CorrectGunPosition();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 
     public void OnDestroy()
     {
@@ -439,8 +457,6 @@ public class PlayerController : MonoBehaviour
         secondary.canceled -= meleePlayerController.Sword_canceled;
 
         Pause.started -= Pause_started;
-
-        swapWeapon.started -= SwapWeapon_started;
 
         cheat.started -= Cheat_started;
     }

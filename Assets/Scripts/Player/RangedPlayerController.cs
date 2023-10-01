@@ -23,10 +23,6 @@ public class RangedPlayerController : MonoBehaviour
     [Tooltip("Divides the players speed while they're shooting by this #")]
     public float SlowWhileShootingAmount;
 
-    [Header("Stats")] //ig
-    public int ShotsPerBurst;
-    public float ShootingCoolDownSeconds;
-
     [Header("Unity stuff")]
     public Transform MirrorPivot;
     public Transform RotationPivot;
@@ -47,8 +43,6 @@ public class RangedPlayerController : MonoBehaviour
     [HideInInspector] public bool PrimaryShooting;
     private Coroutine shootingCoroutine;
     private Coroutine endShootingCoroutine;
-    
-    
 
     protected  void Start()
     {
@@ -58,15 +52,13 @@ public class RangedPlayerController : MonoBehaviour
 
         RangedIcon.transform.SetParent(null);
 
-        playerBehaviour.PlayerWeapon = PlayerBehaviour.WeaponType.Ranged;
-
-        
-
         canShoot = true;
     }
 
     public void Gun_performed(InputAction.CallbackContext obj)
     {
+        playerController.StartGunMode();
+
         if (playerController.IgnoreAllInputs) return;
 
         if (PrimaryShooting)
@@ -99,16 +91,16 @@ public class RangedPlayerController : MonoBehaviour
 
         int bulletsShot=0;
 
-        while (PrimaryShooting && canShoot && bulletsShot < ShotsPerBurst)
+        while (PrimaryShooting && canShoot && bulletsShot < playerBehaviour.ShotsShotsPerBurst)
         {
             bulletsShot++;
             ShootBullet();
-            yield return new WaitForSeconds(playerBehaviour.PrimaryAttackCoolDown);
+            yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots);
         }
 
         playerBehaviour.Speed = oldSpeed;
 
-        float scaledCooldownSeconds = (bulletsShot / ShotsPerBurst) * ShootingCoolDownSeconds;
+        float scaledCooldownSeconds = (bulletsShot / playerBehaviour.ShotsShotsPerBurst) * playerBehaviour.RangedAttackCooldown;
         endShootingCoroutine = StartCoroutine(StopShooting(scaledCooldownSeconds));
 
         shootingCoroutine = null;
@@ -116,6 +108,7 @@ public class RangedPlayerController : MonoBehaviour
 
     private IEnumerator StopShooting(float coolDownSeconds)
     {
+        PrimaryShooting = false;
         canShoot = false;
 
         yield return new WaitForSeconds(coolDownSeconds);
@@ -149,11 +142,12 @@ public class RangedPlayerController : MonoBehaviour
         GameObject bullet = Instantiate(BulletPrefab, Gun.transform.position, Quaternion.identity);
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
 
-        //fix the thing
-        bulletRigidbody.velocity = playerController.AimingDirection * playerBehaviour.PrimaryAttackSpeed;
-        float Angle = Vector2.SignedAngle(Vector2.right, playerController.AimingDirection);
+        bulletRigidbody.velocity = playerController.AimingDirection * playerBehaviour.ProjectileSpeed;
 
+        //rotate
+        float Angle = Vector2.SignedAngle(Vector2.right, playerController.AimingDirection);
         Vector3 TargetRotation = new Vector3(0, 0, Angle);
         bullet.transform.eulerAngles = TargetRotation;
+        
     }
 }

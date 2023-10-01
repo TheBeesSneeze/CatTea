@@ -4,6 +4,9 @@
 * Creation Date :     9/30/2023
 *
 * "Brief" Description : 
+* 
+* TODO:
+* Make inherit from door type 
 *****************************************************************************/
 
 using System.Collections;
