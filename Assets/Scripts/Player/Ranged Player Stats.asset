@@ -20,7 +20,7 @@ MonoBehaviour:
   DashRechargeSeconds: 0.75
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 5
-  PrimaryAttackCoolDown: 0.4
+  PrimaryAttackCoolDown: 0.2
   PrimaryAttackKnockback: 0
   SecondaryAttackDamage: 0
   SecondaryAttackSpeed: 0

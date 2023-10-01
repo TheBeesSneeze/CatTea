@@ -41,7 +41,7 @@ public class PlayerBehaviour : CharacterBehaviour
     [HideInInspector] public float SecondaryAttackKnockback;
 
     //components
-    private DefaultPlayerController playerController;
+    private PlayerController playerController;
     public enum WeaponType { Default, Melee, Ranged };
     [HideInInspector] public WeaponType PlayerWeapon; //assigned automatically. Default by, well, default
 
@@ -51,7 +51,7 @@ public class PlayerBehaviour : CharacterBehaviour
     protected override void Start()
     {
         base.Start();
-        playerController = GetComponent<DefaultPlayerController>();
+        playerController = GetComponent<PlayerController>();
 
         try { healthBar = GameObject.FindObjectOfType<PlayerHealthBar>(); }
         catch { Debug.LogWarning("No Player Health Bar in Scene"); }
