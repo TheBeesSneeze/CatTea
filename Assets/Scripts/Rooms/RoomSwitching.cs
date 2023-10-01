@@ -1,15 +1,27 @@
+/*******************************************************************************
+* File Name :         RoomSwitching.cs
+* Author(s) :         Aiden Vangeberg, Toby Schamberger
+* Creation Date :     9/30/2023
+*
+* "Brief" Description : 
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomSwitching : MonoBehaviour
 {
-    [Tooltip("Room the door leads too")]
-    public RoomType OutputRoom;
-    public RoomType OutputRoom2;
-    public RoomType OutputRoom3;
+    [Tooltip("Rooms the door can lead too")]
+    public List<RoomType> Rooms = new List<RoomType>();
+
     [Tooltip("Room the door is on")]
     public RoomType ThisRoom;
+
+    [HideInInspector] public RoomType OutputRoom;
+
+    [Header("Debug")]
 
     [Tooltip("If player can go through the door")]
     [SerializeField] protected bool open;
@@ -28,9 +40,27 @@ public class RoomSwitching : MonoBehaviour
             return;
         }
 
+        DecideOutputRoom();
+
         open = ThisRoom.OpenDoorsOnStart;
 
         ThisRoom.EnemyDoor = this;
+    }
+
+    /// <summary>
+    /// Called in start, 
+    /// </summary>
+    private void DecideOutputRoom()
+    {
+        if (Rooms.Count == 0)
+        {
+            Debug.LogWarning("No output room!");
+
+            OutputRoom = ThisRoom;
+            return;
+        }
+
+        OutputRoom = Rooms[Random.Range(0,Rooms.Count)];
     }
 
     /// <summary>
@@ -44,32 +74,12 @@ public class RoomSwitching : MonoBehaviour
     }
 
     /// <summary>
-    /// Sends player to next room (OutputRoom)
+    /// Sends player to next room (OutputRoom).
+    /// Assumes door is open.
     /// </summary>
     public virtual void EnterDoor()
     {
-        if (OutputRoom == null)
-        {
-            Debug.LogWarning("No output room!");
-            return;
-        }
-
-        if (!open)
-            return;
-
-        switch (RandomNumberGenerator())
-        {
-            case 0:
-                OutputRoom.EnterRoom();
-                break;
-            case 1:
-                OutputRoom2.EnterRoom();
-                break;
-            case 2:
-                OutputRoom3.EnterRoom();
-                break;
-        }
-        
+        OutputRoom.EnterRoom();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -93,11 +103,5 @@ public class RoomSwitching : MonoBehaviour
         open = ThisRoom.CheckRoomCleared();
 
         EnterDoor();
-    }
-
-    private int RandomNumberGenerator()
-    {
-        int randomNumber = Random.Range(0, 3);
-        return randomNumber;
     }
 }
