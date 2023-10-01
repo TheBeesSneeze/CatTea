@@ -23,6 +23,8 @@ public class RoomType : MonoBehaviour
     [Tooltip("This should be assigned automatically in the door's script.")]
     [HideInInspector] public DoorManager Door;
 
+    [HideInInspector] public RoomSwitching EnemyDoor;
+
     public Transform CameraCenterPoint;
     public Transform PlayerSpawnPoint;
 
