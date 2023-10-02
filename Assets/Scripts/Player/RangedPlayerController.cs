@@ -3,10 +3,12 @@
 * Author(s) :         Toby Schamberger
 * Creation Date :     9/4/2023
 *
-* Brief Description : Override of DefaultPlayerController for the ranged weapons controls.
+* Brief Description : Override of playerController for the ranged weapons controls.
 * 
 * TODO: mouse controls??? please
 * aim with right stick
+* 
+* dashing interrupts shooting
 *****************************************************************************/
 
 using System.Collections;
@@ -14,124 +16,121 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RangedPlayerController : DefaultPlayerController
+public class RangedPlayerController : MonoBehaviour
 {
     [Header("Ranged Settings")]
     public GameObject BulletPrefab;
+    [Tooltip("Divides the players speed while they're shooting by this #")]
+    public float SlowWhileShootingAmount;
 
     [Header("Unity stuff")]
     public Transform MirrorPivot;
     public Transform RotationPivot;
+    public GameObject RangedIcon;
     public GameObject Gun;
 
-    //etc
-    private Vector3 shootingDirection;
-    private bool primaryShooting;
-    private Coroutine shootingCoroutine;
+    //really boring settings
+    [HideInInspector] public float MaxUpAngle = 25f;
+    [HideInInspector] public float MaxDownAngle = -25;
 
-    protected override void Start()
+    //etc
+    private PlayerBehaviour playerBehaviour;
+    protected PlayerController playerController;
+    protected MeleePlayerController meleePlayerController;
+
+    private bool canShoot;
+
+    [HideInInspector] public bool PrimaryShooting;
+    private Coroutine shootingCoroutine;
+    private Coroutine endShootingCoroutine;
+
+    protected  void Start()
     {
-        base.Start();
-        StartCoroutine(CorrectGunPosition());
-        playerBehaviour.PlayerWeapon = PlayerBehaviour.WeaponType.Ranged;
+        playerBehaviour = GetComponent<PlayerBehaviour>();
+        playerController = GetComponent<PlayerController>();
+        meleePlayerController = GetComponent<MeleePlayerController>();
+
+        RangedIcon.transform.SetParent(null);
+
+        canShoot = true;
     }
 
-    protected override void Primary_performed(InputAction.CallbackContext obj)
+    public void Gun_performed(InputAction.CallbackContext obj)
     {
-        if (IgnoreAllInputs) return;
+        playerController.StartGunMode();
 
-        if (primaryShooting)
+        if (playerController.IgnoreAllInputs) return;
+
+        if (PrimaryShooting)
             return;
 
-        if(shootingCoroutine == null)
+        if (shootingCoroutine == null)
         {
-            primaryShooting = true;
+            PrimaryShooting = true;
             shootingCoroutine = StartCoroutine(RepeatedFire());
         }
-            
     }
-    protected override void Primary_canceled(InputAction.CallbackContext obj)
+    public void Gun_canceled(InputAction.CallbackContext obj)
     {
-        primaryShooting = false;
+        PrimaryShooting = false;
 
-        if (IgnoreAllInputs) return;
+        if (playerController.IgnoreAllInputs) return;
 
         //shootingCoroutine = null;
     }
-    protected override void Secondary_performed(InputAction.CallbackContext obj)
+
+    /// <summary>
+    /// Repeatedly shoots.
+    /// slows the player while shooting
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator RepeatedFire()
     {
-        if (IgnoreAllInputs) return;
-        //TODO
+        float oldSpeed = playerBehaviour.Speed;
+        playerBehaviour.Speed = oldSpeed / 2;
+
+        int bulletsShot=0;
+
+        while (PrimaryShooting && canShoot && bulletsShot < playerBehaviour.ShotsShotsPerBurst)
+        {
+            bulletsShot++;
+            ShootBullet();
+            yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots);
+        }
+
+        playerBehaviour.Speed = oldSpeed;
+
+        float scaledCooldownSeconds = (bulletsShot / playerBehaviour.ShotsShotsPerBurst) * playerBehaviour.RangedAttackCooldown;
+        endShootingCoroutine = StartCoroutine(StopShooting(scaledCooldownSeconds));
+
+        shootingCoroutine = null;
     }
-    protected override void Secondary_canceled(InputAction.CallbackContext obj)
+
+    private IEnumerator StopShooting(float coolDownSeconds)
     {
-        if (IgnoreAllInputs) return;
-        //TODO
+        PrimaryShooting = false;
+        canShoot = false;
+
+        yield return new WaitForSeconds(coolDownSeconds);
+
+        canShoot = true;
+
+        endShootingCoroutine = null;
     }
 
     /// <summary>
     /// Mirrors the scale awesome style
     /// </summary>
     /// <returns></returns>
-    private IEnumerator CorrectGunPosition()
-    {   
-        while(this != null)
-        {
-            if(inputDirection.x > 0)
-                MirrorPivot.localScale = new Vector3(-1, 1, 1);
-            
-            if (inputDirection.x < 0)
-                MirrorPivot.localScale = new Vector3(1, 1, 1);
-            
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
-    /// <summary>
-    /// Kind of unnessecary rn, but im cooking, ok
-    /// </summary>
-    public void UpdateShootingDirection()
+    public void CorrectGunPosition()
     {
-        //TODO
-        //shootingDirection = inputDirection;
+        if (playerController.AimingDirection.x > 0)
+            MirrorPivot.localScale = new Vector3(1, 1, 1);
 
-        if(PlayerControllerType.Equals(ControllerType.Keyboard))
-        {
-            UpdateShootingDirectionByKeyboard();
-        }
-
-        if (PlayerControllerType.Equals(ControllerType.Controller))
-        {
-            UpdateShootingDirectionByController();
-        }
+        if (playerController.AimingDirection.x < 0)
+            MirrorPivot.localScale = new Vector3(-1, 1, 1);
     }
-
-    private void UpdateShootingDirectionByKeyboard()
-    {
-        Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        MousePosition -= (Vector2)transform.position;
-        MousePosition = MousePosition.normalized;
-
-        shootingDirection = MousePosition;
-
-
-    }
-
-    private void UpdateShootingDirectionByController()
-    {
-        shootingDirection = inputDirection;
-    }
-
-    private IEnumerator RepeatedFire()
-    {
-        while(primaryShooting)
-        {
-            ShootBullet();
-            yield return new WaitForSeconds(playerBehaviour.PrimaryAttackCoolDown);
-        }
-        shootingCoroutine = null;
-    }
+    
 
     /// <summary>
     /// instantiates a bullet!
@@ -139,17 +138,16 @@ public class RangedPlayerController : DefaultPlayerController
     /// </summary>
     private void ShootBullet()
     {
-        UpdateShootingDirection();
-
         //spawn the thing
         GameObject bullet = Instantiate(BulletPrefab, Gun.transform.position, Quaternion.identity);
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
 
-        //fix the thing
-        bulletRigidbody.velocity = shootingDirection * playerBehaviour.PrimaryAttackSpeed;
-        float Angle = Vector2.SignedAngle(Vector2.right, shootingDirection);
+        bulletRigidbody.velocity = playerController.AimingDirection * playerBehaviour.ProjectileSpeed;
 
+        //rotate
+        float Angle = Vector2.SignedAngle(Vector2.right, playerController.AimingDirection);
         Vector3 TargetRotation = new Vector3(0, 0, Angle);
         bullet.transform.eulerAngles = TargetRotation;
+        
     }
 }

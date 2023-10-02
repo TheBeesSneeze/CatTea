@@ -48,12 +48,12 @@ public class NPCBehaviour : MonoBehaviour
     public GameObject DialogueCanvas;
     public Image PlayerSprite;
     public Image NPCSprite;
-    private DefaultPlayerController player;
+    private PlayerController player;
     private bool SkipText;
 
     private void Start()
     {
-        player = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<DefaultPlayerController>();    
+        player = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<PlayerController>();    
         LoadScript(DefaultDialogue);
     }
 
@@ -69,7 +69,7 @@ public class NPCBehaviour : MonoBehaviour
             if(ButtonPrompt != null)
                 ButtonPrompt.SetActive(true);
 
-            player = collision.GetComponent<DefaultPlayerController>();
+            player = collision.GetComponent<PlayerController>();
             player.Select.started += ActivateSpeech;
             player.Pause.started += Exit_text;
             player.SkipText.started += Skip_text;

@@ -24,28 +24,33 @@ public class PlayerStats : ScriptableObject
     //obviously most of these stats wont apply to the default player
     public float Speed;
 
-    public int MaxHealthPoints;
+    public float MaxHealthPoints;
 
     public float InvincibilitySeconds;
 
     [Header("Dash")]
+
     [Tooltip("Seconds the player takes to dash")]
     public float DashTime;
     [Tooltip("How many units the player will dash")]
     public float DashUnits;
     public float DashRechargeSeconds;
 
-    [Header("Primary Attack")]
-    public int PrimaryAttackDamage;
-    [Tooltip("Seconds for Primary attack to complete")]
-    public float PrimaryAttackSpeed;
-    public float PrimaryAttackCoolDown;
-    public float PrimaryAttackKnockback;
+    [Header("Ranged Attack")]
 
-    [Header("Secondary Attack")]
-    public int SecondaryAttackDamage;
-    [Tooltip("Seconds for Secondary attack to complete")]
-    public float SecondaryAttackSpeed;
-    public float SecondaryAttackCoolDown;
-    public float SecondaryAttackKnockback;
+    public int RangedAttackDamage;
+    public float ProjectileSpeed;
+    [Tooltip("Seconds for Primary attack to complete")]
+    public int ShotsShotsPerBurst;
+    [Tooltip("Seconds for Primary attack to complete")]
+    public float TimeBetweenShots;
+    public float RangedAttackCooldown;
+    public float RangedAttackKnockback;
+
+    [Header("Melee Attack")]
+    public int MeleeAttackDamage;
+    [Tooltip("Seconds for sword attack to complete")]
+    public float SwingSeconds;
+    public float SwordAttackCoolDown;
+    public float MeleeAttackKnockback;
 }

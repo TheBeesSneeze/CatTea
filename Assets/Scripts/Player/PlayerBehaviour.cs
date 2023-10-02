@@ -30,20 +30,20 @@ public class PlayerBehaviour : CharacterBehaviour
     [HideInInspector] public float DashTime;
     [HideInInspector] public float DashUnits;
 
-    [HideInInspector] public int PrimaryAttackDamage;
-    [HideInInspector] public float PrimaryAttackSpeed;
-    [HideInInspector] public float PrimaryAttackCoolDown;
-    [HideInInspector] public float PrimaryAttackKnockback;
+    [HideInInspector] public int RangedAttackDamage;
+    [HideInInspector] public float ProjectileSpeed;
+    [HideInInspector] public int ShotsShotsPerBurst;
+    [HideInInspector] public float TimeBetweenShots;
+    [HideInInspector] public float RangedAttackCooldown;
+    [HideInInspector] public float RangedAttackKnockback;
 
-    [HideInInspector] public int SecondaryAttackDamage;
-    [HideInInspector] public float SecondaryAttackSpeed;
-    [HideInInspector] public float SecondaryAttackCoolDown;
-    [HideInInspector] public float SecondaryAttackKnockback;
+    [HideInInspector] public int MeleeAttackDamage;
+    [HideInInspector] public float SwingSeconds;
+    [HideInInspector] public float SwordAttackCoolDown;
+    [HideInInspector] public float MeleeAttackKnockback;
 
     //components
-    private DefaultPlayerController playerController;
-    public enum WeaponType { Default, Melee, Ranged };
-    [HideInInspector] public WeaponType PlayerWeapon; //assigned automatically. Default by, well, default
+    private PlayerController playerController;
 
     private PlayerHealthBar healthBar;
 
@@ -51,7 +51,7 @@ public class PlayerBehaviour : CharacterBehaviour
     protected override void Start()
     {
         base.Start();
-        playerController = GetComponent<DefaultPlayerController>();
+        playerController = GetComponent<PlayerController>();
 
         try { healthBar = GameObject.FindObjectOfType<PlayerHealthBar>(); }
         catch { Debug.LogWarning("No Player Health Bar in Scene"); }
@@ -60,7 +60,7 @@ public class PlayerBehaviour : CharacterBehaviour
         HealthPoints = MaxHealthPoints;
     }
 
-    public override void SetHealth(int Value)
+    public override void SetHealth(float Value)
     {
         base.SetHealth(Value);
 
@@ -113,15 +113,17 @@ public class PlayerBehaviour : CharacterBehaviour
         DashUnits = CurrentPlayerStats.DashUnits;
         DashTime = CurrentPlayerStats.DashTime;
         
-        PrimaryAttackDamage = CurrentPlayerStats.PrimaryAttackDamage;
-        PrimaryAttackSpeed = CurrentPlayerStats.PrimaryAttackSpeed;
-        PrimaryAttackCoolDown = CurrentPlayerStats.PrimaryAttackCoolDown;
-        PrimaryAttackKnockback = CurrentPlayerStats.PrimaryAttackKnockback;
+        RangedAttackDamage = CurrentPlayerStats.RangedAttackDamage;
+        ProjectileSpeed = CurrentPlayerStats.ProjectileSpeed;
+        ShotsShotsPerBurst = CurrentPlayerStats.ShotsShotsPerBurst;
+        TimeBetweenShots = CurrentPlayerStats.TimeBetweenShots;
+        RangedAttackCooldown = CurrentPlayerStats.RangedAttackCooldown;
+        RangedAttackKnockback = CurrentPlayerStats.RangedAttackKnockback;
 
-        SecondaryAttackDamage = CurrentPlayerStats.SecondaryAttackDamage;
-        SecondaryAttackSpeed = CurrentPlayerStats.SecondaryAttackSpeed;
-        SecondaryAttackCoolDown = CurrentPlayerStats.SecondaryAttackCoolDown;
-        SecondaryAttackKnockback = CurrentPlayerStats.SecondaryAttackKnockback;
+        MeleeAttackDamage = CurrentPlayerStats.MeleeAttackDamage;
+        SwingSeconds = CurrentPlayerStats.SwingSeconds;
+        SwordAttackCoolDown = CurrentPlayerStats.SwordAttackCoolDown;
+        MeleeAttackKnockback = CurrentPlayerStats.MeleeAttackKnockback;
     }
 }
 

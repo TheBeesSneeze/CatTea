@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name :         DefaultPlayerController.cs
+* File Name :         playerController.cs
 * Author(s) :         Toby Schamberger
 * Creation Date :     9/4/2023
 *
@@ -8,11 +8,9 @@
 * Moving is slightly slippery, slippiness can be changed in code (make the variables
 * public if it bothers you)
 * 
-* Controls Include: Movement, Dashing, Primary weapon function (does nothing),
-* Secondary weapon function (does nothing), Pause.
+* Controls Include: Movement, Dashing, Pause.
 *
 * TODO:
-* Dashing
 * Other input settings
 * PAUSE
 * player invincible while dashing
@@ -23,8 +21,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DefaultPlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    [Header("Unity")]
+    public SpriteRenderer GunSprite;
+    public SpriteRenderer SwordSprite;
+
     //Really boring settings:
     [Tooltip("The amount of slippiness the player experiences when changing movement directions (THIS VALUE MUST BE BETWEEN 0 and 1)")]
     private static float slideAmount = 0.75f; // this needs to be a number between 0 and 1. higher number for more slidey
@@ -43,26 +45,35 @@ public class DefaultPlayerController : MonoBehaviour
     [HideInInspector] public InputAction Pause;
     [HideInInspector] public InputAction Select;
     [HideInInspector] public InputAction SkipText;
-    protected InputAction swapWeapon;
     protected InputAction cheat;
 
     // components:
     protected Rigidbody2D myRigidbody;
-    protected PlayerBehaviour playerBehaviour;
     public Gamepad MyGamepad;
     protected Animator myAnimator;
     protected GameManager gameManager;
 
-    protected enum ControllerType {Keyboard, Controller};
-    protected ControllerType PlayerControllerType;
+    protected PlayerBehaviour playerBehaviour;
+    protected RangedPlayerController rangedPlayerController;
+    protected MeleePlayerController meleePlayerController;
+
+    protected enum WeaponMode { Gun, Sword };
+    protected WeaponMode CurrentWeapon;
+
+    public enum ControllerType {Keyboard, Controller};
+    [HideInInspector] public ControllerType PlayerControllerType;
 
     // etcetera:
-    protected Vector2 moveDirection;
-    protected Vector2 inputDirection;
+    [HideInInspector] public Vector2 MoveDirection;
+    [HideInInspector] public Vector2 InputDirection;
+    [HideInInspector] public Vector2 AimingDirection;
     protected bool moving; //if a movement key is being pressed rn
     protected Coroutine movingCoroutine; //shared between SlideMovementDirection and SlowMovement intentionally. They shouldnt run at the same time.
     protected bool canDash=true;
-    protected bool canAttack = true;
+    [HideInInspector] public bool CanAttack = true;
+
+    private bool readShootingDirection;
+    private Coroutine aimingCoroutine;
 
     private bool ignoreMove;
     [HideInInspector]public bool IgnoreAllInputs;
@@ -74,7 +85,6 @@ public class DefaultPlayerController : MonoBehaviour
     {
         //initialize a lot of variables
         myRigidbody = GetComponent<Rigidbody2D>();
-        playerBehaviour = GetComponent<PlayerBehaviour>();
         myAnimator = GetComponent<Animator>();
 
         //Initialize input stuff
@@ -82,17 +92,25 @@ public class DefaultPlayerController : MonoBehaviour
         MyGamepad = playerInput.GetDevice<Gamepad>();
         playerInput.currentActionMap.Enable();
 
+        playerBehaviour = GetComponent<PlayerBehaviour>();
+        rangedPlayerController = GetComponent<RangedPlayerController>();
+        meleePlayerController = GetComponent<MeleePlayerController>();
+
         gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        StartGunMode();
 
         InitializeControls();
 
         DetectInputDevice();
 
+        UpdateAimingDirection();
         StartCoroutine(UpdateAnimation());
     }
 
     /// <summary>
-    /// Sorry Start was getting crowded
+    /// Sorry Start was getting crowded.
+    /// initalizes every control from every player script
     /// </summary>
     private void InitializeControls()
     {
@@ -103,7 +121,6 @@ public class DefaultPlayerController : MonoBehaviour
         Pause = playerInput.currentActionMap.FindAction("Pause");
         Select = playerInput.currentActionMap.FindAction("Select");
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
-        swapWeapon = playerInput.currentActionMap.FindAction("Swap Weapon");
         cheat = playerInput.currentActionMap.FindAction("Cheat");
 
         move.performed += Move_performed;
@@ -112,15 +129,13 @@ public class DefaultPlayerController : MonoBehaviour
         dash.performed += Dash_started;
         dash.canceled += Dash_canceled;
 
-        primary.performed += Primary_performed;
-        primary.canceled += Primary_canceled;
+        primary.performed += rangedPlayerController.Gun_performed;
+        primary.canceled += rangedPlayerController.Gun_canceled;
 
-        secondary.performed += Secondary_performed;
-        secondary.canceled += Secondary_canceled;
+        secondary.performed += meleePlayerController.Sword_started;
+        secondary.canceled += meleePlayerController.Sword_canceled;
 
         Pause.started += Pause_started;
-
-        swapWeapon.started += SwapWeapon_started;
 
         cheat.started += Cheat_started;
     }
@@ -158,8 +173,8 @@ public class DefaultPlayerController : MonoBehaviour
 
         if (!moving)
         {
-            inputDirection = obj.ReadValue<Vector2>();
-            moveDirection = inputDirection * playerBehaviour.Speed / 2;
+            InputDirection = obj.ReadValue<Vector2>();
+            MoveDirection = InputDirection * playerBehaviour.Speed / 2;
         }
 
         moving = true;
@@ -194,35 +209,98 @@ public class DefaultPlayerController : MonoBehaviour
         //TODO
     }
 
-    protected virtual void Primary_performed(InputAction.CallbackContext obj)
-    {
-        if (IgnoreAllInputs)
-            return;
-    }
-    protected virtual void Primary_canceled(InputAction.CallbackContext obj){ if (IgnoreAllInputs) return; }
-    protected virtual void Secondary_performed(InputAction.CallbackContext obj)
-    {
-        if (IgnoreAllInputs)
-            return;
-    }
-    protected virtual void Secondary_canceled(InputAction.CallbackContext obj){ if (IgnoreAllInputs) return; }
-
     protected virtual void Pause_started(InputAction.CallbackContext obj)
     {
         if (IgnoreAllInputs)
             return;
     }
 
-    protected virtual void SwapWeapon_started(InputAction.CallbackContext obj) 
-    {
-        if (IgnoreAllInputs) return;
-        //gameManager.SwapPlayerAttackType(playerBehaviour);
-    }
-
     protected virtual void Cheat_started(InputAction.CallbackContext obj)
     {
         if (IgnoreAllInputs) return;
+
         gameManager.CurrentRoom.Cheat();
+    }
+
+    /// <summary>
+    /// Hides sword and brings out gun.
+    /// Does not do any attacking.
+    /// </summary>
+    public void StartGunMode()
+    {
+        GunSprite.enabled = true;
+        SwordSprite.enabled = false;
+    }
+
+    /// <summary>
+    /// Hides gun and brings out sword.
+    /// Does not do any attacking.
+    /// </summary>
+    public void StartSwordMode()
+    {
+        GunSprite.enabled = false;
+        SwordSprite.enabled = true;
+    }
+
+    /// <summary>
+    /// Kind of unnessecary rn, but im cooking, ok
+    /// </summary>
+    public void UpdateAimingDirection()
+    {
+        if (aimingCoroutine != null)
+            StopCoroutine(aimingCoroutine);
+
+        readShootingDirection = true;
+
+        if (PlayerControllerType.Equals(PlayerController.ControllerType.Keyboard))
+        {
+            rangedPlayerController.RangedIcon.SetActive(true);
+            aimingCoroutine = StartCoroutine(UpdateShootingDirectionByKeyboard());
+        }
+
+        if (PlayerControllerType.Equals(PlayerController.ControllerType.Controller))
+        {
+            rangedPlayerController.RangedIcon.SetActive(false);
+            aimingCoroutine = StartCoroutine(UpdateShootingDirectionByController());
+        }
+    }
+
+    private IEnumerator UpdateShootingDirectionByKeyboard()
+    {
+        while (readShootingDirection)
+        {
+            Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            rangedPlayerController.RangedIcon.transform.position = MousePosition;
+
+            //update shootingDirection. normalize MousePosition to be relative to player
+            MousePosition -= (Vector2)transform.position;
+            MousePosition = MousePosition.normalized;
+
+            AimingDirection = MousePosition;
+
+            //rotate awesome style
+            MousePosition = new Vector2(Mathf.Abs(MousePosition.x), MousePosition.y);
+            float angle = Mathf.Atan2(MousePosition.y, MousePosition.x) * Mathf.Rad2Deg;
+            angle = Mathf.Clamp(angle, rangedPlayerController.MaxDownAngle, rangedPlayerController.MaxUpAngle);
+            rangedPlayerController.RotationPivot.transform.localEulerAngles = new Vector3(0, 0, angle);
+
+            yield return null;
+        }
+        aimingCoroutine = null;
+    }
+
+    private IEnumerator UpdateShootingDirectionByController()
+    {
+        while (readShootingDirection)
+        {
+            AimingDirection = InputDirection;
+
+            rangedPlayerController.CorrectGunPosition();
+
+            yield return new WaitForEndOfFrame();
+        }
+        aimingCoroutine = null;
     }
 
     /// <summary>
@@ -231,22 +309,22 @@ public class DefaultPlayerController : MonoBehaviour
     /// </summary>
     protected IEnumerator SlideMovementDirection(InputAction.CallbackContext obj)
     {
-        inputDirection = obj.ReadValue<Vector2>();
-        Vector2 newMoveDiection = inputDirection * playerBehaviour.Speed;
+        InputDirection = obj.ReadValue<Vector2>();
+        Vector2 newMoveDiection = InputDirection;
 
         //cool slide
         for (int i = 0; i < slideIterations && moving; i++)
         {
-            moveDirection = BlendMovementDirections(moveDirection, newMoveDiection, slideAmount);
+            MoveDirection = BlendMovementDirections(MoveDirection, newMoveDiection, slideAmount);
 
             if(!ignoreMove)
-                myRigidbody.velocity = moveDirection;
+                myRigidbody.velocity = MoveDirection * playerBehaviour.Speed;
 
             yield return new WaitForSeconds(slideSeconds/ slideIterations);
         }
 
         //may fuck things up:
-        moveDirection = newMoveDiection;
+        MoveDirection = newMoveDiection;
 
         //regular movement
 
@@ -254,13 +332,15 @@ public class DefaultPlayerController : MonoBehaviour
         
     }
 
+
+
     protected IEnumerator RegularMovement()
     {
         while (moving)
         {
             if (!ignoreMove)
             {
-                myRigidbody.velocity = moveDirection;
+                myRigidbody.velocity = MoveDirection * playerBehaviour.Speed;
             }
             yield return null;
         }
@@ -270,7 +350,7 @@ public class DefaultPlayerController : MonoBehaviour
     /// <summary>
     /// combines the new movement value with the old one so its kinda slidey
     /// </summary>
-    /// <param name="OldMoveDirection">moveDirection</param>
+    /// <param name="OldMoveDirection">MoveDirection</param>
     /// <param name="newReadValue">obj.ReadValue<Vector2>()</param>
     /// <param name="slideWeight">number between 0 and 1. 0 for instant change. 0.999 for very slidey.param>
     /// <returns>An averaged movement direction</returns>
@@ -290,8 +370,8 @@ public class DefaultPlayerController : MonoBehaviour
     {
         for(int i = 0; i<10 && !moving; i++)
         {
-            //notice this doesnt update moveDirection
-            myRigidbody.velocity = BlendMovementDirections(moveDirection, Vector2.zero, slowAmount);
+            //notice this doesnt update MoveDirection
+            myRigidbody.velocity = BlendMovementDirections(MoveDirection, Vector2.zero, slowAmount);
 
             yield return new WaitForSeconds(slowSeconds / 10);
         }
@@ -310,10 +390,10 @@ public class DefaultPlayerController : MonoBehaviour
             StopCoroutine(movingCoroutine);
 
         myRigidbody.velocity = Vector2.zero;
-        //myRigidbody.AddForce(moveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
+        //myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
 
-        moveDirection = inputDirection * playerBehaviour.Speed;
-        myRigidbody.AddForce(moveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);
+        MoveDirection = InputDirection * playerBehaviour.Speed;
+        myRigidbody.AddForce(MoveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);
 
         if (MyGamepad != null)
         {
@@ -341,7 +421,7 @@ public class DefaultPlayerController : MonoBehaviour
         }
 
         if (moving)
-            myRigidbody.velocity = moveDirection;
+            myRigidbody.velocity = MoveDirection;
         else
             movingCoroutine = StartCoroutine(SlowMovement());
 
@@ -349,14 +429,16 @@ public class DefaultPlayerController : MonoBehaviour
 
     protected IEnumerator UpdateAnimation()
     {
-        while (true)
+        while(true)
         {
-            myAnimator.SetFloat("XMovement", inputDirection.x);
-            myAnimator.SetFloat("YMovement", inputDirection.y);
+            myAnimator.SetFloat("XMovement", AimingDirection.x);
+            myAnimator.SetFloat("YMovement", AimingDirection.y);
+
+            rangedPlayerController.CorrectGunPosition();
+
             yield return new WaitForSeconds(0.1f);
         }
     }
-
 
     public void OnDestroy()
     {
@@ -368,15 +450,13 @@ public class DefaultPlayerController : MonoBehaviour
         dash.performed -= Dash_started;
         dash.canceled -= Dash_canceled;
 
-        primary.performed -= Primary_performed;
-        primary.canceled -= Primary_canceled;
+        primary.performed -= rangedPlayerController.Gun_performed;
+        primary.canceled -= rangedPlayerController.Gun_canceled;
 
-        secondary.performed -= Secondary_performed;
-        secondary.canceled -= Secondary_canceled;
+        secondary.performed -= meleePlayerController.Sword_started;
+        secondary.canceled -= meleePlayerController.Sword_canceled;
 
         Pause.started -= Pause_started;
-
-        swapWeapon.started -= SwapWeapon_started;
 
         cheat.started -= Cheat_started;
     }
