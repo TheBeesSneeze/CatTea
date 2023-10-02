@@ -114,7 +114,7 @@ public class AttackType : MonoBehaviour
     {
         string tag = collision.tag;
 
-        if(tag.Equals("Wall"))
+        if(tag.Equals("Wall") && DestroyedByWalls)
         {
             StopAllCoroutines();
             Destroy(this.gameObject);

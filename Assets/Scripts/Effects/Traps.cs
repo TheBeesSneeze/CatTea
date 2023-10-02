@@ -19,6 +19,8 @@ public class Traps : MonoBehaviour
     public float SecondsUntilActivation;
     public float SecondsUntilDeactivation;
 
+    private Coroutine spikesUpCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,19 +29,30 @@ public class Traps : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (ActivationObject == null)
+        {
+            Debug.LogWarning("Trap: " + gameObject.name + " does not have its activation object initialized in editor");
+            return;
+        }
+
         string tag = collision.tag;
         if (tag.Equals("Player") || tag.Equals("Enemy") || tag.Equals("Boss"))
         {
-            StartCoroutine(Delay());
+            if (spikesUpCoroutine != null)
+                StopCoroutine(spikesUpCoroutine);
+
+            spikesUpCoroutine = StartCoroutine(Delay());
         }
     }
 
-    IEnumerator Delay()
+    private IEnumerator Delay()
     {
         yield return new WaitForSeconds(SecondsUntilActivation);
         ActivationObject.SetActive(true);
 
         yield return new WaitForSeconds(SecondsUntilDeactivation);
         ActivationObject.SetActive(false);
+
+        spikesUpCoroutine = null;
     }
 }
