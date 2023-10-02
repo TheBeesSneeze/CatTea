@@ -22,16 +22,28 @@ public class EnemyRoom : RoomType
     [SerializeField] private int wavesLeft;
     [SerializeField] private int challengePointsPerWave;
 
+    //Secret settings
+    private int minWaves=3;
+    private int maxWaves = 5;
+    private float secondsBetweenEnemySpawns = 1f;
+
     public override void EnterRoom()
     {
         base.EnterRoom();
 
-        wavesLeft = Random.Range(3, 6);
+        wavesLeft = Random.Range(minWaves, maxWaves+1);
         challengePointsPerWave = GameManager.Instance.CurrentChallengePoints / wavesLeft;
 
         Debug.Log(wavesLeft + " waves, " + challengePointsPerWave + " challenge points per wave");
 
-        SpawnNewWaveOfEnemies();
+        if (EnemySpawnPool.Count <= 0)
+        {
+            Debug.LogWarning("No enemies in the pool!");
+            return;
+        }
+        //else
+        StartCoroutine(SpawnNewWaveOfEnemies());
+
     }
 
     public override bool CheckRoomCleared()
@@ -39,7 +51,7 @@ public class EnemyRoom : RoomType
         return (aliveEnemies <= 0);
     }
 
-    public virtual void SpawnNewWaveOfEnemies()
+    public virtual IEnumerator SpawnNewWaveOfEnemies()
     {
         int challengePointsLeft = challengePointsPerWave;
 
@@ -47,16 +59,11 @@ public class EnemyRoom : RoomType
 
         aliveEnemies = 0;
 
-        if(EnemySpawnPool.Count <= 0)
-        {
-            Debug.LogWarning("No enemies in the pool!");
-            return;
-        }
-
         List<Transform> spawnPointsAvailable = new List<Transform>(EnemySpawnPoints);
 
         while(challengePointsLeft > 0)
         {
+            yield return new WaitForSeconds(secondsBetweenEnemySpawns);
             SpawnOneEnemy(ref challengePointsLeft, ref spawnPointsAvailable);
         }
     }
