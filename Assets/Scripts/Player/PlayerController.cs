@@ -16,6 +16,7 @@
 * player invincible while dashing
 *****************************************************************************/
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     protected InputAction dash;
     protected InputAction primary;
     protected InputAction secondary;
+    protected InputAction aim;
     [HideInInspector] public InputAction Pause;
     [HideInInspector] public InputAction Select;
     [HideInInspector] public InputAction SkipText;
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour
         Select = playerInput.currentActionMap.FindAction("Select");
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
         cheat = playerInput.currentActionMap.FindAction("Cheat");
+        aim = playerInput.currentActionMap.FindAction("Aiming");
 
         move.performed += Move_performed;
         move.canceled += Move_canceled;
@@ -138,7 +141,16 @@ public class PlayerController : MonoBehaviour
         Pause.started += Pause_started;
 
         cheat.started += Cheat_started;
+
+        aim.performed += Aim_Performed;
+
     }
+
+    private void Aim_Performed(InputAction.CallbackContext obj)
+    {
+        AimingDirection = obj.ReadValue<Vector2>();
+    }
+
 
     protected void DetectInputDevice()
     {
@@ -164,6 +176,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="obj"></param>
     protected virtual void Move_performed(InputAction.CallbackContext obj)
     {
+
         if(ignoreMove || IgnoreAllInputs)
             return;
 
@@ -261,7 +274,7 @@ public class PlayerController : MonoBehaviour
         if (PlayerControllerType.Equals(PlayerController.ControllerType.Controller))
         {
             rangedPlayerController.RangedIcon.SetActive(false);
-            aimingCoroutine = StartCoroutine(UpdateShootingDirectionByController());
+ //           aimingCoroutine = StartCoroutine(UpdateShootingDirectionByController());
         }
     }
 
