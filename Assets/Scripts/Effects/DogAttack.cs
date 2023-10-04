@@ -2,7 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveBehaviour : AttackType
+/*******************************************************************************
+* File Name :         DogAttack.cs
+* Author(s) :         Aiden Vandeberg
+* Creation Date :     10/3/2023
+*
+* Brief Description : 
+*****************************************************************************/
+
+public class DogAttack : AttackType
 {
     public int speed;
     public Rigidbody2D waveRB2D;
