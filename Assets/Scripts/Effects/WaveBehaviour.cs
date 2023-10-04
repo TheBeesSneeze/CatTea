@@ -14,8 +14,6 @@ public class WaveBehaviour : AttackType
         StartCoroutine(Moving());
     }
 
-    
-
     private IEnumerator Moving()
     {
         while(this.gameObject != null)
