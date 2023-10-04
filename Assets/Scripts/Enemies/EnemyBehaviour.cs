@@ -50,6 +50,8 @@ public class EnemyBehaviour : CharacterBehaviour
 
     public override void Die()
     {
+        GameEvents.Instance.OnEnemyDeath(this.transform.position);
+
         if(Room!= null) 
             Room.OnEnemyDeath();
 

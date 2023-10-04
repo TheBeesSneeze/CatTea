@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 6781111479496363850}
   - component: {fileID: 5456073523674893132}
   m_Layer: 0
-  m_Name: Explosion
-  m_TagString: General Attack
+  m_Name: Player Explosion
+  m_TagString: Primary Player Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,8 @@ MonoBehaviour:
   DamageOnCollision: 1
   DestroyedByWalls: 0
   DestroyedAfterAttack: 0
-  Attacker: 0
+  DestroyAttackAfterSeconds: 0.3
+  Attacker: 2
 --- !u!58 &5456073523674893132
 CircleCollider2D:
   m_ObjectHideFlags: 0

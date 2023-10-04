@@ -30,16 +30,12 @@ public class RoomType : MonoBehaviour
 
     protected PlayerBehaviour playerBehaviour;
     protected CameraManager cameraManager;
-    protected GameManager gameManager;
-
-    protected GameObject enemySpawningShadow;
 
     public virtual void Start()
     {
         roomCleared = OpenDoorsOnStart;
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         cameraManager = GameObject.FindObjectOfType<CameraManager>();
-        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     /// <summary>
@@ -47,7 +43,7 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual void EnterRoom()
     {
-        gameManager.CurrentRoom = this;
+        GameManager.Instance.CurrentRoom = this;
 
         cameraManager.MoveCamera(CameraCenterPoint);
         
@@ -65,14 +61,6 @@ public class RoomType : MonoBehaviour
     {
         Debug.LogWarning("Override this function!");
         return roomCleared;
-    }
-
-    /// <summary>
-    /// I really just don't want to have to get the *same* prefab every single time we make a room
-    /// </summary>
-    private void GetEnemyShadowCircle()
-    {
-        enemySpawningShadow = (GameObject)Resources.Load("prefabs/prefab1", typeof(GameObject));
     }
 
     /// <summary>
