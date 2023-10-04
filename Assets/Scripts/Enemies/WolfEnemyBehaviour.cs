@@ -9,6 +9,7 @@ public class WolfEnemyBehaviour : EnemyBehaviour
     public float rotationModifier;
     public GameObject wolfProjectile;
     public bool spawnProjectileStarted;
+    public bool projectilesLaunched;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -48,10 +49,11 @@ public class WolfEnemyBehaviour : EnemyBehaviour
                     spawnProjectileStarted = true;
                 }
             }
-            if(spawnProjectileStarted == true)
+            if(projectilesLaunched == true)
             {
                 yield return new WaitForSeconds(4);
                 spawnProjectileStarted = false;
+                projectilesLaunched = false;
             }
             yield return null;
         }
@@ -65,6 +67,7 @@ public class WolfEnemyBehaviour : EnemyBehaviour
         Instantiate(wolfProjectile, transform.position, transform.rotation);
         yield return new WaitForSeconds(0.5f);
         Instantiate(wolfProjectile, transform.position, transform.rotation);
+        projectilesLaunched = true;
         yield return null;
     }
 }

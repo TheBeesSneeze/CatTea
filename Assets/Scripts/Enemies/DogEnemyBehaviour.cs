@@ -8,7 +8,8 @@ public class DogEnemyBehaviour : EnemyBehaviour
     public float speed;
     public float rotationModifier;
     public GameObject dogAttack;
-    private int wavesFired;
+    public bool spawnWavesStarted;
+    public bool wavesLaunched;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -42,17 +43,17 @@ public class DogEnemyBehaviour : EnemyBehaviour
             float playerYDistance = player.transform.position.y - transform.position.y;
             if ((playerXDistance <= 4 && playerXDistance >= -4) && (playerYDistance <= 4 && playerYDistance >= -4))
             {
-                if(wavesFired < 3)
+                if(spawnWavesStarted == false)
                 {
                     StartCoroutine(SpawnWaves());
-                    yield return new WaitForSeconds(6);
-                    wavesFired += 3;
+                    spawnWavesStarted = true;
                 }
             }
-            if(wavesFired >= 3)
+            if(wavesLaunched == true)
             {
                 yield return new WaitForSeconds(5);
-                wavesFired = 0;
+                spawnWavesStarted = false;
+                wavesLaunched = false;
             }
 
             yield return null;
@@ -67,6 +68,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
         Instantiate(dogAttack, transform.position, transform.rotation);
         yield return new WaitForSeconds(2);
         Instantiate(dogAttack, transform.position, transform.rotation);
+        wavesLaunched = true;
         yield return null;
     }
 }
