@@ -7,7 +7,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
     private GameObject player;
     public float speed;
     public float rotationModifier;
-    public GameObject wave;
+    public GameObject dogAttack;
     private int wavesFired;
 
     // Start is called before the first frame update
@@ -44,9 +44,9 @@ public class DogEnemyBehaviour : EnemyBehaviour
             {
                 if(wavesFired < 3)
                 {
-                    yield return new WaitForSeconds(2);
-                    Instantiate(wave, transform.position, transform.rotation);
-                    wavesFired += 1;
+                    StartCoroutine(SpawnWaves());
+                    yield return new WaitForSeconds(6);
+                    wavesFired += 3;
                 }
             }
             if(wavesFired >= 3)
@@ -57,5 +57,16 @@ public class DogEnemyBehaviour : EnemyBehaviour
 
             yield return null;
         }
+    }
+
+    private IEnumerator SpawnWaves()
+    {
+        yield return new WaitForSeconds(2);
+        Instantiate(dogAttack, transform.position, transform.rotation);
+        yield return new WaitForSeconds(2);
+        Instantiate(dogAttack, transform.position, transform.rotation);
+        yield return new WaitForSeconds(2);
+        Instantiate(dogAttack, transform.position, transform.rotation);
+        yield return null;
     }
 }

@@ -164,7 +164,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  m_Color: {r: 0, g: 0.61063004, b: 0.6603774, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   Room: {fileID: 0}
   speed: 20
   rotationModifier: 90
-  wave: {fileID: 6326999757203767123, guid: c825d9baa8a713045b1ec8c254a9059e, type: 3}
+  dogAttack: {fileID: 6326999757203767123, guid: c825d9baa8a713045b1ec8c254a9059e, type: 3}
 --- !u!58 &3604364754743572073
 CircleCollider2D:
   m_ObjectHideFlags: 0
