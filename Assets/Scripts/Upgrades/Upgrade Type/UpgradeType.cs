@@ -18,10 +18,10 @@ using UnityEngine;
 
 public class UpgradeType : MonoBehaviour
 {
-    //[Tooltip("Mark true if the effect should run at start. Good for one time use upgrades like stat upgrades.")]
-    //public bool PerformEffectOnStart;
+    public string DisplayName;
+    public string DisplayDescription;
 
-    public enum UpgradeActivationType { OnStart, OnEnemyDeath, OnEnemyDamage, OnPlayerDamage, OnEnterRoom, OnPlayerGun, OnPlayerSword, OnPlayerDash}
+    public enum UpgradeActivationType {OnStart, OnEnemyDeath, OnEnemyDamage, OnPlayerDamage, OnEnterRoom, OnPlayerGun, OnPlayerSword, OnPlayerDash}
 
     [Tooltip("When this upgrades effect runs")]
     public UpgradeActivationType ActivationType;
@@ -79,7 +79,7 @@ public class UpgradeType : MonoBehaviour
                 GameEvents.Instance.RoomEnterAction += UpgradeEffect;
                 break;
             case UpgradeActivationType.OnPlayerGun:
-                GameEvents.Instance.PlayerGunAction += UpgradeEffect;
+                GameEvents.Instance.PlayerShootAction += UpgradeEffect;
                 break;
             case UpgradeActivationType.OnPlayerSword:
                 GameEvents.Instance.PlayerSwordAction += UpgradeEffect;

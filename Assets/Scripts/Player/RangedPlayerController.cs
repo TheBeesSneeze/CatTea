@@ -138,6 +138,8 @@ public class RangedPlayerController : MonoBehaviour
     /// </summary>
     private void ShootBullet()
     {
+        GameEvents.Instance.OnPlayerShoot();
+
         //spawn the thing
         GameObject bullet = Instantiate(BulletPrefab, Gun.transform.position, Quaternion.identity);
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();

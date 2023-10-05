@@ -46,15 +46,16 @@ public class MeleePlayerController : MonoBehaviour
 
     public void Sword_started(InputAction.CallbackContext obj)
     {
-        if(playerController.IgnoreAllInputs) return;
+        if(playerController.IgnoreAllInputs) 
+            return;
 
         playerController.StartSwordMode();
 
         //if not already attacking
         if (Attacking && !rangedPlayerController.PrimaryShooting)
-        {
             return;
-        }
+
+        GameEvents.Instance.OnPlayerSword();
 
         SwordCollider.enabled = true;
         Attacking = true;

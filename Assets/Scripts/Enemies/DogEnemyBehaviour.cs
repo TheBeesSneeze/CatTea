@@ -58,7 +58,6 @@ public class DogEnemyBehaviour : EnemyBehaviour
         while(this.gameObject != null)
         {
             float distanceToPlayer = Vector2.Distance(this.transform.position, player.transform.position);
-            Debug.Log(distanceToPlayer);
 
             if (distanceToPlayer <= AttackPlayerDistance)
             {

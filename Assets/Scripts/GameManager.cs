@@ -45,4 +45,16 @@ public class GameManager : MonoBehaviour
     {
         CurrentChallengePoints = DefaultChallengePoints;
     }
+
+    /*
+    //toby toby toby i am pretending to be toby
+
+    If(Player = Dead)
+    {
+        uhhhhh;
+        ResetRun();
+        TripleNPCDialogueBarrage;
+        Debug.Log("you have died. you are but a feeble mortal in my palms. my little plaything. your life is but a meaningless drop in the ocean of souls. i hope you know your feeble mind can't even comprehend this madness.");
+    }
+    */
 }
