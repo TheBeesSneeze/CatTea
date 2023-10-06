@@ -65,7 +65,7 @@ MonoBehaviour:
   dogAttackPrefab: {fileID: 1635809448085294935, guid: 56a658699bc46f343aa530c6e13fd752, type: 3}
   AttacksPerWave: 2
   TimeBetweenAttacks: 1
-  AttackVelocity: 2
+  AttackVelocity: 6
   AttackPlayerDistance: 7
 --- !u!114 &1796777962228605073
 MonoBehaviour:

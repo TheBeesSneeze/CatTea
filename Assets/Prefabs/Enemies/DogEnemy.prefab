@@ -201,8 +201,8 @@ MonoBehaviour:
   dogAttackPrefab: {fileID: 6326999757203767123, guid: c825d9baa8a713045b1ec8c254a9059e, type: 3}
   AttacksPerWave: 3
   TimeBetweenAttacks: 2
-  AttackVelocity: 6
-  speed: 20
+  AttackVelocity: 4
+  AttackPlayerDistance: 4
 --- !u!58 &3604364754743572073
 CircleCollider2D:
   m_ObjectHideFlags: 0
