@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1304151756429154167}
+  - component: {fileID: 8276438610993773786}
   - component: {fileID: 1136598670289897552}
   - component: {fileID: 5126186607554232430}
   - component: {fileID: -4309143280615076988}
-  - component: {fileID: 8276438610993773786}
   m_Layer: 0
   m_Name: DogAttack
   m_TagString: Enemy Attack
@@ -35,6 +35,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8276438610993773786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326999757203767123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2369b28f28a03da45b7b48baeac9878e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 2
+  KnockbackForce: 0
+  DamageOnCollision: 1
+  DestroyedByWalls: 0
+  DestroyedAfterAttack: 0
+  DestroyAttackAfterSeconds: 2.5
+  Attacker: 1
 --- !u!212 &1136598670289897552
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -159,23 +178,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8276438610993773786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6326999757203767123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bd412766b54c814f9ea73a8268c91ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 5
-  KnockbackForce: 0
-  DamageOnCollision: 1
-  DestroyedByWalls: 1
-  DestroyedAfterAttack: 1
-  Attacker: 0
-  speed: 3
-  waveRB2D: {fileID: 5126186607554232430}

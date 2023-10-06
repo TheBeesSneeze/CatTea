@@ -43,6 +43,7 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual void EnterRoom()
     {
+        GameEvents.Instance.OnRoomEnter();
         GameManager.Instance.CurrentRoom = this;
 
         cameraManager.MoveCamera(CameraCenterPoint);
@@ -59,7 +60,7 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual bool CheckRoomCleared()
     {
-        Debug.LogWarning("Override this function!");
+        //Debug.LogWarning("Override this function!");
         return roomCleared;
     }
 

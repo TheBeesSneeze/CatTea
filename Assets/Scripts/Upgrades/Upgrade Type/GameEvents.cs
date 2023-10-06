@@ -10,8 +10,8 @@
 * - Enemy takes damage
 * - Player takes damage
 * - On room enter
-* - On player gun
-* - On player sword
+* - On player shoot
+* - On player sword 
 * - On player dash
 * 
 * Code for these functions should
@@ -27,10 +27,10 @@ public class GameEvents : MonoBehaviour
     public static GameEvents Instance { get; private set; }
 
     public Action<Vector3> EnemyDeathAction;
-    public Action EnemyDamageAction;
+    public Action<Vector3> EnemyDamageAction;
     public Action PlayerDamageAction;
     public Action RoomEnterAction;
-    public Action PlayerGunAction;
+    public Action PlayerShootAction;//for each bullet
     public Action PlayerSwordAction;
     public Action PlayerDashAction;
 
@@ -52,14 +52,12 @@ public class GameEvents : MonoBehaviour
 
     public void OnEnemyDeath(Vector3 eventPosition)
     {
-        Debug.Log("Enemy die");
-
         EnemyDeathAction?.Invoke(eventPosition);
     }
 
-    public void OnEnemyDamage()
+    public void OnEnemyDamage(Vector3 eventPosition)
     {
-        PlayerDamageAction?.Invoke();
+        EnemyDamageAction?.Invoke(eventPosition);
     }
 
     public void OnPlayerDamage()
@@ -72,9 +70,12 @@ public class GameEvents : MonoBehaviour
         RoomEnterAction?.Invoke();
     }
 
-    public void OnPlayerGun()
+    /// <summary>
+    /// Invokes every time a bullet is shot
+    /// </summary>
+    public void OnPlayerShoot()
     {
-        PlayerGunAction?.Invoke();
+        PlayerShootAction?.Invoke();
     }
 
     public void OnPlayerSword()

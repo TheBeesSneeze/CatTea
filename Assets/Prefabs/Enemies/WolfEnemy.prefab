@@ -9,15 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5547734666173741432}
+  - component: {fileID: 7952853636042156960}
+  - component: {fileID: 1796777962228605073}
   - component: {fileID: 3423830230795098308}
   - component: {fileID: 6959784045455860901}
   - component: {fileID: 7807075989487340784}
-  - component: {fileID: 1796777962228605073}
   - component: {fileID: 3023110636594417071}
-  - component: {fileID: -6297225125934267746}
   m_Layer: 0
   m_Name: WolfEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,8 +36,50 @@ Transform:
   m_Children:
   - {fileID: 6692247848708004750}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7952853636042156960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2201471818238836669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b22c513b3095be498aea83e22575264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthPoints: 0
+  Invincible: 0
+  MaxHealthPoints: 0
+  Speed: 0
+  KnockbackForce: 0
+  TakeKnockback: 1
+  CurrentEnemyStats: {fileID: 11400000, guid: d3789ee0e145e144b9dd0d7f129258fb, type: 2}
+  DifficultyCost: 0
+  Damage: 0
+  EnemyMove: 0
+  TimeBetweenMovements: 0
+  Room: {fileID: 0}
+  dogAttackPrefab: {fileID: 1635809448085294935, guid: 56a658699bc46f343aa530c6e13fd752, type: 3}
+  AttacksPerWave: 2
+  TimeBetweenAttacks: 1
+  AttackVelocity: 2
+  AttackPlayerDistance: 7
+--- !u!114 &1796777962228605073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2201471818238836669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72291ac4afcca2e4c80454b66243bf54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!212 &3423830230795098308
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -152,19 +194,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1796777962228605073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2201471818238836669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72291ac4afcca2e4c80454b66243bf54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!195 &3023110636594417071
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -187,34 +216,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-6297225125934267746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2201471818238836669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b22c513b3095be498aea83e22575264, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthPoints: 0
-  Invincible: 0
-  MaxHealthPoints: 0
-  Speed: 0
-  KnockbackForce: 0
-  TakeKnockback: 1
-  CurrentEnemyStats: {fileID: 11400000, guid: dcd49d474ec1afc4387687701cae0283, type: 2}
-  DifficultyCost: 0
-  Damage: 0
-  EnemyMove: 0
-  TimeBetweenMovements: 0
-  Room: {fileID: 0}
-  speed: 20
-  rotationModifier: 90
-  wolfProjectile: {fileID: 1635809448085294935, guid: 56a658699bc46f343aa530c6e13fd752, type: 3}
-  coroutineStarted: 0
 --- !u!1 &3220550306378350417
 GameObject:
   m_ObjectHideFlags: 0

@@ -74,33 +74,13 @@ public class PlayerBehaviour : CharacterBehaviour
 
     public override bool TakeDamage(int Damage)
     {
+        GameEvents.Instance.OnPlayerDamage();
+
         bool died = base.TakeDamage(Damage);
 
         BecomeInvincible(InvincibilitySeconds);
 
         return died;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        string tag = collision.tag;
-
-        if(tag.Equals("Enemy Attack"))
-        {
-            AttackType attack = collision.GetComponent<AttackType>();
-
-            if(attack != null)
-            {
-                TakeDamage(attack.Damage);
-            }
-
-            Destroy(collision.gameObject);
-        }
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        OnTriggerEnter2D(collision.collider);
     }
 
     public override void SetStatsToDefaults()

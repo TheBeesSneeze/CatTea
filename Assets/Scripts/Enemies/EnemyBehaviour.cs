@@ -48,6 +48,13 @@ public class EnemyBehaviour : CharacterBehaviour
         //TODO
     }
 
+    public override bool TakeDamage(int damage)
+    {
+        GameEvents.Instance.OnEnemyDamage(this.transform.position);
+
+        return base.TakeDamage(damage);
+    }
+
     public override void Die()
     {
         GameEvents.Instance.OnEnemyDeath(this.transform.position);
