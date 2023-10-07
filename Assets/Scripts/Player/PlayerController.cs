@@ -394,6 +394,8 @@ public class PlayerController : MonoBehaviour
 
     protected virtual IEnumerator PerformDash()
     {
+        GameEvents.Instance.OnPlayerDash();
+
         canDash = false;
         ignoreMove = true;
 

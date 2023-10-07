@@ -44,7 +44,7 @@ public class PlayerStats : ScriptableObject
     public int ShotsShotsPerBurst;
     [Tooltip("Seconds for Primary attack to complete")]
     public float TimeBetweenShots;
-    public float RangedAttackCooldown;
+    public float AmmoRechargeTime;
     public float RangedAttackKnockback;
 
     [Header("Melee Attack")]

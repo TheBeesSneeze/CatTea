@@ -17,7 +17,7 @@ MonoBehaviour:
   EnemyMove: 0
   TimeBetweenMovements: 0
   HealthPoints: 5
-  Damage: 1
+  Damage: 0
   ContactDamage: 0
   KnockBackForce: 35
   DealContactDamage: 0
