@@ -13,6 +13,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,6 +29,13 @@ public class RangedPlayerController : MonoBehaviour
     public Transform RotationPivot;
     public GameObject RangedIcon;
     public GameObject Gun;
+    private PlayerAmmoBar AmmoBar; 
+
+    public int BulletsLeft
+    {
+        get { return _bulletsLeft; }
+        set { SetBulletsLeft(value); }
+    }
 
     //really boring settings
     [HideInInspector] public float MaxUpAngle = 25f;
@@ -42,17 +50,23 @@ public class RangedPlayerController : MonoBehaviour
 
     [HideInInspector] public bool PrimaryShooting;
     private Coroutine shootingCoroutine;
-    private Coroutine endShootingCoroutine;
+    private Coroutine reloadAmmoCoroutine;
 
-    protected  void Start()
+    public int _bulletsLeft;
+
+    protected void Start()
     {
         playerBehaviour = GetComponent<PlayerBehaviour>();
         playerController = GetComponent<PlayerController>();
         meleePlayerController = GetComponent<MeleePlayerController>();
 
+        AmmoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
+
         RangedIcon.transform.SetParent(null);
 
         canShoot = true;
+
+        RechargeAmmo();
     }
 
     public void Gun_performed(InputAction.CallbackContext obj)
@@ -61,7 +75,7 @@ public class RangedPlayerController : MonoBehaviour
 
         if (playerController.IgnoreAllInputs) return;
 
-        if (PrimaryShooting)
+        if (PrimaryShooting || !canShoot)
             return;
 
         if (shootingCoroutine == null)
@@ -89,33 +103,18 @@ public class RangedPlayerController : MonoBehaviour
         float oldSpeed = playerBehaviour.Speed;
         playerBehaviour.Speed = oldSpeed / 2;
 
-        int bulletsShot=0;
-
-        while (PrimaryShooting && canShoot && bulletsShot < playerBehaviour.ShotsShotsPerBurst)
+        while (PrimaryShooting && canShoot && BulletsLeft > 0)
         {
-            bulletsShot++;
+            BulletsLeft--;
             ShootBullet();
             yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots);
         }
 
         playerBehaviour.Speed = oldSpeed;
 
-        float scaledCooldownSeconds = (bulletsShot / playerBehaviour.ShotsShotsPerBurst) * playerBehaviour.RangedAttackCooldown;
-        endShootingCoroutine = StartCoroutine(StopShooting(scaledCooldownSeconds));
-
-        shootingCoroutine = null;
-    }
-
-    private IEnumerator StopShooting(float coolDownSeconds)
-    {
-        PrimaryShooting = false;
-        canShoot = false;
-
-        yield return new WaitForSeconds(coolDownSeconds);
-
         canShoot = true;
-
-        endShootingCoroutine = null;
+        RechargeAmmo();
+        shootingCoroutine = null;
     }
 
     /// <summary>
@@ -151,5 +150,38 @@ public class RangedPlayerController : MonoBehaviour
         Vector3 TargetRotation = new Vector3(0, 0, Angle);
         bullet.transform.eulerAngles = TargetRotation;
         
+    }
+
+    private void SetBulletsLeft(int value)
+    {
+        _bulletsLeft = value;
+
+        if (AmmoBar == null)
+            return;
+
+        AmmoBar.UpdateAmmo();
+    }
+
+    /// <summary>
+    /// (attempts to) start coroutine which reloads ammo over some interval
+    /// </summary>
+    public void RechargeAmmo()
+    {
+        if (reloadAmmoCoroutine != null)
+            return;
+
+        reloadAmmoCoroutine = StartCoroutine(RechargeAmmoCoroutine());
+    }
+
+    private IEnumerator RechargeAmmoCoroutine()
+    {
+        yield return new WaitForSeconds(playerBehaviour.AmmoRechargeTime);
+
+        while (!PrimaryShooting && BulletsLeft < playerBehaviour.ShotsPerBurst)
+        {
+            BulletsLeft++;
+            yield return new WaitForSeconds(playerBehaviour.AmmoRechargeTime);
+        }
+        reloadAmmoCoroutine = null;
     }
 }

@@ -32,9 +32,9 @@ public class PlayerBehaviour : CharacterBehaviour
 
     [HideInInspector] public int RangedAttackDamage;
     [HideInInspector] public float ProjectileSpeed;
-    [HideInInspector] public int ShotsShotsPerBurst;
+    [HideInInspector] public int ShotsPerBurst;
     [HideInInspector] public float TimeBetweenShots;
-    [HideInInspector] public float RangedAttackCooldown;
+    [HideInInspector] public float AmmoRechargeTime;
     [HideInInspector] public float RangedAttackKnockback;
 
     [HideInInspector] public int MeleeAttackDamage;
@@ -95,9 +95,9 @@ public class PlayerBehaviour : CharacterBehaviour
         
         RangedAttackDamage = CurrentPlayerStats.RangedAttackDamage;
         ProjectileSpeed = CurrentPlayerStats.ProjectileSpeed;
-        ShotsShotsPerBurst = CurrentPlayerStats.ShotsShotsPerBurst;
+        ShotsPerBurst = CurrentPlayerStats.ShotsShotsPerBurst;
         TimeBetweenShots = CurrentPlayerStats.TimeBetweenShots;
-        RangedAttackCooldown = CurrentPlayerStats.RangedAttackCooldown;
+        AmmoRechargeTime = CurrentPlayerStats.AmmoRechargeTime;
         RangedAttackKnockback = CurrentPlayerStats.RangedAttackKnockback;
 
         MeleeAttackDamage = CurrentPlayerStats.MeleeAttackDamage;

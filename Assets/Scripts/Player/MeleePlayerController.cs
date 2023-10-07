@@ -116,7 +116,7 @@ public class MeleePlayerController : MonoBehaviour
 
         /*
 
-        float moveSwordBackSeconds = playerBehaviour.RangedAttackCooldown / 2;
+        float moveSwordBackSeconds = playerBehaviour.AmmoRechargeTime / 2;
 
         float startAngle = MirrorPivot.transform.eulerAngles.z;
         float targetAngle = (Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg);
@@ -139,7 +139,7 @@ public class MeleePlayerController : MonoBehaviour
 
         RotatingSwordCoroutine = StartCoroutine(RotateSword());
 
-        yield return new WaitForSeconds(playerBehaviour.RangedAttackCooldown/2);
+        yield return new WaitForSeconds(playerBehaviour.AmmoRechargeTime/2);
         playerController.CanAttack = true;
     }
 
