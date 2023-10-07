@@ -47,6 +47,11 @@ public class PlayerBehaviour : CharacterBehaviour
 
     private PlayerHealthBar healthBar;
 
+    private void Awake()
+    {
+        SetStatsToDefaults();
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -56,7 +61,6 @@ public class PlayerBehaviour : CharacterBehaviour
         try { healthBar = GameObject.FindObjectOfType<PlayerHealthBar>(); }
         catch { Debug.LogWarning("No Player Health Bar in Scene"); }
         
-        SetStatsToDefaults();
         HealthPoints = MaxHealthPoints;
     }
 
