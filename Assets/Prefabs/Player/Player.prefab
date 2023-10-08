@@ -41,7 +41,7 @@ Transform:
   - {fileID: 4280775379747866790}
   - {fileID: 2261837781953477157}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6108971749265902741
 MonoBehaviour:
@@ -66,14 +66,16 @@ MonoBehaviour:
   DashRechargeSeconds: 0
   DashTime: 0
   DashUnits: 0
-  PrimaryAttackDamage: 0
-  PrimaryAttackSpeed: 0
-  PrimaryAttackCoolDown: 0
-  PrimaryAttackKnockback: 0
-  SecondaryAttackDamage: 0
-  SecondaryAttackSpeed: 0
-  SecondaryAttackCoolDown: 0
-  SecondaryAttackKnockback: 0
+  RangedAttackDamage: 0
+  ProjectileSpeed: 0
+  ShotsPerBurst: 0
+  TimeBetweenShots: 0
+  AmmoRechargeTime: 0
+  RangedAttackKnockback: 0
+  MeleeAttackDamage: 0
+  SwingSeconds: 0
+  SwordAttackCoolDown: 0
+  MeleeAttackKnockback: 0
 --- !u!114 &6501904035132164006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,8 +137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 2738865446770433985, guid: ee96637bd0965344bb949f1972c7ef0c, type: 3}
   SlowWhileShootingAmount: 1.5
-  ShotsPerBurst: 5
-  ShootingCoolDownSeconds: 1
   MirrorPivot: {fileID: 2261837781953477157}
   RotationPivot: {fileID: 6915454659560321753}
   RangedIcon: {fileID: 8196910879550942247}
@@ -144,6 +144,7 @@ MonoBehaviour:
   MaxUpAngle: 25
   MaxDownAngle: -25
   PrimaryShooting: 0
+  _bulletsLeft: 0
 --- !u!114 &5762687252531115340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +202,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 1cc06b51f62d61b4f8684f26fb893410, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68fae4e083561e84fbdb1b468dd61d68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -544,6 +545,7 @@ MonoBehaviour:
   DamageOnCollision: 1
   DestroyedByWalls: 0
   DestroyedAfterAttack: 0
+  DestroyAttackAfterSeconds: -1
   Attacker: 2
 --- !u!61 &6104793393067217820
 BoxCollider2D:
