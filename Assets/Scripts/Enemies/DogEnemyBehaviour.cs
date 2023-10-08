@@ -1,20 +1,38 @@
+/*******************************************************************************
+* File Name :         DogEnemyBehaviour.cs
+* Author(s) :         Aiden Vandeberg
+* Creation Date :     10/4/2023
+*
+* Brief Description : 
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DogEnemyBehaviour : EnemyBehaviour
 {
+    [Header("Wolf Settings:")]
+    public GameObject dogAttackPrefab;
+
+    public int AttacksPerWave;
+    public float TimeBetweenAttacks;
+    public float AttackVelocity;
+    public float AttackPlayerDistance = 7;
+    
+    //magic numbers
+    protected float rotationModifier = 90;
+
+    //private bool spawnWavesStarted;
+    //private bool wavesLaunched;
     private GameObject player;
-    public float speed;
-    public float rotationModifier;
-    public GameObject wave;
-    private int wavesFired;
+    private Coroutine waveCoroutine;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
     }
@@ -28,7 +46,8 @@ public class DogEnemyBehaviour : EnemyBehaviour
             Vector3 vectorToTarget = player.transform.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * Speed);
+
             yield return null;
         }
         
@@ -38,24 +57,30 @@ public class DogEnemyBehaviour : EnemyBehaviour
     {
         while(this.gameObject != null)
         {
-            float playerXDistance = player.transform.position.x - transform.position.x;
-            float playerYDistance = player.transform.position.y - transform.position.y;
-            if ((playerXDistance <= 4 && playerXDistance >= -4) && (playerYDistance <= 4 && playerYDistance >= -4))
+            float distanceToPlayer = Vector2.Distance(this.transform.position, player.transform.position);
+
+            if (distanceToPlayer <= AttackPlayerDistance)
             {
-                if(wavesFired < 3)
+                if(waveCoroutine == null)
                 {
-                    yield return new WaitForSeconds(2);
-                    Instantiate(wave, transform.position, transform.rotation);
-                    wavesFired += 1;
+                    waveCoroutine = StartCoroutine(SpawnWaves());
                 }
-            }
-            if(wavesFired >= 3)
-            {
-                yield return new WaitForSeconds(5);
-                wavesFired = 0;
             }
 
             yield return null;
         }
+    }
+
+    protected virtual IEnumerator SpawnWaves()
+    {
+        for(int i =0; i< AttacksPerWave; i++)
+        {
+            yield return new WaitForSeconds(TimeBetweenAttacks);
+            GameObject newAttack = Instantiate(dogAttackPrefab, transform.position, transform.rotation);
+
+            Vector2 dif = (player.transform.position - this.transform.position);
+            newAttack.GetComponent<Rigidbody2D>().velocity = dif.normalized * AttackVelocity;
+        }
+        waveCoroutine = null;
     }
 }

@@ -50,6 +50,9 @@ MonoBehaviour:
   Damage: 1
   KnockbackForce: 0
   DamageOnCollision: 1
+  DestroyedByWalls: 1
+  DestroyedAfterAttack: 1
+  DestroyAttackAfterSeconds: 7
   Attacker: 1
   Speed: 2.2
   TimeUntilDestroyed: 12

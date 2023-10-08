@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4384034573993474498}
   m_Layer: 0
   m_Name: DogEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ Transform:
   m_Children:
   - {fileID: 8763925207742340874}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2855087341918941624
 SpriteRenderer:
@@ -162,9 +162,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  m_Color: {r: 0, g: 0.61063004, b: 0.6603774, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -192,15 +192,17 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
-  CurrentEnemyStats: {fileID: 11400000, guid: dcd49d474ec1afc4387687701cae0283, type: 2}
+  CurrentEnemyStats: {fileID: 11400000, guid: d3789ee0e145e144b9dd0d7f129258fb, type: 2}
   DifficultyCost: 0
   Damage: 0
   EnemyMove: 0
   TimeBetweenMovements: 0
   Room: {fileID: 0}
-  speed: 20
-  rotationModifier: 90
-  wave: {fileID: 6326999757203767123, guid: c825d9baa8a713045b1ec8c254a9059e, type: 3}
+  dogAttackPrefab: {fileID: 6326999757203767123, guid: c825d9baa8a713045b1ec8c254a9059e, type: 3}
+  AttacksPerWave: 3
+  TimeBetweenAttacks: 2
+  AttackVelocity: 4
+  AttackPlayerDistance: 4
 --- !u!58 &3604364754743572073
 CircleCollider2D:
   m_ObjectHideFlags: 0

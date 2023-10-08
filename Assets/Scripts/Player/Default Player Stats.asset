@@ -20,9 +20,9 @@ MonoBehaviour:
   DashRechargeSeconds: 0.75
   RangedAttackDamage: 1
   ProjectileSpeed: 4
-  ShotsShotsPerBurst: 6
+  ShotsShotsPerBurst: 8
   TimeBetweenShots: 0.3
-  RangedAttackCooldown: 1
+  AmmoRechargeTime: 1
   RangedAttackKnockback: 0
   MeleeAttackDamage: 5
   SwingSeconds: 0.15

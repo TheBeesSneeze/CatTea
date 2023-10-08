@@ -32,9 +32,9 @@ public class PlayerBehaviour : CharacterBehaviour
 
     [HideInInspector] public int RangedAttackDamage;
     [HideInInspector] public float ProjectileSpeed;
-    [HideInInspector] public int ShotsShotsPerBurst;
+    [HideInInspector] public int ShotsPerBurst;
     [HideInInspector] public float TimeBetweenShots;
-    [HideInInspector] public float RangedAttackCooldown;
+    [HideInInspector] public float AmmoRechargeTime;
     [HideInInspector] public float RangedAttackKnockback;
 
     [HideInInspector] public int MeleeAttackDamage;
@@ -47,6 +47,11 @@ public class PlayerBehaviour : CharacterBehaviour
 
     private PlayerHealthBar healthBar;
 
+    private void Awake()
+    {
+        SetStatsToDefaults();
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -56,7 +61,6 @@ public class PlayerBehaviour : CharacterBehaviour
         try { healthBar = GameObject.FindObjectOfType<PlayerHealthBar>(); }
         catch { Debug.LogWarning("No Player Health Bar in Scene"); }
         
-        SetStatsToDefaults();
         HealthPoints = MaxHealthPoints;
     }
 
@@ -74,33 +78,13 @@ public class PlayerBehaviour : CharacterBehaviour
 
     public override bool TakeDamage(int Damage)
     {
+        GameEvents.Instance.OnPlayerDamage();
+
         bool died = base.TakeDamage(Damage);
 
         BecomeInvincible(InvincibilitySeconds);
 
         return died;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        string tag = collision.tag;
-
-        if(tag.Equals("Enemy Attack"))
-        {
-            AttackType attack = collision.GetComponent<AttackType>();
-
-            if(attack != null)
-            {
-                TakeDamage(attack.Damage);
-            }
-
-            Destroy(collision.gameObject);
-        }
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        OnTriggerEnter2D(collision.collider);
     }
 
     public override void SetStatsToDefaults()
@@ -115,9 +99,9 @@ public class PlayerBehaviour : CharacterBehaviour
         
         RangedAttackDamage = CurrentPlayerStats.RangedAttackDamage;
         ProjectileSpeed = CurrentPlayerStats.ProjectileSpeed;
-        ShotsShotsPerBurst = CurrentPlayerStats.ShotsShotsPerBurst;
+        ShotsPerBurst = CurrentPlayerStats.ShotsShotsPerBurst;
         TimeBetweenShots = CurrentPlayerStats.TimeBetweenShots;
-        RangedAttackCooldown = CurrentPlayerStats.RangedAttackCooldown;
+        AmmoRechargeTime = CurrentPlayerStats.AmmoRechargeTime;
         RangedAttackKnockback = CurrentPlayerStats.RangedAttackKnockback;
 
         MeleeAttackDamage = CurrentPlayerStats.MeleeAttackDamage;
