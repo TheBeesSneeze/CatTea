@@ -47,6 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RunNumber: 0
+  UpgradePool:
+  - {fileID: 1390736279501406060, guid: d9569cdb15b7a684583630eb60f4770f, type: 3}
+  - {fileID: 5210622287566210706, guid: 14d6f788cb795e9428da5d9f3ebd12d7, type: 3}
+  - {fileID: 5210622287566210706, guid: 14d6f788cb795e9428da5d9f3ebd12d7, type: 3}
+  CurrentUpgradePool: []
   Rumble: 0
   DefaultChallengePoints: 30
   CurrentChallengePoints: 30
