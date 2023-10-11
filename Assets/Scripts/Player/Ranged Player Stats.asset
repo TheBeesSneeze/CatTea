@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843581a912434c746a86719ca4fbea74, type: 3}
-  m_Name: Default Player Stats
+  m_Name: Ranged Player Stats
   m_EditorClassIdentifier: 
   Speed: 3.5
+  DashForce: 5
+  HealthPoints: 25
   MaxHealthPoints: 25
-  DashTime: 0.2
-  DashUnits: 2
   DashRechargeSeconds: 0.75
   PrimaryAttackDamage: 0
   PrimaryAttackSpeed: 0
@@ -25,3 +25,4 @@ MonoBehaviour:
   SecondaryAttackSpeed: 0
   SecondaryAttackCoolDown: 0
   SecondaryAttackKnockback: 0
+  ExampleVariableName: 0

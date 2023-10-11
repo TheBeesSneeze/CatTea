@@ -26,12 +26,12 @@ public class BossBehaviour : CharacterBehaviour
 
     public override bool TakeDamage(int Damage)
     {
+        Debug.Log("hit");
         return base.TakeDamage(Damage);
     }
 
     public override void Die()
     {
-        Debug.Log("Boss die!");
         MyRoom.OnBossDeath();
         base.Die();
 

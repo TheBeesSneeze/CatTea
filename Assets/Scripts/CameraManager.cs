@@ -23,6 +23,7 @@ public class CameraManager : MonoBehaviour
     public Vector2 CameraCenterPos;
 
     //boring settings
+    [SerializeField]private float followPlayerFrames=50;
     private GameObject player;
 
     private void Start()
@@ -64,7 +65,6 @@ public class CameraManager : MonoBehaviour
         followingPlayer=true;
         //StartCoroutine(FollowPlayer());
         transform.SetParent(player.transform);
-        transform.localPosition = new Vector3(0,0, transform.localPosition.z);
     }
 
     /*

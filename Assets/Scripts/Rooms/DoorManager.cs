@@ -20,7 +20,7 @@ public class DoorManager : MonoBehaviour
     public RoomType ThisRoom;
 
     [Tooltip("If player can go through the door")]
-    [SerializeField] protected bool open;
+    [SerializeField] private bool open;
 
     //gross... unity...
     private PlayerBehaviour playerBehaviour;
@@ -53,7 +53,7 @@ public class DoorManager : MonoBehaviour
     /// <summary>
     /// Sends player to next room (OutputRoom)
     /// </summary>
-    public virtual void EnterDoor()
+    public void EnterDoor()
     {
         if(OutputRoom == null)
         {
@@ -80,7 +80,7 @@ public class DoorManager : MonoBehaviour
     /// <summary>
     /// Tries to let player open door
     /// </summary>
-    protected virtual void AttemptEnterDoor()
+    private void AttemptEnterDoor()
     {
         if (OutputRoom == null)
             return;

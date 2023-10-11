@@ -30,7 +30,6 @@ public class EnemyBehaviour : CharacterBehaviour
     protected override void Start()
     {
         base.Start();
-        transform.eulerAngles = Vector3.zero;
 
         if(EnemyMove) 
         {
@@ -48,17 +47,8 @@ public class EnemyBehaviour : CharacterBehaviour
         //TODO
     }
 
-    public override bool TakeDamage(int damage)
-    {
-        GameEvents.Instance.OnEnemyDamage(this.transform.position);
-
-        return base.TakeDamage(damage);
-    }
-
     public override void Die()
     {
-        GameEvents.Instance.OnEnemyDeath(this.transform.position);
-
         if(Room!= null) 
             Room.OnEnemyDeath();
 
@@ -73,7 +63,7 @@ public class EnemyBehaviour : CharacterBehaviour
     {
         Debug.Log("player on enemy contact???");
 
-        playerBehavior.TakeDamage(contactDamage, this.transform.position, 1);
+        playerBehavior.TakeDamage(contactDamage, this.transform.position, KnockbackForce);
     }
 
     protected virtual void StartMovingToPlayer()
