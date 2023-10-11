@@ -29,7 +29,8 @@ public class RangedPlayerController : MonoBehaviour
     public Transform RotationPivot;
     public GameObject RangedIcon;
     public GameObject Gun;
-    private PlayerAmmoBar AmmoBar; 
+    private PlayerAmmoBar AmmoBar;
+    public AudioSource shootSound;
 
     public int BulletsLeft
     {
@@ -149,6 +150,8 @@ public class RangedPlayerController : MonoBehaviour
         float Angle = Vector2.SignedAngle(Vector2.right, playerController.AimingDirection);
         Vector3 TargetRotation = new Vector3(0, 0, Angle);
         bullet.transform.eulerAngles = TargetRotation;
+
+        shootSound.Play();
         
     }
 
