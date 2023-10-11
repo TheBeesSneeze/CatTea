@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3462803694588365352}
   - component: {fileID: 5245567489458016639}
   - component: {fileID: 6588786030348524660}
+  - component: {fileID: 361667579285434503}
   - component: {fileID: 878193057430522844}
   - component: {fileID: 178954998834105006}
   m_Layer: 0
@@ -125,6 +126,23 @@ MonoBehaviour:
   AttackCycleCooldown: 3
   AttackInterval: 0.5
   AttacksPerCycle: 4
+--- !u!114 &361667579285434503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4651791696064841288}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686485ceb0c56a9448312bf48823bdd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartAttackCycleOnAwake: 1
+  AttackPrefab: {fileID: 4746474391822612515, guid: 0e47defa41437f44bbba39ab4d44bb3b, type: 3}
+  AttackCycleCooldown: 2.9
+  AttackInterval: 0.45
+  AttacksPerCycle: 5
 --- !u!58 &878193057430522844
 CircleCollider2D:
   m_ObjectHideFlags: 0

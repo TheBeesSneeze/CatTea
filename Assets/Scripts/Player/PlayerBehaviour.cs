@@ -15,7 +15,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -31,35 +30,41 @@ public class PlayerBehaviour : CharacterBehaviour
     [HideInInspector] public float DashTime;
     [HideInInspector] public float DashUnits;
 
-    [HideInInspector] public int PrimaryAttackDamage;
-    [HideInInspector] public float PrimaryAttackSpeed;
-    [HideInInspector] public float PrimaryAttackCoolDown;
-    [HideInInspector] public float PrimaryAttackKnockback;
+    [HideInInspector] public int RangedAttackDamage;
+    [HideInInspector] public float ProjectileSpeed;
+    [HideInInspector] public int ShotsPerBurst;
+    [HideInInspector] public float TimeBetweenShots;
+    [HideInInspector] public float AmmoRechargeTime;
+    [HideInInspector] public float RangedAttackKnockback;
 
-    [HideInInspector] public int SecondaryAttackDamage;
-    [HideInInspector] public float SecondaryAttackSpeed;
-    [HideInInspector] public float SecondaryAttackCoolDown;
-    [HideInInspector] public float SecondaryAttackKnockback;
+    [HideInInspector] public int MeleeAttackDamage;
+    [HideInInspector] public float SwingSeconds;
+    [HideInInspector] public float SwordAttackCoolDown;
+    [HideInInspector] public float MeleeAttackKnockback;
 
     //components
-    private DefaultPlayerController playerController;
+    private PlayerController playerController;
 
     private PlayerHealthBar healthBar;
+
+    private void Awake()
+    {
+        SetStatsToDefaults();
+    }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        playerController = GetComponent<DefaultPlayerController>();
+        playerController = GetComponent<PlayerController>();
 
         try { healthBar = GameObject.FindObjectOfType<PlayerHealthBar>(); }
         catch { Debug.LogWarning("No Player Health Bar in Scene"); }
         
-        SetStatsToDefaults();
         HealthPoints = MaxHealthPoints;
     }
 
-    public override void SetHealth(int Value)
+    public override void SetHealth(float Value)
     {
         base.SetHealth(Value);
 
@@ -73,33 +78,13 @@ public class PlayerBehaviour : CharacterBehaviour
 
     public override bool TakeDamage(int Damage)
     {
+        GameEvents.Instance.OnPlayerDamage();
+
         bool died = base.TakeDamage(Damage);
 
         BecomeInvincible(InvincibilitySeconds);
 
         return died;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        string tag = collision.tag;
-
-        if(tag.Equals("Enemy Attack"))
-        {
-            AttackType attack = collision.GetComponent<AttackType>();
-
-            if(attack != null)
-            {
-                TakeDamage(attack.Damage);
-            }
-
-            Destroy(collision.gameObject);
-        }
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        OnTriggerEnter2D(collision.collider);
     }
 
     public override void SetStatsToDefaults()
@@ -112,14 +97,29 @@ public class PlayerBehaviour : CharacterBehaviour
         DashUnits = CurrentPlayerStats.DashUnits;
         DashTime = CurrentPlayerStats.DashTime;
         
-        PrimaryAttackDamage = CurrentPlayerStats.PrimaryAttackDamage;
-        PrimaryAttackSpeed = CurrentPlayerStats.PrimaryAttackSpeed;
-        PrimaryAttackCoolDown = CurrentPlayerStats.PrimaryAttackCoolDown;
-        PrimaryAttackKnockback = CurrentPlayerStats.PrimaryAttackKnockback;
+        RangedAttackDamage = CurrentPlayerStats.RangedAttackDamage;
+        ProjectileSpeed = CurrentPlayerStats.ProjectileSpeed;
+        ShotsPerBurst = CurrentPlayerStats.ShotsShotsPerBurst;
+        TimeBetweenShots = CurrentPlayerStats.TimeBetweenShots;
+        AmmoRechargeTime = CurrentPlayerStats.AmmoRechargeTime;
+        RangedAttackKnockback = CurrentPlayerStats.RangedAttackKnockback;
 
-        SecondaryAttackDamage = CurrentPlayerStats.SecondaryAttackDamage;
-        SecondaryAttackSpeed = CurrentPlayerStats.SecondaryAttackSpeed;
-        SecondaryAttackCoolDown = CurrentPlayerStats.SecondaryAttackCoolDown;
-        SecondaryAttackKnockback = CurrentPlayerStats.SecondaryAttackKnockback;
+        MeleeAttackDamage = CurrentPlayerStats.MeleeAttackDamage;
+        SwingSeconds = CurrentPlayerStats.SwingSeconds;
+        SwordAttackCoolDown = CurrentPlayerStats.SwordAttackCoolDown;
+        MeleeAttackKnockback = CurrentPlayerStats.MeleeAttackKnockback;
     }
+}
+
+
+/*******************************************************************************
+* Class Name :        PlayerData
+* Author(s) :         Toby Schamberger
+* Creation Date :     9/26/2023
+*
+* Brief Description : hell if i know man
+*****************************************************************************/
+public class PlayerData
+{
+
 }

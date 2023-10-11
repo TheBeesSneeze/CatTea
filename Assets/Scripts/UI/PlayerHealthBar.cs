@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-    private int MaxHealth;
+    private float MaxHealth;
     private PlayerBehaviour playerBehaviour;
     public Slider healthBar;
 

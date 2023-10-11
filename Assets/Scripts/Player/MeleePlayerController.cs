@@ -15,11 +15,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MeleePlayerController : DefaultPlayerController
+public class MeleePlayerController : MonoBehaviour
 {
     [Header("Settings")]
-    public float PrimaryStrikeAngle = 90;
-    public float StrikeFrames = 10;
+    public float PrimaryStrikeAngle = 120;
+    public float StrikeFrames = 20;
 
     [Header("Unity Stuff")]
     public Collider2D SwordCollider;
@@ -30,25 +30,38 @@ public class MeleePlayerController : DefaultPlayerController
     private bool Attacking;
     private Coroutine RotatingSwordCoroutine;
 
-    protected override void Start()
+    //etc
+    private PlayerBehaviour playerBehaviour;
+    protected PlayerController playerController;
+    protected RangedPlayerController rangedPlayerController;
+
+    protected void Start()
     {
-        base.Start();
+        playerBehaviour = GetComponent<PlayerBehaviour>();
+        playerController = GetComponent<PlayerController>();
+        rangedPlayerController = GetComponent<RangedPlayerController>();
+
         RotatingSwordCoroutine = StartCoroutine(RotateSword());
     }
 
-    protected override void Primary_performed(InputAction.CallbackContext obj)
+    public void Sword_started(InputAction.CallbackContext obj)
     {
-        //if not already attacking
-        if (Attacking || !canAttack)
-        {
+        if(playerController.IgnoreAllInputs) 
             return;
-        }
+
+        playerController.StartSwordMode();
+
+        //if not already attacking
+        if (Attacking && !rangedPlayerController.PrimaryShooting)
+            return;
+
+        GameEvents.Instance.OnPlayerSword();
 
         SwordCollider.enabled = true;
         Attacking = true;
-        canAttack = false;
+        playerController.CanAttack = false;
 
-        StartCoroutine(SwingSword());
+        StartCoroutine(MeleeAttack());
 
         /*
         if (GameManager.Instance.Rumble && MyGamepad != null)
@@ -59,41 +72,31 @@ public class MeleePlayerController : DefaultPlayerController
         */
         
     }
-    protected override void Primary_canceled(InputAction.CallbackContext obj)
+    public void Sword_canceled(InputAction.CallbackContext obj)
     {
+        if (playerController.IgnoreAllInputs) return;
         //TODO
-    }
-    protected override void Secondary_performed(InputAction.CallbackContext obj)
-    {
-        //TODO
-    }
-    protected override void Secondary_canceled(InputAction.CallbackContext obj)
-    {
-        //TODO
-    }
+        //StartCoroutine(StopAttack());
 
-    /// <summary>
-    /// swings sword all sword like
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator SwingSword()
+        //playerController.StartGunMode();
+    }
+    
+
+    private IEnumerator MeleeAttack()
     {
         Vector3 startAngle = RotatePoint.rotation.eulerAngles;
         Vector3 endAngle = RotatePoint.rotation.eulerAngles;
 
-        startAngle.z += PrimaryStrikeAngle/2;
-        endAngle.z += -PrimaryStrikeAngle/2;
+        startAngle.z += PrimaryStrikeAngle / 2;
+        endAngle.z += -PrimaryStrikeAngle / 2;
 
         for (int i = 0; i < StrikeFrames; i++)
         {
             Vector3 target = Vector3.Lerp(startAngle, endAngle, i / StrikeFrames);
             RotatePoint.transform.eulerAngles = target;
 
-            yield return new WaitForSeconds(playerBehaviour.PrimaryAttackSpeed / StrikeFrames);
+            yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots / StrikeFrames);
         }
-
-        //RotatePoint.transform.eulerAngles = originalPoint;
-
         StartCoroutine(StopAttack());
     }
 
@@ -113,10 +116,10 @@ public class MeleePlayerController : DefaultPlayerController
 
         /*
 
-        float moveSwordBackSeconds = playerBehaviour.PrimaryAttackCoolDown / 2;
+        float moveSwordBackSeconds = playerBehaviour.AmmoRechargeTime / 2;
 
-        float startAngle = RotatePoint.transform.eulerAngles.z;
-        float targetAngle = (Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg);
+        float startAngle = MirrorPivot.transform.eulerAngles.z;
+        float targetAngle = (Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg);
 
         startAngle = (startAngle+360) % 360;
         targetAngle = (targetAngle+360) % 360;
@@ -128,7 +131,7 @@ public class MeleePlayerController : DefaultPlayerController
         for (int i = 0; i < 20; i++) 
         {
             float target = Mathf.Lerp(startAngle, targetAngle, i / StrikeFrames);
-            RotatePoint.transform.eulerAngles = new Vector3(0,0,target);
+            MirrorPivot.transform.eulerAngles = new Vector3(0,0,target);
 
             yield return new WaitForSeconds(moveSwordBackSeconds / 20);
         }
@@ -136,8 +139,8 @@ public class MeleePlayerController : DefaultPlayerController
 
         RotatingSwordCoroutine = StartCoroutine(RotateSword());
 
-        yield return new WaitForSeconds(playerBehaviour.PrimaryAttackCoolDown/2);
-        canAttack = true;
+        yield return new WaitForSeconds(playerBehaviour.AmmoRechargeTime/2);
+        playerController.CanAttack = true;
     }
 
     /// <summary>
@@ -146,7 +149,8 @@ public class MeleePlayerController : DefaultPlayerController
     /// <returns></returns>
     private IEnumerator RotateSword()
     {
-        float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        //float angle = Mathf.Atan2(playerController.MoveDirection.y, playerController.MoveDirection.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(playerController.AimingDirection.y, playerController.AimingDirection.x) * Mathf.Rad2Deg;
         float lastAngle;
 
         //this could be a function, it should be called whenever the player moves. but its also gotta be constant
@@ -154,7 +158,7 @@ public class MeleePlayerController : DefaultPlayerController
         {
             lastAngle = angle;
             //float angle = Mathf.Atan2(move.ReadValue<Vector2>().y, move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
-            angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+            angle = Mathf.Atan2(playerController.AimingDirection.y, playerController.AimingDirection.x) * Mathf.Rad2Deg;
             angle += 360;
 
             if (angle != lastAngle)

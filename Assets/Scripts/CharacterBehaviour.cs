@@ -13,8 +13,8 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
 {
-    [SerializeField]private int _healthPoints;
-    public int HealthPoints
+    [SerializeField]private float _healthPoints;
+    public float HealthPoints
     {
         get {  return _healthPoints; }
         set { SetHealth(value); }
@@ -23,7 +23,7 @@ public class CharacterBehaviour : MonoBehaviour
     //[Tooltip("Ignores damage if true")]
     [HideInInspector] public bool Invincible;
 
-    [HideInInspector] public int MaxHealthPoints;
+    [HideInInspector] public float MaxHealthPoints;
     [HideInInspector] public float Speed;
     [HideInInspector] public float KnockbackForce;
     [HideInInspector] public bool TakeKnockback = true;
@@ -144,7 +144,7 @@ public class CharacterBehaviour : MonoBehaviour
         Debug.LogWarning("Override this function");
     }
 
-    public virtual void SetHealth(int value)
+    public virtual void SetHealth(float value)
     {
         _healthPoints = value;
     }

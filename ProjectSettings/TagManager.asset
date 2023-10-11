@@ -10,6 +10,7 @@ TagManager:
   - Secondary Player Attack
   - General Attack
   - Boss
+  - Wall
   layers:
   - Default
   - TransparentFX

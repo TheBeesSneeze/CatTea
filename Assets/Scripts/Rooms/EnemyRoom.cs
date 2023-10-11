@@ -22,40 +22,38 @@ public class EnemyRoom : RoomType
     [SerializeField] private int wavesLeft;
     [SerializeField] private int challengePointsPerWave;
 
+    //Secret settings
+    private int minWaves=3;
+    private int maxWaves = 5;
+    protected float secondsUntilWaveStart = 2; 
+    private float secondsBetweenEnemySpawns = 1f;
+
+    //magic numbers
+    private float shadowExpandingFrames = 40;
+    public float shadowExpandingScale = 3; // t^x (this is x)
+
     public override void EnterRoom()
     {
         base.EnterRoom();
 
-        wavesLeft = Random.Range(3, 6);
+        wavesLeft = Random.Range(minWaves, maxWaves+1);
         challengePointsPerWave = GameManager.Instance.CurrentChallengePoints / wavesLeft;
 
         Debug.Log(wavesLeft + " waves, " + challengePointsPerWave + " challenge points per wave");
 
-        SpawnNewWaveOfEnemies();
+        if (EnemySpawnPool.Count <= 0)
+        {
+            Debug.LogWarning("No enemies in the pool!");
+            return;
+        }
+        //else
+        StartCoroutine(SpawnNewWaveOfEnemies());
+
     }
 
     public override bool CheckRoomCleared()
     {
         return (aliveEnemies <= 0);
-    }
-
-    public virtual void SpawnNewWaveOfEnemies()
-    {
-        int challengePointsLeft = challengePointsPerWave;
-        aliveEnemies = 0;
-
-        if(EnemySpawnPool.Count <= 0)
-        {
-            Debug.LogWarning("No enemies in the pool!");
-            return;
-        }
-
-        List<Transform> spawnPointsAvailable = new List<Transform>(EnemySpawnPoints);
-
-        while(challengePointsLeft > 0)
-        {
-            SpawnOneEnemy(ref challengePointsLeft, ref spawnPointsAvailable);
-        }
     }
 
     /// <summary>
@@ -65,11 +63,68 @@ public class EnemyRoom : RoomType
     {
         aliveEnemies--;
 
-        if (aliveEnemies <= 0)
+        if(aliveEnemies <= 0)
+        {
+            OnWaveEnd();
+        }
+    }
+
+    private void OnWaveEnd()
+    {
+        wavesLeft--;
+
+        if (wavesLeft <= 0)
         {
             Debug.Log("All enemies died! Opening door");
             Door.OpenDoor();
+            return;
         }
+
+        StartCoroutine(SpawnNewWaveOfEnemies());
+    }
+
+    public virtual IEnumerator SpawnNewWaveOfEnemies()
+    {
+        yield return new WaitForSeconds(secondsUntilWaveStart);
+
+        int challengePointsLeft = challengePointsPerWave;
+
+        Debug.Log("New wave! Using " + challengePointsLeft);
+
+        aliveEnemies = 0;
+
+        List<Transform> spawnPointsAvailable = new List<Transform>(EnemySpawnPoints);
+
+        while (challengePointsLeft > 0)
+        {
+            Transform spawnPoint = GetSpawnPoint(ref challengePointsLeft, ref spawnPointsAvailable);
+            StartCoroutine(SpawnEnemyShadow(spawnPoint));
+
+            yield return new WaitForSeconds(secondsBetweenEnemySpawns);
+
+            SpawnOneEnemy(ref challengePointsLeft, spawnPoint.position);
+        }
+    }
+
+    /// <summary>
+    /// gets spawn point and removes it from list of available spawn points.
+    /// 
+    /// </summary>
+    /// <returns>Trans</returns>
+    public Transform GetSpawnPoint(ref int challengePointsLeft, ref List<Transform> spawnPointsAvailable)
+    {
+        if (spawnPointsAvailable.Count <= 0)
+        {
+            Debug.LogWarning("Not enough enemy spawn spots");
+            challengePointsLeft = 0;
+            return null;
+        }
+
+        int transformIndex = Random.Range(0, spawnPointsAvailable.Count);
+        Transform newPos = spawnPointsAvailable[transformIndex];
+        spawnPointsAvailable.RemoveAt(transformIndex);
+
+        return newPos;
     }
 
     /// <summary>
@@ -78,84 +133,113 @@ public class EnemyRoom : RoomType
     /// if first enemy randomly chosen cant be afforded. enemy pool is iterated 
     /// until first enemy that can be afforded is purchased.
     /// 
-    /// if NO enemies can be afforded. ChallengePointsLeft is set to 0 and the 
+    /// if NO enemies can be afforded. challengePointsLeft is set to 0 and the 
     /// function quits
     /// </summary>
-    private void SpawnOneEnemy(ref int ChallengePointsLeft, ref List<Transform>SpawnPointsAvailable)
+    private void SpawnOneEnemy(ref int challengePointsLeft, Vector3 spawnPoint)
     {// my first ref use!! 9/16/2023
-        if(SpawnPointsAvailable.Count <= 0) 
-        {
-            Debug.LogWarning("Not enough enemy spawn spots");
-            ChallengePointsLeft = 0;
-            return;
-        }
-        
+
+        Debug.Log("Spawning one enemy");
+
         int randomIndex = Random.Range(0, EnemySpawnPool.Count);
 
-        int cost = GetEnemyCostByPoolIndex(randomIndex);
-
-        //if enemy can be afforded
-        if(cost <= ChallengePointsLeft)
-        {
-            SpawnEnemyByPoolIndex(randomIndex, ref ChallengePointsLeft, ref SpawnPointsAvailable);
-            return;
-        }
-
-        //if first random enemy couldnt be afforded
-        for(int i=0; i<EnemySpawnPool.Count; i++)
-        {
-            cost = GetEnemyCostByPoolIndex(i);
-
-            if (cost <= ChallengePointsLeft)
-            {
-                SpawnEnemyByPoolIndex(i, ref ChallengePointsLeft, ref SpawnPointsAvailable);
-                return;
-            }
-        }
-
-        //this code should ideally run:
-        Debug.Log("Not enough enemies for ChallengePoints");
-        ChallengePointsLeft = 0;
-        return;
+        SpawnEnemyByPoolIndex(randomIndex, ref challengePointsLeft, spawnPoint);
     }
 
     /// <summary>
     /// Does not assume if enemy can be afforded. 
     /// </summary>
-    protected void SpawnEnemyByPoolIndex(int Index, ref int ChallengePointsLeft, ref List<Transform> SpawnPointsAvailable)
+    protected void SpawnEnemyByPoolIndex(int Index, ref int ChallengePointsLeft, Vector3 spawnPoint)
     {
-        if(SpawnPointsAvailable.Count <= 0)
+        Debug.Log(ChallengePointsLeft);
+
+        if(spawnPoint == null)
         {
             ChallengePointsLeft = 0;
             Debug.LogWarning("Not enough spawn points");
             return;
         }
-
-        //get spawn point (remove it from available spots)
-        int transformIndex = Random.Range(0, SpawnPointsAvailable.Count);
-        Vector3 enemySpawnPoint = SpawnPointsAvailable[transformIndex].position;
-        SpawnPointsAvailable.RemoveAt(transformIndex);
-
+      
         //instantiate new enemy
         GameObject EnemyPrefab = EnemySpawnPool[Index];
-        GameObject newEnemy = Instantiate(EnemyPrefab, enemySpawnPoint, Quaternion.identity);
+        GameObject newEnemy = Instantiate(EnemyPrefab, spawnPoint, Quaternion.identity);
 
         EnemyBehaviour newEnemyBehaviour = newEnemy.GetComponent<EnemyBehaviour>();
         newEnemyBehaviour.OnSpawn();
         newEnemyBehaviour.Room = this;
 
         aliveEnemies++;
-        ChallengePointsLeft -= newEnemyBehaviour.DifficultyCost;
+
+        int cost = GetEnemyCost(newEnemy);
+        ChallengePointsLeft -= cost;
     }
 
     /// <summary>
     /// Returns enemies difficulty cost from pool index :)
     /// </summary>
-    protected int GetEnemyCostByPoolIndex(int Index)
+    protected int GetEnemyCost(GameObject Enemy)
     {
         //move this function to roomtype if it needs it
-        GameObject Enemy = EnemySpawnPool[Index];
         EnemyBehaviour enemyBehaviour = Enemy.GetComponent<EnemyBehaviour>();
-        return enemyBehaviour.DifficultyCost;
+
+        int cost = enemyBehaviour.CurrentEnemyStats.DifficultyCost;
+
+        Debug.Log(cost);
+
+        if (cost <= 0)
+        {
+            Debug.LogWarning(Enemy.name + " has a difficulty cost of zero! Don't do this a million enemies will spawn");
+            cost = 1;
+        }
+
+        return cost;
+    }
+
+    /// <summary>
+    /// Makes a shadow expand and fade opacity over secondsBetweenEnemySpawns.
+    /// Dest
+    /// </summary>
+    public IEnumerator SpawnEnemyShadow(Transform shadowSpawnPoint)
+    {
+        GameObject shadow = Instantiate(UniversalVariables.Instance.EnemySpawningShadowPrefab, shadowSpawnPoint.position, Quaternion.identity);
+        SpriteRenderer shadowSprite = shadow.GetComponent<SpriteRenderer>();
+
+        float targetShadowOpacity = shadowSprite.color.a;
+        Vector3 targetShadowTransform = shadow.transform.localScale;
+
+        Color startShadowColor = new Color(shadowSprite.color.r, shadowSprite.color.g, shadowSprite.color.b, 0);
+        Color targetShadowColor = new Color(shadowSprite.color.r, shadowSprite.color.g, shadowSprite.color.b, shadowSprite.color.a);
+        
+        shadowSprite.color = startShadowColor;
+        shadow.transform.localScale = Vector3.zero;
+
+        float t = 0; // 0 -> 1
+        while(t < 1)
+        {
+            t += 1 / shadowExpandingFrames;
+            float tScaled = Mathf.Pow(t, shadowExpandingScale);
+            
+            shadowSprite.color = Color.Lerp(startShadowColor, targetShadowColor, tScaled);
+            shadow.transform.localScale = Vector3.Lerp(Vector3.zero, targetShadowTransform, tScaled);
+
+            yield return new WaitForSeconds(secondsBetweenEnemySpawns/ shadowExpandingFrames);
+        }
+
+        Destroy(shadow);
+    }
+
+    /// <summary>
+    /// kills every enemy
+    /// </summary>
+    public override void Cheat()
+    {
+        base.Cheat();
+
+        EnemyBehaviour[] allEnemies = GameObject.FindObjectsOfType<EnemyBehaviour>();
+
+        foreach(EnemyBehaviour enemy in allEnemies) 
+        {
+            enemy.Die();
+        }
     }
 }

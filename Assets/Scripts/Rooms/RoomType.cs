@@ -17,9 +17,13 @@ public class RoomType : MonoBehaviour
     public bool OpenDoorsOnStart;
     [Tooltip("If true, camera will follow the player")]
     public bool CameraFollowPlayer;
+    [Tooltip("Zooms in and out")]
+    public float CameraSize = 5;
 
     [Tooltip("This should be assigned automatically in the door's script.")]
     [HideInInspector] public DoorManager Door;
+
+    [HideInInspector] public RoomSwitching EnemyDoor;
 
     public Transform CameraCenterPoint;
     public Transform PlayerSpawnPoint;
@@ -39,9 +43,13 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual void EnterRoom()
     {
+        GameEvents.Instance.OnRoomEnter();
+        GameManager.Instance.CurrentRoom = this;
+
         cameraManager.MoveCamera(CameraCenterPoint);
         
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+        Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)
             cameraManager.StartFollowPlayer();
@@ -52,7 +60,16 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual bool CheckRoomCleared()
     {
-        Debug.LogWarning("Override this function!");
+        //Debug.LogWarning("Override this function!");
         return roomCleared;
+    }
+
+    /// <summary>
+    /// Kills all the enemies or something
+    /// </summary>
+    public virtual void Cheat()
+    {
+        roomCleared = true;
+        OpenDoorsOnStart = true;
     }
 }

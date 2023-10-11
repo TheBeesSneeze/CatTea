@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2486012825115492236}
   - component: {fileID: 7250060864491448804}
+  - component: {fileID: 1947615397249961277}
+  - component: {fileID: 8216565549912317959}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7250060864491448804
 MonoBehaviour:
@@ -45,6 +47,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RunNumber: 0
+  UpgradePool:
+  - {fileID: 1390736279501406060, guid: d9569cdb15b7a684583630eb60f4770f, type: 3}
+  - {fileID: 5210622287566210706, guid: 14d6f788cb795e9428da5d9f3ebd12d7, type: 3}
+  - {fileID: 5210622287566210706, guid: 14d6f788cb795e9428da5d9f3ebd12d7, type: 3}
+  CurrentUpgradePool: []
   Rumble: 0
-  DefaultChallengePoints: 20
-  CurrentChallengePoints: 20
+  DefaultChallengePoints: 30
+  CurrentChallengePoints: 30
+  CurrentRoom: {fileID: 0}
+--- !u!114 &1947615397249961277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815842219126633212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2ad36afb4c2124f82ca529e13dbaf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemySpawningShadowPrefab: {fileID: 9096208212764869619, guid: fbefb63779ec8f547a28ae85ecb087d6, type: 3}
+--- !u!114 &8216565549912317959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815842219126633212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70cc8fc5b4868946b5af35b9ea6e17b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
