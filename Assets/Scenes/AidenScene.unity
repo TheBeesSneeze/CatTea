@@ -1508,9 +1508,9 @@ GameObject:
   - component: {fileID: 337240842}
   - component: {fileID: 337240841}
   - component: {fileID: 337240840}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossRoom
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17882,7 +17882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7655343345596068387, guid: e97817942975fdd41a331e3e7c599402, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -71
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7655343345596068387, guid: e97817942975fdd41a331e3e7c599402, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -65268,7 +65268,7 @@ PrefabInstance:
     - target: {fileID: 6287214852496280891, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: OutputRoom
       value: 
-      objectReference: {fileID: 567340749}
+      objectReference: {fileID: 337240837}
     - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -65530,7 +65530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2647281262185635166, guid: 1ab387f1f940d484b84c3706d6c236c6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -139.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2647281262185635166, guid: 1ab387f1f940d484b84c3706d6c236c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -65663,6 +65663,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1552629454738699775, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070598536933331499, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

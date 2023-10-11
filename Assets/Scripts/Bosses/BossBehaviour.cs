@@ -33,6 +33,7 @@ public class BossBehaviour : CharacterBehaviour
     {
         Debug.Log("Boss die!");
         MyRoom.OnBossDeath();
+
         base.Die();
 
         //temp code hopefully
