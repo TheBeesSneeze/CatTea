@@ -50,7 +50,7 @@ public class UpgradeType : MonoBehaviour
     /// </summary>
     public virtual void UpgradeEffect()
     {
-        Debug.LogWarning("Override me!");
+        Debug.LogWarning("Override this upgrade!");
     }
 
     /// <summary>
@@ -59,7 +59,16 @@ public class UpgradeType : MonoBehaviour
     /// <param name="eventPosition">Where the thing happened</param>
     public virtual void UpgradeEffect(Vector3 eventPosition)
     {
-        Debug.LogWarning("Override me!");
+        Debug.LogWarning("Override this upgrade!");
+    }
+
+    /// <summary>
+    /// UpgradeEffect base for when character (boss, enemy, or player even (dont do player like this))
+    /// </summary>
+    /// <param name="characterEvent"></param>
+    public virtual void UpgradeEffect(CharacterBehaviour eventCharacter)
+    {
+        Debug.LogWarning("Override this upgrade!");
     }
 
     private void AssignActivationEvent()

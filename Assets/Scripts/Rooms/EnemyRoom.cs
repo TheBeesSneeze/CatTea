@@ -62,6 +62,7 @@ public class EnemyRoom : RoomType
     public virtual void OnEnemyDeath()
     {
         aliveEnemies--;
+        Debug.Log(aliveEnemies + " enemies left");
 
         if(aliveEnemies <= 0)
         {

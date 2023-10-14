@@ -24,7 +24,7 @@ public class BossBehaviour : CharacterBehaviour
         base.Start();
     }
 
-    public override bool TakeDamage(int Damage)
+    public override bool TakeDamage(float Damage)
     {
         return base.TakeDamage(Damage);
     }
