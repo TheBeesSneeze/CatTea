@@ -16,7 +16,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    private bool followingPlayer;
+    //private bool followingPlayer;
     [Tooltip("Units / sec the camera moves")]
     public float CameraSpeed;
 
@@ -55,13 +55,13 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     public void StopFollowPlayer()
     {
-        followingPlayer = false;
+        //followingPlayer = false;
         transform.SetParent(null);
     }
 
     public void StartFollowPlayer()
     {
-        followingPlayer=true;
+        //followingPlayer=true;
         //StartCoroutine(FollowPlayer());
         transform.SetParent(player.transform);
         transform.localPosition = new Vector3(0,0, transform.localPosition.z);

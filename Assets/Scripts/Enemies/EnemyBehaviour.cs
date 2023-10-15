@@ -32,11 +32,6 @@ public class EnemyBehaviour : CharacterBehaviour
         base.Start();
         transform.eulerAngles = Vector3.zero;
 
-        if(EnemyMove) 
-        {
-            StartMovingToPlayer();
-        }
-
         playerBehavior = GameObject.FindObjectOfType<PlayerBehaviour>();
     }
 
@@ -48,9 +43,15 @@ public class EnemyBehaviour : CharacterBehaviour
         //TODO
     }
 
-    public override bool TakeDamage(int damage)
+    public override bool TakeDamage(float damage)
     {
-        GameEvents.Instance.OnEnemyDamage(this.transform.position);
+        return TakeDamage(damage, true);
+    }
+
+    public override bool TakeDamage(float damage, bool onDamageEvent)
+    {
+        if (HealthPoints - damage > 0 && onDamageEvent)
+            GameEvents.Instance.OnEnemyDamage(this);
 
         return base.TakeDamage(damage);
     }
@@ -74,13 +75,6 @@ public class EnemyBehaviour : CharacterBehaviour
         Debug.Log("player on enemy contact???");
 
         playerBehavior.TakeDamage(contactDamage, this.transform.position, 1);
-    }
-
-    protected virtual void StartMovingToPlayer()
-    {
-        // @TODO (elda)
-        // you might need to call a coroutine?? idk man. good luck tho (lmk if you need help ofc)
-        // check the TDD for full rundown of the logic PLEASE
     }
 
     /// <summary>

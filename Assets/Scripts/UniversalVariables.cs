@@ -17,7 +17,7 @@ public class UniversalVariables : MonoBehaviour
     public static UniversalVariables Instance { get; private set; }
 
     public GameObject EnemySpawningShadowPrefab;
-
+    public GameObject UpgradeCollectionPrefab;
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -33,8 +33,5 @@ public class UniversalVariables : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    
 }
