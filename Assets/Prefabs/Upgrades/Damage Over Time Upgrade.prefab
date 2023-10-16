@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884ec1efc2beb78498c833c606e5dafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplaySprite: {fileID: 21300000, guid: 96bb56bb5cfaa5047a3a36235860b72b, type: 3}
   DisplayName: Purge Virus
   DisplayDescription: 10% chance to make enemies bleed on hit
   ActivationType: 2

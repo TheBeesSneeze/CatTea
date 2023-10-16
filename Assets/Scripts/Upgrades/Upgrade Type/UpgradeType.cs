@@ -15,9 +15,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeType : MonoBehaviour
 {
+    public Sprite DisplaySprite;
     public string DisplayName;
     public string DisplayDescription;
 
@@ -28,11 +30,15 @@ public class UpgradeType : MonoBehaviour
 
     //unity stuff
     [HideInInspector]protected PlayerBehaviour playerBehaviour;
+    private UpgradeUI upgradeUI;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
+        upgradeUI = GameObject.FindObjectOfType<UpgradeUI>();
+
+        AddSpriteToUI();
 
         if(ActivationType.Equals(UpgradeActivationType.OnStart))
         {
@@ -42,6 +48,11 @@ public class UpgradeType : MonoBehaviour
         }
 
         AssignActivationEvent();
+    }
+
+    private void AddSpriteToUI()
+    {
+        upgradeUI.LoadNewUpgrade(this);
     }
 
     /// <summary>

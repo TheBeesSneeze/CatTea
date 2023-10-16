@@ -33,6 +33,12 @@ public class AttackType : MonoBehaviour
     [Tooltip("If true, gameobject will be destroyed after attacking something")]
     public bool DestroyedAfterAttack = true;
 
+    [Tooltip("If true, this will destoy other attacks (that are marked as DestoryedAfterAttack)")]
+    public bool DestroyOtherAttacks = false;
+
+    [Tooltip("If true, may be destroyed by other attacks")]
+    public bool DestroyedByOtherAttacks = true;
+
     [Tooltip("If this # is less than 0, the attack will not be destroyed. Otherwise, destroys this gameobject")]
     public float DestroyAttackAfterSeconds = -1;
 
@@ -149,6 +155,11 @@ public class AttackType : MonoBehaviour
         {
             OnBossCollision(collision);
             return;
+        }
+
+        //if(tag.Equals("Enemy Attack") || )
+        {
+
         }
     }
 
