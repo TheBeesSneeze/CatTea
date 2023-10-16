@@ -11,6 +11,7 @@ TagManager:
   - General Attack
   - Boss
   - Wall
+  - Player Attack
   layers:
   - Default
   - TransparentFX

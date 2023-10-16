@@ -157,7 +157,7 @@ public class AttackType : MonoBehaviour
             return;
         }
 
-        if(tag.Equals("Enemy "))
+        //if(tag.Equals("Enemy Attack") || )
         {
 
         }
