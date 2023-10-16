@@ -13,6 +13,8 @@ using UnityEngine;
 public class RangedEnemyBehaviour : EnemyBehaviour
 {
     public GameObject BulletPrefab;
+    public AudioSource Source;
+    public AudioClip ShootSound;
 
     [Tooltip("How many bullets to spawn in a burst")]
     public int BulletsSpawned;
@@ -38,6 +40,7 @@ public class RangedEnemyBehaviour : EnemyBehaviour
             {
                 Instantiate(BulletPrefab, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(0.4f);
+                Source.PlayOneShot(ShootSound);
             }
         }
     }

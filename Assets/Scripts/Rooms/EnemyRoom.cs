@@ -32,6 +32,12 @@ public class EnemyRoom : RoomType
     private float shadowExpandingFrames = 40;
     public float shadowExpandingScale = 3; // t^x (this is x)
 
+    
+    //le sound stuff
+    public AudioSource Source;
+    public AudioClip AccessGranted;
+    public AudioSource BGM;
+
     public override void EnterRoom()
     {
         base.EnterRoom();
@@ -46,6 +52,7 @@ public class EnemyRoom : RoomType
             Debug.LogWarning("No enemies in the pool!");
             return;
         }
+        BGM.Play();
         //else
         StartCoroutine(SpawnNewWaveOfEnemies());
 
@@ -77,6 +84,8 @@ public class EnemyRoom : RoomType
         {
             Debug.Log("All enemies died! Opening door");
             Door.OpenDoor();
+            Source.PlayOneShot(AccessGranted);
+            BGM.Stop();
             return;
         }
 
