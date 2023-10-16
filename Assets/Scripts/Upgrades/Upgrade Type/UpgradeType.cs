@@ -19,7 +19,7 @@ using UnityEngine.UI;
 
 public class UpgradeType : MonoBehaviour
 {
-    public Image DisplaySprite;
+    public Sprite DisplaySprite;
     public string DisplayName;
     public string DisplayDescription;
 

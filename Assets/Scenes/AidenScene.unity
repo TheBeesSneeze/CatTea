@@ -65144,6 +65144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Upgrade Collection UI
       objectReference: {fileID: 0}
+    - target: {fileID: 577207076773330545, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1552629454738699775, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -65231,6 +65235,18 @@ PrefabInstance:
     - target: {fileID: 7070598536933331499, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048307239503802535, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048307239503802535, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048307239503802535, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
