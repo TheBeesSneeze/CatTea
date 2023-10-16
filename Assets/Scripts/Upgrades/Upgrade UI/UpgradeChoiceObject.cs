@@ -57,5 +57,7 @@ public class UpgradeChoiceObject : MonoBehaviour
     {
         playerBehaviour.Select.started -= ActivateUpgradeUI;
         UpgradeUICanvas.OpenUI();
+
+        UpgradeUICanvas.ChoiceObject = this;
     }
 }

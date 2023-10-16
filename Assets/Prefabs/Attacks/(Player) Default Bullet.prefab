@@ -50,6 +50,11 @@ MonoBehaviour:
   Damage: 1
   KnockbackForce: 0.05
   DamageOnCollision: 1
+  DestroyedByWalls: 1
+  DestroyedAfterAttack: 1
+  DestroyOtherAttacks: 0
+  DestroyedByOtherAttacks: 1
+  DestroyAttackAfterSeconds: -1
   Attacker: 0
 --- !u!212 &9021548887123074165
 SpriteRenderer:

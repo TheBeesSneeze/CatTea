@@ -43,6 +43,10 @@ public class UpgradeChoiceButton : MonoBehaviour
 
         GameManager.Instance.CurrentUpgradePool.RemoveAt(UpgradeIndex);
 
-        GameObject.FindObjectOfType<UpgradeChoiceInterface>().CloseUI();
+        UpgradeChoiceInterface upgradeUI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
+
+        upgradeUI.CloseUI();
+
+
     }
 }
