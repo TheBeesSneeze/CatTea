@@ -76,13 +76,19 @@ public class PlayerBehaviour : CharacterBehaviour
         }
     }
 
-    public override bool TakeDamage(int Damage)
+    public override bool TakeDamage(float Damage)
     {
-        GameEvents.Instance.OnPlayerDamage();
+        return TakeDamage(Damage, true);
+    }
 
-        bool died = base.TakeDamage(Damage);
+    public override bool TakeDamage(float damage, bool onDamageEvent)
+    {
+        if (onDamageEvent)
+            GameEvents.Instance.OnPlayerDamage();
 
-        BecomeInvincible(InvincibilitySeconds);
+        bool died = base.TakeDamage(damage);
+
+        BecomeInvincible(InvincibilitySeconds); 
 
         return died;
     }

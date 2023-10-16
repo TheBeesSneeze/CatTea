@@ -62,6 +62,7 @@ public class EnemyRoom : RoomType
     public virtual void OnEnemyDeath()
     {
         aliveEnemies--;
+        Debug.Log(aliveEnemies + " enemies left");
 
         if(aliveEnemies <= 0)
         {
@@ -75,12 +76,19 @@ public class EnemyRoom : RoomType
 
         if (wavesLeft <= 0)
         {
-            Debug.Log("All enemies died! Opening door");
-            Door.OpenDoor();
+            ClearRoom();
             return;
         }
 
         StartCoroutine(SpawnNewWaveOfEnemies());
+    }
+
+    private void ClearRoom()
+    {
+        Debug.Log("All enemies died! Opening door");
+        Door.OpenDoor();
+
+        Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, playerBehaviour.transform.position, Quaternion.identity);
     }
 
     public virtual IEnumerator SpawnNewWaveOfEnemies()

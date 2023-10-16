@@ -13,58 +13,42 @@ using UnityEngine;
 
 public class RandomAttackSpawner : BossAttackType
 {
+    public float AttackDistance;
+
     public GameObject AttackPrefab;
 
-    [Tooltip("Seconds between waves of attacks")]
-    public float AttackCycleCooldown;
-    [Tooltip("Seconds between each attack gameobject being spawned")]
-    public float AttackInterval;
-    [Tooltip("# of attack objects spawned per cycle")]
-    public float AttacksPerCycle;
+    public LayerMask LM;
 
-    public override void StartAttack()
+    public override void PerformAttack()
     {
-        base.StartAttack();
-        StartCoroutine(SpawnAttacks());
-    }
-
-    /// <summary>
-    /// Spawns attacks at the player
-    /// </summary>
-    /// <returns></returns>
-    protected IEnumerator SpawnAttacks()
-    {
-        while (CurrentlyAttacking)
-        {
-            int attacks = 0;
-            while (attacks < AttacksPerCycle)
-            {
-                attacks++;
-
-                GetRandomPosition();
-                //Instantiate(AttackPrefab, playerBehaviour.transform);
-
-                yield return new WaitForSeconds(AttackInterval);
-            }
-            yield return new WaitForSeconds(AttackCycleCooldown);
-        }
+        Vector2 randomPosition = GetRandomPosition();
+        Instantiate(AttackPrefab, randomPosition, Quaternion.identity);
     }
 
     /// <summary>
     /// shoots a raycast in a random direction and gets a random point along it
     /// </summary>
-    private void GetRandomPosition()
+    private Vector2 GetRandomPosition()
     {
-        Vector3 direction = Random.rotation.eulerAngles;
-        //Ray seeker = new Ray(this.transform.position, new Vector3(0, direction.y, 0));
-        Ray seeker = new Ray(this.transform.position, direction);
-        Debug.Log("Direction_is_" + direction);
-        RaycastHit hitInfo;
+        //Vector2 direction = (Vector2)Random.rotation.eulerAngles;
+        Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
-        if (Physics.Raycast(seeker, out hitInfo))
+        direction.Normalize();
+
+        //Debug.Log("Direction_is_" + direction);
+
+        float randomPercent = Random.Range(0.25f, 0.75f);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position,direction,10 * randomPercent, LM);
+
+        if (hitInfo.transform != null)
         {
-            GameObject aITarget = hitInfo.collider.gameObject;
-            Debug.Log("AI_chooses_" + aITarget.name);
+            Debug.DrawLine(transform.position, hitInfo.point, Color.blue,1);
+            return hitInfo.point;
+        }
+        else
+        {
+            Debug.DrawLine(transform.position, (Vector2)transform.position + (direction * (10 * randomPercent)), Color.red,1);
+            return (Vector2)transform.position + (direction * (10 * randomPercent));
         }
     }
 }

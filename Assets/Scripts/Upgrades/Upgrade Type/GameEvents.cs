@@ -27,7 +27,7 @@ public class GameEvents : MonoBehaviour
     public static GameEvents Instance { get; private set; }
 
     public Action<Vector3> EnemyDeathAction;
-    public Action<Vector3> EnemyDamageAction;
+    public Action<CharacterBehaviour> EnemyDamageAction;
     public Action PlayerDamageAction;
     public Action RoomEnterAction;
     public Action PlayerShootAction;//for each bullet
@@ -55,9 +55,9 @@ public class GameEvents : MonoBehaviour
         EnemyDeathAction?.Invoke(eventPosition);
     }
 
-    public void OnEnemyDamage(Vector3 eventPosition)
+    public void OnEnemyDamage(CharacterBehaviour eventCharacter)
     {
-        EnemyDamageAction?.Invoke(eventPosition);
+        EnemyDamageAction?.Invoke(eventCharacter);
     }
 
     public void OnPlayerDamage()

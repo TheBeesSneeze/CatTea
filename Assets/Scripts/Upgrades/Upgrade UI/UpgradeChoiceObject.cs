@@ -8,6 +8,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,10 +35,9 @@ public class UpgradeChoiceObject : MonoBehaviour
 
             playerBehaviour = collision.GetComponent<PlayerController>();
             playerBehaviour.Select.started += ActivateUpgradeUI;
+            
         }
     }
-
-    
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -49,6 +49,7 @@ public class UpgradeChoiceObject : MonoBehaviour
                 ButtonPrompt.SetActive(false);
 
             playerBehaviour.Select.started -= ActivateUpgradeUI;
+            playerBehaviour.IgnoreAllInputs = false;
         }
     }
 
