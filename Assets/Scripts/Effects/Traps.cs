@@ -20,6 +20,7 @@ public class Traps : MonoBehaviour
     public float SecondsUntilDeactivation;
 
     private Coroutine spikesUpCoroutine;
+    
 
     // Start is called before the first frame update
     void Start()

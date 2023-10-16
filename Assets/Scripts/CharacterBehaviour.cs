@@ -28,6 +28,9 @@ public class CharacterBehaviour : MonoBehaviour
     [HideInInspector] public float KnockbackForce;
     [HideInInspector] public bool TakeKnockback = true;
 
+    //magic numbers
+    protected float damageColorChangeSeconds = 0.1f;
+
     //lame stuff
     protected Rigidbody2D myRigidbody2D;
     protected SpriteRenderer mySpriteRenderer;
@@ -51,7 +54,7 @@ public class CharacterBehaviour : MonoBehaviour
     /// </summary>
     /// <param name="damage">Amt of damage taken</param>
     /// <returns>true if character died</returns>
-    public virtual bool TakeDamage(int damage)
+    public virtual bool TakeDamage(float damage)
     {
         if (Invincible)
             return false;
@@ -71,13 +74,19 @@ public class CharacterBehaviour : MonoBehaviour
         return false;
     }
 
+    public virtual bool TakeDamage(float damage, bool onDamageEvent)
+    {
+        Debug.LogWarning("Override this function");
+        return TakeDamage(damage);
+    }
+
     /// <summary>
     /// Decreases the characters health. Knocks back the character
     /// </summary>
     /// <param name="damage">Amt of damage taken</param>
     /// <param name="damageSourcePosition">Ideally the players transform</param>
     /// <returns>true if character died</returns>
-    public virtual bool TakeDamage(int Damage, Vector3 DamageSourcePosition)
+    public virtual bool TakeDamage(float Damage, Vector3 DamageSourcePosition)
     {
         return TakeDamage(Damage, DamageSourcePosition, KnockbackForce);
     }
@@ -89,7 +98,7 @@ public class CharacterBehaviour : MonoBehaviour
     /// <param name="damageSourcePosition">Ideally the players transform</param>
     /// <param name="KnockBackForce"></param>
     /// <returns>true if character died</returns>
-    public virtual bool TakeDamage(int Damage, Vector3 DamageSourcePosition, float KnockBackForce)
+    public virtual bool TakeDamage(float Damage, Vector3 DamageSourcePosition, float KnockBackForce)
     {
         if (TakeDamage(Damage))
             return true;
@@ -129,11 +138,13 @@ public class CharacterBehaviour : MonoBehaviour
 
     public virtual IEnumerator HitAnimation()
     {
+        Color oldColor = mySpriteRenderer.color;
+
         mySpriteRenderer.color = new Color(1, 0.3f, 0.3f);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(damageColorChangeSeconds);
 
-        mySpriteRenderer.color = new Color(1, 1,1);
+        mySpriteRenderer.color = Color.white;
     }
 
     /// <summary>
@@ -173,4 +184,40 @@ public class CharacterBehaviour : MonoBehaviour
         yield return new WaitForSeconds(invincibilitySeconds);
         Invincible = false;
     }
+
+    /*
+    /// <summary>
+    /// Makes the character start to take damage over duration.
+    /// Can be stacked by calling multiple times.
+    /// </summary>
+    /// <param name="totalDamage">how much damage will be taken after the effect ends</param>
+    /// <param name="duration">how many seconds the character takes damage for</param>
+    /// <param name="damageInterval">how often the character takes damage in a second</param>
+    /// <returns></returns>
+    public virtual void TakeDamageOverTime(float totalDamage, float duration, float damageInterval)
+    {
+        //i think its weird when external scripts start coroutines on other scripts. sorry guys
+      
+        StartCoroutine(DamageOverTime(totalDamage, duration, damageInterval));
+    }
+
+    private IEnumerator DamageOverTime(float totalDamage, float duration, float damageInterval)
+    {
+        Color oldColor = mySpriteRenderer.color;
+
+        mySpriteRenderer.color = new Color(0.25f, 0.7f, 0.9f);
+
+        int iterations = (int)(duration / damageInterval);
+        int i = 0;
+
+        while (i < iterations)
+        {
+            TakeDamage(totalDamage/((float)iterations));
+
+            yield return new WaitForSeconds(damageInterval);
+        }
+
+        mySpriteRenderer.color = oldColor;
+    }
+    */
 }
