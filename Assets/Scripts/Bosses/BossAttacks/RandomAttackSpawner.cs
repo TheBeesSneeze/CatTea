@@ -23,6 +23,8 @@ public class RandomAttackSpawner : BossAttackType
     {
         Vector2 randomPosition = GetRandomPosition();
         Instantiate(AttackPrefab, randomPosition, Quaternion.identity);
+
+        ratbossAnimator.SetTrigger("FireMortar");
     }
 
     /// <summary>

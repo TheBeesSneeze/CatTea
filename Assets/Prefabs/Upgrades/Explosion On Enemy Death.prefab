@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac310f1d010d79d43bee9809b0468c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayName: name
+  DisplaySprite: {fileID: 21300000, guid: fa2df307ad3d9e54a8efe3a4ec5fc355, type: 3}
+  DisplayName: System Blower
   DisplayDescription: Explode Enemies On Death
   ActivationType: 1
   ExplosionPrefab: {fileID: 4254857575187743282, guid: b010eaf5cd8d27c4e94ffb7799a5170f, type: 3}

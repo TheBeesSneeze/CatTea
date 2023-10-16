@@ -20,8 +20,6 @@ public class BombEnemyBehaviour : EnemyBehaviour
         StartCoroutine(SpawnBombs());
     }
 
-    
-
     private IEnumerator SpawnBombs()
     {
         while (this.gameObject != null)

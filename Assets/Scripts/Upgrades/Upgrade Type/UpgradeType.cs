@@ -15,9 +15,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeType : MonoBehaviour
 {
+    public Sprite DisplaySprite;
     public string DisplayName;
     public string DisplayDescription;
 
@@ -28,11 +30,15 @@ public class UpgradeType : MonoBehaviour
 
     //unity stuff
     [HideInInspector]protected PlayerBehaviour playerBehaviour;
+    private UpgradeUI upgradeUI;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
+        upgradeUI = GameObject.FindObjectOfType<UpgradeUI>();
+
+        AddSpriteToUI();
 
         if(ActivationType.Equals(UpgradeActivationType.OnStart))
         {
@@ -44,13 +50,18 @@ public class UpgradeType : MonoBehaviour
         AssignActivationEvent();
     }
 
+    private void AddSpriteToUI()
+    {
+        upgradeUI.LoadNewUpgrade(this);
+    }
+
     /// <summary>
     /// Effect that runs when upgrade trigger is activated.
     /// Ex: if upgrade should make an enemy bleed, UpgradeEffect only makes the enemy bleed.
     /// </summary>
     public virtual void UpgradeEffect()
     {
-        Debug.LogWarning("Override me!");
+        Debug.LogWarning("Override this upgrade!");
     }
 
     /// <summary>
@@ -59,7 +70,16 @@ public class UpgradeType : MonoBehaviour
     /// <param name="eventPosition">Where the thing happened</param>
     public virtual void UpgradeEffect(Vector3 eventPosition)
     {
-        Debug.LogWarning("Override me!");
+        Debug.LogWarning("Override this upgrade!");
+    }
+
+    /// <summary>
+    /// UpgradeEffect base for when character (boss, enemy, or player even (dont do player like this))
+    /// </summary>
+    /// <param name="characterEvent"></param>
+    public virtual void UpgradeEffect(CharacterBehaviour eventCharacter)
+    {
+        Debug.LogWarning("Override this upgrade!");
     }
 
     private void AssignActivationEvent()
