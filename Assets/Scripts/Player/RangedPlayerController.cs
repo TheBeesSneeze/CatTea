@@ -30,6 +30,8 @@ public class RangedPlayerController : MonoBehaviour
     public GameObject RangedIcon;
     public GameObject Gun;
     private PlayerAmmoBar AmmoBar;
+    
+    //le sound
     public AudioSource shootSound;
 
     public int BulletsLeft
