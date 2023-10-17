@@ -14,10 +14,6 @@ using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
-
-    
-
-
     [Tooltip("Room the door leads too")]
     public RoomType OutputRoom;
     [Tooltip("Room the door is on")]
@@ -42,7 +38,6 @@ public class DoorManager : MonoBehaviour
         open = ThisRoom.OpenDoorsOnStart;
 
         ThisRoom.Door = this;
-        
     }
 
     /// <summary>

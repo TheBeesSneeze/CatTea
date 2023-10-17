@@ -27,7 +27,6 @@ public class EnemyBehaviour : CharacterBehaviour
     //weird stuff
     private PlayerBehaviour playerBehavior;
 
-
     protected override void Start()
     {
         base.Start();
