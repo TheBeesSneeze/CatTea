@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5988756503436904003}
   m_Layer: 0
   m_Name: (Player) Homing Projectile
-  m_TagString: Primary Player Attack
+  m_TagString: Player Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,9 @@ MonoBehaviour:
   DamageOnCollision: 1
   DestroyedByWalls: 1
   DestroyedAfterAttack: 1
+  DestroyOtherAttacks: 0
+  GetDestroyedByOtherAttacks: 1
+  CanBeParried: 1
   DestroyAttackAfterSeconds: 7
   Attacker: 1
   Speed: 2.2
