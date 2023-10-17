@@ -157,6 +157,8 @@ MonoBehaviour:
   DamageOnCollision: 1
   DestroyedByWalls: 0
   DestroyedAfterAttack: 0
+  DestroyOtherAttacks: 1
+  DontGetDestroyedByOtherAttacks: 1
   DestroyAttackAfterSeconds: -1
   Attacker: 0
 --- !u!58 &2223927583530832595

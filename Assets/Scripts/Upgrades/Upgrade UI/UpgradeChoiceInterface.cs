@@ -44,8 +44,7 @@ public class UpgradeChoiceInterface : MonoBehaviour
     /// </summary>
     public void CloseUI()
     {
-        Debug.Log(ChoiceObject.name);
-        Destroy(ChoiceObject);
+        Destroy(ChoiceObject.gameObject);
         UpgradeScreen.SetActive(false);
         
     }

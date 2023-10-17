@@ -3,7 +3,8 @@
 * Author(s) :         Toby Schamberger
 * Creation Date :     10/7/2023
 *
-* Brief Description : 
+* Brief Description : 1 of the 3 buttons on the upgrade choice menu. Loads info
+* from the upgrade prefabs
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
