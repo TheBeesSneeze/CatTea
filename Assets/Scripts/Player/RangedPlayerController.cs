@@ -29,7 +29,8 @@ public class RangedPlayerController : MonoBehaviour
     public Transform RotationPivot;
     public GameObject RangedIcon;
     public GameObject Gun;
-    private PlayerAmmoBar AmmoBar; 
+    private PlayerAmmoBar AmmoBar;
+    public AudioSource shootSound;
 
     public int BulletsLeft
     {
@@ -151,7 +152,6 @@ public class RangedPlayerController : MonoBehaviour
         GameEvents.Instance.OnPlayerShoot(bullet.GetComponent<AttackType>());
 
         shootSound.Play();
-        
     }
 
     private void SetBulletsLeft(int value)
