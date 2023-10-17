@@ -9,14 +9,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class RangedEnemyBehaviour : EnemyBehaviour
 {
     public GameObject BulletPrefab;
-    protected Animator guncatAnimator;
-
-    protected Vector2 enemyDirection;
+    public AudioSource ShootSound;
 
     [Tooltip("How many bullets to spawn in a burst")]
     public int BulletsSpawned;
@@ -30,11 +27,6 @@ public class RangedEnemyBehaviour : EnemyBehaviour
         base.Start();
 
         StartCoroutine(SpawnBullets());
-
-        guncatAnimator = GetComponent<Animator>();
-
-        StartCoroutine(UpdateAnimation());
-
     }
 
     private IEnumerator SpawnBullets()
@@ -47,22 +39,8 @@ public class RangedEnemyBehaviour : EnemyBehaviour
             {
                 Instantiate(BulletPrefab, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(0.4f);
+                ShootSound.Play();
             }
-        }
-    }
-
-    protected IEnumerator UpdateAnimation()
-    {
-        while (true)
-        {
-            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
-            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
-
-            Debug.Log(enemyDirection);
-
-            guncatAnimator.SetFloat("XMovement", enemyDirection.x);
-            guncatAnimator.SetFloat("YMovement", enemyDirection.y);
-            yield return new WaitForSeconds(0.1f);
         }
     }
 

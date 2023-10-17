@@ -32,6 +32,9 @@ public class EnemyRoom : RoomType
     private float shadowExpandingFrames = 40;
     public float shadowExpandingScale = 3; // t^x (this is x)
 
+    //le sound
+    public AudioSource AccessGranted;
+
     public override void EnterRoom()
     {
         base.EnterRoom();
@@ -62,7 +65,6 @@ public class EnemyRoom : RoomType
     public virtual void OnEnemyDeath()
     {
         aliveEnemies--;
-        Debug.Log(aliveEnemies + " enemies left");
 
         if(aliveEnemies <= 0)
         {
@@ -76,19 +78,13 @@ public class EnemyRoom : RoomType
 
         if (wavesLeft <= 0)
         {
-            ClearRoom();
+            Debug.Log("All enemies died! Opening door");
+            Door.OpenDoor();
+            AccessGranted.Play();
             return;
         }
 
         StartCoroutine(SpawnNewWaveOfEnemies());
-    }
-
-    private void ClearRoom()
-    {
-        Debug.Log("All enemies died! Opening door");
-        Door.OpenDoor();
-
-        Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, playerBehaviour.transform.position, Quaternion.identity);
     }
 
     public virtual IEnumerator SpawnNewWaveOfEnemies()
