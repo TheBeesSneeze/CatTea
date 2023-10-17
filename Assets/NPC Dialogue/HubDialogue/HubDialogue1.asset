@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: HubDialogue1
   m_EditorClassIdentifier: 
   TextList:
-  - I'm talking!
-  - Hi talking! I'm Jade!
-  WhoIsTalking: 0100000000000000
+  - Get out of Chai, porter!
+  - ...Your mom.
+  - "Your generation doesn\u2019t have any respect, does it? You\u2019re all just
+    a bunch of deviants!"
+  - ...No you.
+  - "Can you respond to anything I\u2019m saying or are you just going to blather
+    on like an NPC?"
+  - "Uhhhhh, I think you\u2019re confused, bud. You\u2019re the NPC."
+  - "Yeah right. I\u2019m the only one speaking the truth here. Have fun going down
+    the same dialogue tree over and over."
+  - You as well!
+  WhoIsTalking: 0100000000000000010000000000000001000000000000000100000000000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []

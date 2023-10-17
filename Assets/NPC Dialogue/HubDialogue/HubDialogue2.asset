@@ -13,9 +13,18 @@ MonoBehaviour:
   m_Name: HubDialogue2
   m_EditorClassIdentifier: 
   TextList:
-  - Killer says what?
-  - What?
-  - Haha! I've caught you red-handed!
-  WhoIsTalking: 000000000100000000000000
+  - A promise of blood.
+  - "Huh? Oh, I see. You\u2019re one of those Crimson Accord guys."
+  - Would you quiet down!? There are eyes everywhere.
+  - Yeah, I know. What is it exactly that you want?
+  - "Uhhhhh, you didn\u2019t recognize the code phrase?"
+  - No. Why would I?
+  - "Ummmm, you didn\u2019t hear anything. Just forget what I said."
+  - Did you just spill your secret code phrase to some rando in the street?
+  - ...
+  - "You did, didn\u2019t you?"
+  - ...
+  - No.
+  WhoIsTalking: 010000000000000001000000000000000100000000000000010000000000000001000000000000000100000001000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
