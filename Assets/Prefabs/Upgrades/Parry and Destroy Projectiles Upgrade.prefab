@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdab8b2138df0e74dac99425924dc049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: 0}
-  DisplayName: 
-  DisplayDescription: 
-  ActivationType: 0
+  DisplaySprite: {fileID: 21300000, guid: c944f4cfc5915ae4aa7464cf1768f47e, type: 3}
+  DisplayName: Parry
+  DisplayDescription: Parry projectiles with your sword and destroy enemy projectiles
+    with your bullets
+  ActivationType: 5
