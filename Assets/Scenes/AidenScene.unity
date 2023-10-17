@@ -31827,10 +31827,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1947615397249961277, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
-      propertyPath: DefaultPlayerBulletPrefab
-      value: 
-      objectReference: {fileID: 2738865446770433985, guid: ee96637bd0965344bb949f1972c7ef0c, type: 3}
     - target: {fileID: 2486012825115492236, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: m_RootOrder
       value: 1
