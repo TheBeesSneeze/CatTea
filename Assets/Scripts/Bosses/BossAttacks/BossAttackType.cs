@@ -34,6 +34,8 @@ public class BossAttackType : MonoBehaviour
     protected bool CurrentlyAttacking;
     protected Coroutine AttackCoroutine;
 
+    protected Animator ratbossAnimator;
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -42,7 +44,9 @@ public class BossAttackType : MonoBehaviour
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         Player = playerBehaviour.gameObject;
 
-        if(StartAttackCycleOnAwake)
+        ratbossAnimator = GetComponent<Animator>();
+
+        if (StartAttackCycleOnAwake)
         {
             StartAttack();
         }

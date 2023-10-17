@@ -14,18 +14,19 @@ using UnityEngine.UI;
 public class UpgradeUI : MonoBehaviour
 {
     public int NumberOfUpgrades = 0;
+    public List<Image> IconList;
     public void LoadNewUpgrade(UpgradeType newUpgrade)
     {
-        Image upgradeIcon = newUpgrade.DisplaySprite;
+        Sprite upgradeIcon = newUpgrade.DisplaySprite;
 
-        //make a prefab for image icon ui thing
-
-        //instantiate that guy
-
-        //swap out the sprite
+        Image newIcon = IconList[NumberOfUpgrades];
+        newIcon.gameObject.SetActive(true);
+        newIcon.sprite = upgradeIcon;
 
         //change x position of ui icon based on how many things there are
 
+        
         NumberOfUpgrades++;
+
     }
 }

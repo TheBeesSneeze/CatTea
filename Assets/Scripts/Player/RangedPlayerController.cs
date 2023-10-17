@@ -29,7 +29,10 @@ public class RangedPlayerController : MonoBehaviour
     public Transform RotationPivot;
     public GameObject RangedIcon;
     public GameObject Gun;
-    private PlayerAmmoBar AmmoBar; 
+    private PlayerAmmoBar AmmoBar;
+    
+    //le sound
+    public AudioSource shootSound;
 
     public int BulletsLeft
     {
@@ -137,6 +140,8 @@ public class RangedPlayerController : MonoBehaviour
     /// </summary>
     private void ShootBullet()
     {
+        GameEvents.Instance.OnPlayerShoot();
+
         //spawn the thing
         GameObject bullet = Instantiate(BulletPrefab, Gun.transform.position, Quaternion.identity);
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
@@ -148,7 +153,8 @@ public class RangedPlayerController : MonoBehaviour
         Vector3 TargetRotation = new Vector3(0, 0, Angle);
         bullet.transform.eulerAngles = TargetRotation;
 
-        GameEvents.Instance.OnPlayerShoot(bullet.GetComponent<AttackType>());
+        shootSound.Play();
+        
     }
 
     private void SetBulletsLeft(int value)
