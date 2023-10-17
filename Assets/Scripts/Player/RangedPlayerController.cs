@@ -13,7 +13,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -151,7 +150,7 @@ public class RangedPlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerShoot(bullet.GetComponent<AttackType>());
 
-        shootSound.Play();
+        //shootSound.Play();
     }
 
     private void SetBulletsLeft(int value)
