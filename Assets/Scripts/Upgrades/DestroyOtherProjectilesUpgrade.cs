@@ -32,8 +32,11 @@ public class DestroyOtherProjectilesUpgrade : UpgradeType
         {
             AttackType attack = attackGameObject.GetComponent<AttackType>();
 
-            if(attack != null) 
+            if (attack != null)
+            {
                 attack.DestroyOtherAttacks = true;
+                attack.GetDestroyedByOtherAttacks = false;
+            }
         }
     }
 }

@@ -132,8 +132,9 @@ public class AttackType : MonoBehaviour
 
     public virtual void OnAttackCollision(AttackType attack)
     {
-        bool destroyThis = (attack.DestroyOtherAttacks && GetDestroyedByOtherAttacks);
-        bool destroyThat = (attack.GetDestroyedByOtherAttacks && DestroyOtherAttacks);
+        bool destroyBoth = GetDestroyedByOtherAttacks && attack.GetDestroyedByOtherAttacks;
+        bool destroyThis = destroyBoth || (attack.DestroyOtherAttacks && GetDestroyedByOtherAttacks);
+        bool destroyThat = destroyBoth || (attack.GetDestroyedByOtherAttacks && DestroyOtherAttacks);
 
         if (destroyThat)
             Destroy(attack.gameObject);
