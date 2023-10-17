@@ -32,6 +32,9 @@ public class EnemyRoom : RoomType
     private float shadowExpandingFrames = 40;
     public float shadowExpandingScale = 3; // t^x (this is x)
 
+    //le sound
+    public AudioSource AccessGranted;
+
     public override void EnterRoom()
     {
         base.EnterRoom();
@@ -77,6 +80,7 @@ public class EnemyRoom : RoomType
         {
             Debug.Log("All enemies died! Opening door");
             Door.OpenDoor();
+            AccessGranted.Play();
             return;
         }
 

@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
     public Gamepad MyGamepad;
     protected Animator myAnimator;
     protected GameManager gameManager;
+    
+    //le sound
     public AudioSource walkSound;
 
     protected PlayerBehaviour playerBehaviour;
