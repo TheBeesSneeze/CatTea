@@ -20,7 +20,7 @@ public class AttackType : MonoBehaviour
 {
     [Header("Settings")]
 
-    public int Damage;
+    public float Damage;
 
     public float KnockbackForce;
 
