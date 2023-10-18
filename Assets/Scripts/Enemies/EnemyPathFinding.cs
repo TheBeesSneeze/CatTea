@@ -37,8 +37,8 @@ public class EnemyPathFinding : MonoBehaviour
         //sorry for changing this. i just have personal beef with update
         while(this != null)
         {
-            SetTargetPoisiton();
-            SetAgentPosition();
+            //SetTargetPoisiton();
+            //SetAgentPosition();
             yield return null;
         }
     }

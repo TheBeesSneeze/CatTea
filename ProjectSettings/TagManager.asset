@@ -10,7 +10,6 @@ TagManager:
   - Boss
   - Wall
   - Player Attack
-  - Primary Player Attack
   layers:
   - Default
   - TransparentFX
