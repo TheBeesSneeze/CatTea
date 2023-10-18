@@ -345,8 +345,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
-
     protected IEnumerator RegularMovement()
     {
         while (moving)
@@ -409,6 +407,8 @@ public class PlayerController : MonoBehaviour
 
         MoveDirection = InputDirection * playerBehaviour.Speed;
         myRigidbody.AddForce(MoveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);
+
+        StartCoroutine(NoMovementRoutine(playerBehaviour.DashTime));
 
         if (MyGamepad != null)
         {
