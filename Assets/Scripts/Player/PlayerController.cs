@@ -287,8 +287,7 @@ public class PlayerController : MonoBehaviour
     {
         while (readShootingDirection)
         {
-            Vector2 MousePosition = mouse.ReadValue<Vector2>();
-
+            Vector2 MousePosition = Camera.main.ScreenToWorldPoint(mouse.ReadValue<Vector2>());
             rangedPlayerController.RangedIcon.transform.position = MousePosition;
 
             //update shootingDirection. normalize MousePosition to be relative to player
