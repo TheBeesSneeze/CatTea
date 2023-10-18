@@ -36,12 +36,15 @@ public class AttackType : MonoBehaviour
     [Tooltip("If true, this will destoy other attacks (that are marked as DestoryedAfterAttack)")]
     public bool DestroyOtherAttacks = false;
 
-    [Tooltip("If true, may be destroyed by other attacks")]
-    public bool DestroyedByOtherAttacks = true;
+    [Tooltip("If true, will be destroyed collides with other attacks")]
+    public bool GetDestroyedByOtherAttacks = true;
+
+    public bool CanBeParried = true;
 
     [Tooltip("If this # is less than 0, the attack will not be destroyed. Otherwise, destroys this gameobject")]
     public float DestroyAttackAfterSeconds = -1;
 
+    
     public enum AttackSource { General, Enemy, Player};
     //public enum PlayerAttack { NA, Primary, Secondary };
 
@@ -61,7 +64,7 @@ public class AttackType : MonoBehaviour
     /// result to EnemyAttack.
     /// Defaults to EnemyAttack = true;
     /// </summary>
-    protected void DetermineAttackOwner()
+    public void DetermineAttackOwner()
     {
         if (tag.Equals("General Attack"))
         {
@@ -76,7 +79,7 @@ public class AttackType : MonoBehaviour
             return;
         }
 
-        if (tag.Equals("Primary Player Attack") || tag.Equals("Secondary Player Attack"))
+        if (tag.Equals("Player Attack"))
         {
             Attacker = AttackSource.Player;
             //PlayerAttackType = PlayerAttack.Primary;
@@ -127,6 +130,18 @@ public class AttackType : MonoBehaviour
         }
     }
 
+    public virtual void OnAttackCollision(AttackType attack)
+    {
+        bool destroyBoth = GetDestroyedByOtherAttacks && attack.GetDestroyedByOtherAttacks;
+        bool destroyThis = destroyBoth || (attack.DestroyOtherAttacks && GetDestroyedByOtherAttacks);
+        bool destroyThat = destroyBoth || (attack.GetDestroyedByOtherAttacks && DestroyOtherAttacks);
+
+        if (destroyThat)
+            Destroy(attack.gameObject);
+
+        if(destroyThis)
+            Destroy(this.gameObject);
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -157,9 +172,14 @@ public class AttackType : MonoBehaviour
             return;
         }
 
-        //if(tag.Equals("Enemy Attack") || )
+        //hit other attack
+        if(tag.Equals("Enemy Attack") || tag.Equals("Player Attack") || tag.Equals("General Attack"))
         {
+            AttackType attack = collision.GetComponent<AttackType>();
+            if(attack != null) 
+                OnAttackCollision(attack);
 
+            return;
         }
     }
 
