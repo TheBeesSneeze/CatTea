@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     public Gamepad MyGamepad;
     protected Animator myAnimator;
     protected GameManager gameManager;
+    
+    //le sound
+    public AudioSource walkSound;
 
     protected PlayerBehaviour playerBehaviour;
     protected RangedPlayerController rangedPlayerController;
@@ -188,6 +191,7 @@ public class PlayerController : MonoBehaviour
         {
             InputDirection = obj.ReadValue<Vector2>();
             MoveDirection = InputDirection * playerBehaviour.Speed / 2;
+            walkSound.Play();
         }
 
         moving = true;
@@ -205,6 +209,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(movingCoroutine);
 
         movingCoroutine = StartCoroutine(SlowMovement());
+        walkSound.Stop();
     }
 
     protected virtual void Dash_started(InputAction.CallbackContext obj)
