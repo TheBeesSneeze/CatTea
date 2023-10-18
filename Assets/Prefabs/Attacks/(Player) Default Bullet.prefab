@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5177343476755956715}
   m_Layer: 0
   m_Name: (Player) Default Bullet
-  m_TagString: Primary Player Attack
+  m_TagString: Player Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,8 @@ MonoBehaviour:
   DestroyedByWalls: 1
   DestroyedAfterAttack: 1
   DestroyOtherAttacks: 0
-  DestroyedByOtherAttacks: 1
+  GetDestroyedByOtherAttacks: 1
+  CanBeParried: 0
   DestroyAttackAfterSeconds: -1
   Attacker: 0
 --- !u!212 &9021548887123074165

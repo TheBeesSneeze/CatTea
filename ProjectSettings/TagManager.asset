@@ -6,8 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Enemy Attack
-  - Primary Player Attack
-  - Secondary Player Attack
   - General Attack
   - Boss
   - Wall

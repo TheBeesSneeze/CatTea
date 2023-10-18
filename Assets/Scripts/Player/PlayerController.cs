@@ -231,6 +231,9 @@ public class PlayerController : MonoBehaviour
     {
         if (IgnoreAllInputs)
             return;
+
+        //THIS IS TEMP CODE
+        Application.Quit();
     }
 
     protected virtual void Cheat_started(InputAction.CallbackContext obj)
@@ -350,8 +353,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
-
     protected IEnumerator RegularMovement()
     {
         while (moving)
@@ -414,6 +415,8 @@ public class PlayerController : MonoBehaviour
 
         MoveDirection = InputDirection * playerBehaviour.Speed;
         myRigidbody.AddForce(MoveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);
+
+        StartCoroutine(NoMovementRoutine(playerBehaviour.DashTime));
 
         if (MyGamepad != null)
         {

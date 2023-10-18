@@ -9,8 +9,8 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyRoom : RoomType
 {
@@ -27,13 +27,13 @@ public class EnemyRoom : RoomType
     private int maxWaves = 5;
     protected float secondsUntilWaveStart = 2; 
     private float secondsBetweenEnemySpawns = 1f;
+    protected float secondsForEnemyToSpawn = 2.5f;
 
     //magic numbers
     private float shadowExpandingFrames = 40;
     public float shadowExpandingScale = 3; // t^x (this is x)
 
-    //le sound
-    public AudioSource AccessGranted;
+    private int challengePointsLeft;
 
     public override void EnterRoom()
     {
@@ -65,6 +65,7 @@ public class EnemyRoom : RoomType
     public virtual void OnEnemyDeath()
     {
         aliveEnemies--;
+        Debug.Log(aliveEnemies + " enemies left");
 
         if(aliveEnemies <= 0)
         {
@@ -78,20 +79,26 @@ public class EnemyRoom : RoomType
 
         if (wavesLeft <= 0)
         {
-            Debug.Log("All enemies died! Opening door");
-            Door.OpenDoor();
-            AccessGranted.Play();
+            ClearRoom();
             return;
         }
 
         StartCoroutine(SpawnNewWaveOfEnemies());
     }
 
+    private void ClearRoom()
+    {
+        Debug.Log("All enemies died! Opening door");
+        Door.OpenDoor();
+
+        Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, playerBehaviour.transform.position, Quaternion.identity);
+    }
+
     public virtual IEnumerator SpawnNewWaveOfEnemies()
     {
         yield return new WaitForSeconds(secondsUntilWaveStart);
 
-        int challengePointsLeft = challengePointsPerWave;
+        challengePointsLeft = challengePointsPerWave;
 
         Debug.Log("New wave! Using " + challengePointsLeft);
 
@@ -101,12 +108,13 @@ public class EnemyRoom : RoomType
 
         while (challengePointsLeft > 0)
         {
-            Transform spawnPoint = GetSpawnPoint(ref challengePointsLeft, ref spawnPointsAvailable);
+            Transform spawnPoint = GetSpawnPoint(ref spawnPointsAvailable);
             StartCoroutine(SpawnEnemyShadow(spawnPoint));
+            SpawnOneEnemy(spawnPoint.position);
 
             yield return new WaitForSeconds(secondsBetweenEnemySpawns);
 
-            SpawnOneEnemy(ref challengePointsLeft, spawnPoint.position);
+            
         }
     }
 
@@ -115,7 +123,7 @@ public class EnemyRoom : RoomType
     /// 
     /// </summary>
     /// <returns>Trans</returns>
-    public Transform GetSpawnPoint(ref int challengePointsLeft, ref List<Transform> spawnPointsAvailable)
+    public Transform GetSpawnPoint(ref List<Transform> spawnPointsAvailable)
     {
         if (spawnPointsAvailable.Count <= 0)
         {
@@ -124,7 +132,7 @@ public class EnemyRoom : RoomType
             return null;
         }
 
-        int transformIndex = Random.Range(0, spawnPointsAvailable.Count);
+        int transformIndex = UnityEngine.Random.Range(0, spawnPointsAvailable.Count);
         Transform newPos = spawnPointsAvailable[transformIndex];
         spawnPointsAvailable.RemoveAt(transformIndex);
 
@@ -140,31 +148,35 @@ public class EnemyRoom : RoomType
     /// if NO enemies can be afforded. challengePointsLeft is set to 0 and the 
     /// function quits
     /// </summary>
-    private void SpawnOneEnemy(ref int challengePointsLeft, Vector3 spawnPoint)
+    private void SpawnOneEnemy(Vector3 spawnPoint)
     {// my first ref use!! 9/16/2023
-
-        Debug.Log("Spawning one enemy");
-
         int randomIndex = Random.Range(0, EnemySpawnPool.Count);
 
-        SpawnEnemyByPoolIndex(randomIndex, ref challengePointsLeft, spawnPoint);
+        SpawnEnemyByPoolIndex(randomIndex, spawnPoint);
     }
 
     /// <summary>
     /// Does not assume if enemy can be afforded. 
     /// </summary>
-    protected void SpawnEnemyByPoolIndex(int Index, ref int ChallengePointsLeft, Vector3 spawnPoint)
+    protected void SpawnEnemyByPoolIndex(int Index, Vector3 spawnPoint)
     {
-        Debug.Log(ChallengePointsLeft);
+        Debug.Log(challengePointsLeft);
 
         if(spawnPoint == null)
         {
-            ChallengePointsLeft = 0;
+            challengePointsLeft = 0;
             Debug.LogWarning("Not enough spawn points");
             return;
         }
-      
+
         //instantiate new enemy
+        StartCoroutine(SpawnEnemyDelay(Index, spawnPoint));
+    }
+
+    private IEnumerator SpawnEnemyDelay(int Index, Vector3 spawnPoint)
+    {
+        yield return new WaitForSeconds(secondsForEnemyToSpawn);
+
         GameObject EnemyPrefab = EnemySpawnPool[Index];
         GameObject newEnemy = Instantiate(EnemyPrefab, spawnPoint, Quaternion.identity);
 
@@ -175,7 +187,7 @@ public class EnemyRoom : RoomType
         aliveEnemies++;
 
         int cost = GetEnemyCost(newEnemy);
-        ChallengePointsLeft -= cost;
+        challengePointsLeft -= cost;
     }
 
     /// <summary>
@@ -188,7 +200,7 @@ public class EnemyRoom : RoomType
 
         int cost = enemyBehaviour.CurrentEnemyStats.DifficultyCost;
 
-        Debug.Log(cost);
+        //Debug.Log(cost);
 
         if (cost <= 0)
         {
@@ -205,8 +217,12 @@ public class EnemyRoom : RoomType
     /// </summary>
     public IEnumerator SpawnEnemyShadow(Transform shadowSpawnPoint)
     {
+        Vector3 shadowRotation = UniversalVariables.Instance.EnemySpawningShadowPrefab.transform.eulerAngles;
+
         GameObject shadow = Instantiate(UniversalVariables.Instance.EnemySpawningShadowPrefab, shadowSpawnPoint.position, Quaternion.identity);
         SpriteRenderer shadowSprite = shadow.GetComponent<SpriteRenderer>();
+
+        shadow.transform.eulerAngles = shadowRotation;
 
         float targetShadowOpacity = shadowSprite.color.a;
         Vector3 targetShadowTransform = shadow.transform.localScale;
@@ -226,7 +242,7 @@ public class EnemyRoom : RoomType
             shadowSprite.color = Color.Lerp(startShadowColor, targetShadowColor, tScaled);
             shadow.transform.localScale = Vector3.Lerp(Vector3.zero, targetShadowTransform, tScaled);
 
-            yield return new WaitForSeconds(secondsBetweenEnemySpawns/ shadowExpandingFrames);
+            yield return new WaitForSeconds(secondsForEnemyToSpawn / shadowExpandingFrames);
         }
 
         Destroy(shadow);

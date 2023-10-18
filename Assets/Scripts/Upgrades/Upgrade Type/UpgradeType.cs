@@ -30,12 +30,14 @@ public class UpgradeType : MonoBehaviour
 
     //unity stuff
     [HideInInspector]protected PlayerBehaviour playerBehaviour;
+    [HideInInspector] protected RangedPlayerController rangedPlayerController;
     private UpgradeUI upgradeUI;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
+        rangedPlayerController = GameObject.FindObjectOfType<RangedPlayerController>();
         upgradeUI = GameObject.FindObjectOfType<UpgradeUI>();
 
         AddSpriteToUI();
@@ -52,6 +54,11 @@ public class UpgradeType : MonoBehaviour
 
     private void AddSpriteToUI()
     {
+        if(upgradeUI == null) 
+        {
+            Debug.LogWarning("No upgrade UI box present");
+            return;
+        }
         upgradeUI.LoadNewUpgrade(this);
     }
 
@@ -78,6 +85,14 @@ public class UpgradeType : MonoBehaviour
     /// </summary>
     /// <param name="characterEvent"></param>
     public virtual void UpgradeEffect(CharacterBehaviour eventCharacter)
+    {
+        Debug.LogWarning("Override this upgrade!");
+    }
+
+    /// <summary>
+    /// UpgradeEffect base for bullets
+    /// </summary>
+    public virtual void UpgradeEffect(AttackType bullet)
     {
         Debug.LogWarning("Override this upgrade!");
     }

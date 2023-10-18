@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4185452699582501867}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Primary Player Attack
+  m_TagString: Player Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +102,11 @@ MonoBehaviour:
   KnockbackForce: 1
   DamageOnCollision: 1
   DestroyedByWalls: 0
+  DestroyedAfterAttack: 1
+  DestroyOtherAttacks: 0
+  GetDestroyedByOtherAttacks: 0
+  CanBeParried: 0
+  DestroyAttackAfterSeconds: -1
   Attacker: 0
 --- !u!61 &4185452699582501867
 BoxCollider2D:

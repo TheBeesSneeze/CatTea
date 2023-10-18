@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843581a912434c746a86719ca4fbea74, type: 3}
   m_Name: Default Player Stats
   m_EditorClassIdentifier: 
-  Speed: 3.5
+  Speed: 5
   MaxHealthPoints: 25
   InvincibilitySeconds: 0.1
   DashTime: 0.2
-  DashUnits: 1.5
+  DashUnits: 1
   DashRechargeSeconds: 0.75
   RangedAttackDamage: 1
   ProjectileSpeed: 4
   ShotsShotsPerBurst: 8
   TimeBetweenShots: 0.3
-  AmmoRechargeTime: 1
+  AmmoRechargeTime: 0.5
   RangedAttackKnockback: 0
   MeleeAttackDamage: 5
   SwingSeconds: 0.15

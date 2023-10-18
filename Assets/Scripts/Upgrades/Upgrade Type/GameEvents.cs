@@ -30,7 +30,7 @@ public class GameEvents : MonoBehaviour
     public Action<CharacterBehaviour> EnemyDamageAction;
     public Action PlayerDamageAction;
     public Action RoomEnterAction;
-    public Action PlayerShootAction;//for each bullet
+    public Action<AttackType> PlayerShootAction;//for each bullet
     public Action PlayerSwordAction;
     public Action PlayerDashAction;
 
@@ -73,9 +73,9 @@ public class GameEvents : MonoBehaviour
     /// <summary>
     /// Invokes every time a bullet is shot
     /// </summary>
-    public void OnPlayerShoot()
+    public void OnPlayerShoot(AttackType bullet)
     {
-        PlayerShootAction?.Invoke();
+        PlayerShootAction?.Invoke(bullet);
     }
 
     public void OnPlayerSword()
