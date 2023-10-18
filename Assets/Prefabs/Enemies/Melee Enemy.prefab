@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72291ac4afcca2e4c80454b66243bf54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 9099178215886207941, guid: 69f1161653a840d4fbd76777f744cc6b, type: 3}
+  player: {fileID: 495910377819613235, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
 --- !u!195 &7237620619517504883
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -29,19 +29,24 @@ public class EnemyPathFinding : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        StartCoroutine(UpdateTarget());
+ //       StartCoroutine(UpdateTarget());
     }
 
-    public virtual IEnumerator UpdateTarget()
+    //public virtual IEnumerator UpdateTarget()
+    //{
+    //    //sorry for changing this. i just have personal beef with update
+    //    while(this != null)
+    //    {
+
+    private void Update()
     {
-        //sorry for changing this. i just have personal beef with update
-        while(this != null)
-        {
-            //SetTargetPoisiton();
-            //SetAgentPosition();
-            yield return null;
-        }
+          SetTargetPoisiton();
+            SetAgentPosition();
     }
+  
+    //        yield return null;
+    //    }
+    //}
 
 
     private void SetTargetPoisiton()
