@@ -36,7 +36,7 @@ public class MeleePlayerController : MonoBehaviour
     protected RangedPlayerController rangedPlayerController;
 
     // le sound
-    public AudioSource SwordSlash;
+    public AudioClip SwordSlash;
 
     protected void Start()
     {
@@ -63,7 +63,7 @@ public class MeleePlayerController : MonoBehaviour
         SwordCollider.enabled = true;
         Attacking = true;
         playerController.CanAttack = false;
-        SwordSlash.Play();
+        AudioSource.PlayClipAtPoint(SwordSlash, transform.position);
 
         StartCoroutine(MeleeAttack());
 
