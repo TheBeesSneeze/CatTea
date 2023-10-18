@@ -150,7 +150,7 @@ public class RangedPlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerShoot(bullet.GetComponent<AttackType>());
 
-        //shootSound.Play();
+        shootSound.Play();
     }
 
     private void SetBulletsLeft(int value)
