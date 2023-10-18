@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public InputAction Select;
     [HideInInspector] public InputAction SkipText;
     protected InputAction cheat;
+    protected InputAction mouse;
 
     // components:
     protected Rigidbody2D myRigidbody;
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
         cheat = playerInput.currentActionMap.FindAction("Cheat");
         aim = playerInput.currentActionMap.FindAction("Aiming");
+        mouse = playerInput.currentActionMap.FindAction("Mouse");
 
         move.performed += Move_performed;
         move.canceled += Move_canceled;
@@ -143,8 +145,8 @@ public class PlayerController : MonoBehaviour
         cheat.started += Cheat_started;
 
         aim.performed += Aim_Performed;
-
     }
+
 
     private void Aim_Performed(InputAction.CallbackContext obj)
     {
@@ -285,7 +287,7 @@ public class PlayerController : MonoBehaviour
     {
         while (readShootingDirection)
         {
-            Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 MousePosition = mouse.ReadValue<Vector2>();
 
             rangedPlayerController.RangedIcon.transform.position = MousePosition;
 
