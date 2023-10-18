@@ -54,6 +54,7 @@ MonoBehaviour:
   DestroyedAfterAttack: 1
   DestroyOtherAttacks: 0
   GetDestroyedByOtherAttacks: 1
+  CanBeParried: 0
   DestroyAttackAfterSeconds: -1
   Attacker: 0
 --- !u!212 &9021548887123074165

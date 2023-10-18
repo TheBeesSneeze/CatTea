@@ -22,7 +22,7 @@ MonoBehaviour:
   ProjectileSpeed: 4
   ShotsShotsPerBurst: 8
   TimeBetweenShots: 0.3
-  AmmoRechargeTime: 1
+  AmmoRechargeTime: 0.5
   RangedAttackKnockback: 0
   MeleeAttackDamage: 5
   SwingSeconds: 0.15

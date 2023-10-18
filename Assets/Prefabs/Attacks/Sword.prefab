@@ -104,7 +104,8 @@ MonoBehaviour:
   DestroyedByWalls: 0
   DestroyedAfterAttack: 1
   DestroyOtherAttacks: 0
-  DestroyedByOtherAttacks: 1
+  GetDestroyedByOtherAttacks: 0
+  CanBeParried: 0
   DestroyAttackAfterSeconds: -1
   Attacker: 0
 --- !u!61 &4185452699582501867
