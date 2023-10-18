@@ -25423,8 +25423,7 @@ MonoBehaviour:
   wavesLeft: 0
   challengePointsPerWave: 0
   shadowExpandingScale: 3
-  BossPool:
-  - {fileID: 4651791696064841288, guid: 4cba3d58350b1ee4d874b88dd4328c12, type: 3}
+  BossPool: []
   BossSpawnPosition: {fileID: 1266416503}
 --- !u!66 &573617397
 CompositeCollider2D:
@@ -56800,7 +56799,7 @@ PrefabInstance:
     - target: {fileID: 6287214852496280891, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: OutputRoom
       value: 
-      objectReference: {fileID: 1761744910}
+      objectReference: {fileID: 573617396}
     - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_SortingOrder
       value: 3
@@ -131517,3 +131516,68 @@ Transform:
   m_Father: {fileID: 541958074}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7067101680577367389
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 139.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837378626701891927, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381370009476358466, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_Name
+      value: Bullet Boss idk
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381370009476358466, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff1a3d532d0b8534b91a818575659838, type: 3}

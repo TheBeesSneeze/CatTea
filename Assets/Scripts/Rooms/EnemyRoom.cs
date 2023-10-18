@@ -200,7 +200,7 @@ public class EnemyRoom : RoomType
 
         int cost = enemyBehaviour.CurrentEnemyStats.DifficultyCost;
 
-        Debug.Log(cost);
+        //Debug.Log(cost);
 
         if (cost <= 0)
         {
