@@ -25423,7 +25423,8 @@ MonoBehaviour:
   wavesLeft: 0
   challengePointsPerWave: 0
   shadowExpandingScale: 3
-  BossPool: []
+  BossPool:
+  - {fileID: 4651791696064841288, guid: 4cba3d58350b1ee4d874b88dd4328c12, type: 3}
   BossSpawnPosition: {fileID: 1266416503}
 --- !u!66 &573617397
 CompositeCollider2D:
@@ -56799,7 +56800,7 @@ PrefabInstance:
     - target: {fileID: 6287214852496280891, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: OutputRoom
       value: 
-      objectReference: {fileID: 573617396}
+      objectReference: {fileID: 1761744910}
     - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_SortingOrder
       value: 3
