@@ -226,6 +226,9 @@ public class PlayerController : MonoBehaviour
     {
         if (IgnoreAllInputs)
             return;
+
+        //THIS IS TEMP CODE
+        Application.Quit();
     }
 
     protected virtual void Cheat_started(InputAction.CallbackContext obj)
