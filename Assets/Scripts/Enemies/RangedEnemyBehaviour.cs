@@ -58,7 +58,7 @@ public class RangedEnemyBehaviour : EnemyBehaviour
             enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
             enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
 
-            Debug.Log(enemyDirection);
+            //Debug.Log(enemyDirection);
 
             guncatAnimator.SetFloat("XMovement", enemyDirection.x);
             guncatAnimator.SetFloat("YMovement", enemyDirection.y);
