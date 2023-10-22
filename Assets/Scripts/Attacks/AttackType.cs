@@ -37,7 +37,7 @@ public class AttackType : MonoBehaviour
     public bool DestroyOtherAttacks = false;
 
     [Tooltip("If true, will be destroyed collides with other attacks")]
-    public bool GetDestroyedByOtherAttacks = true;
+    public bool GetDestroyedByOtherAttacks = false;
 
     public bool CanBeParried = true;
 
