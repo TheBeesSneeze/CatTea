@@ -53,7 +53,7 @@ MonoBehaviour:
   DestroyedByWalls: 1
   DestroyedAfterAttack: 1
   DestroyOtherAttacks: 0
-  GetDestroyedByOtherAttacks: 1
+  GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
   DestroyAttackAfterSeconds: -1
   Attacker: 0

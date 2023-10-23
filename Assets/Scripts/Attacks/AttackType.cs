@@ -37,7 +37,7 @@ public class AttackType : MonoBehaviour
     public bool DestroyOtherAttacks = false;
 
     [Tooltip("If true, will be destroyed collides with other attacks")]
-    public bool GetDestroyedByOtherAttacks = true;
+    public bool GetDestroyedByOtherAttacks = false;
 
     public bool CanBeParried = true;
 
@@ -150,7 +150,9 @@ public class AttackType : MonoBehaviour
     {
         string tag = collision.tag;
 
-        if(tag.Equals("Wall") && DestroyedByWalls)
+        Debug.Log(tag);
+
+        if (tag.Equals("Wall") && DestroyedByWalls)
         {
             StopAllCoroutines();
             Destroy(this.gameObject);

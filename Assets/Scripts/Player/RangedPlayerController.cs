@@ -29,9 +29,7 @@ public class RangedPlayerController : MonoBehaviour
     public GameObject RangedIcon;
     public GameObject Gun;
     private PlayerAmmoBar AmmoBar;
-    
-    //le sound
-    public AudioClip shootSound;
+    public AudioSource shootSound;
 
     public int BulletsLeft
     {
@@ -152,7 +150,7 @@ public class RangedPlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerShoot(bullet.GetComponent<AttackType>());
 
-        AudioSource.PlayClipAtPoint(shootSound, transform.position);
+        shootSound.Play();
     }
 
     private void SetBulletsLeft(int value)

@@ -177,7 +177,7 @@ MonoBehaviour:
   DestroyedByWalls: 0
   DestroyedAfterAttack: 0
   DestroyOtherAttacks: 0
-  GetDestroyedByOtherAttacks: 1
+  GetDestroyedByOtherAttacks: 0
   CanBeParried: 1
   DestroyAttackAfterSeconds: 2
   Attacker: 0

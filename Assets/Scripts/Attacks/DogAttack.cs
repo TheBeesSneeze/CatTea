@@ -22,6 +22,7 @@ public class DogAttack : AttackType
         StartCoroutine(Moving());
     }
 
+
     
 
     private IEnumerator Moving()
