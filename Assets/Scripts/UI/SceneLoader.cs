@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public GameObject creditsPage;
+    public GameObject controlsPage;
 
     public void GameSceneLoad()
     {
@@ -22,10 +23,21 @@ public class SceneLoader : MonoBehaviour
         creditsPage.SetActive(true);
     }
 
+    public void Controls()
+    {
+        controlsPage.SetActive(true);
+    }
+
     public void Close()
     {
         creditsPage.SetActive(false);
     }
+
+    public void Close2()
+    {
+        controlsPage.SetActive(false);
+    }
+
     public void QuitApplication()
     {
         Application.Quit();
