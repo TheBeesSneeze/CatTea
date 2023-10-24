@@ -25536,7 +25536,7 @@ MonoBehaviour:
   challengePointsPerWave: 0
   shadowExpandingScale: 3
   BossPool:
-  - {fileID: 5381370009476358466, guid: ff1a3d532d0b8534b91a818575659838, type: 3}
+  - {fileID: 4651791696064841288, guid: 4cba3d58350b1ee4d874b88dd4328c12, type: 3}
   BossSpawnPosition: {fileID: 1266416503}
 --- !u!66 &573617397
 CompositeCollider2D:
