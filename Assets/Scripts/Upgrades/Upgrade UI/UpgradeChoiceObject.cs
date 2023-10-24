@@ -15,7 +15,7 @@ public class UpgradeChoiceObject : MonoBehaviour
 {
     public GameObject ButtonPrompt;
 
-    private UpgradeChoiceInterface UpgradeUICanvas;
+    [SerializeField] private UpgradeChoiceInterface UpgradeUICanvas;
     private PlayerController playerBehaviour;
 
     private void Start()
@@ -55,6 +55,10 @@ public class UpgradeChoiceObject : MonoBehaviour
     private void ActivateUpgradeUI(InputAction.CallbackContext obj)
     {
         playerBehaviour.Select.started -= ActivateUpgradeUI;
+
+        //if(UpgradeUICanvas == null)
+
+
         UpgradeUICanvas.OpenUI();
 
         UpgradeUICanvas.ChoiceObject = this;

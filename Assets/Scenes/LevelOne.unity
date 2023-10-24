@@ -22186,10 +22186,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Upgrade Collection UI
       objectReference: {fileID: 0}
-    - target: {fileID: 577207076773330545, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1552629454738699775, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -22274,8 +22270,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9048307239503802535, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
-      propertyPath: m_UiScaleMode
+    - target: {fileID: 5054442103902686284, guid: 564d181ad8b09d646aa1c6d218f7ae1f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -25131,107 +25127,6 @@ Transform:
   m_Father: {fileID: 573617395}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &500872360
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.50879383
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.30815506
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598415535867508447, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5762969548638433894, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
-      propertyPath: m_Name
-      value: Get Upgrade
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fddf92ecfbae2d2438041074f5d5dca2, type: 3}
 --- !u!1001 &516617604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74343,11 +74238,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: CurrentChallengePoints
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: DefaultChallengePoints
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
