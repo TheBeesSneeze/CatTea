@@ -14,12 +14,23 @@ using TMPro;
 
 public class UpgradeChoiceButton : MonoBehaviour
 {
+    //public static Color SelectedColor;
+    public UpgradeChoiceInterface upgradeUI;
+
     public TextMeshProUGUI Header;
     public TextMeshProUGUI Description;
 
     [Header("Debug")]
     public GameObject UpgradePrefab;
     public int UpgradeIndex;
+
+    //private Color unselectedColor;
+    //private SpriteRenderer spriteRenderer;
+
+    private void Start()
+    {
+        upgradeUI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
+    }
 
     public void LoadUpgrade(int upgradePrefabIndex, bool updateButtonText)
     {
@@ -35,19 +46,19 @@ public class UpgradeChoiceButton : MonoBehaviour
         Description.text = upgrade.DisplayDescription;
     }
 
+    
+    public void OnClick()
+    {
+        upgradeUI.SelectOption(this);
+    }
+
     /// <summary>
     /// Remove the upgrade from GameManagers pool
     /// </summary>
-    public void OnClick()
+    public void ConfirmUpgrade()
     {
         Instantiate(UpgradePrefab);
 
         GameManager.Instance.CurrentUpgradePool.RemoveAt(UpgradeIndex);
-
-        UpgradeChoiceInterface upgradeUI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
-
-        upgradeUI.CloseUI();
-
-
     }
 }
