@@ -7,15 +7,15 @@ public class SceneLoader : MonoBehaviour
 {
     public GameObject creditsPage;
     public GameObject controlsPage;
-
+    public GameObject pausePage;
     public void GameSceneLoad()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(1);
     }
 
     public void GameEndScreenLoad()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void Credits()
@@ -33,7 +33,7 @@ public class SceneLoader : MonoBehaviour
         creditsPage.SetActive(false);
     }
 
-    public void Close2()
+    public void CloseControls()
     {
         controlsPage.SetActive(false);
     }
@@ -43,5 +43,16 @@ public class SceneLoader : MonoBehaviour
         Application.Quit();
     }
 
+    public void OpenPause()
+    {
+        Time.timeScale = 0;
+        pausePage.SetActive(true);
+    }
+
+    public void ClosePause()
+    {
+        pausePage.SetActive(false);
+        Time.timeScale = 1;
+    }
 
 }

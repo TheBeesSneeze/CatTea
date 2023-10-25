@@ -3,7 +3,7 @@
 * Author(s) :         Toby Schamberger
 * Creation Date :     10/16/2023
 *
-* Brief Description : added to sword in DestroyOtherProjectilesUpgrade
+* Brief Description : added to sword in DeflectProjectilesUpgrade
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ using UnityEngine;
 public class ParryProjectiles : MonoBehaviour
 {
     public float ParrySpeed = 10;
+    public float AttackDamageMultiplier = 0.5f;
     private GameObject swordPivot;
 
     public void Start()
@@ -56,6 +57,8 @@ public class ParryProjectiles : MonoBehaviour
         newBulletRB.velocity = enemyAttack.velocity.normalized * -1 * ParrySpeed;
 
         newBulletRB.transform.eulerAngles = swordPivot.transform.eulerAngles;
+
+        attack.Damage = attack.Damage * AttackDamageMultiplier;
 
         Destroy(attack.gameObject);
     }
