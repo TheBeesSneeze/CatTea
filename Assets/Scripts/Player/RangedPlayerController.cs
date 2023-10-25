@@ -123,6 +123,9 @@ public class RangedPlayerController : MonoBehaviour
     /// <returns></returns>
     public void CorrectGunPosition()
     {
+        if (playerController == null)
+            return;
+
         if (playerController.AimingDirection.x > 0)
             MirrorPivot.localScale = new Vector3(1, 1, 1);
 

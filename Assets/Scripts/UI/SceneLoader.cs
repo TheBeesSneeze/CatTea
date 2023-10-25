@@ -10,12 +10,12 @@ public class SceneLoader : MonoBehaviour
 
     public void GameSceneLoad()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(1);
     }
 
     public void GameEndScreenLoad()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void Credits()
@@ -33,7 +33,7 @@ public class SceneLoader : MonoBehaviour
         creditsPage.SetActive(false);
     }
 
-    public void Close2()
+    public void CloseControls()
     {
         controlsPage.SetActive(false);
     }
