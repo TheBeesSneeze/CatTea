@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name :         DeflectProjectilesUpgrade.cs
+* File Name :         DestroyOtherProjectilesUpgrade.cs
 * Author(s) :         Toby Schamberger
 * Creation Date :     10/16/2023
 *
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //long ass name 
-public class DeflectProjectilesUpgrade : UpgradeType
+public class DestroyOtherProjectilesUpgrade : UpgradeType
 {
     protected override void Start()
     {

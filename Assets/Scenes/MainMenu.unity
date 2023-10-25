@@ -2956,7 +2956,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 219435073}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: CloseControls
+        m_MethodName: Close2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

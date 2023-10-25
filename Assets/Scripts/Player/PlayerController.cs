@@ -28,9 +28,9 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer GunSprite;
     public SpriteRenderer SwordSprite;
 
-    //magic numbers
+    //Really boring settings:
     [Tooltip("The amount of slippiness the player experiences when changing movement directions (THIS VALUE MUST BE BETWEEN 0 and 1)")]
-    private static float slideAmount = 0.70f; // this needs to be a number between 0 and 1. higher number for more slidey
+    private static float slideAmount = 0.75f; // this needs to be a number between 0 and 1. higher number for more slidey
     private static float slideSeconds = 0.6f;
     private static float slideIterations = 25;
     private static float slowAmount = 0.3f; //also a number between 0 and 1
