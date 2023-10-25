@@ -25,8 +25,8 @@ public class PlayerBehaviour : CharacterBehaviour
     public PlayerStats CurrentPlayerStats;
 
     //magic numbers
-    private float DamageTimeScale = 0.5f;
-    private float FreezeTimeSeconds = 0.1f;
+    private float DamageTimeScale = 0.5f; //unused
+    private float FreezeTimeSeconds = 0.1f; //unused
 
     [HideInInspector] public float InvincibilitySeconds;
 
@@ -90,7 +90,7 @@ public class PlayerBehaviour : CharacterBehaviour
         if (onDamageEvent)
             GameEvents.Instance.OnPlayerDamage();
 
-        StartCoroutine(FreezeTime());
+        //StartCoroutine(FreezeTime());
 
         bool died = base.TakeDamage(damage);
 

@@ -16,12 +16,12 @@ public class UpgradeChoiceObject : MonoBehaviour
     public GameObject ButtonPrompt;
 
     [SerializeField] private UpgradeChoiceInterface UpgradeUICanvas;
-    private PlayerController playerBehaviour;
+    private PlayerController playerController;
 
     private void Start()
     {
         UpgradeUICanvas = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<PlayerController>();
+        playerController = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,8 +32,8 @@ public class UpgradeChoiceObject : MonoBehaviour
             if (ButtonPrompt != null)
                 ButtonPrompt.SetActive(true);
 
-            playerBehaviour = collision.GetComponent<PlayerController>();
-            playerBehaviour.Select.started += ActivateUpgradeUI;
+            playerController = collision.GetComponent<PlayerController>();
+            playerController.Select.started += ActivateUpgradeUI;
             
         }
     }
@@ -47,15 +47,14 @@ public class UpgradeChoiceObject : MonoBehaviour
             if (ButtonPrompt != null)
                 ButtonPrompt.SetActive(false);
 
-            playerBehaviour.Select.started -= ActivateUpgradeUI;
-            playerBehaviour.IgnoreAllInputs = false;
+            playerController.Select.started -= ActivateUpgradeUI;
+            playerController.IgnoreAllInputs = false;
         }
     }
 
     private void ActivateUpgradeUI(InputAction.CallbackContext obj)
     {
-        playerBehaviour.Select.started -= ActivateUpgradeUI;
-
+        playerController.Select.started -= ActivateUpgradeUI;
         //if(UpgradeUICanvas == null)
 
 
