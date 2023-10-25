@@ -56,7 +56,7 @@ public class EnemyRoom : RoomType
 
     public override bool CheckRoomCleared()
     {
-        return (aliveEnemies <= 0);
+        return (aliveEnemies <= 0 && wavesLeft <=0);
     }
 
     /// <summary>
