@@ -28,13 +28,8 @@ public class RangedPlayerController : MonoBehaviour
     public Transform RotationPivot;
     public GameObject RangedIcon;
     public GameObject Gun;
-    public Sprite GunOnSprite;
-    public Sprite GunOffSprite;
-    public AudioSource ShootSound;
-
-    private SpriteRenderer gunSpriteRenderer;
-    
-    private PlayerAmmoBar ammoBar;
+    private PlayerAmmoBar AmmoBar;
+    public AudioSource shootSound;
 
     public int BulletsLeft
     {
@@ -65,35 +60,13 @@ public class RangedPlayerController : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         meleePlayerController = GetComponent<MeleePlayerController>();
 
-        ammoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
-
-        gunSpriteRenderer = Gun.gameObject.GetComponent<SpriteRenderer>();
+        AmmoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
 
         RangedIcon.transform.SetParent(null);
 
         canShoot = true;
 
-        UpdateGunSprite();
-
         RechargeAmmo();
-    }
-
-    public void UpdateGunSprite()
-    {
-        if (canShoot)
-            gunSpriteRenderer.sprite = GunOnSprite;
-        
-        if(!canShoot || BulletsLeft <= 0)
-            gunSpriteRenderer.sprite = GunOffSprite;
-    }
-
-    public void UpdateGunSprite(bool Override)
-    {
-        if (Override)
-            gunSpriteRenderer.sprite = GunOnSprite;
-
-        else
-            gunSpriteRenderer.sprite = GunOffSprite;
     }
 
     public void Gun_performed(InputAction.CallbackContext obj)
@@ -136,7 +109,6 @@ public class RangedPlayerController : MonoBehaviour
             ShootBullet();
             yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots);
         }
-        UpdateGunSprite();
 
         playerBehaviour.Speed = oldSpeed;
 
@@ -178,19 +150,17 @@ public class RangedPlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerShoot(bullet.GetComponent<AttackType>());
 
-        ShootSound.Play();
-
-        UpdateGunSprite();
+        shootSound.Play();
     }
 
     private void SetBulletsLeft(int value)
     {
         _bulletsLeft = value;
 
-        if (ammoBar == null)
+        if (AmmoBar == null)
             return;
 
-        ammoBar.UpdateAmmo();
+        AmmoBar.UpdateAmmo();
     }
 
     /// <summary>
@@ -212,8 +182,6 @@ public class RangedPlayerController : MonoBehaviour
         {
             BulletsLeft++;
             yield return new WaitForSeconds(playerBehaviour.AmmoRechargeTime);
-
-            UpdateGunSprite();
         }
         reloadAmmoCoroutine = null;
     }

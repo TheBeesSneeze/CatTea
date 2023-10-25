@@ -31,9 +31,6 @@ public class RoomType : MonoBehaviour
     protected PlayerBehaviour playerBehaviour;
     protected CameraManager cameraManager;
 
-    //le audio
-    public AudioClip BGM;
-
     public virtual void Start()
     {
         roomCleared = OpenDoorsOnStart;
@@ -49,8 +46,6 @@ public class RoomType : MonoBehaviour
         GameEvents.Instance.OnRoomEnter();
         GameManager.Instance.CurrentRoom = this;
 
-        
-
         cameraManager.MoveCamera(CameraCenterPoint);
         
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
@@ -58,9 +53,6 @@ public class RoomType : MonoBehaviour
 
         if (CameraFollowPlayer)
             cameraManager.StartFollowPlayer();
-
-        //le sound
-        AudioSource.PlayClipAtPoint(BGM, transform.position);
     }
 
     /// <summary>
