@@ -34,12 +34,14 @@ public class UpgradeChoiceButton : MonoBehaviour
 
     public void LoadUpgrade(int upgradePrefabIndex, bool updateButtonText)
     {
-        UpgradePrefab = GameManager.Instance.CurrentUpgradePool[upgradePrefabIndex];
         UpgradeIndex = upgradePrefabIndex;
+        UpgradePrefab = GameManager.Instance.CurrentUpgradePool[upgradePrefabIndex];
+        Debug.Log(UpgradeIndex);
 
         if (!updateButtonText)
             return;
 
+        
         UpgradeType upgrade = UpgradePrefab.GetComponent<UpgradeType>();
 
         Header.text = upgrade.DisplayName;
