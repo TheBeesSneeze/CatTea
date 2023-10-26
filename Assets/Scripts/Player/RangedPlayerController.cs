@@ -31,7 +31,6 @@ public class RangedPlayerController : MonoBehaviour
     public Sprite GunOnSprite;
     public Sprite GunOffSprite;
     public AudioSource ShootSound;
-    public AudioSource DryFireSound;
 
     private SpriteRenderer gunSpriteRenderer;
     
@@ -138,11 +137,6 @@ public class RangedPlayerController : MonoBehaviour
             yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots);
         }
         UpdateGunSprite();
-
-        if (BulletsLeft <= 0)
-        {
-            DryFireSound.Play();
-        }
 
         playerBehaviour.Speed = oldSpeed;
 
