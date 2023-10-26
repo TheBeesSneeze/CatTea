@@ -7,7 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     public GameObject creditsPage;
     public GameObject controlsPage;
-
+    public GameObject pausePage;
     public void GameSceneLoad()
     {
         SceneManager.LoadScene(1);
@@ -43,5 +43,16 @@ public class SceneLoader : MonoBehaviour
         Application.Quit();
     }
 
+    public void OpenPause()
+    {
+        Time.timeScale = 0;
+        pausePage.SetActive(true);
+    }
+
+    public void ClosePause()
+    {
+        pausePage.SetActive(false);
+        Time.timeScale = 1;
+    }
 
 }
