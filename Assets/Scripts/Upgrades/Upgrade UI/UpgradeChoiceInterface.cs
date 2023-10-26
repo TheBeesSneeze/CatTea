@@ -76,7 +76,7 @@ public class UpgradeChoiceInterface : MonoBehaviour
     /// </summary>
     public void ConfirmSelection()
     {
-        selectedButton.ConfirmUpgrade();
+        //selectedButton.ConfirmUpgrade();
         CloseUI();
     }
 

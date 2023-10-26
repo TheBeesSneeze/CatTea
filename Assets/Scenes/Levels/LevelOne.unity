@@ -383,6 +383,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 273050845}
   PlayerSpawnPoint: {fileID: 2070659603}
+  BGM: {fileID: 0}
   EnemySpawnPool:
   - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
   - {fileID: 125848749813268421, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
@@ -11740,6 +11741,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 31024351}
   PlayerSpawnPoint: {fileID: 894310494}
+  BGM: {fileID: 0}
 --- !u!66 &135602032
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -25419,6 +25421,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 491026349}
   PlayerSpawnPoint: {fileID: 1705286972}
+  BGM: {fileID: 0}
   EnemySpawnPool: []
   EnemySpawnPoints: []
   aliveEnemies: 0
@@ -75786,6 +75789,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 1741174136}
   PlayerSpawnPoint: {fileID: 162933292}
+  BGM: {fileID: 0}
   EnemySpawnPool:
   - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
   - {fileID: 125848749813268421, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
@@ -110188,6 +110192,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 1998092152}
   PlayerSpawnPoint: {fileID: 1373472623}
+  BGM: {fileID: 0}
 --- !u!66 &1761744911
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -120811,6 +120816,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 966012887}
   PlayerSpawnPoint: {fileID: 1438721968}
+  BGM: {fileID: 0}
   EnemySpawnPool:
   - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
   - {fileID: 125848749813268421, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
@@ -131060,7 +131066,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 77ce66e458182a04f8c71487e5325461, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 997bb58b4d9211142adc4c490f1cc2d2, type: 2}
 --- !u!4 &2105965177
 Transform:
   m_ObjectHideFlags: 0
