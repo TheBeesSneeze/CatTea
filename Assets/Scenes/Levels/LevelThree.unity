@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e32f39eaa85b5b448ddfd9a8043999d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundMusic: {fileID: 0}
   OpenDoorsOnStart: 1
   CameraFollowPlayer: 1
   CameraSize: 6
@@ -12980,11 +12981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cde7ab0577e62044815443955fdca6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OutputRoom: {fileID: 0}
+  ThisRoom: {fileID: 1645134284}
+  open: 0
   Rooms:
   - {fileID: 1507539098}
-  ThisRoom: {fileID: 1645134284}
-  OutputRoom: {fileID: 0}
-  open: 0
 --- !u!1 &119287664
 GameObject:
   m_ObjectHideFlags: 0
@@ -36248,6 +36249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105abde1475da8a4b89b7cb8babf321b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundMusic: {fileID: 8300000, guid: 334c22b3bd01e66498f00b46eccc5819, type: 3}
   OpenDoorsOnStart: 0
   CameraFollowPlayer: 1
   CameraSize: 5
@@ -71462,6 +71464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105abde1475da8a4b89b7cb8babf321b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundMusic: {fileID: 8300000, guid: 334c22b3bd01e66498f00b46eccc5819, type: 3}
   OpenDoorsOnStart: 0
   CameraFollowPlayer: 1
   CameraSize: 5
@@ -90210,6 +90213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f49b677158d8934f9c3b1ce2989e3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundMusic: {fileID: 0}
   OpenDoorsOnStart: 1
   CameraFollowPlayer: 0
   CameraSize: 3
@@ -100504,6 +100508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6bb6ad36fbbba41aad0a60512aaee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundMusic: {fileID: 0}
   OpenDoorsOnStart: 1
   CameraFollowPlayer: 1
   CameraSize: 5
@@ -106466,6 +106471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105abde1475da8a4b89b7cb8babf321b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundMusic: {fileID: 8300000, guid: 334c22b3bd01e66498f00b46eccc5819, type: 3}
   OpenDoorsOnStart: 0
   CameraFollowPlayer: 1
   CameraSize: 5
