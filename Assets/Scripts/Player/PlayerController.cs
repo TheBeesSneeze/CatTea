@@ -412,7 +412,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(movingCoroutine);
 
         myRigidbody.velocity = Vector2.zero;
-        //myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
+        //myRigidbody.AddForce(MoveDirection * playerController.DashUnits, ForceMode2D.Impulse);
 
         MoveDirection = InputDirection * playerBehaviour.Speed;
         myRigidbody.AddForce(MoveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5882920130188105829
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884ec1efc2beb78498c833c606e5dafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: 21300000, guid: 96bb56bb5cfaa5047a3a36235860b72b, type: 3}
+  DisplaySprite: {fileID: 21300000, guid: a3f1459d7a74a14489d53be4632f4723, type: 3}
   DisplayName: Purge Virus
   DisplayDescription: 10% chance to make enemies bleed on hit
   ActivationType: 2
