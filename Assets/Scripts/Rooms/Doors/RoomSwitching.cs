@@ -14,40 +14,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RoomSwitching : MonoBehaviour
+public class RoomSwitching : DoorManager
 {
     [Tooltip("Rooms the door can lead too")]
     public List<RoomType> Rooms = new List<RoomType>();
 
-    [Tooltip("Room the door is on")]
-    public RoomType ThisRoom;
-
-    [HideInInspector] public RoomType OutputRoom;
-
-    [Header("Debug")]
-
-    [Tooltip("If player can go through the door")]
-    [SerializeField] protected bool open;
-
-    //gross... unity...
-    private PlayerBehaviour playerBehaviour;
-
     // Start is called before the first frame update
-    private void Start()
+    protected override void Start()
     {
-        playerBehaviour = GameObject.FindAnyObjectByType<PlayerBehaviour>();
-
-        if (ThisRoom == null)
-        {
-            Debug.LogWarning("No Room Assigned to door!");
-            return;
-        }
-
         DecideOutputRoom();
-
-        open = ThisRoom.OpenDoorsOnStart;
-
-        ThisRoom.EnemyDoor = this;
     }
 
     /// <summary>
@@ -63,48 +38,6 @@ public class RoomSwitching : MonoBehaviour
             return;
         }
 
-        OutputRoom = Rooms[Random.Range(0,Rooms.Count)];
-    }
-
-    /// <summary>
-    /// Sets open to true. Animation stuff should be here.
-    /// </summary>
-    /// <returns></returns>
-    public void OpenDoor()
-    {
-        open = true;
-        //TODO: ANIMATION STUFF
-    }
-
-    /// <summary>
-    /// Sends player to next room (OutputRoom).
-    /// Assumes door is open.
-    /// </summary>
-    public virtual void EnterDoor()
-    {
-        OutputRoom.EnterRoom();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        string tag = collision.gameObject.tag;
-
-        if (tag.Equals("Player"))
-        {
-            AttemptEnterDoor();
-        }
-    }
-
-    /// <summary>
-    /// Tries to let player open door
-    /// </summary>
-    protected virtual void AttemptEnterDoor()
-    {
-        if (OutputRoom == null)
-            return;
-
-        open = ThisRoom.CheckRoomCleared();
-
-        EnterDoor();
+        OutputRoom = Rooms[Random.Range(0, Rooms.Count)];
     }
 }

@@ -23,9 +23,9 @@ public class DoorManager : MonoBehaviour
     [SerializeField] protected bool open;
 
     //gross... unity...
-    private PlayerBehaviour playerBehaviour;
+    protected PlayerBehaviour playerBehaviour;
 
-    private void Start()
+    protected virtual void Start()
     {
         playerBehaviour = GameObject.FindAnyObjectByType<PlayerBehaviour>();
 
@@ -61,9 +61,8 @@ public class DoorManager : MonoBehaviour
             return;
         }
 
-        if(!open)
-            return;
-        
+        ThisRoom.ExitRoom();
+
         OutputRoom.EnterRoom();
     }
 
@@ -86,6 +85,9 @@ public class DoorManager : MonoBehaviour
             return;
 
         open = ThisRoom.CheckRoomCleared();
+
+        if (!open)
+            return;
 
         EnterDoor();
     }

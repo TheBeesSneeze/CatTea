@@ -52,6 +52,17 @@ public class GameManager : MonoBehaviour
         CurrentChallengePoints = DefaultChallengePoints;
 
         CurrentUpgradePool = new List<GameObject>(UpgradePool); //copys list awesome
+
+        EnterHub();
+    }
+
+    /// <summary>
+    /// loads in the hub on start
+    /// </summary>
+    private void EnterHub()
+    {
+        HubRoom hub = GameObject.FindObjectOfType<HubRoom>();
+        hub.EnterRoom();
     }
 
     /*
