@@ -54,7 +54,8 @@ public class RoomType : MonoBehaviour
 
         StartPlayingBackgroundMusic();
 
-        cameraManager.MoveCamera(CameraCenterPoint);
+        if(CameraCenterPoint != null && cameraManager != null)
+            cameraManager.MoveCamera(CameraCenterPoint);
         
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
         Camera.main.orthographicSize = CameraSize;
