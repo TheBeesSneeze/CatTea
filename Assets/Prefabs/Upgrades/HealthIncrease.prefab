@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e96395a35e7a44da5582a2aed84d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: 21300000, guid: 0ef00fe4507911f4aa42c254809b9972, type: 3}
+  DisplaySprite: {fileID: 21300000, guid: c944f4cfc5915ae4aa7464cf1768f47e, type: 3}
   DisplayName: Operand Increaser
-  DisplayDescription: +10 HP
+  DisplayDescription: +5 HP
   ActivationType: 0
-  HealthIncrease: 10
+  HealthIncrease: 5

@@ -32,11 +32,22 @@ public class EnemyPathFinding : MonoBehaviour
  //       StartCoroutine(UpdateTarget());
     }
 
+    //public virtual IEnumerator UpdateTarget()
+    //{
+    //    //sorry for changing this. i just have personal beef with update
+    //    while(this != null)
+    //    {
+
     private void Update()
     {
           SetTargetPoisiton();
             SetAgentPosition();
     }
+  
+    //        yield return null;
+    //    }
+    //}
+
 
     private void SetTargetPoisiton()
     {

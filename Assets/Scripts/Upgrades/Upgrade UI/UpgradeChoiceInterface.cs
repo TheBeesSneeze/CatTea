@@ -33,8 +33,6 @@ public class UpgradeChoiceInterface : MonoBehaviour
 
     private UpgradeChoiceButton selectedButton;
 
-    private PlayerController playerController;
-
     private void Start()
     {
         UpgradeScreen.SetActive(false);
@@ -42,15 +40,11 @@ public class UpgradeChoiceInterface : MonoBehaviour
         deselectedColor = UpgradeButton1.GetComponent<Image>().color;
         UpgradeButton2.GetComponent<Image>().color = deselectedColor;
         MysteryButton.GetComponent<Image>().color = deselectedColor;
-
-        playerController = GameObject.FindObjectOfType<PlayerController>();
     }
 
     public void OpenUI()
     {
         UpgradeScreen.SetActive(true);
-
-        playerController.IgnoreAllInputs = true;
 
         ConfirmUpgradeButton.interactable = false;
         DeselectAllOptions();
@@ -64,8 +58,6 @@ public class UpgradeChoiceInterface : MonoBehaviour
     /// </summary>
     public void CloseUI()
     {
-        playerController.IgnoreAllInputs = false;
-
         Destroy(ChoiceObject.gameObject);
         UpgradeScreen.SetActive(false);
         

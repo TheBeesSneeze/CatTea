@@ -126,7 +126,7 @@ MonoBehaviour:
   AttackInterval: 0.05
   AttacksPerCycle: 40
   SpiralBulletPrefab: {fileID: 2738865446770433985, guid: a61b8e48348afdf4e98e3c835a08a9f7, type: 3}
-  ProjectileSpeed: 5
+  ProjectileSpeed: 4
   RotationPivot: {fileID: 5770707575959758796}
   BulletSpawnPoint: {fileID: 3661882734363839024}
 --- !u!95 &2897805182444428217
