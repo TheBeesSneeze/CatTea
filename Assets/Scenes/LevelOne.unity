@@ -74574,11 +74574,6 @@ MonoBehaviour:
   ThisRoom: {fileID: 1761744910}
   OutputRoom: {fileID: 0}
   open: 0
---- !u!82 &1073966204 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8809075676767013996, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
-  m_PrefabInstance: {fileID: 1453868942}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1124448605
 GameObject:
   m_ObjectHideFlags: 0
@@ -75544,10 +75539,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 524965722425637159, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 524965722425637159, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
@@ -75555,10 +75546,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -481497935, guid: aa8b1a717bb583c4bbed91f65b040708, type: 3}
-    - target: {fileID: 3277883369619410981, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 43c12de356f7d2f48860cf0fe81bd058, type: 2}
+    - target: {fileID: 6104793393067217820, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104793393067217820, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6710800174069000953, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -75603,10 +75598,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6737097318988471658, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
-      propertyPath: ShootSound
-      value: 
-      objectReference: {fileID: 1073966204}
     - target: {fileID: 6737097318988471658, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: GunOnSprite
       value: 
