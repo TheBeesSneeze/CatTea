@@ -44305,8 +44305,9 @@ MonoBehaviour:
   CameraCenterPoint: {fileID: 1702608593}
   PlayerSpawnPoint: {fileID: 1425760424}
   EnemySpawnPool:
-  - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
-  - {fileID: 125848749813268421, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+  - {fileID: 6328191305912939109, guid: 4435ef2aab91c68429d3c34d776b1948, type: 3}
+  - {fileID: 1720206865846777050, guid: de7f2f8d7e6ffbb4b9bf99367e448a94, type: 3}
+  - {fileID: 2201471818238836669, guid: b5ab9f3b5bdbf1b449706b6b0139afac, type: 3}
   EnemySpawnPoints:
   - {fileID: 241957911}
   - {fileID: 1749052562}
@@ -89213,8 +89214,9 @@ MonoBehaviour:
   CameraCenterPoint: {fileID: 1898083083}
   PlayerSpawnPoint: {fileID: 63128351}
   EnemySpawnPool:
-  - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
-  - {fileID: 125848749813268421, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+  - {fileID: 6328191305912939109, guid: 4435ef2aab91c68429d3c34d776b1948, type: 3}
+  - {fileID: 1720206865846777050, guid: de7f2f8d7e6ffbb4b9bf99367e448a94, type: 3}
+  - {fileID: 2201471818238836669, guid: b5ab9f3b5bdbf1b449706b6b0139afac, type: 3}
   EnemySpawnPoints:
   - {fileID: 389688349}
   - {fileID: 1347419401}
@@ -99473,8 +99475,9 @@ MonoBehaviour:
   CameraCenterPoint: {fileID: 1933936307}
   PlayerSpawnPoint: {fileID: 1104971416}
   EnemySpawnPool:
-  - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
-  - {fileID: 125848749813268421, guid: ef086d10544d1f1428210d7335bf8837, type: 3}
+  - {fileID: 6328191305912939109, guid: 4435ef2aab91c68429d3c34d776b1948, type: 3}
+  - {fileID: 1720206865846777050, guid: de7f2f8d7e6ffbb4b9bf99367e448a94, type: 3}
+  - {fileID: 2201471818238836669, guid: b5ab9f3b5bdbf1b449706b6b0139afac, type: 3}
   EnemySpawnPoints:
   - {fileID: 437922632}
   - {fileID: 87417161}
