@@ -316,7 +316,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 165923459645456739, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_Name
-      value: Chuck (1)
+      value: Snakeman
       objectReference: {fileID: 0}
     - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_SortingOrder
