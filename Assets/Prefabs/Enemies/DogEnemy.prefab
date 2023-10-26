@@ -192,7 +192,7 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
-  CurrentEnemyStats: {fileID: 11400000, guid: d3789ee0e145e144b9dd0d7f129258fb, type: 2}
+  CurrentEnemyStats: {fileID: 11400000, guid: 1e9c9e4b94c670448abefaf222a7a927, type: 2}
   DifficultyCost: 0
   Damage: 0
   EnemyMove: 0
