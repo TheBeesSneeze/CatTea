@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2369b28f28a03da45b7b48baeac9878e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1.5
+  Damage: 3
   KnockbackForce: 1
   DamageOnCollision: 1
   DestroyedByWalls: 0

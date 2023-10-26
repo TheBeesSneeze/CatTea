@@ -24,10 +24,6 @@ public class PlayerBehaviour : CharacterBehaviour
     //Player Stats
     public PlayerStats CurrentPlayerStats;
 
-    //magic numbers
-    private float DamageTimeScale = 0.5f; //unused
-    private float FreezeTimeSeconds = 0.1f; //unused
-
     [HideInInspector] public float InvincibilitySeconds;
 
     [HideInInspector] public float DashRechargeSeconds;
@@ -90,23 +86,11 @@ public class PlayerBehaviour : CharacterBehaviour
         if (onDamageEvent)
             GameEvents.Instance.OnPlayerDamage();
 
-        //StartCoroutine(FreezeTime());
-
         bool died = base.TakeDamage(damage);
 
         BecomeInvincible(InvincibilitySeconds); 
 
         return died;
-    }
-
-    /// <summary>
-    /// Freezes time, should be called when the player
-    /// </summary>
-    private IEnumerator FreezeTime()
-    {
-        Time.timeScale = DamageTimeScale;
-        yield return new WaitForSeconds(FreezeTimeSeconds);
-        Time.timeScale = 1;
     }
 
     public override void SetStatsToDefaults()
