@@ -13,6 +13,10 @@ using UnityEngine;
 public class RoomType : MonoBehaviour
 {
     protected bool roomCleared;
+
+    [Tooltip("Leave null for no music")]
+    public AudioClip BackgroundMusic;
+
     //public bool RoomLoaded;
     public bool OpenDoorsOnStart;
     [Tooltip("If true, camera will follow the player")]
@@ -30,12 +34,14 @@ public class RoomType : MonoBehaviour
 
     protected PlayerBehaviour playerBehaviour;
     protected CameraManager cameraManager;
+    protected AudioSource backgroundMusicPlayer;
 
     public virtual void Start()
     {
         roomCleared = OpenDoorsOnStart;
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         cameraManager = GameObject.FindObjectOfType<CameraManager>();
+        backgroundMusicPlayer = GameObject.Find("Background Music").GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -46,13 +52,21 @@ public class RoomType : MonoBehaviour
         GameEvents.Instance.OnRoomEnter();
         GameManager.Instance.CurrentRoom = this;
 
-        cameraManager.MoveCamera(CameraCenterPoint);
+        StartPlayingBackgroundMusic();
+
+        if(CameraCenterPoint != null && cameraManager != null)
+            cameraManager.MoveCamera(CameraCenterPoint);
         
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
         Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)
             cameraManager.StartFollowPlayer();
+    }
+
+    public virtual void ExitRoom()
+    {
+        StopPlayingBackgroundMusic();
     }
 
     /// <summary>
@@ -71,5 +85,19 @@ public class RoomType : MonoBehaviour
     {
         roomCleared = true;
         OpenDoorsOnStart = true;
+    }
+
+    public virtual void StartPlayingBackgroundMusic()
+    {
+        if (backgroundMusicPlayer == null)
+            return;
+
+        backgroundMusicPlayer.clip = BackgroundMusic;
+        backgroundMusicPlayer.Play();
+    }
+
+    public virtual void StopPlayingBackgroundMusic()
+    {
+        backgroundMusicPlayer.clip = null;
     }
 }

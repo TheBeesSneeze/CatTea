@@ -162,7 +162,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.15214045, g: 0, b: 0.65882355, a: 1}
   m_FlipX: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
-  CurrentEnemyStats: {fileID: 11400000, guid: dcd49d474ec1afc4387687701cae0283, type: 2}
+  CurrentEnemyStats: {fileID: 11400000, guid: 8abb86ecc64a4634c9fbb5750e4569f3, type: 2}
   DifficultyCost: 0
   Damage: 0
   EnemyMove: 0
