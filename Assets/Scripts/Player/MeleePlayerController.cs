@@ -99,8 +99,6 @@ public class MeleePlayerController : MonoBehaviour
             Vector3 target = Vector3.Lerp(startAngle, endAngle, i / StrikeFrames);
             RotatePoint.transform.eulerAngles = target;
 
-
-
             yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots / StrikeFrames);
         }
         StartCoroutine(StopAttack());
@@ -122,7 +120,7 @@ public class MeleePlayerController : MonoBehaviour
 
         /*
 
-        float moveSwordBackSeconds = playerController.AmmoRechargeTime / 2;
+        float moveSwordBackSeconds = playerBehaviour.AmmoRechargeTime / 2;
 
         float startAngle = MirrorPivot.transform.eulerAngles.z;
         float targetAngle = (Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg);
@@ -179,8 +177,6 @@ public class MeleePlayerController : MonoBehaviour
                 RotatePoint.rotation = swordRotation;
             }
 
-            UpdateSwordMirrorDirection();
-
             yield return new WaitForSeconds(0.02f);
         }
 
@@ -188,19 +184,5 @@ public class MeleePlayerController : MonoBehaviour
 
         //i KNOW this function will cause issues in the future
         //leaving these comments for whoever gets the pleasure of fixing it :)
-    }
-
-    public void UpdateSwordMirrorDirection()
-    {
-        float xDifference = SwordCollider.transform.position.x - transform.position.x;
-
-        if(xDifference >= 0)
-        {
-            SwordCollider.transform.localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-            SwordCollider.transform.localScale = new Vector3(-1, 1, 1);
-        }
     }
 }

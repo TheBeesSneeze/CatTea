@@ -25,7 +25,5 @@ MonoBehaviour:
     the same dialogue tree over and over."
   - You as well!
   WhoIsTalking: 0100000000000000010000000000000001000000000000000100000000000000
-  PlayerTalkingSprites:
-  - {fileID: 21300000, guid: 31eb606483503a944ae61a04cf34d4ff, type: 3}
-  NPCTalkingSprites:
-  - {fileID: 21300000, guid: b7c40f43c6708f04da321bb0a5c1ec99, type: 3}
+  PlayerTalkingSprites: []
+  NPCTalkingSprites: []
