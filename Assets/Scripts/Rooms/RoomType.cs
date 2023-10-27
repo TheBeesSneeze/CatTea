@@ -18,7 +18,7 @@ public class RoomType : MonoBehaviour
     public AudioClip BackgroundMusic;
 
     [Tooltip("If null, doesnt change background color")]
-    public Color backGroundColor;
+    public Color BackgroundColor;
 
     //public bool RoomLoaded;
     public bool OpenDoorsOnStart;
@@ -28,7 +28,7 @@ public class RoomType : MonoBehaviour
     public float CameraSize = 6;
 
     [Tooltip("This should be assigned automatically in the door's script.")]
-    [HideInInspector] public DoorManager Door;
+    public DoorManager Door;
 
     [HideInInspector] public RoomSwitching EnemyDoor;
 
