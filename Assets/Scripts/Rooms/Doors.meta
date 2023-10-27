@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Rooms/Doors.meta
 guid: acf5ec395fb216941855c4455b52222a
+========
+guid: abf940d407cd75645bd9aa7ca5e9a723
+>>>>>>>> main:Assets/Scenes/Levels/LevelOne.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

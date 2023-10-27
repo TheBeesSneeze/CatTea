@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/LevelsScene.meta
 guid: 8b08eda11a92a4b4fab21591edca3a28
+========
+guid: 3a9da8c6b9f363c44b50ef3e36f0950e
+>>>>>>>> main:Assets/Scenes/Levels.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Levels/LevelTwo.meta
 guid: 9a3262cef71dc7a4a879c273b6aba4e3
+========
+guid: e41e109fff201bd429fe81c55fe74431
+>>>>>>>> main:Assets/Prefabs/Rooms.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
