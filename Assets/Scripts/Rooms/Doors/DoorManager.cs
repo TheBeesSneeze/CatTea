@@ -61,9 +61,9 @@ public class DoorManager : MonoBehaviour
             return;
         }
 
-        ThisRoom.ExitRoom();
+        SceneTransition.Instance.SwitchRooms(ThisRoom, OutputRoom);
 
-        OutputRoom.EnterRoom();
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
