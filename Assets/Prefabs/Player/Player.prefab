@@ -145,6 +145,8 @@ MonoBehaviour:
   Gun: {fileID: 2034191321885223822}
   GunOnSprite: {fileID: 0}
   GunOffSprite: {fileID: 0}
+  ShootSound: {fileID: 8809075676767013996}
+  DryFire: {fileID: 8300000, guid: bfc9b714480599645abfc579a10ca6cd, type: 3}
   MaxUpAngle: 25
   MaxDownAngle: -25
   PrimaryShooting: 0
@@ -932,7 +934,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ac7bf403e5ddd7549b9863700aab78c3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: da272c404f70ca144a4e3edfa6079782, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
