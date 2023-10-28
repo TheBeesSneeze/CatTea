@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: FergusDialogue1
   m_EditorClassIdentifier: 
   TextList: []
+  Character1Name: Jade
+  Character2Name: Fergus
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
   WhoIsTalking: 
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
