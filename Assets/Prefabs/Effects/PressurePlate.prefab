@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActivationObject: {fileID: 4464462622687758563}
-  SecondsUntilActivation: 0.5
+  SecondsUntilActivation: 0.75
   SecondsUntilDeactivation: 0.75
 --- !u!61 &8968125434765402762
 BoxCollider2D:

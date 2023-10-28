@@ -12,9 +12,12 @@ GameObject:
   - component: {fileID: 7750350946885972128}
   - component: {fileID: 646142564995309092}
   - component: {fileID: 6547316761508115879}
+  - component: {fileID: 4243977869913145668}
+  - component: {fileID: -1769227030051256610}
+  - component: {fileID: -5388908671965291147}
   m_Layer: 0
   m_Name: Bullet Boss idk
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
   m_Color: {r: 1, g: 0.59859747, b: 0.27735847, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +108,7 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
-  StartHealth: 20
+  StartHealth: 50
   MyRoom: {fileID: 0}
 --- !u!114 &6547316761508115879
 MonoBehaviour:
@@ -122,12 +125,96 @@ MonoBehaviour:
   StartAttackCycleOnAwake: 1
   LoopAttack: 1
   AttackCycleCooldown: 5
-  AttackInterval: 0.05
-  AttacksPerCycle: 40
+  AttackInterval: 0.1
+  AttacksPerCycle: 30
   SpiralBulletPrefab: {fileID: 2738865446770433985, guid: a61b8e48348afdf4e98e3c835a08a9f7, type: 3}
   ProjectileSpeed: 4
   RotationPivot: {fileID: 5770707575959758796}
   BulletSpawnPoint: {fileID: 3661882734363839024}
+--- !u!114 &4243977869913145668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381370009476358466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2215b39a80318de4197bbd3bccd3bf2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartAttackCycleOnAwake: 1
+  LoopAttack: 1
+  AttackCycleCooldown: 5
+  AttackInterval: 0.5
+  AttacksPerCycle: 3
+  AttackDistance: 30
+  AttackPrefab: {fileID: 491294337054835271, guid: 92c135c095507e24f81158eff031f348, type: 3}
+  LM:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!50 &-1769227030051256610
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381370009476358466}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &-5388908671965291147
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381370009476358466}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.32
 --- !u!1 &6639999450686511575
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3661882734363839024}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Bullet Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6639999450686511575}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.01, y: 0, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -204,4 +291,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb574622327318048b022cb9abfae09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0.8
+  Speed: 0.6

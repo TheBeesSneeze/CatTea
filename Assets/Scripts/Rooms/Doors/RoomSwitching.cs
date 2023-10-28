@@ -23,6 +23,8 @@ public class RoomSwitching : DoorManager
     protected override void Start()
     {
         DecideOutputRoom();
+
+        base.Start();
     }
 
     /// <summary>
