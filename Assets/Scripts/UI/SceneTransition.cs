@@ -95,12 +95,10 @@ public class SceneTransition : MonoBehaviour
 
         while (t < 1)
         {
-            Debug.Log(t);
             t += (1 / transitionFrames);
             float tScaled = Mathf.Pow(t, scaleFactor);
 
             float scale = Mathf.Lerp(startScale, endScale, tScaled);
-            Debug.Log(scale);
 
             TransitionSquare.sizeDelta = new Vector2(scale, scale);
 

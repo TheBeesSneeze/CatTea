@@ -38,12 +38,16 @@ public class CharacterBehaviour : MonoBehaviour
     private Coroutine hitAnimationCoroutine;
     private Coroutine invincibleCoroutine;
 
+    private Color originalColor;
+
     protected virtual void Start()
     {
         _healthPoints = MaxHealthPoints;
 
         myRigidbody2D = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+
+        originalColor = mySpriteRenderer.color;
 
         SetStatsToDefaults();
     }
@@ -138,13 +142,11 @@ public class CharacterBehaviour : MonoBehaviour
 
     public virtual IEnumerator HitAnimation()
     {
-        Color oldColor = mySpriteRenderer.color;
-
         mySpriteRenderer.color = new Color(1, 0.3f, 0.3f);
 
         yield return new WaitForSeconds(damageColorChangeSeconds);
 
-        mySpriteRenderer.color = Color.white;
+        mySpriteRenderer.color = originalColor;
     }
 
     /// <summary>

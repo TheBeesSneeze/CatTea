@@ -20,7 +20,7 @@ public class SpiralProjectileAttack : BossAttackType
 
     public override void PerformAttack()
     {
-        Vector2 bulletVelocity = (BulletSpawnPoint.position - RotationPivot.position) * ProjectileSpeed;
+        Vector2 bulletVelocity = (BulletSpawnPoint.position - RotationPivot.position).normalized * ProjectileSpeed;
 
         GameObject newBullet = Instantiate(SpiralBulletPrefab, BulletSpawnPoint.position, Quaternion.identity);
         Rigidbody2D newBulletRB = newBullet.GetComponent<Rigidbody2D>();
