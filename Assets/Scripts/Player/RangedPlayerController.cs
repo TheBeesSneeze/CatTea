@@ -28,8 +28,13 @@ public class RangedPlayerController : MonoBehaviour
     public Transform RotationPivot;
     public GameObject RangedIcon;
     public GameObject Gun;
-    private PlayerAmmoBar AmmoBar;
-    public AudioSource shootSound;
+    public Sprite GunOnSprite;
+    public Sprite GunOffSprite;
+    public AudioSource ShootSound;
+
+    private SpriteRenderer gunSpriteRenderer;
+    
+    private PlayerAmmoBar ammoBar;
 
     public int BulletsLeft
     {
@@ -60,13 +65,35 @@ public class RangedPlayerController : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         meleePlayerController = GetComponent<MeleePlayerController>();
 
-        AmmoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
+        ammoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
+
+        gunSpriteRenderer = Gun.gameObject.GetComponent<SpriteRenderer>();
 
         RangedIcon.transform.SetParent(null);
 
         canShoot = true;
 
+        UpdateGunSprite();
+
         RechargeAmmo();
+    }
+
+    public void UpdateGunSprite()
+    {
+        if (canShoot)
+            gunSpriteRenderer.sprite = GunOnSprite;
+        
+        if(!canShoot || BulletsLeft <= 0)
+            gunSpriteRenderer.sprite = GunOffSprite;
+    }
+
+    public void UpdateGunSprite(bool Override)
+    {
+        if (Override)
+            gunSpriteRenderer.sprite = GunOnSprite;
+
+        else
+            gunSpriteRenderer.sprite = GunOffSprite;
     }
 
     public void Gun_performed(InputAction.CallbackContext obj)
@@ -109,6 +136,7 @@ public class RangedPlayerController : MonoBehaviour
             ShootBullet();
             yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots);
         }
+        UpdateGunSprite();
 
         playerBehaviour.Speed = oldSpeed;
 
@@ -123,6 +151,9 @@ public class RangedPlayerController : MonoBehaviour
     /// <returns></returns>
     public void CorrectGunPosition()
     {
+        if (playerController == null)
+            return;
+
         if (playerController.AimingDirection.x > 0)
             MirrorPivot.localScale = new Vector3(1, 1, 1);
 
@@ -150,17 +181,19 @@ public class RangedPlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerShoot(bullet.GetComponent<AttackType>());
 
-        shootSound.Play();
+        ShootSound.Play();
+
+        UpdateGunSprite();
     }
 
     private void SetBulletsLeft(int value)
     {
         _bulletsLeft = value;
 
-        if (AmmoBar == null)
+        if (ammoBar == null)
             return;
 
-        AmmoBar.UpdateAmmo();
+        ammoBar.UpdateAmmo();
     }
 
     /// <summary>
@@ -182,6 +215,8 @@ public class RangedPlayerController : MonoBehaviour
         {
             BulletsLeft++;
             yield return new WaitForSeconds(playerBehaviour.AmmoRechargeTime);
+
+            UpdateGunSprite();
         }
         reloadAmmoCoroutine = null;
     }

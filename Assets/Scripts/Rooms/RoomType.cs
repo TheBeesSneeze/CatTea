@@ -13,15 +13,22 @@ using UnityEngine;
 public class RoomType : MonoBehaviour
 {
     protected bool roomCleared;
+
+    [Tooltip("Leave null for no music")]
+    public AudioClip BackgroundMusic;
+
+    [Tooltip("If null, doesnt change background color")]
+    public Color BackgroundColor;
+
     //public bool RoomLoaded;
     public bool OpenDoorsOnStart;
     [Tooltip("If true, camera will follow the player")]
     public bool CameraFollowPlayer;
     [Tooltip("Zooms in and out")]
-    public float CameraSize = 5;
+    public float CameraSize = 6;
 
     [Tooltip("This should be assigned automatically in the door's script.")]
-    [HideInInspector] public DoorManager Door;
+    public DoorManager Door;
 
     [HideInInspector] public RoomSwitching EnemyDoor;
 
@@ -30,12 +37,14 @@ public class RoomType : MonoBehaviour
 
     protected PlayerBehaviour playerBehaviour;
     protected CameraManager cameraManager;
+    protected AudioSource backgroundMusicPlayer;
 
     public virtual void Start()
     {
         roomCleared = OpenDoorsOnStart;
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         cameraManager = GameObject.FindObjectOfType<CameraManager>();
+        backgroundMusicPlayer = GameObject.Find("Background Music").GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -46,13 +55,21 @@ public class RoomType : MonoBehaviour
         GameEvents.Instance.OnRoomEnter();
         GameManager.Instance.CurrentRoom = this;
 
-        cameraManager.MoveCamera(CameraCenterPoint);
+        StartPlayingBackgroundMusic();
+
+        if(CameraCenterPoint != null && cameraManager != null)
+            cameraManager.MoveCamera(CameraCenterPoint);
         
         playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
         Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)
             cameraManager.StartFollowPlayer();
+    }
+
+    public virtual void ExitRoom()
+    {
+        StopPlayingBackgroundMusic();
     }
 
     /// <summary>
@@ -71,5 +88,19 @@ public class RoomType : MonoBehaviour
     {
         roomCleared = true;
         OpenDoorsOnStart = true;
+    }
+
+    public virtual void StartPlayingBackgroundMusic()
+    {
+        if (backgroundMusicPlayer == null)
+            return;
+
+        backgroundMusicPlayer.clip = BackgroundMusic;
+        backgroundMusicPlayer.Play();
+    }
+
+    public virtual void StopPlayingBackgroundMusic()
+    {
+        backgroundMusicPlayer.clip = null;
     }
 }

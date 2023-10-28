@@ -25,6 +25,10 @@ MonoBehaviour:
   - "You did, didn\u2019t you?"
   - ...
   - No.
+  Character1Name: Jade
+  Character2Name: Crimson Idiot
+  Character1DialogueSound: {fileID: 8300000, guid: 40b73062b3c85f84e95afee80570fbdc, type: 3}
+  Character2DialogueSound: {fileID: 8300000, guid: 4fb7f32d46706cd41ae130ff78a7f100, type: 3}
   WhoIsTalking: 010000000000000001000000000000000100000000000000010000000000000001000000000000000100000001000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []

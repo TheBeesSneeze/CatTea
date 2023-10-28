@@ -45,6 +45,7 @@ public class EnemyBehaviour : CharacterBehaviour
 
     public override bool TakeDamage(float damage)
     {
+        StartCoroutine(HitAnimation());
         return TakeDamage(damage, true);
     }
 

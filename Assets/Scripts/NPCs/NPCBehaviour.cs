@@ -27,33 +27,42 @@ public class NPCBehaviour : MonoBehaviour
 
     public enum Talking { Player, NPC, Nobody };
 
+    private string Character1Name;
+    private string Character2Name;
+
+    private AudioClip Character1DialogueSound;
+    private AudioClip Character2DialogueSound;
+
     private List<string> TextList = new List<string>();
     private List<Talking> WhoIsTalking = new List<Talking>();
 
-    [Tooltip("Leave a sprite null to make it not change")]
     private List<Sprite> PlayerTalkingSprites = new List<Sprite>();
-    [Tooltip("Leave a sprite null to make it not change")]
     private List<Sprite> NPCTalkingSprites = new List<Sprite>();
 
     [Header("Settings")]
     public bool LoopText;
-    [SerializeField] public float ScrollSpeed;
-    [SerializeField] public TextMeshProUGUI TextBox;
-    private int textIndex = 0;
-    private float bobAnimationTime=0.5f;
+    public static float ScrollSpeed = 0.05f;
+    private float bobAnimationTime = 0.5f;
 
     [Header("Unity Stuff")]
     public GameObject ButtonPrompt;
-    private bool typing;
+    public TextMeshProUGUI TextBox;
     public GameObject DialogueCanvas;
     public Image PlayerSprite;
     public Image NPCSprite;
+
     private PlayerController player;
     private bool SkipText;
+    private AudioSource dialogueSoundSource;
+
+    private int textIndex = 0;
+    private bool typing;
 
     private void Start()
     {
-        player = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<PlayerController>();    
+        player = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<PlayerController>();
+        dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
+
         LoadScript(DefaultDialogue);
     }
 
@@ -71,8 +80,6 @@ public class NPCBehaviour : MonoBehaviour
 
             player = collision.GetComponent<PlayerController>();
             player.Select.started += ActivateSpeech;
-            player.Pause.started += Exit_text;
-            player.SkipText.started += Skip_text;
         }
     }
 
@@ -92,20 +99,21 @@ public class NPCBehaviour : MonoBehaviour
                 ButtonPrompt.SetActive(false);
 
             player.Select.started -= ActivateSpeech;
-            player.Pause.started -= Exit_text;
-            player.SkipText.started -= Skip_text;
         }
     }
 
     public void CancelSpeech()
     {
         player.IgnoreAllInputs = false;
+        player.Pause.started -= Exit_text;
+        player.SkipText.started -= Skip_text;
 
         textIndex = 0;
         if (ButtonPrompt != null)
             ButtonPrompt.SetActive(true);
 
-        DialogueCanvas.SetActive(false);
+        if(DialogueCanvas != null)
+            DialogueCanvas.SetActive(false);
     }
 
     /// <summary>
@@ -115,6 +123,9 @@ public class NPCBehaviour : MonoBehaviour
     public void ActivateSpeech(InputAction.CallbackContext obj)
     {
         player.IgnoreAllInputs = true;
+
+        player.Pause.started += Exit_text;
+        player.SkipText.started += Skip_text;
 
         //if end dialogue
         if (!LoopText && textIndex == TextList.Count)
@@ -139,34 +150,45 @@ public class NPCBehaviour : MonoBehaviour
 
     public void Skip_text(InputAction.CallbackContext obj)
     {
+        SkipText = false;
+
         if(typing)  
             SkipText = true;
     }
 
     /// <summary>
-    /// coroutine that does the scrolly text
+    /// coroutine that does the scrolly typewriter text
     /// </summary>
     /// <returns></returns>
     public IEnumerator StartText()
     {
+        yield return new WaitForSeconds(ScrollSpeed);
         typing = true;
         DialogueCanvas.SetActive(true);
+
+        SkipText = false;
 
         ChangeDialogueSprites();
 
         BobAnimations();
+
+        SwitchTalkingSound();
 
         //typewriter text
         for (int i = 0; i < TextList[textIndex].Length + 1; i++)
         {
             if(SkipText)
             {
+                Debug.Log("Skipping Text");
                 SkipText = false;
                 TextBox.text = TextList[textIndex];
                 break;
             }
             
             TextBox.text = TextList[textIndex].Substring(0, i);
+
+            PlayTalkingSound();
+
             yield return new WaitForSeconds(ScrollSpeed);
         }
 
@@ -177,6 +199,13 @@ public class NPCBehaviour : MonoBehaviour
         {
             textIndex = 0;
         }
+    }
+
+    private void PlayTalkingSound()
+    {
+        dialogueSoundSource.Stop();
+        dialogueSoundSource.pitch = Random.value;
+        dialogueSoundSource.Play();
     }
 
     private void ChangeDialogueSprites()
@@ -198,6 +227,24 @@ public class NPCBehaviour : MonoBehaviour
             if (WhoIsTalking[textIndex] == Talking.NPC)
                 StartCoroutine(AnimateSprite(NPCSprite.rectTransform));
         }
+    }
+
+    private void SwitchTalkingSound()
+    {
+        if(dialogueSoundSource == null)
+        {
+            Debug.LogWarning("No audio source on " + gameObject.name);
+            return;
+        }
+
+        if (WhoIsTalking[textIndex].Equals(Talking.Player))
+            dialogueSoundSource.clip = Character1DialogueSound;
+
+        if (WhoIsTalking[textIndex].Equals(Talking.NPC))
+            dialogueSoundSource.clip = Character1DialogueSound;
+
+        if (WhoIsTalking[textIndex].Equals(Talking.Nobody))
+            dialogueSoundSource.clip = null;
     }
 
     /// <summary>
@@ -239,7 +286,13 @@ public class NPCBehaviour : MonoBehaviour
         TextList = Script.TextList;
 
         WhoIsTalking = Script.WhoIsTalking;
-        
+
+        Character1Name = Script.Character1Name;
+        Character2Name = Script.Character2Name;
+
+        Character1DialogueSound = Script.Character1DialogueSound;
+        Character2DialogueSound = Script.Character1DialogueSound; ;
+
         PlayerTalkingSprites = Script.PlayerTalkingSprites;
         NPCTalkingSprites = Script.NPCTalkingSprites;
     }

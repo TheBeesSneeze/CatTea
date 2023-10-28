@@ -14,9 +14,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeChoiceInterface : MonoBehaviour
 {
+    private Color deselectedColor;
+
     public GameObject UpgradeScreen;
 
     [Header("Upgrade Buttons")]
@@ -24,16 +27,27 @@ public class UpgradeChoiceInterface : MonoBehaviour
     public UpgradeChoiceButton UpgradeButton2;
     public UpgradeChoiceButton MysteryButton;
 
+    public Button ConfirmUpgradeButton;
+
     [HideInInspector] public UpgradeChoiceObject ChoiceObject;
+
+    private UpgradeChoiceButton selectedButton;
 
     private void Start()
     {
         UpgradeScreen.SetActive(false);
+
+        deselectedColor = UpgradeButton1.GetComponent<Image>().color;
+        UpgradeButton2.GetComponent<Image>().color = deselectedColor;
+        MysteryButton.GetComponent<Image>().color = deselectedColor;
     }
 
     public void OpenUI()
     {
         UpgradeScreen.SetActive(true);
+
+        ConfirmUpgradeButton.interactable = false;
+        DeselectAllOptions();
 
         RandomizeUpgradeChoices();
     }
@@ -47,6 +61,36 @@ public class UpgradeChoiceInterface : MonoBehaviour
         Destroy(ChoiceObject.gameObject);
         UpgradeScreen.SetActive(false);
         
+    }
+
+    /// <summary>
+    /// Called when the player presses the confirm button
+    /// </summary>
+    public void ConfirmSelection()
+    {
+        //selectedButton.ConfirmUpgrade();
+        CloseUI();
+    }
+
+    public void SelectOption(UpgradeChoiceButton choice)
+    {
+        DeselectAllOptions();
+
+        selectedButton = choice;
+
+        Image choiceSprite = choice.GetComponent<Image>();
+
+        choiceSprite.color = choice.GetComponent<Button>().colors.selectedColor;
+
+        ConfirmUpgradeButton.interactable = true;
+    }
+
+    public void DeselectAllOptions()
+    {
+        UpgradeButton1.GetComponent<Image>().color = deselectedColor;
+        UpgradeButton2.GetComponent<Image>().color = deselectedColor;
+        MysteryButton.GetComponent<Image>().color = deselectedColor;
+
     }
 
     /// <summary>
@@ -76,4 +120,6 @@ public class UpgradeChoiceInterface : MonoBehaviour
 
         return result;
     }
+
+
 }

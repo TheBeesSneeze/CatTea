@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6946072844717562333
 MonoBehaviour:
@@ -41,11 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8175946549252945021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdab8b2138df0e74dac99425924dc049, type: 3}
+  m_Script: {fileID: 11500000, guid: 1457318f891921841bc5f4433427f37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: 21300000, guid: c944f4cfc5915ae4aa7464cf1768f47e, type: 3}
-  DisplayName: Parry
-  DisplayDescription: Parry projectiles with your sword and destroy enemy projectiles
-    with your bullets
-  ActivationType: 5
+  DisplaySprite: {fileID: 21300000, guid: 6d9116bcdd61bff4d8f048e826773910, type: 3}
+  DisplayName: Parry Projectiles
+  DisplayDescription: Deflects projectiles back at enemies with your sword
+  ActivationType: 0
