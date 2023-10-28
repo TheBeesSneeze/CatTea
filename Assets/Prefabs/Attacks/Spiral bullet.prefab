@@ -55,7 +55,7 @@ MonoBehaviour:
   DestroyOtherAttacks: 0
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 1
-  DestroyAttackAfterSeconds: -1
+  DestroyAttackAfterSeconds: 5
   Attacker: 0
 --- !u!212 &9021548887123074165
 SpriteRenderer:

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5882920130188105829
 MonoBehaviour:
@@ -51,3 +51,4 @@ MonoBehaviour:
   DOTChance: 0.1
   TotalDamage: 2
   DOTDuration: 5
+  EnemyColor: {r: 0.19501601, g: 0.7830189, b: 0.41594073, a: 1}

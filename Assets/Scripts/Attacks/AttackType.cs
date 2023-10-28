@@ -150,7 +150,7 @@ public class AttackType : MonoBehaviour
     {
         string tag = collision.tag;
 
-        Debug.Log(tag);
+        //Debug.Log(tag);
 
         if (tag.Equals("Wall") && DestroyedByWalls)
         {
