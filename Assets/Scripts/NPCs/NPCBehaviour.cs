@@ -231,6 +231,12 @@ public class NPCBehaviour : MonoBehaviour
 
     private void SwitchTalkingSound()
     {
+        if(dialogueSoundSource == null)
+        {
+            Debug.LogWarning("No audio source on " + gameObject.name);
+            return;
+        }
+
         if (WhoIsTalking[textIndex].Equals(Talking.Player))
             dialogueSoundSource.clip = Character1DialogueSound;
 
