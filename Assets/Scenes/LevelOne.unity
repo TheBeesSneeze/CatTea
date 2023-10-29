@@ -25172,7 +25172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 491026349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraPosition(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25451,7 +25451,7 @@ GameObject:
   - component: {fileID: 573617399}
   - component: {fileID: 573617398}
   - component: {fileID: 573617397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49794,7 +49794,7 @@ GameObject:
   - component: {fileID: 914639139}
   - component: {fileID: 914639138}
   - component: {fileID: 914639137}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50626,7 +50626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1266416503}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51130,6 +51130,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4280775379747866790, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.999984
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280775379747866790, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0056522177
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280775379747866790, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.648
+      objectReference: {fileID: 0}
     - target: {fileID: 6710800174069000953, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -51152,15 +51164,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6710800174069000953, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6710800174069000953, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6710800174069000953, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6710800174069000953, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -68286,7 +68298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1705286972}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerPosition(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68353,7 +68365,7 @@ GameObject:
   - component: {fileID: 1754399060}
   - component: {fileID: 1754399059}
   - component: {fileID: 1754399058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TilemapWallsZ2
   m_TagString: Wall
   m_Icon: {fileID: 0}
