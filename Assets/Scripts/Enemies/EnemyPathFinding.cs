@@ -28,6 +28,7 @@ public class EnemyPathFinding : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        
 
  //       StartCoroutine(UpdateTarget());
     }
