@@ -141,7 +141,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5381370009476358466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2215b39a80318de4197bbd3bccd3bf2f, type: 3}
   m_Name: 
@@ -170,11 +170,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartAttackCycleOnAwake: 1
   LoopAttack: 1
-  AttackCycleCooldown: 12
-  AttackInterval: 0
+  AttackCycleCooldown: 3
+  AttackInterval: 1
   AttacksPerCycle: 1
   MaxMovementDistance: 25
-  MovementSpeed: 1
+  SecondsPerUnit: 0.75
   LM:
     serializedVersion: 2
     m_Bits: 384

@@ -27,18 +27,40 @@ public class BossAttackUtilities : MonoBehaviour
 
         //Debug.Log("Direction_is_" + direction);
 
-        float randomPercent = Random.Range(0.25f, 0.75f);
-        RaycastHit2D hitInfo = Physics2D.Raycast(centerPoint, direction, maxDistance * randomPercent, LM);
+        
+        RaycastHit2D hitInfo = Physics2D.Raycast(centerPoint, direction, maxDistance, LM);
 
         if (hitInfo.transform != null)
         {
             Debug.DrawLine(centerPoint, hitInfo.point, Color.blue, 1);
-            return hitInfo.point;
+            return CorrectRandomPositionOutput(centerPoint, hitInfo.point);
         }
-        else
+
+        else //if it hit nothing:
         {
-            Debug.DrawLine(centerPoint, (Vector2)centerPoint + (direction * (10 * randomPercent)), Color.red, 1);
-            return (Vector2)centerPoint + (direction * (10 * randomPercent));
+            Debug.DrawLine(centerPoint, (Vector2)centerPoint + (direction * (maxDistance * 0.5f)), Color.red, 1);
+            return CorrectRandomPositionOutput(centerPoint, direction * maxDistance);
+            //return (Vector2)centerPoint + (direction * (10 * randomPercent));
         }
+    }
+
+    /// <summary>
+    /// returns output with account for random!
+    /// </summary>
+    private static Vector2 CorrectRandomPositionOutput(Vector2 centerPoint, Vector2 rayHitPoint)
+    {
+        float distance = Vector2.Distance(centerPoint, rayHitPoint);
+
+        Vector2 direction = rayHitPoint - centerPoint;
+        direction.Normalize();
+
+        float randomPercent = Random.Range(0.25f, 0.75f);
+
+        direction = direction * (distance * randomPercent);
+
+        //return centerPoint + direction;
+
+        //FUCK YOU. HERES THE FUNCTION AGAIN BUT ON ONE LINE. ALL THE ABOVE CODE WAS FOR NOTHING
+        return centerPoint + ((rayHitPoint - centerPoint).normalized*(Vector2.Distance(centerPoint, rayHitPoint) * Random.Range(0.25f, 0.75f)));
     }
 }

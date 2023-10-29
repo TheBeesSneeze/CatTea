@@ -15,13 +15,9 @@ public class OozeAttack : AttackType
 {
     
     [Header("Ooze settings")]
-    public float SecondsToDissappear;
     public Color OozedEnemyColor;// = new Color(0.3f, 0.4f, 0.8f);
 
-    //magic numbers
-    private float shrinkFrames = 40;
-
-    private float t; // 1 >= t >= 0 (puddle destroyed when t = 0)
+    private float t; // 1 >= t >= 0     (puddle destroyed when t = 0)
     private Vector3 startScale;
 
     //private OozeUpgrade oozeUpgrade;
@@ -61,12 +57,12 @@ public class OozeAttack : AttackType
     private IEnumerator ShrinkOoze()
     {
         t = 1; // 0<= t <= 1
-        while(t > 0)
+        while (t > 0)
         {
-            t -= 1 / shrinkFrames;
+            t -= Time.deltaTime/ DestroyAttackAfterSeconds;
             transform.localScale = startScale * t;
 
-            yield return new WaitForSeconds(DestroyAttackAfterSeconds / shrinkFrames);
+            yield return null;
         }
 
         Destroy(gameObject);

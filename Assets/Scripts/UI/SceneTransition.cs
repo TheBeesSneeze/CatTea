@@ -18,7 +18,6 @@ public class SceneTransition : MonoBehaviour
     public RectTransform TransitionSquare;
 
     //magic numbers
-    private float transitionFrames = 45; //how many frames for each thing (good description!)
     private float targetSize = 1600;
     private float tScale = 0.90f;
 
@@ -93,16 +92,16 @@ public class SceneTransition : MonoBehaviour
 
         float t = 0; // 0 <= t <= 1
 
-        while (t < 1)
+        while (t < transitionSliceSeconds)
         {
-            t += (1 / transitionFrames);
+            t += Time.deltaTime;
             float tScaled = Mathf.Pow(t, scaleFactor);
 
             float scale = Mathf.Lerp(startScale, endScale, tScaled);
 
             TransitionSquare.sizeDelta = new Vector2(scale, scale);
 
-            yield return new WaitForSeconds(transitionSliceSeconds / transitionFrames);
+            yield return null;
         }
     }
 
@@ -138,18 +137,17 @@ public class SceneTransition : MonoBehaviour
     /// </summary>
     private IEnumerator TransitionBackgroundColorCoroutine(Color startColor, Color targetColor)
     {
-        float frames = transitionFrames * 1.5f;
         float secondsToChangeBackgroundColor = TotalTransitionSeconds * 1.5f;
 
         float t = 0; // 0 <= t <= 1
-        while(t < 1)
+        while(t < secondsToChangeBackgroundColor)
         {
-            t += 1 / transitionFrames;
+            t += Time.deltaTime;
             //float tScaled = Mathf.Pow(t, 3);
 
             Camera.main.backgroundColor = Color.Lerp(startColor, targetColor, t);
 
-            yield return new WaitForSeconds(secondsToChangeBackgroundColor / frames);
+            yield return null;
         }
     }
 }
