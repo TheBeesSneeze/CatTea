@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ConstantRotation : MonoBehaviour
 {
-    public float Speed = 0.8f;
+    public float Speed = 4f;
 
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (transform.eulerAngles.z+Speed)%360);
+        float newAngle = (transform.eulerAngles.z + (Speed * Time.deltaTime)) % 360;
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, newAngle);
     }
 }

@@ -18,14 +18,17 @@ public class DamageOverTime : MonoBehaviour
 
     private Color originalColor;
     private Color overrideColor;
+
+    public float damageOverTimeInterval = 1.5f;
+
     private void Start()
     {
-        Debug.Log("Damaging over second");
+        Debug.Log("Damaging over second on " + gameObject.name);
 
         characterBehaviour = GetComponent<CharacterBehaviour>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        originalColor = spriteRenderer.color;
+        originalColor = characterBehaviour.colorOverride;
         overrideColor = originalColor;
     }
 
@@ -34,10 +37,11 @@ public class DamageOverTime : MonoBehaviour
     /// </summary>
     public void Stop()
     {
-        characterBehaviour.colorOverride = characterBehaviour.originalColor;
-        spriteRenderer.color = characterBehaviour.originalColor;
+        Debug.Log("Stop damaging over second on " + gameObject.name);
 
         StopAllCoroutines();
+
+        ResetCharacterColor();
 
         Destroy(this);
     }
@@ -49,37 +53,102 @@ public class DamageOverTime : MonoBehaviour
         //have you ever CALLED the start function before??? I HOPE NOT. you have to be at a WHOLE NEW KIND OF LOW to be where i am at right now.
         Start();
 
-        StartCoroutine(DealDamageOverTime(damagePerSecond));
+        StartCoroutine(DealDamageOverTimeForever(damagePerSecond));
+    }
+
+    public void Initialize(float damagePerSecond, float totalSeconds)
+    {
+        Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second over "+ totalSeconds +" seconds");
+
+        //TWICE???? *turns to alcohol as a coping mechanism*
+        Start();
+
+        StartCoroutine(DealDamageOverTime(damagePerSecond, totalSeconds));
+    }
+
+    public void Initialize(float damagePerSecond, float totalSeconds, Color NewColor)
+    {
+        Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second over " + totalSeconds + " seconds");
+
+        Start();
+
+        overrideColor = NewColor;
+        characterBehaviour.colorOverride = NewColor;
+
+        StartCoroutine(DealDamageOverTime(damagePerSecond, totalSeconds));
     }
 
     public void Initialize(float damagePerSecond, Color NewColor)
     {
         Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second.");
 
-        //TWICE???? *turns to alcohol as a coping mechanism*
         Start();
 
         overrideColor = NewColor;
         characterBehaviour.colorOverride = NewColor;
 
-        StartCoroutine(DealDamageOverTime(damagePerSecond));
+        StartCoroutine(DealDamageOverTimeForever(damagePerSecond));
     }
 
     /// <summary>
     /// deals damage ever 1/2 seconds
     /// </summary>
     /// <returns></returns>
-    private IEnumerator DealDamageOverTime(float damagePerSecond)
+    private IEnumerator DealDamageOverTimeForever(float damagePerSecond)
     {
         while(this != null)
         {
-            Debug.Log("Damaging!");
+            //Debug.Log("Damaging!");
             spriteRenderer.color = overrideColor;
 
             characterBehaviour.TakeDamage(damagePerSecond / 2, false);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(damageOverTimeInterval);
         }
+    }
+
+    /// <summary>
+    /// deals damage ever 1/2 seconds
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DealDamageOverTime(float damagePerSecond, float totalSeconds)
+    {
+        float iterations = totalSeconds / damageOverTimeInterval;
+
+        for(int i=0; i< iterations; i++) 
+        {
+            //Debug.Log("Damaging!");
+            spriteRenderer.color = overrideColor;
+
+            characterBehaviour.TakeDamage(damagePerSecond / 2, false);
+
+            yield return new WaitForSeconds(damageOverTimeInterval);
+        }
+
+        Stop();
+    }
+
+    private void OnDestroy()
+    {
+        ResetCharacterColor();
+    }
+
+    /// <summary>
+    /// Sets characters color back to original color if its not taking damage over time
+    /// </summary>
+    private void ResetCharacterColor()
+    {
+        //Debug.Log("Destroying DOT after " + (Time.time - t) + " seconds");
+
+        DamageOverTime[] test = GetComponents<DamageOverTime>();
+
+        bool multipleDOTs = test.Length > 1;
+
+        if (multipleDOTs)
+            return;
+
+        spriteRenderer.color = characterBehaviour.originalColor;
+        characterBehaviour.colorOverride = characterBehaviour.originalColor;
 
     }
 }

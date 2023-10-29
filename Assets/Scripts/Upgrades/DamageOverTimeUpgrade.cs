@@ -4,6 +4,8 @@
 * Creation Date :     10/14/2023
 *
 * Brief Description : Makes enemy do what the name of the script says.
+* DamageOverTime.cs has functionality that makes half this code redudnant.
+* I am too lazy to change it however
 *****************************************************************************/
 
 using System.Collections;
