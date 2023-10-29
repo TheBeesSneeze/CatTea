@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GunEnemy : EnemyBehaviour
 {
@@ -59,6 +60,7 @@ public class GunEnemy : EnemyBehaviour
 
     private IEnumerator Attacking()
     {
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
         for (int i = 0; i < AmountOfAttacks; i++)
         {
             switch (RandomAttack())
@@ -78,6 +80,7 @@ public class GunEnemy : EnemyBehaviour
             }
             
         }
+        gameObject.GetComponent<NavMeshAgent>().enabled = true;
         yield return new WaitForSeconds(5);
         attackingCoroutine = null;
     }
