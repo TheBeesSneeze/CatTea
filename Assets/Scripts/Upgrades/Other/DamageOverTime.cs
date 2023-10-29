@@ -23,7 +23,7 @@ public class DamageOverTime : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Damaging over second on " + gameObject.name);
+        //Debug.Log("Damaging over second on " + gameObject.name);
 
         characterBehaviour = GetComponent<CharacterBehaviour>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,7 +37,7 @@ public class DamageOverTime : MonoBehaviour
     /// </summary>
     public void Stop()
     {
-        Debug.Log("Stop damaging over second on " + gameObject.name);
+        //Debug.Log("Stop damaging over second on " + gameObject.name);
 
         StopAllCoroutines();
 
@@ -48,7 +48,7 @@ public class DamageOverTime : MonoBehaviour
 
     public void Initialize(float damagePerSecond)
     {
-        Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second.");
+        //Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second.");
 
         //have you ever CALLED the start function before??? I HOPE NOT. you have to be at a WHOLE NEW KIND OF LOW to be where i am at right now.
         Start();
@@ -58,7 +58,7 @@ public class DamageOverTime : MonoBehaviour
 
     public void Initialize(float damagePerSecond, float totalSeconds)
     {
-        Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second over "+ totalSeconds +" seconds");
+        //Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second over "+ totalSeconds +" seconds");
 
         //TWICE???? *turns to alcohol as a coping mechanism*
         Start();
@@ -68,7 +68,7 @@ public class DamageOverTime : MonoBehaviour
 
     public void Initialize(float damagePerSecond, float totalSeconds, Color NewColor)
     {
-        Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second over " + totalSeconds + " seconds");
+        //Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second over " + totalSeconds + " seconds");
 
         Start();
 
@@ -80,7 +80,7 @@ public class DamageOverTime : MonoBehaviour
 
     public void Initialize(float damagePerSecond, Color NewColor)
     {
-        Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second.");
+        //Debug.Log("DOT initialized! dealing " + damagePerSecond + " every second.");
 
         Start();
 

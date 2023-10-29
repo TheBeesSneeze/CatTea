@@ -19,7 +19,6 @@ public class MeleePlayerController : MonoBehaviour
 {
     [Header("Settings")]
     public float PrimaryStrikeAngle = 120;
-    public float StrikeFrames = 20;
 
     [Header("Unity Stuff")]
     public Collider2D SwordCollider;
@@ -94,13 +93,17 @@ public class MeleePlayerController : MonoBehaviour
         startAngle.z += PrimaryStrikeAngle / 2;
         endAngle.z += -PrimaryStrikeAngle / 2;
 
-        for (int i = 0; i < StrikeFrames; i++)
+        float t = 0;
+        while(t< playerBehaviour.TimeBetweenShots)
         {
-            Vector3 target = Vector3.Lerp(startAngle, endAngle, i / StrikeFrames);
+            t += Time.deltaTime;
+
+            Vector3 target = Vector3.Lerp(startAngle, endAngle, t / playerBehaviour.TimeBetweenShots);
             RotatePoint.transform.eulerAngles = target;
 
-            yield return new WaitForSeconds(playerBehaviour.TimeBetweenShots / StrikeFrames);
+            yield return null;
         }
+
         StartCoroutine(StopAttack());
     }
 
@@ -177,12 +180,28 @@ public class MeleePlayerController : MonoBehaviour
                 RotatePoint.rotation = swordRotation;
             }
 
-            yield return new WaitForSeconds(0.02f);
+            UpdateSwordMirrorDirection();
+
+            yield return null;
         }
 
         RotatingSwordCoroutine = null;
 
         //i KNOW this function will cause issues in the future
         //leaving these comments for whoever gets the pleasure of fixing it :)
+    }
+
+    public void UpdateSwordMirrorDirection()
+    {
+        float xDifference = SwordCollider.transform.position.x - transform.position.x;
+
+        if (xDifference >= 0)
+        {
+            SwordCollider.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            SwordCollider.transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 }
