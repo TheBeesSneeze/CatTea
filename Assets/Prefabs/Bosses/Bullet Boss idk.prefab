@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
   m_Color: {r: 1, g: 0.59859747, b: 0.27735847, a: 1}
   m_FlipX: 0
@@ -108,6 +108,8 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  colorOverride: {r: 0, g: 0, b: 0, a: 0}
   StartHealth: 50
   MyRoom: {fileID: 0}
 --- !u!114 &6547316761508115879
@@ -291,4 +293,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb574622327318048b022cb9abfae09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0.6
+  Speed: 80

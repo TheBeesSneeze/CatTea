@@ -29,7 +29,7 @@ public class UpgradeType : MonoBehaviour
     public UpgradeActivationType ActivationType;
 
     //unity stuff
-    [HideInInspector]protected PlayerBehaviour playerBehaviour;
+    [HideInInspector] protected PlayerBehaviour playerBehaviour;
     [HideInInspector] protected RangedPlayerController rangedPlayerController;
     private UpgradeUI upgradeUI;
 

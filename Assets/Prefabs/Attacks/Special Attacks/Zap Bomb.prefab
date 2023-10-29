@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1465160303
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
@@ -135,12 +135,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae3add414e548d43b01e7e70b8055d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthPoints: 6
+  _healthPoints: 3
   Invincible: 0
   MaxHealthPoints: 0
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  colorOverride: {r: 0, g: 0, b: 0, a: 0}
   CurrentEnemyStats: {fileID: 11400000, guid: dc6849f6fce769344a499c5af8ae5a37, type: 2}
   DifficultyCost: 0
   Damage: 0

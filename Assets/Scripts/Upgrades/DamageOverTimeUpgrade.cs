@@ -4,10 +4,13 @@
 * Creation Date :     10/14/2023
 *
 * Brief Description : Makes enemy do what the name of the script says.
+* DamageOverTime.cs has functionality that makes half this code redudnant.
+* I am too lazy to change it however
 *****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DamageOverTimeUpgrade : UpgradeType
@@ -23,14 +26,12 @@ public class DamageOverTimeUpgrade : UpgradeType
     [Tooltip("How long effect lasts")]
     public float DOTDuration;
 
-    //time between each damage
-    private float damageInterval=0.5f;
+    public Color EnemyColor = new Color(0.25f, 0.7f, 0.9f);
+
 
     public override void UpgradeEffect(CharacterBehaviour eventCharacter)
     {
         float r = Random.value;
-
-        Debug.Log(r);
 
         if(r <= DOTChance)
         {
@@ -39,29 +40,17 @@ public class DamageOverTimeUpgrade : UpgradeType
         }
     }
 
+    /// <summary>
+    /// Adds and removes DamageOverTime component
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DamageOverTime(CharacterBehaviour eventCharacter)
     {
-        SpriteRenderer enemySprite = eventCharacter.GetComponent<SpriteRenderer>();
-        Color oldColor = enemySprite.color;
+        DamageOverTime DOT = eventCharacter.AddComponent<DamageOverTime>();
+        DOT.Initialize(TotalDamage / DOTDuration, EnemyColor);
 
-        enemySprite.color = new Color(0.25f, 0.7f, 0.9f);
+        yield return new WaitForSeconds(DOTDuration);
 
-        int iterations = (int)(DOTDuration / damageInterval);
-        int i = 0;
-
-        while (i < iterations && eventCharacter != null)
-        {
-            if(eventCharacter.HealthPoints > 0)
-            {
-                Debug.Log("Damage on time woo");
-                eventCharacter.TakeDamage(TotalDamage / ((float)iterations), false);
-            }
-            
-
-            yield return new WaitForSeconds(damageInterval);
-        }
-
-        if(enemySprite != null)
-            enemySprite.color = oldColor;
+        DOT.Stop();
     }
 }
