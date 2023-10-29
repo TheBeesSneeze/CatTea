@@ -524,7 +524,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8848587570782372156}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -546,12 +546,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwordCollider: {fileID: 6429197695491037111}
-  ApproachPlayerMovementSpeed: 3
+  ApproachPlayerMovementSpeed: 2.5
   TargetPlayerDistance: 1
   ReadySwordSeconds: 1
-  SwingSwordSeconds: 0.5
-  IdleAfterAttackSeconds: 0
-  SwordAttackCooldown: 5
+  SwingSwordSeconds: 0.2
+  IdleAfterAttackSeconds: 0.3
+  SwordAttackCooldown: 3.5
 --- !u!58 &7653943108667684734
 CircleCollider2D:
   m_ObjectHideFlags: 0
