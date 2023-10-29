@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: FideAgentDialogue1
   m_EditorClassIdentifier: 
   TextList: []
+  Character1Name: Jade
+  Character2Name: Fide Agent
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
   WhoIsTalking: 
   PlayerTalkingSprites: []
   NPCTalkingSprites: []

@@ -21,6 +21,10 @@ MonoBehaviour:
   - Oh yeah? On a scale of hell freezing over to the heat death of the universe,
     how long do you think that will take?
   - You as well!
+  Character1Name: Jade
+  Character2Name: Yongen Loyalist
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
   WhoIsTalking: 01000000000000000100000000000000010000000000000001000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
