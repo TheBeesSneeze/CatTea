@@ -38,9 +38,6 @@ public class FallingBomb : MonoBehaviour
     [Tooltip("Time the explosion lasts for")]
     public float ExplosionTime;
 
-    [Tooltip("How many times the bombs position will be calculated ofer FallingTIme")]
-    public float FallingFrames;
-
     [Tooltip("Idk. you know what acceleration is.")]
     public float FallingAcceleration;
 
@@ -139,7 +136,7 @@ public class FallingBomb : MonoBehaviour
         while (t < 1)
         {
             //i feel like a baby calf and the lerp function is the udder of which i derive my nutrients
-            t += 1 / FallingFrames;
+            t += Time.deltaTime / FallingTime;
             float tScaled = Mathf.Pow(t, FallingAcceleration);
 
             Bomb.transform.position = Vector3.Lerp(bombStart, bombTarget, tScaled);
@@ -149,7 +146,7 @@ public class FallingBomb : MonoBehaviour
             shadowColor.a = Mathf.Lerp(shadowStartOpacity, targetShadowOpacity,tScaled);
             shadowSprite.color = shadowColor;
 
-            yield return new WaitForSeconds(FallingTime / FallingFrames);
+            yield return null;
         }
 
         StartCoroutine(Explode());
@@ -159,12 +156,12 @@ public class FallingBomb : MonoBehaviour
 
     public IEnumerator RotateBombCoroutine()
     {
-        float increment = FallingTime / FallingFrames;
-
         while (Bomb != null)
         {
             float angle = Bomb.transform.eulerAngles.z;
-            angle += increment*-25;
+
+            float increment = FallingTime * Time.deltaTime;
+            angle += increment * -25;
 
             Bomb.transform.eulerAngles = new Vector3(0,0,angle);
 

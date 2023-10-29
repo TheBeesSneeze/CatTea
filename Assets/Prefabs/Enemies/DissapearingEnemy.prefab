@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8277032188919753421}
   m_Layer: 0
   m_Name: DissapearingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,6 +205,8 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  colorOverride: {r: 0, g: 0, b: 0, a: 0}
   CurrentEnemyStats: {fileID: 11400000, guid: 034a4393006abe44eb30391e852eb715, type: 2}
   DifficultyCost: 0
   Damage: 0
@@ -318,7 +320,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 2
   KnockbackForce: 0
-  DamageOnCollision: 1
   DestroyedByWalls: 0
   DestroyedAfterAttack: 0
   DestroyOtherAttacks: 0

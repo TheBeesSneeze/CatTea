@@ -24,13 +24,23 @@ public class BossBehaviour : CharacterBehaviour
         base.Start();
     }
 
-    public override bool TakeDamage(float Damage)
+    public override bool TakeDamage(float damage)
     {
-        return base.TakeDamage(Damage);
+        return TakeDamage(damage,true);
+    }
+
+    public override bool TakeDamage(float damage, bool onDamageEvent)
+    {
+        if (HealthPoints - damage > 0 && onDamageEvent)
+            GameEvents.Instance.OnEnemyDamage(this);
+
+        return base.TakeDamage(damage);
     }
 
     public override void Die()
     {
+        GameEvents.Instance.OnEnemyDeath(this.transform.position);
+
         Debug.Log("Boss die!");
         MyRoom.OnBossDeath();
 

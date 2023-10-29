@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7250060864491448804
 MonoBehaviour:
@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 5210622287566210706, guid: 14d6f788cb795e9428da5d9f3ebd12d7, type: 3}
   - {fileID: 437638534189841283, guid: 75555c038643d884dad80c45a1983dbb, type: 3}
   - {fileID: 8175946549252945021, guid: 5c3a46e0b2f86114f9725f375fed355e, type: 3}
+  - {fileID: 1082004107626594682, guid: d1d04ad236a4ca64cbdffa6d6db88f58, type: 3}
   CurrentUpgradePool: []
   Rumble: 0
   DefaultChallengePoints: 15
