@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4197007132835258238
 SpriteRenderer:
@@ -105,9 +105,8 @@ MonoBehaviour:
   DestroyOtherAttacks: 0
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
-  DestroyAttackAfterSeconds: 10
+  DestroyAttackAfterSeconds: 5
   Attacker: 0
-  SecondsToDissappear: 5
   OozedEnemyColor: {r: 0.16067994, g: 0.4811321, b: 0.24836378, a: 1}
 --- !u!58 &-397421637055376529
 CircleCollider2D:

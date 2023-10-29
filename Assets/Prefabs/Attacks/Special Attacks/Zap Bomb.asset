@@ -16,7 +16,7 @@ MonoBehaviour:
   Speed: 0
   EnemyMove: 0
   TimeBetweenMovements: 0
-  HealthPoints: 10
+  HealthPoints: 3
   Damage: 0
   ContactDamage: 0
   KnockBackForce: 0

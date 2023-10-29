@@ -23,7 +23,7 @@ public class BossAttackType : MonoBehaviour
 
     [Tooltip("Seconds between waves of attacks")]
     public float AttackCycleCooldown;
-    [Tooltip("Seconds between each attack gameobject being spawned")]
+    [Tooltip("Seconds between each call of PerformAtttack in a cycle")]
     public float AttackInterval;
     [Tooltip("# of attack objects spawned per cycle")]
     public float AttacksPerCycle;
@@ -101,4 +101,6 @@ public class BossAttackType : MonoBehaviour
             yield return new WaitForSeconds(AttackCycleCooldown);
         }
     }
+
+
 }

@@ -21,38 +21,13 @@ public class RandomAttackSpawner : BossAttackType
 
     public override void PerformAttack()
     {
-        Vector2 randomPosition = GetRandomPosition();
+        Vector2 randomPosition = BossAttackUtilities.GetRandomPosition((Vector2)transform.position, AttackDistance, LM);
         Instantiate(AttackPrefab, randomPosition, Quaternion.identity);
 
         if(ratbossAnimator != null)
             ratbossAnimator.SetTrigger("FireMortar");
     }
 
-    /// <summary>
-    /// shoots a raycast in a random direction and gets a random point along it
-    /// </summary>
-    private Vector2 GetRandomPosition()
-    {
-        //Vector2 direction = (Vector2)Random.rotation.eulerAngles;
-        Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-
-        direction.Normalize();
-
-        //Debug.Log("Direction_is_" + direction);
-
-        float randomPercent = Random.Range(0.25f, 0.75f);
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position,direction,10 * randomPercent, LM);
-
-        if (hitInfo.transform != null)
-        {
-            Debug.DrawLine(transform.position, hitInfo.point, Color.blue,1);
-            return hitInfo.point;
-        }
-        else
-        {
-            Debug.DrawLine(transform.position, (Vector2)transform.position + (direction * (10 * randomPercent)), Color.red,1);
-            return (Vector2)transform.position + (direction * (10 * randomPercent));
-        }
-    }
+    
 }
 
