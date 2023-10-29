@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SwordEnemy : EnemyBehaviour
 {
@@ -11,6 +12,7 @@ public class SwordEnemy : EnemyBehaviour
     public float AttackPlayerDistance = 7;
     public int AmountOfAttacks;
     public float TimeBeforeAttacking;
+    public bool canRotate;
 
     private Coroutine attackingCoroutine;
 
@@ -19,8 +21,10 @@ public class SwordEnemy : EnemyBehaviour
     {
         base.Start();
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
+        canRotate = true;
         StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
+        
     }
 
     
@@ -29,11 +33,14 @@ public class SwordEnemy : EnemyBehaviour
     {
         while (this.gameObject != null)
         {
-            Vector3 vectorToTarget = player.transform.position - transform.position;
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
-            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * Speed);
-
+            if(canRotate == true)
+            {
+                Vector3 vectorToTarget = player.transform.position - transform.position;
+                float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
+                Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * Speed);
+            }
+            
             yield return null;
         }
 
@@ -63,8 +70,12 @@ public class SwordEnemy : EnemyBehaviour
         {
             yield return new WaitForSeconds(1);
             attack.SetActive(true);
+            canRotate = false;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             yield return new WaitForSeconds(1);
             attack.SetActive(false);
+            gameObject.GetComponent<NavMeshAgent>().enabled = true;
+            canRotate = true;
         }
         yield return new WaitForSeconds(TimeBeforeAttacking);
         attackingCoroutine = null;
