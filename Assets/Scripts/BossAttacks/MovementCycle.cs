@@ -6,6 +6,7 @@
 * Brief Description : Shoots raycasts from the gameobject. chooses a random 
 * point between that ray.
 * Moves guy there.
+* Uses MoveUnitsPerSecond from BossBehaviour.cs
 * *****************************************************************************/
 
 using System.Collections;
@@ -15,7 +16,6 @@ using UnityEngine;
 public class MovementCycle : BossAttackType
 {
     public float MaxMovementDistance;
-    public float SecondsPerUnit;
 
     public LayerMask LM;
 
@@ -28,7 +28,7 @@ public class MovementCycle : BossAttackType
 
         Vector2 randomPosition = BossAttackUtilities.GetRandomPosition((Vector2)transform.position, MaxMovementDistance, LM);
 
-        Debug.Log ("moving boss to " + randomPosition);
+        //Debug.Log ("moving boss to " + randomPosition);
 
         moveCoroutine = StartCoroutine(MoveAcross(transform.position, randomPosition));
     }
@@ -36,7 +36,7 @@ public class MovementCycle : BossAttackType
     private IEnumerator MoveAcross(Vector2 startPoint, Vector2 endPoint)
     {
         float distance = Vector2.Distance(startPoint, endPoint);
-        float totalSecondsToMove = distance * SecondsPerUnit;
+        float totalSecondsToMove = distance * bossBehaviour.MoveUnitsPerSecond;
 
         float t = 0;
         while(t < totalSecondsToMove)

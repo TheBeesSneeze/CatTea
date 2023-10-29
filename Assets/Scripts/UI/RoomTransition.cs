@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name :         SceneTransition.cs
+* File Name :         RoomTransition.cs
 * Author(s) :         Toby Schamberger
 * Creation Date :     10/27/2023
 *
@@ -10,9 +10,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneTransition : MonoBehaviour
+public class RoomTransition : MonoBehaviour
 {
-    public static SceneTransition Instance { get; private set; }
+    public static RoomTransition Instance { get; private set; }
     public float TotalTransitionSeconds;
 
     public RectTransform TransitionSquare;
