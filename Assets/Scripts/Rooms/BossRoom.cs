@@ -61,6 +61,7 @@ public class BossRoom : EnemyRoom
 
     public void OnBossDeath()
     {
+        bossDead = true;
         roomCleared = true;
 
         if(Door != null)

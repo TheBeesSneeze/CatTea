@@ -320,7 +320,7 @@ public class PlayerController : MonoBehaviour
 
             rangedPlayerController.CorrectGunPosition();
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
         aimingCoroutine = null;
     }
@@ -333,16 +333,19 @@ public class PlayerController : MonoBehaviour
     {
         InputDirection = obj.ReadValue<Vector2>();
         Vector2 newMoveDiection = InputDirection;
-
+    
         //cool slide
-        for (int i = 0; i < slideIterations && moving; i++)
+        float t = 0; // 0 <= t <= slideSeconds
+        while (t < slideSeconds)
         {
+            t += Time.deltaTime;
+
             MoveDirection = BlendMovementDirections(MoveDirection, newMoveDiection, slideAmount);
 
-            if(!ignoreMove)
+            if (!ignoreMove)
                 myRigidbody.velocity = MoveDirection * playerBehaviour.Speed;
 
-            yield return new WaitForSeconds(slideSeconds/ slideIterations);
+            yield return null;
         }
 
         //may fuck things up:
@@ -360,7 +363,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!ignoreMove)
             {
-                myRigidbody.velocity = MoveDirection * playerBehaviour.Speed;
+                myRigidbody.velocity = MoveDirection * playerBehaviour.Speed; //no Time.deltaTime bc its just velocity being changed
             }
             yield return null;
         }
@@ -388,12 +391,15 @@ public class PlayerController : MonoBehaviour
     /// <returns></returns>
     protected IEnumerator SlowMovement()
     {
-        for(int i = 0; i<10 && !moving; i++)
+        float t = 0; // 0 <= t <= slowSeconds
+        while(t < slowSeconds)
         {
+            t+= Time.deltaTime;
+
             //notice this doesnt update MoveDirection
             myRigidbody.velocity = BlendMovementDirections(MoveDirection, Vector2.zero, slowAmount);
 
-            yield return new WaitForSeconds(slowSeconds / 10);
+            yield return null;
         }
         myRigidbody.velocity = Vector2.zero;
         movingCoroutine = null;

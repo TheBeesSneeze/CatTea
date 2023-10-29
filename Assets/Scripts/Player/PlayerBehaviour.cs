@@ -105,7 +105,7 @@ public class PlayerBehaviour : CharacterBehaviour
         
         RangedAttackDamage = CurrentPlayerStats.RangedAttackDamage;
         ProjectileSpeed = CurrentPlayerStats.ProjectileSpeed;
-        ShotsPerBurst = CurrentPlayerStats.ShotsShotsPerBurst;
+        ShotsPerBurst = CurrentPlayerStats.ShotsPerBurst;
         TimeBetweenShots = CurrentPlayerStats.TimeBetweenShots;
         AmmoRechargeTime = CurrentPlayerStats.AmmoRechargeTime;
         RangedAttackKnockback = CurrentPlayerStats.RangedAttackKnockback;

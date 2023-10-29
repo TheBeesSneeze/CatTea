@@ -119,6 +119,7 @@ public class RangedPlayerController : MonoBehaviour
         if (playerController.IgnoreAllInputs) return;
 
         //shootingCoroutine = null;
+        RechargeAmmo();
     }
 
     /// <summary>

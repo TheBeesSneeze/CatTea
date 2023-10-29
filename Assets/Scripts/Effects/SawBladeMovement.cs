@@ -1,0 +1,70 @@
+/*******************************************************************************
+* File Name :         SawBladeMovement.cs
+* Author(s) :         Toby Schamberger
+* Creation Date :     10/29/2023
+*
+* Brief Description : sets the velocity to a random value on the connected
+* rigidbody.
+* Reverses rotation when it collides with walls.
+* Maintains a constant speed.
+*****************************************************************************/
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class SawBladeMovement : MonoBehaviour
+{
+    public float Speed;
+
+    private ConstantRotation constantRotation;
+    private Rigidbody2D rigidbody;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        constantRotation = GetComponent<ConstantRotation>();
+        rigidbody = GetComponent<Rigidbody2D>();
+        RandomizeVelocity();
+    }
+
+    private void RandomizeVelocity()
+    {
+        if (rigidbody == null)
+        {
+            Debug.LogWarning("No rigidbody on " + gameObject.name);
+            return;
+        }
+
+        float x = Random.Range(-1f, 1f);
+        float y = Random.Range(-1f, 1f);
+
+        Vector2 newVelocity = new Vector2(x, y);
+       
+        rigidbody.velocity = newVelocity;
+
+        MaintainConstantVelocity();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        string layer = LayerMask.LayerToName(collision.gameObject.layer);
+
+        if (layer.Equals("Level"))
+        {
+            constantRotation.Speed *= -1;
+
+            MaintainConstantVelocity();
+        }
+    }
+
+    /// <summary>
+    /// Sets the velocity to a magnitude of Speed
+    /// </summary>
+    public void MaintainConstantVelocity()
+    {
+        Vector2 velocity = rigidbody.velocity.normalized;
+        rigidbody.velocity = velocity * Speed;
+    }
+}

@@ -12,14 +12,17 @@ using UnityEngine;
 
 public class BossBehaviour : CharacterBehaviour
 {
-    public int StartHealth;
+    public float StartHealth;
+    public float MoveUnitsPerSecond;
     //public int CurrentHealth;
 
     [HideInInspector] public BossRoom MyRoom;
+    protected PlayerBehaviour playerBehaviour;
 
     // Start is called before the first frame update
     protected override void Start()
     {
+        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         MaxHealthPoints = StartHealth; //yeah
         base.Start();
     }
