@@ -44838,7 +44838,7 @@ PrefabInstance:
     - target: {fileID: 6287214852496280891, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: OutputRoom
       value: 
-      objectReference: {fileID: 573617396}
+      objectReference: {fileID: 1761744910}
     - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -50363,7 +50363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cde7ab0577e62044815443955fdca6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OutputRoom: {fileID: 0}
+  OutputRoom: {fileID: 1579598514}
   ThisRoom: {fileID: 1761744910}
   open: 0
   Rooms:
@@ -51348,6 +51348,10 @@ PrefabInstance:
     - target: {fileID: 495910377819613235, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 524965722425637159, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2004260516437011601, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
       propertyPath: m_SortingLayer
