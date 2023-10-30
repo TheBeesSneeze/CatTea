@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     public Gamepad MyGamepad;
     protected Animator myAnimator;
     protected GameManager gameManager;
+    private Settings settingsScript;
     
     //le sound
     public AudioSource walkSound;
@@ -103,6 +104,7 @@ public class PlayerController : MonoBehaviour
         meleePlayerController = GetComponent<MeleePlayerController>();
 
         gameManager = GameObject.FindObjectOfType<GameManager>();
+        settingsScript = GameObject.FindObjectOfType<Settings>();
 
         StartGunMode();
 
@@ -235,7 +237,8 @@ public class PlayerController : MonoBehaviour
             return;
 
         //THIS IS TEMP CODE
-        Application.Quit();
+        // Application.Quit();
+        settingsScript.OpenPauseMenu();
     }
 
     protected virtual void Cheat_started(InputAction.CallbackContext obj)
