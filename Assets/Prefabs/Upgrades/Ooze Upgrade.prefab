@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1082004107626594682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8922007769630797105}
+  - component: {fileID: 3171173349251432673}
+  m_Layer: 0
+  m_Name: Ooze Upgrade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8922007769630797105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082004107626594682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 139.37431, y: -6.675187, z: 0.03184307}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3171173349251432673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082004107626594682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ae455e2b1fb2b42ab9ef468e79d0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplaySprite: {fileID: 21300000, guid: e30a024f2fac1584ca176e9afb1ec847, type: 3}
+  DisplayName: Ooze
+  DisplayDescription: Leave a trail of ooze, dealing damage over time to enemies.
+  ActivationType: 0
+  OozePrefab: {fileID: 1346377120068739493, guid: 4b9f8f746f874854dbdd336260730bc6, type: 3}
+  MinSecondsBetweenOozePuddles: 0
+  MaxSecondsBetweenOozePuddles: 0.5
+  MaxSpawningDistance: 0.2

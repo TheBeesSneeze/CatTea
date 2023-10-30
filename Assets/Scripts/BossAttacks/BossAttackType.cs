@@ -23,10 +23,13 @@ public class BossAttackType : MonoBehaviour
 
     [Tooltip("Seconds between waves of attacks")]
     public float AttackCycleCooldown;
-    [Tooltip("Seconds between each attack gameobject being spawned")]
+    [Tooltip("Seconds between each call of PerformAtttack in a cycle")]
     public float AttackInterval;
     [Tooltip("# of attack objects spawned per cycle")]
     public float AttacksPerCycle;
+
+    protected BossBehaviour bossBehaviour;
+    protected Animator ratbossAnimator;
 
     protected PlayerBehaviour playerBehaviour;
     protected GameObject Player;
@@ -34,16 +37,15 @@ public class BossAttackType : MonoBehaviour
     protected bool CurrentlyAttacking;
     protected Coroutine AttackCoroutine;
 
-    protected Animator ratbossAnimator;
-
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
-    public virtual void Start()
+    protected virtual void Start()
     {
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         Player = playerBehaviour.gameObject;
 
+        bossBehaviour = GetComponent<BossBehaviour>();
         ratbossAnimator = GetComponent<Animator>();
 
         if (StartAttackCycleOnAwake)
@@ -82,13 +84,19 @@ public class BossAttackType : MonoBehaviour
         CurrentlyAttacking = false;
 
         if (AttackCoroutine != null)
+        {
             StopCoroutine(AttackCoroutine);
+            AttackCoroutine = null;
+        }
     }
     
     private IEnumerator AttackLoop()
     {
+        
         while (CurrentlyAttacking)
         {
+            yield return new WaitForSeconds(AttackCycleCooldown/2);
+
             int attacks = 0;
             while (attacks < AttacksPerCycle)
             {
@@ -98,7 +106,12 @@ public class BossAttackType : MonoBehaviour
 
                 yield return new WaitForSeconds(AttackInterval);
             }
-            yield return new WaitForSeconds(AttackCycleCooldown);
+
+            yield return new WaitForSeconds(AttackCycleCooldown/2);
         }
+
+        AttackCoroutine = null;
     }
+
+
 }

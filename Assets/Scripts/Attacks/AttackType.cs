@@ -24,8 +24,8 @@ public class AttackType : MonoBehaviour
 
     public float KnockbackForce;
 
-    [Tooltip("If characters will take damage when colliding with the effect")]
-    public bool DamageOnCollision = true;
+    //[Tooltip("If characters will take damage when colliding with the effect")]
+    //public bool DamageOnCollision = true;
 
     [Tooltip("If true, the effect will be destroyed by colliders with the 'Wall' tag")]
     public bool DestroyedByWalls = true;
@@ -91,7 +91,7 @@ public class AttackType : MonoBehaviour
         Attacker = AttackSource.General;
     }
 
-    public virtual void OnPlayerCollision(Collider2D collision)
+    protected virtual void OnPlayerCollision(Collider2D collision)
     {
         if(Attacker.Equals(AttackSource.Enemy) || Attacker.Equals(AttackSource.General))
         {
@@ -104,7 +104,7 @@ public class AttackType : MonoBehaviour
         }
     }
 
-    public virtual void OnEnemyCollision(Collider2D collision)
+    protected virtual void OnEnemyCollision(Collider2D collision)
     {
         if (Attacker.Equals(AttackSource.Player) || Attacker.Equals(AttackSource.General))
         {
@@ -117,7 +117,7 @@ public class AttackType : MonoBehaviour
         }
     }
 
-    public virtual void OnBossCollision(Collider2D collision)
+    protected virtual void OnBossCollision(Collider2D collision)
     {
         if (Attacker.Equals(AttackSource.Player))
         {
@@ -130,7 +130,7 @@ public class AttackType : MonoBehaviour
         }
     }
 
-    public virtual void OnAttackCollision(AttackType attack)
+    protected virtual void OnAttackCollision(AttackType attack)
     {
         if (gameObject.tag == "Player Attack" && attack.gameObject.tag == "Player Attack")
             return;
@@ -150,7 +150,7 @@ public class AttackType : MonoBehaviour
     {
         string tag = collision.tag;
 
-        Debug.Log(tag);
+        //Debug.Log(tag);
 
         if (tag.Equals("Wall") && DestroyedByWalls)
         {
@@ -193,7 +193,7 @@ public class AttackType : MonoBehaviour
         OnTriggerEnter2D(collision.collider);
     }
 
-    public IEnumerator DestroyAfterSeconds()
+    protected virtual IEnumerator DestroyAfterSeconds()
     {
         yield return new WaitForSeconds(DestroyAttackAfterSeconds);
 

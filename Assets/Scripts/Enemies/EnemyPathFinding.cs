@@ -28,6 +28,7 @@ public class EnemyPathFinding : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        
 
  //       StartCoroutine(UpdateTarget());
     }
@@ -56,6 +57,9 @@ public class EnemyPathFinding : MonoBehaviour
 
     private void SetAgentPosition()
     {
-        agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
+        if(agent.enabled == true)
+        {
+            agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
+        }
     }
 }

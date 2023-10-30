@@ -12,25 +12,38 @@ using UnityEngine;
 
 public class BossBehaviour : CharacterBehaviour
 {
-    public int StartHealth;
+    public float StartHealth;
+    public float MoveUnitsPerSecond;
     //public int CurrentHealth;
 
     [HideInInspector] public BossRoom MyRoom;
+    protected PlayerBehaviour playerBehaviour;
 
     // Start is called before the first frame update
     protected override void Start()
     {
+        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         MaxHealthPoints = StartHealth; //yeah
         base.Start();
     }
 
-    public override bool TakeDamage(float Damage)
+    public override bool TakeDamage(float damage)
     {
-        return base.TakeDamage(Damage);
+        return TakeDamage(damage,true);
+    }
+
+    public override bool TakeDamage(float damage, bool onDamageEvent)
+    {
+        if (HealthPoints - damage > 0 && onDamageEvent)
+            GameEvents.Instance.OnEnemyDamage(this);
+
+        return base.TakeDamage(damage);
     }
 
     public override void Die()
     {
+        GameEvents.Instance.OnEnemyDeath(this.transform.position);
+
         Debug.Log("Boss die!");
         MyRoom.OnBossDeath();
 

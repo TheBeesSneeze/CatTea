@@ -31,6 +31,7 @@ public class RangedPlayerController : MonoBehaviour
     public Sprite GunOnSprite;
     public Sprite GunOffSprite;
     public AudioSource ShootSound;
+    public AudioClip DryFire;
 
     private SpriteRenderer gunSpriteRenderer;
     
@@ -118,6 +119,7 @@ public class RangedPlayerController : MonoBehaviour
         if (playerController.IgnoreAllInputs) return;
 
         //shootingCoroutine = null;
+        RechargeAmmo();
     }
 
     /// <summary>
@@ -139,6 +141,11 @@ public class RangedPlayerController : MonoBehaviour
         UpdateGunSprite();
 
         playerBehaviour.Speed = oldSpeed;
+
+        if (BulletsLeft <= 0)
+        {
+            AudioSource.PlayClipAtPoint(DryFire, transform.position);
+        }
 
         canShoot = true;
         RechargeAmmo();
@@ -220,4 +227,5 @@ public class RangedPlayerController : MonoBehaviour
         }
         reloadAmmoCoroutine = null;
     }
+
 }

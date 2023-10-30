@@ -38,7 +38,8 @@ public class CharacterBehaviour : MonoBehaviour
     private Coroutine hitAnimationCoroutine;
     private Coroutine invincibleCoroutine;
 
-    private Color originalColor;
+    [HideInInspector] public Color originalColor;
+    [HideInInspector] public Color colorOverride;
 
     protected virtual void Start()
     {
@@ -48,6 +49,7 @@ public class CharacterBehaviour : MonoBehaviour
         mySpriteRenderer = GetComponent<SpriteRenderer>();
 
         originalColor = mySpriteRenderer.color;
+        colorOverride = originalColor;
 
         SetStatsToDefaults();
     }
@@ -146,7 +148,7 @@ public class CharacterBehaviour : MonoBehaviour
 
         yield return new WaitForSeconds(damageColorChangeSeconds);
 
-        mySpriteRenderer.color = originalColor;
+        mySpriteRenderer.color = colorOverride;
     }
 
     /// <summary>

@@ -20,8 +20,8 @@ TagManager:
   - Button
   - Player
   - Level
-  - 
-  - 
+  - Enemy
+  - Boss
   - 
   - 
   - 
@@ -44,9 +44,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Button
+    uniqueID: 2073980891
+    locked: 0
+  - name: Level
+    uniqueID: 3305504589
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Button
-    uniqueID: 2073980891
+  - name: Attacks
+    uniqueID: 50652535
+    locked: 0
+  - name: Enemies
+    uniqueID: 2829806993
+    locked: 0
+  - name: Interractable object
+    uniqueID: 1247194897
+    locked: 0
+  - name: Player
+    uniqueID: 2760747015
     locked: 0

@@ -40,8 +40,8 @@ public class PlayerStats : ScriptableObject
 
     public int RangedAttackDamage;
     public float ProjectileSpeed;
-    [Tooltip("Seconds for Primary attack to complete")]
-    public int ShotsShotsPerBurst;
+    [Tooltip("Number of bullets")]
+    public int ShotsPerBurst;
     [Tooltip("Seconds for Primary attack to complete")]
     public float TimeBetweenShots;
     public float AmmoRechargeTime;

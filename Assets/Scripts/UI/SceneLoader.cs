@@ -12,7 +12,10 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void GameEndScreenLoad()
     {
         SceneManager.LoadScene(3);
