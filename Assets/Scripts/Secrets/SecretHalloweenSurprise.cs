@@ -15,6 +15,7 @@ using UnityEngine.UI;
 public class SecretHalloweenSurprise : MonoBehaviour
 {
     public Sprite SPOOKY_PUMPKIN;
+    public Sprite MERRY_CHRISTMAS;
 
     // Start is NOT called before the first frame update! MWAHAHAHAHA
     void Start()
@@ -22,14 +23,20 @@ public class SecretHalloweenSurprise : MonoBehaviour
         DateTime halloween = new DateTime(DateTime.Now.Year, 10, 31);
         if (DateTime.Today == halloween)
         {
-            StartCoroutine(HALLOWEEN_SURPRISE());
+            StartCoroutine(HALLOWEEN_SURPRISE(SPOOKY_PUMPKIN));
+        }
+
+        DateTime christmas = new DateTime(DateTime.Now.Year, 12, 25);
+        if (DateTime.Today == christmas)
+        {
+            StartCoroutine(HALLOWEEN_SURPRISE(MERRY_CHRISTMAS));
         }
     }
 
     /// <summary>
     /// MWAHAHAHAHA HAPPY HALLOWEEN
     /// </summary>
-    private IEnumerator HALLOWEEN_SURPRISE()
+    private IEnumerator HALLOWEEN_SURPRISE(Sprite HOLLIDAY_SURPRISE)
     {
 
         yield return new WaitForSeconds(1);
@@ -47,14 +54,14 @@ public class SecretHalloweenSurprise : MonoBehaviour
 
             foreach (SpriteRenderer VICTIM in EVERY_SPRITE_IN_THE_GAME)
             {
-                VICTIM.sprite = SPOOKY_PUMPKIN;
+                VICTIM.sprite = HOLLIDAY_SURPRISE;
             }
 
             Image[] EVERY_UI_SPRITE_IN_THE_GAME = GameObject.FindObjectsOfType<Image>();
 
             foreach (Image VICTIM in EVERY_UI_SPRITE_IN_THE_GAME)
             {
-                VICTIM.sprite = SPOOKY_PUMPKIN;
+                VICTIM.sprite = HOLLIDAY_SURPRISE;
             }
 
             yield return null;
