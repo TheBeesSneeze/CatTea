@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c92221360636a14c83875d475baa79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultDialogue: {fileID: 11400000, guid: b2ade5de2f3c9c14197d5daacbe095bd, type: 2}
+  DefaultDialogue: {fileID: 0}
   LoopText: 0
   ButtonPrompt: {fileID: 2400125076962185776}
   TextBox: {fileID: 0}
@@ -93,8 +93,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1247194897
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.90075994, b: 0.39999998, a: 1}
@@ -213,8 +213,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1247194897
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -424127938, guid: da83c79419469ae4580ca02bb6b847e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -237,7 +237,7 @@ Animator:
   m_GameObject: {fileID: 2400125076962185776}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b4c8660a89ca802458a1dad0f270d498, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1be5b3da1c210af4b96aacd69ea021fe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -13,7 +13,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class UpgradeIcon : MonoBehaviour, IPointerEnterHandler
+public class UpgradeIcon : MonoBehaviour
 {
     public GameObject TextPanel;
 
@@ -34,15 +34,4 @@ public class UpgradeIcon : MonoBehaviour, IPointerEnterHandler
         UpgradeHeader.text = upgrade.DisplayName;
         UpgradeDescription.text = upgrade.DisplayDescription;
     }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        TextPanel.SetActive(true);
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        Debug.Log("fuck you");
-        TextPanel.SetActive(false);
-    }
-
 }

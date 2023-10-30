@@ -7,6 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     public GameObject creditsPage;
     public GameObject controlsPage;
+    public GameObject pauseMenu;
 
     public void GameSceneLoad()
     {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7250060864491448804}
   - component: {fileID: 1947615397249961277}
   - component: {fileID: 8216565549912317959}
+  - component: {fileID: 4995305341530485608}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -86,3 +87,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70cc8fc5b4868946b5af35b9ea6e17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4995305341530485608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815842219126633212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649cf1dd1a4d02d44ba8d198f41e64ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SPOOKY_PUMPKIN: {fileID: 21300000, guid: 7b65e21f477db6f49959884f1235b0f0, type: 3}
