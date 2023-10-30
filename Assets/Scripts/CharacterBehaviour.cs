@@ -29,6 +29,7 @@ public class CharacterBehaviour : MonoBehaviour
     [HideInInspector] public bool TakeKnockback = true;
 
     //magic numbers
+    protected bool capHPAtMax = true;
     protected float damageColorChangeSeconds = 0.1f;
 
     //lame stuff
@@ -161,6 +162,12 @@ public class CharacterBehaviour : MonoBehaviour
 
     public virtual void SetHealth(float value)
     {
+        Debug.Log(MaxHealthPoints + " max");
+        if(capHPAtMax)
+        {
+            value = Mathf.Clamp(value, value, MaxHealthPoints);
+        }
+
         _healthPoints = value;
     }
 

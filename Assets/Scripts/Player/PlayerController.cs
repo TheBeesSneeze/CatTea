@@ -469,7 +469,7 @@ public class PlayerController : MonoBehaviour
 
             rangedPlayerController.CorrectGunPosition();
 
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
     }
 
