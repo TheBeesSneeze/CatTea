@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
   m_Name: FergusDialogue1
   m_EditorClassIdentifier: 
-  TextList: []
+  TextList:
+  - Hey! HEEEEEEEEEEEEYYYYYY!
   Character1Name: Jade
   Character2Name: Fergus
   Character1DialogueSound: {fileID: 0}
   Character2DialogueSound: {fileID: 0}
-  WhoIsTalking: 
+  WhoIsTalking: 00000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
