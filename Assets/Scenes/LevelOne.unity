@@ -25577,7 +25577,7 @@ MonoBehaviour:
   challengePointsPerWave: 0
   shadowExpandingScale: 3
   BossPool:
-  - {fileID: 1833572816468279668, guid: 2e2842c3cc1eabe44b9697a07840ff82, type: 3}
+  - {fileID: 4651791696064841288, guid: 4cba3d58350b1ee4d874b88dd4328c12, type: 3}
   BossSpawnPosition: {fileID: 1266416503}
 --- !u!66 &573617397
 CompositeCollider2D:
@@ -111690,10 +111690,6 @@ PrefabInstance:
     - target: {fileID: 7040719307647859337, guid: a37bcef657cad1a44b56466e82e20ca9, type: 3}
       propertyPath: m_Name
       value: NPC Dialogue
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040719307647859337, guid: a37bcef657cad1a44b56466e82e20ca9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
