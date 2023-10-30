@@ -68,6 +68,8 @@ public class NPCBehaviour : MonoBehaviour
             dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
 
         LoadScript(DefaultDialogue);
+
+        ButtonPrompt.SetActive(false);
     }
 
     /// <summary>
