@@ -53,7 +53,7 @@ public class NPCBehaviour : MonoBehaviour
 
     private PlayerController player;
     private bool SkipText;
-    private AudioSource dialogueSoundSource;
+    public AudioSource dialogueSoundSource;
 
     private int textIndex = 0;
     private bool typing;
@@ -61,7 +61,12 @@ public class NPCBehaviour : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<PlayerController>();
-        dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
+
+        if(DialogueCanvas == null)
+            DialogueCanvas = GameObject.Find("NPC Dialogue");
+
+        if(dialogueSoundSource == null)
+            dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
 
         LoadScript(DefaultDialogue);
     }
