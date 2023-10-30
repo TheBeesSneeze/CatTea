@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1725075360055022637}
   - component: {fileID: 6453599592960874926}
   - component: {fileID: 3277883369619410981}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrimaryStrikeAngle: 90
-  StrikeFrames: 10
   SwordCollider: {fileID: 6104793393067217820}
   RotatePoint: {fileID: 8235565922712789482}
   SwordSlash: {fileID: 6469831411983301483}
@@ -208,8 +207,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1534220281
+  m_SortingLayer: 4
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 68fae4e083561e84fbdb1b468dd61d68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -345,7 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661591813813728082}
   - component: {fileID: 49101537758378645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SoundSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8330052405250243782}
   - component: {fileID: 2004260516437011601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,8 +534,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1534220281
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: -878289952, guid: aa8b1a717bb583c4bbed91f65b040708, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -559,7 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 319019540149506048}
   - component: {fileID: 524965722425637159}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WalkSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +592,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 21349ce965adaf842bbcd4e3095aa32d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -686,7 +685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8235565922712789482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +720,7 @@ GameObject:
   - component: {fileID: 317149631529205859}
   - component: {fileID: 4584060895869052367}
   - component: {fileID: 6104793393067217820}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword
   m_TagString: Player Attack
   m_Icon: {fileID: 0}
@@ -781,8 +780,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1534220281
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 6d9116bcdd61bff4d8f048e826773910, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -870,7 +869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2261837781953477157}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mirror Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -903,7 +902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1156651862964646688}
   - component: {fileID: 8809075676767013996}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +936,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: da272c404f70ca144a4e3edfa6079782, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1030,7 +1029,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6915454659560321753}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rotating Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4280775379747866790}
   - component: {fileID: 6767942994666747979}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Aim Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,14 +1077,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8196910879550942247}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0056522177, w: 0.999984}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.36, y: 0.36, z: 0.36}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6710800174069000953}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.648}
 --- !u!212 &6767942994666747979
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1148,7 +1147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7482473749320953558}
   - component: {fileID: 6469831411983301483}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SwordSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}

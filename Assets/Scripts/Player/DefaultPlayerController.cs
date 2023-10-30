@@ -23,8 +23,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class DefaultPlayerController : MonoBehaviour
 {
+    //wrong script. go to PlayerController.cs
+
+    /*
     //Really boring settings:
     [Tooltip("The amount of slippiness the player experiences when changing movement directions (THIS VALUE MUST BE BETWEEN 0 and 1)")]
     private static float slideAmount = 0.75f; // this needs to be a number between 0 and 1. higher number for more slidey
@@ -380,4 +384,5 @@ public class DefaultPlayerController : MonoBehaviour
 
         cheat.started -= Cheat_started;
     }
+    */
 }

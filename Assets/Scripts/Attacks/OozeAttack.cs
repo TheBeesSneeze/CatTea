@@ -22,7 +22,6 @@ public class OozeAttack : AttackType
 
     //private OozeUpgrade oozeUpgrade;
 
-
     protected override void Start()
     {
         //oozeUpgrade = GameObject.FindObjectOfType<OozeUpgrade>();
@@ -70,14 +69,14 @@ public class OozeAttack : AttackType
 
     protected override void OnBossCollision(Collider2D collision)
     {
-        Debug.Log("boss ooze");
+        //Debug.Log("boss ooze");
         DamageOverTime DOT = collision.AddComponent<DamageOverTime>();
         DOT.Initialize(Damage, DestroyAttackAfterSeconds * t, OozedEnemyColor);
     }
 
     protected override void OnEnemyCollision(Collider2D collision)
     {
-        Debug.Log("enemy ooze");
+        //Debug.Log("enemy ooze");
         DamageOverTime DOT = collision.AddComponent<DamageOverTime>();
         DOT.Initialize(Damage, DestroyAttackAfterSeconds * t, OozedEnemyColor);
     }

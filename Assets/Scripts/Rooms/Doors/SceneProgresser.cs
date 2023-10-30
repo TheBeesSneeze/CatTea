@@ -24,7 +24,9 @@ public class SceneProgresser : DoorManager
 
     protected override void AttemptEnterDoor()
     {
-        if(open)
+        open = ThisRoom.CheckRoomCleared();
+
+        if (open)
             EnterDoor();
     }
 }
