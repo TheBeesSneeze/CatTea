@@ -17,16 +17,12 @@ public class UpgradeUI : MonoBehaviour
     public List<Image> IconList;
     public void LoadNewUpgrade(UpgradeType newUpgrade)
     {
-        Sprite upgradeIcon = newUpgrade.DisplaySprite;
-
         Image newIcon = IconList[NumberOfUpgrades];
-        newIcon.gameObject.SetActive(true);
-        newIcon.sprite = upgradeIcon;
+        UpgradeIcon icon = newIcon.GetComponent<UpgradeIcon>();
+        icon.LoadUpgrade(newUpgrade);
 
         //change x position of ui icon based on how many things there are
 
-        
         NumberOfUpgrades++;
-
     }
 }
