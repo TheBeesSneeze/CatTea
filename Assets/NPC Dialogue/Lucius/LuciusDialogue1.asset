@@ -12,11 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
   m_Name: LuciusDialogue1
   m_EditorClassIdentifier: 
-  TextList: []
+  TextList:
+  - "Well, well, well. Look who's made it past my loyal followers. You know, when
+    I started this\u2026"
+  - "Yeah, yeah, can we skip the whole monologue and just cut to the part where I
+    kill you? I\u2019m kinda in a hurry."
+  - "Patience, child. Patience is the key to handling a succesful business. That\u2019s
+    the number one rule that I followed when I started this endeavor."
+  - You cannot just reach for the power whenever you want. The original Yongen knew
+    this. Their domination took decades, but it worked.
+  - They made Chai the most powerful city in the world, with themselves as the leaders.
+  - Of course, having such great power is always a risk. A risk that they were, unfortunately,
+    not ready for.
+  - "Valentine and his pack of liberals couldn\u2019t possibly understand the immense
+    importance of true power."
+  - "They\u2019re weak. A bunch of snowflakes jutting around in the wind, waiting
+    to land and melt into the earth where they belong."
+  - Then, that water will fuel the great uprising. Everyone sees it. Everyone knows
+    of the corruption and the lies they spread.
+  - "It's time that we burst from the ground and\u2026"
+  - "What? And let you rule everything? I bet you couldn\u2019t even convince your
+    mother to love you, much less a whole entire nation."
+  - "DON\u2019T YOU DARE TALK ABOUT MY MOMMY!"
+  - "She was dedicated to the Yongen above everything else, even her own family.
+    With your petulance, I would think your mother wasn\u2019t dedicated to anything
+    but herself."
+  - Oh, she was dedicated! Dedicated to the great consumption of hooch! She would
+    drink non-stop all day!
+  - It would certainly explain how you turned out like this.
+  - "Really? I can\u2019t imagine what your mother did while you were in the womb
+    if this is the result we got."
+  - ENOUGH! I will not stand this disrespect of mommy any longer! Draw your weapon,
+    child, and let us end this.
+  - Fucking finally.
   Character1Name: Jade
   Character2Name: Lucius
   Character1DialogueSound: {fileID: 0}
   Character2DialogueSound: {fileID: 0}
-  WhoIsTalking: 
+  WhoIsTalking: 010000000000000001000000010000000100000001000000010000000100000001000000010000000000000001000000010000000000000001000000000000000100000000000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
