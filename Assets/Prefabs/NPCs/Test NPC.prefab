@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 1058597231469705136}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6463354550440856149
 MonoBehaviour:
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c92221360636a14c83875d475baa79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultDialogue: {fileID: 11400000, guid: b2ade5de2f3c9c14197d5daacbe095bd, type: 2}
+  DefaultDialogue: {fileID: 0}
   LoopText: 0
   ButtonPrompt: {fileID: 2400125076962185776}
   TextBox: {fileID: 0}
@@ -237,7 +237,7 @@ Animator:
   m_GameObject: {fileID: 2400125076962185776}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b4c8660a89ca802458a1dad0f270d498, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1be5b3da1c210af4b96aacd69ea021fe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
