@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 437638534189841283, guid: 75555c038643d884dad80c45a1983dbb, type: 3}
   - {fileID: 8175946549252945021, guid: 5c3a46e0b2f86114f9725f375fed355e, type: 3}
   - {fileID: 1082004107626594682, guid: d1d04ad236a4ca64cbdffa6d6db88f58, type: 3}
+  - {fileID: 5841676320258807325, guid: 1fb769e23a953e548b68451df2a7d443, type: 3}
   CurrentUpgradePool: []
   Rumble: 0
   DefaultChallengePoints: 15

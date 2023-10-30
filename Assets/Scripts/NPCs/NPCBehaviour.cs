@@ -10,7 +10,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -69,6 +68,8 @@ public class NPCBehaviour : MonoBehaviour
             dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
 
         LoadScript(DefaultDialogue);
+
+        ButtonPrompt.SetActive(false);
     }
 
     /// <summary>
