@@ -14,10 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextList:
   - Hey! HEEEEEEEEEEEEYYYYYY!
+  - "Oh, what\u2019s that? There\u2019s a 200kg weed shipment at the entrance?"
+  - What!? Let them in!
+  - "Wait, who the bloody hell are you? How\u2019d you get in here?"
+  - "Doesn\u2019t matter. Where\u2019s my gun?"
+  - "Your laugh? Wait a minute\u2026 you\u2019re that punk Jade. I thought my people
+    grained you?"
+  - If you mean killed, then yes, they did. But the pungent odor of revenge has brought
+    me back! Smells kinda like it does here, actually.
+  - "I don\u2019t have pears for this. Do you actually got any tea?"
+  - "What-What are you talking about? I don\u2019t have any tea, idiot."
+  - "So you're rude, annoying, and a liar AND my people are useless. This flower\u2019s
+    just going wonderfully."
+  - "I don\u2019t want to hear about your flower! Just tell me where the gun is!"
+  - "It\u2019s great, you know? I\u2019m surrounded by these bloody idiots who couldn\u2019t
+    make out the tip of their dogs from the tip of their\u2026!"
+  - Dumbass! Focus. Gun. Where is it?
+  - "Gotta deal with this tooth myself. Alright, let\u2019s get this over with."
   Character1Name: Jade
   Character2Name: Fergus
   Character1DialogueSound: {fileID: 0}
   Character2DialogueSound: {fileID: 0}
-  WhoIsTalking: 00000000
+  WhoIsTalking: 0000000000000000010000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
