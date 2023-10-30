@@ -388,6 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creditsPage: {fileID: 1521425265}
   controlsPage: {fileID: 825415028}
+  pauseMenu: {fileID: 0}
 --- !u!1 &272463832
 GameObject:
   m_ObjectHideFlags: 0
