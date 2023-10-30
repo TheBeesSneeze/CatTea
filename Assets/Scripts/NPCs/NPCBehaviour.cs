@@ -247,7 +247,7 @@ public class NPCBehaviour : MonoBehaviour
             dialogueSoundSource.clip = Character1DialogueSound;
 
         if (WhoIsTalking[textIndex].Equals(Talking.NPC))
-            dialogueSoundSource.clip = Character1DialogueSound;
+            dialogueSoundSource.clip = Character2DialogueSound;
 
         if (WhoIsTalking[textIndex].Equals(Talking.Nobody))
             dialogueSoundSource.clip = null;
