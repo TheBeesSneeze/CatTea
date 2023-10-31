@@ -15,8 +15,15 @@ public class SpiralProjectileAttack : BossAttackType
     public GameObject SpiralBulletPrefab;
     public float ProjectileSpeed;
 
+    //protected Animator yongenbossAnimator;
+
     public Transform RotationPivot;
     public Transform BulletSpawnPoint;
+
+    //protected override void Start()
+    //{
+    //    yongenbossAnimator = GetComponent<Animator>();
+    //}
 
     public override void PerformAttack()
     {
@@ -28,5 +35,8 @@ public class SpiralProjectileAttack : BossAttackType
         newBulletRB.velocity = bulletVelocity;
 
         newBullet.transform.eulerAngles = RotationPivot.eulerAngles;
+
+        //yongenbossAnimator.SetTrigger("SpiralAttack");
+
     }
 }
