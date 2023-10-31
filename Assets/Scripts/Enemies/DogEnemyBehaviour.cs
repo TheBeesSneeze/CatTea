@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DogEnemyBehaviour : EnemyBehaviour
 {
@@ -19,7 +20,11 @@ public class DogEnemyBehaviour : EnemyBehaviour
     public float TimeBetweenAttacks;
     public float AttackVelocity;
     public float AttackPlayerDistance = 7;
-    
+
+    protected Animator dogAnimator;
+
+    protected Vector2 enemyDirection;
+
     //magic numbers
     protected float rotationModifier = 90;
 
@@ -35,6 +40,10 @@ public class DogEnemyBehaviour : EnemyBehaviour
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
+
+        dogAnimator = GetComponent<Animator>();
+
+        StartCoroutine(UpdateAnimation());
     }
 
     
@@ -82,5 +91,20 @@ public class DogEnemyBehaviour : EnemyBehaviour
             newAttack.GetComponent<Rigidbody2D>().velocity = dif.normalized * AttackVelocity;
         }
         waveCoroutine = null;
+    }
+
+    protected IEnumerator UpdateAnimation()
+    {
+        while (true)
+        {
+            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
+            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
+
+            //Debug.Log(enemyDirection);
+
+            dogAnimator.SetFloat("XMovement", enemyDirection.x);
+            dogAnimator.SetFloat("YMovement", enemyDirection.y);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

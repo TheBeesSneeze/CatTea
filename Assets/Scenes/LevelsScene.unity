@@ -1483,6 +1483,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Snakeman (NPC)
       objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2ad6c1e9db135f5479a08365ff4804cf, type: 3}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: TextBox
       value: 
@@ -1509,6 +1525,14 @@ PrefabInstance:
       objectReference: {fileID: 728761830}
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
@@ -3260,6 +3284,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test NPC (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e24f13977e0a174b9fb468cb9e5293d, type: 3}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: TextBox
       value: 
@@ -3287,6 +3327,14 @@ PrefabInstance:
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_RootOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_LocalPosition.x

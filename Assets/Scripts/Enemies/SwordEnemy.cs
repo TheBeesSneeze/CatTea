@@ -8,6 +8,10 @@ public class SwordEnemy : EnemyBehaviour
     private GameObject player;
     public GameObject attack;
 
+    protected Animator stoatAnimator;
+
+    protected Vector2 enemyDirection;
+
     protected float rotationModifier = 90;
     public float AttackPlayerDistance = 7;
     public int AmountOfAttacks;
@@ -24,7 +28,11 @@ public class SwordEnemy : EnemyBehaviour
         canRotate = true;
         StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
-        
+
+        stoatAnimator = GetComponent<Animator>();
+
+        StartCoroutine(UpdateAnimation());
+
     }
 
     
@@ -79,5 +87,20 @@ public class SwordEnemy : EnemyBehaviour
         }
         yield return new WaitForSeconds(TimeBeforeAttacking);
         attackingCoroutine = null;
+    }
+
+    protected IEnumerator UpdateAnimation()
+    {
+        while (true)
+        {
+            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
+            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
+
+            //Debug.Log(enemyDirection);
+
+            stoatAnimator.SetFloat("XMovement", enemyDirection.x);
+            stoatAnimator.SetFloat("YMovement", enemyDirection.y);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
