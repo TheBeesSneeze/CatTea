@@ -163,8 +163,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.61063004, b: 0.6603774, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0ec50e9411b3be64a853712e2433408f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -192,6 +192,8 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  colorOverride: {r: 0, g: 0, b: 0, a: 0}
   CurrentEnemyStats: {fileID: 11400000, guid: 1e9c9e4b94c670448abefaf222a7a927, type: 2}
   DifficultyCost: 0
   Damage: 0

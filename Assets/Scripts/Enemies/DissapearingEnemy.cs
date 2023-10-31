@@ -7,6 +7,7 @@ public class DissapearingEnemy : EnemyBehaviour
 {
     private GameObject player;
     public GameObject attack;
+
     protected Animator chameleonAnimator;
 
     protected Vector2 enemyDirection;
@@ -29,11 +30,13 @@ public class DissapearingEnemy : EnemyBehaviour
         enemyVisible = true;
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
 
-        chameleonAnimator = GetComponent<Animator>();
-
         StartCoroutine(RotateEnemy());
         StartCoroutine(Dissapear());
         StartCoroutine(StartAttack());
+
+        chameleonAnimator = GetComponent<Animator>();
+
+        StartCoroutine(UpdateAnimation());
     }
 
     
