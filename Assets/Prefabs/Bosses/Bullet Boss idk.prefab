@@ -112,6 +112,7 @@ MonoBehaviour:
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
   StartHealth: 50
+  MoveUnitsPerSecond: 0
   MyRoom: {fileID: 0}
 --- !u!114 &6547316761508115879
 MonoBehaviour:
@@ -143,19 +144,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5381370009476358466}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2215b39a80318de4197bbd3bccd3bf2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 686485ceb0c56a9448312bf48823bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartAttackCycleOnAwake: 1
-  LoopAttack: 1
-  AttackCycleCooldown: 5
+  StartAttackCycleOnAwake: 0
+  LoopAttack: 0
+  AttackCycleCooldown: 2.5
   AttackInterval: 0.5
-  AttacksPerCycle: 3
-  AttackDistance: 30
+  AttacksPerCycle: 2
+  AttackDistance: 15
   AttackPrefab: {fileID: 491294337054835271, guid: 92c135c095507e24f81158eff031f348, type: 3}
   LM:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
 --- !u!114 &9202236567487274055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +175,6 @@ MonoBehaviour:
   AttackInterval: 1
   AttacksPerCycle: 1
   MaxMovementDistance: 25
-  SecondsPerUnit: 0.75
   LM:
     serializedVersion: 2
     m_Bits: 384

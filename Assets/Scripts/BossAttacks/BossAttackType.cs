@@ -18,7 +18,7 @@ public class BossAttackType : MonoBehaviour
     [Tooltip("If the boss attack happens on start")]
     public bool StartAttackCycleOnAwake; //actually on start tho
 
-    [Tooltip("If the attack will be repeated. If false, ignore all attacks below")]
+    [Tooltip("If the attack will be repeated after it runs")]
     public bool LoopAttack;
 
     [Tooltip("Seconds between waves of attacks")]
@@ -29,10 +29,10 @@ public class BossAttackType : MonoBehaviour
     public float AttacksPerCycle;
 
     protected BossBehaviour bossBehaviour;
-    protected Animator ratbossAnimator;
+    protected Animator animator;
 
     protected PlayerBehaviour playerBehaviour;
-    protected GameObject Player;
+    //protected GameObject Player;
 
     protected bool CurrentlyAttacking;
     protected Coroutine AttackCoroutine;
@@ -43,10 +43,10 @@ public class BossAttackType : MonoBehaviour
     protected virtual void Start()
     {
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
-        Player = playerBehaviour.gameObject;
+        //Player = playerBehaviour.gameObject;
 
         bossBehaviour = GetComponent<BossBehaviour>();
-        ratbossAnimator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
         if (StartAttackCycleOnAwake)
         {
@@ -89,23 +89,30 @@ public class BossAttackType : MonoBehaviour
             AttackCoroutine = null;
         }
     }
-    
+
+    /// <summary>
+    /// Starts the attack cycle coroutine
+    /// </summary>
+    /// <returns>The number of seconds until every attack has been spawened</returns>
+    public float StartAttackCycle()
+    {
+        StartCoroutine(AttackCycle());
+
+        return AttackInterval * AttacksPerCycle;
+    }
+
+    /// <summary>
+    /// constantly loops through attack
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator AttackLoop()
     {
-        
         while (CurrentlyAttacking)
         {
             yield return new WaitForSeconds(AttackCycleCooldown/2);
 
-            int attacks = 0;
-            while (attacks < AttacksPerCycle)
-            {
-                attacks++;
-
-                PerformAttack();
-
-                yield return new WaitForSeconds(AttackInterval);
-            }
+            float cycleSeconds = StartAttackCycle();
+            yield return new WaitForSeconds(cycleSeconds);
 
             yield return new WaitForSeconds(AttackCycleCooldown/2);
         }
@@ -113,5 +120,16 @@ public class BossAttackType : MonoBehaviour
         AttackCoroutine = null;
     }
 
+    private IEnumerator AttackCycle()
+    {
+        int attacks = 0;
+        while (attacks < AttacksPerCycle)
+        {
+            attacks++;
 
+            PerformAttack();
+
+            yield return new WaitForSeconds(AttackInterval);
+        }
+    }
 }

@@ -162,7 +162,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public virtual void SetHealth(float value)
     {
-        Debug.Log(MaxHealthPoints + " max");
+        //Debug.Log(MaxHealthPoints + " max");
         if(capHPAtMax)
         {
             value = Mathf.Clamp(value, value, MaxHealthPoints);
