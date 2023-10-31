@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7045298081820198501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7451855313944226167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraPosition(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4053194380484288440}
   - component: {fileID: 7688493871368956130}
   - component: {fileID: 1988902716332045572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 8539403786045647288}
   - component: {fileID: 8036790638181785312}
   - component: {fileID: 1693134737105942020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lvl2_BossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12989,7 +12989,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7793176108001865584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerPosition(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

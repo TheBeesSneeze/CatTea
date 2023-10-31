@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9126427092461213905}
   - component: {fileID: 9118626305323216612}
   - component: {fileID: 4502212818798811882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lvl3_BossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159508841187646778}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 333, y: -32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10325,8 +10325,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -989462707
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.0024999976, y: 0.37374997, z: 0}
@@ -12753,7 +12753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1919195867156906594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerPosition(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12784,7 +12784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7753417897413161006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12815,7 +12815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5569660427262666039}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraPosition(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12849,7 +12849,7 @@ GameObject:
   - component: {fileID: 3353795014602143282}
   - component: {fileID: 829665849603337071}
   - component: {fileID: 3316766095520495289}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

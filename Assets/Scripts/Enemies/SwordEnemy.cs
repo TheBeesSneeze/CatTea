@@ -34,7 +34,7 @@ public class SwordEnemy : EnemyBehaviour
         base.Start();
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         canRotate = true;
-        StartCoroutine(RotateEnemy());
+        //StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
 
         stoatAnimator = GetComponent<Animator>();

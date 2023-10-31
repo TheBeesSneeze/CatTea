@@ -112,7 +112,7 @@ MonoBehaviour:
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
   StartHealth: 50
-  MoveUnitsPerSecond: 0
+  MoveUnitsPerSecond: 1.5
   MyRoom: {fileID: 0}
 --- !u!114 &6547316761508115879
 MonoBehaviour:
@@ -156,7 +156,7 @@ MonoBehaviour:
   AttackPrefab: {fileID: 491294337054835271, guid: 92c135c095507e24f81158eff031f348, type: 3}
   LM:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!114 &9202236567487274055
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5245567489458016639}
   - component: {fileID: 4743146972439546756}
   - component: {fileID: 6588786030348524660}
-  - component: {fileID: 361667579285434503}
+  - component: {fileID: 2094796279921379945}
   - component: {fileID: 178954998834105006}
   - component: {fileID: 8854625774021316400}
   - component: {fileID: 6411244363844274505}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BossAttacks:
   - {fileID: 6588786030348524660}
-  - {fileID: 361667579285434503}
+  - {fileID: 2094796279921379945}
   CycleOnStart: 1
 --- !u!114 &6588786030348524660
 MonoBehaviour:
@@ -148,7 +148,7 @@ MonoBehaviour:
   AttackInterval: 0.5
   AttacksPerCycle: 4
   AttackPrefab: {fileID: 4746474391822612515, guid: 0e47defa41437f44bbba39ab4d44bb3b, type: 3}
---- !u!114 &361667579285434503
+--- !u!114 &2094796279921379945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,14 +157,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4651791696064841288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686485ceb0c56a9448312bf48823bdd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 12c522630686ac7438133eecc30b4bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartAttackCycleOnAwake: 0
   LoopAttack: 0
-  AttackCycleCooldown: 3
-  AttackInterval: 0.45
-  AttacksPerCycle: 5
+  AttackCycleCooldown: 1.5
+  AttackInterval: 0.5
+  AttacksPerCycle: 4
   AttackDistance: 10
   AttackPrefab: {fileID: 4746474391822612515, guid: 0e47defa41437f44bbba39ab4d44bb3b, type: 3}
   LM:
