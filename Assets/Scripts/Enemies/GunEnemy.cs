@@ -24,7 +24,7 @@ public class GunEnemy : EnemyBehaviour
     {
         base.Start();
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
-        StartCoroutine(RotateEnemy());
+        //StartCoroutine(RotateEnemy());
         StartCoroutine(StartAttack());
 
         hyenaAnimator = GetComponent<Animator>();

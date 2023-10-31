@@ -3800,26 +3800,6 @@ PrefabInstance:
       propertyPath: OutputRoom
       value: 
       objectReference: {fileID: 6693650538812070199}
-    - target: {fileID: 3075758192700460596, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
-      propertyPath: OutputRoom
-      value: 
-      objectReference: {fileID: 6693650538812070199}
-    - target: {fileID: 3853447739604592209, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
-      propertyPath: m_SortingLayer
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3853447739604592209, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -989462707
-      objectReference: {fileID: 0}
-    - target: {fileID: 4107664373760187227, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
-      propertyPath: BackgroundColor.b
-      value: 0.1882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 4107664373760187227, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
-      propertyPath: BackgroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7807653889850279772, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -5237,14 +5217,6 @@ PrefabInstance:
     - target: {fileID: 159508841187646778, guid: 0a26f1e206dff814790dfc97766904bd, type: 3}
       propertyPath: m_Name
       value: Lvl3:BossRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 8673266054796034302, guid: 0a26f1e206dff814790dfc97766904bd, type: 3}
-      propertyPath: m_SortingLayer
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8673266054796034302, guid: 0a26f1e206dff814790dfc97766904bd, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -989462707
       objectReference: {fileID: 0}
     - target: {fileID: 8983256038192064119, guid: 0a26f1e206dff814790dfc97766904bd, type: 3}
       propertyPath: m_RootOrder
