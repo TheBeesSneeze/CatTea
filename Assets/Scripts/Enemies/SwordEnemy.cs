@@ -1,3 +1,11 @@
+/*******************************************************************************
+* File Name :         SwordEnemy.cs
+* Author(s) :         Aiden Vandeberg
+* Creation Date :     
+*
+* Brief Description : 
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
