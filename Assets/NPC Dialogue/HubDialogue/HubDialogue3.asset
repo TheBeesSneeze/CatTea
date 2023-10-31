@@ -12,7 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
   m_Name: HubDialogue3
   m_EditorClassIdentifier: 
-  TextList: []
-  WhoIsTalking: 
+  TextList:
+  - Hello! Make sure to sign up for the Fides reeducation program.
+  - Uhhhhhh, no. My education does not need to be reed, especially by you.
+  - "It\u2019s mandatory for all Chai-Port citizens to attend. I have a sign-up sheet
+    here for you, so it\u2019s really not that much trouble."
+  - I said no, thanks.
+  - "And I said it\u2019s mandatory. That means you must do it."
+  - "And I said I don\u2019t want to."
+  - ...
+  - "You having fun down here? Slums aren\u2019t nearly as cozy as your ivory towers,
+    are they?"
+  - "I\u2019ll be seeing you in classes, Jade. If you know what\u2019s good for you."
+  Character1Name: Jade
+  Character2Name: 
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
+  WhoIsTalking: 010000000000000001000000000000000100000000000000010000000000000001000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []

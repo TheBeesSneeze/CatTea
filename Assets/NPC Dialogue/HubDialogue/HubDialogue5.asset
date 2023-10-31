@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
   m_Name: HubDialogue5
   m_EditorClassIdentifier: 
-  TextList: []
-  WhoIsTalking: 
+  TextList:
+  - Jade! Can you do me a favor?
+  - AHHHHHHHHHHHHHH! Why are people constantly asking me for favors!? What am I,
+    the main character?
+  - You do give off a lot of main character energy.
+  - Shut up.
+  Character1Name: Jade
+  Character2Name: 
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
+  WhoIsTalking: 01000000000000000100000000000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
