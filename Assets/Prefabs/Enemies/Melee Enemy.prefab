@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 254095365299448413}
   - component: {fileID: 7237620619517504883}
   - component: {fileID: -6906899948681362166}
+  - component: {fileID: 6447514693582490479}
   m_Layer: 0
   m_Name: Melee Enemy
   m_TagString: Enemy
@@ -88,6 +89,8 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  colorOverride: {r: 0, g: 0, b: 0, a: 0}
   CurrentEnemyStats: {fileID: 11400000, guid: dcd49d474ec1afc4387687701cae0283, type: 2}
   DifficultyCost: 0
   Damage: 0
@@ -135,7 +138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9b44de6b95557624781ded2153b8d06e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67e8b51146deecf4f8841b8a8694d08d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -339,3 +342,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6447514693582490479
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576159590035733606}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 70806329485f4ce478fe25de4c0b010d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

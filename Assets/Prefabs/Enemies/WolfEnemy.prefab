@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6959784045455860901}
   - component: {fileID: 7807075989487340784}
   - component: {fileID: 3023110636594417071}
+  - component: {fileID: -1072780602442371964}
   m_Layer: 0
   m_Name: WolfEnemy
   m_TagString: Enemy
@@ -56,6 +57,8 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  colorOverride: {r: 0, g: 0, b: 0, a: 0}
   CurrentEnemyStats: {fileID: 11400000, guid: d3789ee0e145e144b9dd0d7f129258fb, type: 2}
   DifficultyCost: 0
   Damage: 0
@@ -121,8 +124,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.29169783, b: 0.6415094, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2ccb767858af1754eb641a82f17b2baf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -216,6 +219,27 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &-1072780602442371964
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2201471818238836669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 836387b4c1fee4446a783fa1cf921cc0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3220550306378350417
 GameObject:
   m_ObjectHideFlags: 0
