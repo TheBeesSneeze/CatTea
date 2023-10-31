@@ -3785,6 +3785,14 @@ PrefabInstance:
       propertyPath: OutputRoom
       value: 
       objectReference: {fileID: 6693650538812070199}
+    - target: {fileID: 4107664373760187227, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
+      propertyPath: BackgroundColor.b
+      value: 0.1882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107664373760187227, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
+      propertyPath: BackgroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7807653889850279772, guid: 38158fca3cbc9a04893a024ab061c14c, type: 3}
       propertyPath: m_RootOrder
       value: -1

@@ -96,11 +96,37 @@ public class RoomType : MonoBehaviour
             return;
 
         backgroundMusicPlayer.clip = BackgroundMusic;
+
+        StartCoroutine(ScaleBackgroundMusic(1));
         backgroundMusicPlayer.Play();
     }
 
     public virtual void StopPlayingBackgroundMusic()
     {
-        backgroundMusicPlayer.clip = null;
+        Debug.Log("turning it down");
+        //backgroundMusicPlayer.clip = null;
+        StartCoroutine(ScaleBackgroundMusic(0));
+    }
+
+    /// <summary>
+    /// Turns up or down the music volume, over the same amount of seconds it takes to transition rooms
+    /// </summary>
+    /// <param name="TargetVolume"> 0-1</param>
+    /// <returns></returns>
+    private IEnumerator ScaleBackgroundMusic(float TargetVolume)
+    {
+        float scaleSeconds = RoomTransition.Instance.TotalTransitionSeconds/2;
+        float t = 0;
+
+        while(t<1)
+        {
+            t += Time.deltaTime / scaleSeconds;
+            float tScaled = Mathf.Pow(t, 1f / 2f);
+            backgroundMusicPlayer.volume = Mathf.Lerp(1-TargetVolume,TargetVolume, tScaled);
+
+            Debug.Log(Mathf.Lerp(1 - TargetVolume, TargetVolume, tScaled));
+
+            yield return null;
+        }
     }
 }

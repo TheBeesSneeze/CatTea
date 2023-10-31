@@ -40,6 +40,7 @@ public class BossRoom : EnemyRoom
             cameraManager.StartFollowPlayer();
 
         SpawnBoss();
+        StartPlayingBackgroundMusic();
     }
 
     /// <summary>
