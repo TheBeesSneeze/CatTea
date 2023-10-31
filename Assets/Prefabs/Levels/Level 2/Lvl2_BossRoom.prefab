@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4054750857005200058}
   - component: {fileID: 4053194380484288440}
   - component: {fileID: 7688493871368956130}
-  - component: {fileID: 3075758192700460596}
+  - component: {fileID: 1988902716332045572}
   m_Layer: 0
   m_Name: BossDoor
   m_TagString: Untagged
@@ -221,7 +221,7 @@ PolygonCollider2D:
       - {x: -0.78, y: 0.76}
       - {x: -0.78999996, y: 0.77}
   m_UseDelaunayMesh: 0
---- !u!114 &3075758192700460596
+--- !u!114 &1988902716332045572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,13 +230,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6571941588481437643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c046362f266483e49889a3c59d0ff7ab, type: 3}
+  m_Script: {fileID: 11500000, guid: ae0a5a352f45f3c459efd783fdd24ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OutputRoom: {fileID: 0}
   ThisRoom: {fileID: 4107664373760187227}
   open: 0
-  SceneName: EndScreen
 --- !u!1 &7847552832472996716
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +265,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7847552832472996716}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 190, y: -42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -291,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackgroundMusic: {fileID: 8300000, guid: 704f3e3f65d759e4cb88fc3daba554ff, type: 3}
-  BackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21960784, a: 1}
+  BackgroundColor: {r: 0, g: 0.17254902, b: 0.1882353, a: 1}
   OpenDoorsOnStart: 1
   CameraFollowPlayer: 1
   CameraSize: 6
