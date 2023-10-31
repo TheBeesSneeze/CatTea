@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BombEnemyBehaviour : EnemyBehaviour
 {
@@ -12,12 +13,20 @@ public class BombEnemyBehaviour : EnemyBehaviour
     private List<GameObject> listOfBombs = new List<GameObject>();
     private List<GameObject> listOfExplosions = new List<GameObject>();
 
+    protected Animator jackalAnimator;
+
+    protected Vector2 enemyDirection;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         StartCoroutine(SpawnBombs());
+
+        jackalAnimator = GetComponent<Animator>();
+
+        StartCoroutine(UpdateAnimation());
     }
 
     private IEnumerator SpawnBombs()
@@ -54,5 +63,19 @@ public class BombEnemyBehaviour : EnemyBehaviour
         listOfBombs.Clear();
         listOfExplosions.Clear();
     }
-    
+
+    protected IEnumerator UpdateAnimation()
+    {
+        while (true)
+        {
+            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
+            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
+
+            //Debug.Log(enemyDirection);
+
+            jackalAnimator.SetFloat("XMovement", enemyDirection.x);
+            jackalAnimator.SetFloat("YMovement", enemyDirection.y);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 }

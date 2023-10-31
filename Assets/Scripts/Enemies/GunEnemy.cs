@@ -9,6 +9,10 @@ public class GunEnemy : EnemyBehaviour
     public GameObject firstAttack;
     public GameObject secondAttack;
 
+    protected Animator hyenaAnimator;
+
+    protected Vector2 enemyDirection;
+
     protected float rotationModifier = 90;
     public float AttackPlayerDistance = 7;
     public int AmountOfAttacks;
@@ -22,6 +26,10 @@ public class GunEnemy : EnemyBehaviour
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         StartCoroutine(RotateEnemy());
         StartCoroutine(StartAttack());
+
+        hyenaAnimator = GetComponent<Animator>();
+
+        StartCoroutine(UpdateAnimation());
     }
 
    
@@ -88,5 +96,20 @@ public class GunEnemy : EnemyBehaviour
     private int RandomAttack()
     {
         return Random.Range(0, 2);
+    }
+
+    protected IEnumerator UpdateAnimation()
+    {
+        while (true)
+        {
+            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
+            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
+
+            //Debug.Log(enemyDirection);
+
+            hyenaAnimator.SetFloat("XMovement", enemyDirection.x);
+            hyenaAnimator.SetFloat("YMovement", enemyDirection.y);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
