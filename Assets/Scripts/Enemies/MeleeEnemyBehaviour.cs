@@ -19,9 +19,8 @@ public class MeleeEnemyBehaviour : EnemyBehaviour
 
     protected override void Start()
     {
+        base.Start();
         bearAnimator = GetComponent<Animator>();
-
-        StartCoroutine(UpdateAnimation());
     }
     protected IEnumerator UpdateAnimation()
     {

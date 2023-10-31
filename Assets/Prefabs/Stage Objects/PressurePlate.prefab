@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 8863932306315625857}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3291346439667333517
 SpriteRenderer:
@@ -73,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -989462707
+  m_SortingLayer: -1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 3625043607559282579, guid: 045b15ec09bba42448d89db77fa6f20a, type: 3}
   m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   m_FlipX: 0
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 4693785174107485053}
   - component: {fileID: 6667126636976702975}
   - component: {fileID: 5271054510209181139}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: SpikeTrap
   m_TagString: General Attack
   m_Icon: {fileID: 0}
