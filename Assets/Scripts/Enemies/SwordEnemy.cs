@@ -32,10 +32,7 @@ public class SwordEnemy : EnemyBehaviour
         stoatAnimator = GetComponent<Animator>();
 
         StartCoroutine(UpdateAnimation());
-
     }
-
-    
 
     private IEnumerator RotateEnemy()
     {

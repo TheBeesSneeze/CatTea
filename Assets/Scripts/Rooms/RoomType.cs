@@ -38,6 +38,7 @@ public class RoomType : MonoBehaviour
     protected PlayerBehaviour playerBehaviour;
     protected CameraManager cameraManager;
     protected AudioSource backgroundMusicPlayer;
+    private float defaultBGMVolume;
 
     public virtual void Start()
     {
@@ -45,6 +46,7 @@ public class RoomType : MonoBehaviour
         playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         cameraManager = GameObject.FindObjectOfType<CameraManager>();
         backgroundMusicPlayer = GameObject.Find("Background Music").GetComponent<AudioSource>();
+        defaultBGMVolume = backgroundMusicPlayer.volume;
     }
 
     /// <summary>
@@ -103,7 +105,6 @@ public class RoomType : MonoBehaviour
 
     public virtual void StopPlayingBackgroundMusic()
     {
-        Debug.Log("turning it down");
         //backgroundMusicPlayer.clip = null;
         StartCoroutine(ScaleBackgroundMusic(0));
     }
@@ -122,7 +123,7 @@ public class RoomType : MonoBehaviour
         {
             t += Time.deltaTime / scaleSeconds;
             float tScaled = Mathf.Pow(t, 1f / 2f);
-            backgroundMusicPlayer.volume = Mathf.Lerp(1-TargetVolume,TargetVolume, tScaled);
+            backgroundMusicPlayer.volume = defaultBGMVolume * Mathf.Lerp(1-TargetVolume,TargetVolume, tScaled);
 
             yield return null;
         }

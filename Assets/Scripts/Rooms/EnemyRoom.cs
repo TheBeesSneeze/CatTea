@@ -66,7 +66,6 @@ public class EnemyRoom : RoomType
     public virtual void OnEnemyDeath()
     {
         aliveEnemies--;
-        Debug.Log(aliveEnemies + " enemies left");
 
         if(aliveEnemies <= 0)
         {
@@ -91,6 +90,8 @@ public class EnemyRoom : RoomType
     {
         Debug.Log("All enemies died! Opening door");
         Door.OpenDoor();
+
+        StopPlayingBackgroundMusic();
 
         Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, playerBehaviour.transform.position, Quaternion.identity);
     }
@@ -159,7 +160,7 @@ public class EnemyRoom : RoomType
     /// </summary>
     protected void SpawnEnemyByPoolIndex(int Index, Vector3 spawnPoint)
     {
-        Debug.Log(challengePointsLeft);
+        //Debug.Log(challengePointsLeft);
 
         if(spawnPoint == null)
         {
