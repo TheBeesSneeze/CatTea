@@ -36,7 +36,7 @@ public class SwordBossAttack : MonoBehaviour
     //magic numbers
     private float shakeSwordAmount=0.05f;
 
-    private bool playerInsideRange;
+    //private bool playerInsideRange;
     private bool swordAttackInProgress;
     private Quaternion swordRotation;
 
@@ -50,6 +50,7 @@ public class SwordBossAttack : MonoBehaviour
 
     private float defaultMoveSpeed;
     private Vector2 defaultSwordPosition;
+    private Vector3 defaultSwordScale;
 
 
     // Start is called before the first frame update
@@ -66,6 +67,7 @@ public class SwordBossAttack : MonoBehaviour
 
         defaultMoveSpeed = finalBossBehaviour.MoveUnitsPerSecond;
         defaultSwordPosition = SwordCollider.transform.localPosition;
+        defaultSwordScale = SwordCollider.transform.localScale;
 
         swordSpriteRenderer.enabled = false;
     }
@@ -87,6 +89,7 @@ public class SwordBossAttack : MonoBehaviour
             t += Time.deltaTime;
 
             AngleSwordAtPlayer(t / ReadySwordSeconds);
+            ExpandSword(t / ReadySwordSeconds);
             MoveTowardsPlayer();
             ShakeSword();
 
@@ -161,6 +164,16 @@ public class SwordBossAttack : MonoBehaviour
     private void UpdateSwordMirrorDirection()
     {
         //idk figure it out
+    }
+    
+    /// <summary>
+    /// scales the sword from 0 to whatever it is at start
+    /// </summary>
+    /// <param name="percent"></param>
+    private void ExpandSword(float percent)
+    {
+        float percentScaled = Mathf.Pow(percent, 1f / 4f);
+        SwordCollider.transform.localScale = defaultSwordScale * percentScaled;
     }
 
     /// <summary>
@@ -237,7 +250,7 @@ public class SwordBossAttack : MonoBehaviour
 
         if(tag.Equals("Player"))
         {
-            playerInsideRange = true;
+            //playerInsideRange = true;
 
             if(!swordAttackInProgress)
             {
@@ -252,7 +265,7 @@ public class SwordBossAttack : MonoBehaviour
 
         if (tag.Equals("Player"))
         {
-            playerInsideRange = false;
+            //playerInsideRange = false;
         }
     }
 }
