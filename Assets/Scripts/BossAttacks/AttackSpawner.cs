@@ -14,16 +14,16 @@ public class AttackSpawner : BossAttackType
 {
     public GameObject AttackPrefab;
 
-    protected Animator ratbossAnimator;
+    //protected Animator ratbossAnimator;
 
-    protected override void Start()
-    {
-        ratbossAnimator = GetComponent<Animator>();
-    }
+    //protected override void Start()
+    //{
+    //    ratbossAnimator = GetComponent<Animator>();
+    //}
 
     public override void PerformAttack()
     {
+        //ratbossAnimator.SetTrigger("FireMortar");
         Instantiate(AttackPrefab, playerBehaviour.transform);
-        ratbossAnimator.SetTrigger("FireMortar");
     }
 }
