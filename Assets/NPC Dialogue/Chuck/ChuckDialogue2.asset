@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
+  m_Name: ChuckDialogue2
+  m_EditorClassIdentifier: 
+  TextList:
+  - Jade? You mentioned that the Crimson Accord killed you, right?
+  - "Yeah, they did. Came to in front of this weird machine that I couldn\u2019t
+    make heads or tails of."
+  - "Hmmmmmm, yeah, that\u2019s gonna be a problem\u2026"
+  - "What\u2019s the problem?"
+  - Fergus came back to life.
+  - ARE YOU KIDDING ME?!
+  - Yes. You need to go kill him again. His goons have been very insistent on getting
+    that gun back.
+  - "You\u2019re paying me extra for this."
+  - No.
+  - This is worker abuse! I have rights, you know!
+  - No.
+  - Goddamnit.
+  Character1Name: Jade
+  Character2Name: Chuck
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
+  WhoIsTalking: 010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000
+  PlayerTalkingSprites: []
+  NPCTalkingSprites: []

@@ -12,7 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
   m_Name: HubDialogue8
   m_EditorClassIdentifier: 
-  TextList: []
-  WhoIsTalking: 
+  TextList:
+  - Heeeeeeeeeeeeey, pssssssssssssss.
+  - Uhhhhhhhhhhh, may I help you?
+  - "Oh no, it\u2019s me who\u2019s going to be helping you. I know about your little
+    problem, but don\u2019t you worry, I\u2019m not here to blackmail."
+  - Who are you, exactly?
+  - "Oh don\u2019t you worry about that. I\u2019m just Some Guy."
+  - Ok Some Guy, what are you doing?
+  - "See, I\u2019ve devised a little system where when you defeat those little guys
+    in your way they\u2019ll drop some mighty fine upgrades."
+  - If you want to help so much, then why not just give me the upgrades?
+  - "Oh ho, well that\u2019s no fun, is it? Isn\u2019t the sense of accomplishment
+    you feel after defeating those little guys worth it?"
+  - "No, I\u2019d rather just have the upgrades now."
+  - "Weeeeeeeeeell suck it up, \u2018cause you're not getting \u2018em now. Anyway,
+    Some Guy thanks you for your time today and hopes you enjoy your upgrades."
+  - Yeah, thanks, I guess.
+  Character1Name: Jade
+  Character2Name: 
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
+  WhoIsTalking: 010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
