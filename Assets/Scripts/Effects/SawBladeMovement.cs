@@ -19,19 +19,19 @@ public class SawBladeMovement : MonoBehaviour
     public float Speed;
 
     private ConstantRotation constantRotation;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D myRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
         constantRotation = GetComponent<ConstantRotation>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        myRigidbody = GetComponent<Rigidbody2D>();
         RandomizeVelocity();
     }
 
     private void RandomizeVelocity()
     {
-        if (rigidbody == null)
+        if (myRigidbody == null)
         {
             Debug.LogWarning("No rigidbody on " + gameObject.name);
             return;
@@ -41,8 +41,8 @@ public class SawBladeMovement : MonoBehaviour
         float y = Random.Range(-1f, 1f);
 
         Vector2 newVelocity = new Vector2(x, y);
-       
-        rigidbody.velocity = newVelocity;
+
+        myRigidbody.velocity = newVelocity;
 
         MaintainConstantVelocity();
     }
@@ -64,7 +64,7 @@ public class SawBladeMovement : MonoBehaviour
     /// </summary>
     public void MaintainConstantVelocity()
     {
-        Vector2 velocity = rigidbody.velocity.normalized;
-        rigidbody.velocity = velocity * Speed;
+        Vector2 velocity = myRigidbody.velocity.normalized;
+        myRigidbody.velocity = velocity * Speed;
     }
 }
