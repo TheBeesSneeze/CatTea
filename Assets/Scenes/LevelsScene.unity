@@ -750,6 +750,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test NPC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f9ab1ed83d24d2d4ba94ac0bfbe1f75b, type: 3}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: TextBox
       value: 
@@ -777,6 +793,14 @@ PrefabInstance:
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2751,6 +2775,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test NPC (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5deebeac57d208043bb256ce57cdc6d3, type: 3}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018342994830484878, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: TextBox
       value: 
@@ -2778,6 +2818,14 @@ PrefabInstance:
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8194922898916455610, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_LocalPosition.x
