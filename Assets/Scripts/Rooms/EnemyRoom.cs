@@ -56,7 +56,8 @@ public class EnemyRoom : RoomType
 
     public override bool CheckRoomCleared()
     {
-        return (aliveEnemies <= 0 && wavesLeft <=0);
+        Debug.Log(aliveEnemies + " alive enemies...\n" + challengePointsLeft + " challenge points\n" + wavesLeft + " waves left");
+        return (aliveEnemies <= 0 && challengePointsLeft <= 0 && wavesLeft <= 0);
     }
 
     /// <summary>
@@ -113,8 +114,6 @@ public class EnemyRoom : RoomType
             SpawnOneEnemy(spawnPoint.position);
 
             yield return new WaitForSeconds(secondsBetweenEnemySpawns);
-
-            
         }
     }
 
@@ -132,7 +131,7 @@ public class EnemyRoom : RoomType
             return null;
         }
 
-        int transformIndex = UnityEngine.Random.Range(0, spawnPointsAvailable.Count);
+        int transformIndex = Random.Range(0, spawnPointsAvailable.Count);
         Transform newPos = spawnPointsAvailable[transformIndex];
         spawnPointsAvailable.RemoveAt(transformIndex);
 

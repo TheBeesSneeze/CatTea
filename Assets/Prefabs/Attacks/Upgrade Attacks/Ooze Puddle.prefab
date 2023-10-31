@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4197007132835258238}
   - component: {fileID: 4555798679986480914}
   - component: {fileID: -397421637055376529}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ooze Puddle
   m_TagString: Player Attack
   m_Icon: {fileID: 0}

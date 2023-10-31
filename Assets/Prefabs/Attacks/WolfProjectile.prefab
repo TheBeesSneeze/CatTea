@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4984412265063229320}
   - component: {fileID: -7203405448242233224}
   - component: {fileID: -2152926699433513133}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WolfProjectile
   m_TagString: Enemy Attack
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 50652535
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

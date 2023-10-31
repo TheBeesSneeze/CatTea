@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4260691985643505390}
   - component: {fileID: 1257350510651709163}
   - component: {fileID: 7912148639433709387}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Electricity
   m_TagString: General Attack
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 50652535
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.990566, g: 0.9100166, b: 0.022427881, a: 0.70980394}

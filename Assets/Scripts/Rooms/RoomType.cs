@@ -124,8 +124,6 @@ public class RoomType : MonoBehaviour
             float tScaled = Mathf.Pow(t, 1f / 2f);
             backgroundMusicPlayer.volume = Mathf.Lerp(1-TargetVolume,TargetVolume, tScaled);
 
-            Debug.Log(Mathf.Lerp(1 - TargetVolume, TargetVolume, tScaled));
-
             yield return null;
         }
     }

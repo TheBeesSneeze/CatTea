@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9021548887123074165}
   - component: {fileID: 3437011088008853731}
   - component: {fileID: 5177343476755956715}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: (Final Boss) Default Bullet 1
   m_TagString: Enemy Attack
   m_Icon: {fileID: 0}

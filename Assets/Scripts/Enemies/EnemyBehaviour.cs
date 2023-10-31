@@ -103,7 +103,9 @@ public class EnemyBehaviour : CharacterBehaviour
         EnemyMove = CurrentEnemyStats.EnemyMove;
         TimeBetweenMovements = CurrentEnemyStats.TimeBetweenMovements;
 
+        MaxHealthPoints = CurrentEnemyStats.HealthPoints;
         HealthPoints = CurrentEnemyStats.HealthPoints;
+        
         Damage = CurrentEnemyStats.Damage;
         contactDamage = CurrentEnemyStats.ContactDamage;
         dealContactDamage = CurrentEnemyStats.DealContactDamage;    
