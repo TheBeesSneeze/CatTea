@@ -10,6 +10,8 @@ public class BombEnemyBehaviour : EnemyBehaviour
     public GameObject explosion;
     public int amountOfBombs;
     public int bombSpawnInterval;
+    public float SecondsUntilExplode=1f;
+    public float SecondsAfterExplode=0.5f;
     private List<GameObject> listOfBombs = new List<GameObject>();
     private List<GameObject> listOfExplosions = new List<GameObject>();
 
@@ -37,6 +39,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
 
             for (int i = 0; i < amountOfBombs; i++)
             {
+                yield return new WaitForSeconds(bombSpawnInterval);
                 Vector3 positionAroundPlayer = player.transform.position;
                 Vector3 randomPosition = Random.insideUnitCircle;
                 positionAroundPlayer.x += randomPosition.x;
@@ -49,13 +52,13 @@ public class BombEnemyBehaviour : EnemyBehaviour
 
     private IEnumerator Explode()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(SecondsUntilExplode);
         for(int i = 0; i < amountOfBombs; i++)
         {
             listOfExplosions.Add(Instantiate(explosion, listOfBombs[i].transform.position, Quaternion.identity));
             Destroy(listOfBombs[i]);
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SecondsAfterExplode);
         for(int i = 0; i < amountOfBombs; i++)
         {
             Destroy(listOfExplosions[i]);

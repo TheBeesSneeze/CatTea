@@ -93,12 +93,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7843310325385525746}
+  - component: {fileID: 8642821657074424649}
   - component: {fileID: 4166866587034988657}
   - component: {fileID: 1506513746089206941}
   - component: {fileID: 618672308440914057}
   - component: {fileID: 2287038705684851187}
   - component: {fileID: 3554106454811474614}
-  - component: {fileID: 8642821657074424649}
   - component: {fileID: -554091559580337406}
   m_Layer: 0
   m_Name: BombEnemy
@@ -123,6 +123,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8642821657074424649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328191305912939109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560e83fdb79cf84499e538ea79ba5965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthPoints: 0
+  Invincible: 0
+  MaxHealthPoints: 0
+  Speed: 0
+  KnockbackForce: 0
+  TakeKnockback: 1
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  colorOverride: {r: 0, g: 0, b: 0, a: 0}
+  CurrentEnemyStats: {fileID: 11400000, guid: 8abb86ecc64a4634c9fbb5750e4569f3, type: 2}
+  DifficultyCost: 0
+  Damage: 0
+  EnemyMove: 0
+  TimeBetweenMovements: 0
+  Room: {fileID: 0}
+  bomb: {fileID: 6976842289019245976, guid: 19bb3c5519105814bb1b0f04798f4c2a, type: 3}
+  explosion: {fileID: 30708773153286463, guid: 35060d375a1389e4281e5813746bd6f4, type: 3}
+  amountOfBombs: 3
+  bombSpawnInterval: 5
 --- !u!212 &4166866587034988657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -272,36 +302,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8642821657074424649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6328191305912939109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560e83fdb79cf84499e538ea79ba5965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthPoints: 0
-  Invincible: 0
-  MaxHealthPoints: 0
-  Speed: 0
-  KnockbackForce: 0
-  TakeKnockback: 1
-  originalColor: {r: 0, g: 0, b: 0, a: 0}
-  colorOverride: {r: 0, g: 0, b: 0, a: 0}
-  CurrentEnemyStats: {fileID: 11400000, guid: 8abb86ecc64a4634c9fbb5750e4569f3, type: 2}
-  DifficultyCost: 0
-  Damage: 0
-  EnemyMove: 0
-  TimeBetweenMovements: 0
-  Room: {fileID: 0}
-  bomb: {fileID: 6976842289019245976, guid: 19bb3c5519105814bb1b0f04798f4c2a, type: 3}
-  explosion: {fileID: 30708773153286463, guid: 35060d375a1389e4281e5813746bd6f4, type: 3}
-  amountOfBombs: 3
-  bombSpawnInterval: 5
 --- !u!95 &-554091559580337406
 Animator:
   serializedVersion: 5
