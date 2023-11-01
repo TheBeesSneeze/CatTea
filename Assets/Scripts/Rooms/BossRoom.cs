@@ -78,5 +78,11 @@ public class BossRoom : EnemyRoom
         return (bossDead);
     }
 
+    public override void Cheat()
+    {
+        if(bossScript != null) 
+            bossScript.Die();
 
+        base.Cheat();
+    }
 }
