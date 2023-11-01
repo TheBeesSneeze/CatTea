@@ -1279,7 +1279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4995305341530485608, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: CurrentRoom
@@ -5228,6 +5228,10 @@ PrefabInstance:
     - target: {fileID: 3029579620944964479, guid: be1f68a774b467c439c61d19ca906387, type: 3}
       propertyPath: m_Name
       value: Lvl2:NPCRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428377609356768248, guid: be1f68a774b467c439c61d19ca906387, type: 3}
+      propertyPath: BackgroundColor.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

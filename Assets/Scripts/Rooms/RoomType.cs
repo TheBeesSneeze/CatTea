@@ -88,8 +88,11 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual void Cheat()
     {
+        playerBehaviour.HealthPoints = playerBehaviour.MaxHealthPoints;
+
         roomCleared = true;
         OpenDoorsOnStart = true;
+        Door.OpenDoor(); 
     }
 
     public virtual void StartPlayingBackgroundMusic()

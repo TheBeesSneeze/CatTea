@@ -96,9 +96,14 @@ public class BombEnemyBehaviour : EnemyBehaviour
         SecondsUntilExplode = 0;
         SecondsAfterExplode = 0;
 
-        for (int i = 0; i < amountOfBombs; i++)
+        for (int i = 0; i < listOfBombs.Count; i++)
         {
             Destroy(listOfBombs[i]);
+        }
+
+        for (int i = 0; i < listOfExplosions.Count; i++)
+        {
+            Destroy(listOfExplosions[i]);
         }
 
         base.Die();
