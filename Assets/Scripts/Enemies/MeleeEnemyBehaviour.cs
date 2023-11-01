@@ -21,6 +21,8 @@ public class MeleeEnemyBehaviour : EnemyBehaviour
     {
         base.Start();
         bearAnimator = GetComponent<Animator>();
+
+        StartCoroutine(UpdateAnimation());
     }
     protected IEnumerator UpdateAnimation()
     {
@@ -29,7 +31,7 @@ public class MeleeEnemyBehaviour : EnemyBehaviour
             enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
             enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
 
-            //Debug.Log(enemyDirection);
+            //Debug.Log("BearAnimation is updating!");
 
             bearAnimator.SetFloat("XMovement", enemyDirection.x);
             bearAnimator.SetFloat("YMovement", enemyDirection.y);
