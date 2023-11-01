@@ -10,7 +10,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -69,6 +68,8 @@ public class NPCBehaviour : MonoBehaviour
             dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
 
         LoadScript(DefaultDialogue);
+
+        ButtonPrompt.SetActive(false);
     }
 
     /// <summary>
@@ -246,7 +247,7 @@ public class NPCBehaviour : MonoBehaviour
             dialogueSoundSource.clip = Character1DialogueSound;
 
         if (WhoIsTalking[textIndex].Equals(Talking.NPC))
-            dialogueSoundSource.clip = Character1DialogueSound;
+            dialogueSoundSource.clip = Character2DialogueSound;
 
         if (WhoIsTalking[textIndex].Equals(Talking.Nobody))
             dialogueSoundSource.clip = null;

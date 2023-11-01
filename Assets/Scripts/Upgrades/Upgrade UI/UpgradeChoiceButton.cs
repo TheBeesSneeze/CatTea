@@ -49,7 +49,5 @@ public class UpgradeChoiceButton : MonoBehaviour
         UpgradeChoiceInterface upgradeUI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
 
         upgradeUI.CloseUI();
-
-
     }
 }

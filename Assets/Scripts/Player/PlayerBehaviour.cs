@@ -42,6 +42,8 @@ public class PlayerBehaviour : CharacterBehaviour
     [HideInInspector] public float SwordAttackCoolDown;
     [HideInInspector] public float MeleeAttackKnockback;
 
+    
+
     //components
     private PlayerController playerController;
 
@@ -70,6 +72,7 @@ public class PlayerBehaviour : CharacterBehaviour
 
         if (healthBar != null) 
             healthBar.UpdateHealth();
+
         if(HealthPoints <= 0)
         {
             SceneManager.LoadScene(3);

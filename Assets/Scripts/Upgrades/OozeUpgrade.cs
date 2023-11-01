@@ -25,9 +25,8 @@ public class OozeUpgrade : UpgradeType
 
     public float MaxSpawningDistance;
 
-    protected override void Start()
+    public override void UpgradeEffect()
     {
-        base.Start();
         StartCoroutine(SpawnPuddles());
     }
 

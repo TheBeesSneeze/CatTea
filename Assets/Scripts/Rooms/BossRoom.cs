@@ -28,6 +28,8 @@ public class BossRoom : EnemyRoom
 
     public override void EnterRoom()
     {
+        GameEvents.Instance.OnRoomEnter();
+
         //copy and paste the code from roomType
         cameraManager.MoveCamera(CameraCenterPoint);
 
