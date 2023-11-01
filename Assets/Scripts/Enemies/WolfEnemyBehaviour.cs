@@ -6,10 +6,11 @@
 * Brief Description : sorry i deleted everything. i made it extend DogEnemyBehaviour
 *****************************************************************************/
 
+
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WolfEnemyBehaviour : DogEnemyBehaviour
 {

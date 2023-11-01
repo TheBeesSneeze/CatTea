@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 158392565024314740}
   - component: {fileID: 4904447309484688576}
   - component: {fileID: 2896165392543653875}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Sawblade Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 256
-  ReverseOnWallCollision: 1
 --- !u!114 &158392565024314740
 MonoBehaviour:
   m_ObjectHideFlags: 0

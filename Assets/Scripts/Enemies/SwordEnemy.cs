@@ -1,3 +1,11 @@
+/*******************************************************************************
+* File Name :         SwordEnemy.cs
+* Author(s) :         Aiden Vandeberg
+* Creation Date :     
+*
+* Brief Description : 
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +15,10 @@ public class SwordEnemy : EnemyBehaviour
 {
     private GameObject player;
     public GameObject attack;
+
+    protected Animator stoatAnimator;
+
+    protected Vector2 enemyDirection;
 
     protected float rotationModifier = 90;
     public float AttackPlayerDistance = 7;
@@ -22,12 +34,13 @@ public class SwordEnemy : EnemyBehaviour
         base.Start();
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         canRotate = true;
-        StartCoroutine(RotateEnemy());
+        //StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
-        
-    }
 
-    
+        stoatAnimator = GetComponent<Animator>();
+
+        StartCoroutine(UpdateAnimation());
+    }
 
     private IEnumerator RotateEnemy()
     {
@@ -79,5 +92,20 @@ public class SwordEnemy : EnemyBehaviour
         }
         yield return new WaitForSeconds(TimeBeforeAttacking);
         attackingCoroutine = null;
+    }
+
+    protected IEnumerator UpdateAnimation()
+    {
+        while (true)
+        {
+            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
+            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
+
+            //Debug.Log(enemyDirection);
+
+            stoatAnimator.SetFloat("XMovement", enemyDirection.x);
+            stoatAnimator.SetFloat("YMovement", enemyDirection.y);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
   m_Name: HubDialogue4
   m_EditorClassIdentifier: 
-  TextList: []
-  WhoIsTalking: 
+  TextList:
+  - Jaaaaaaaaaaaaaaaade.
+  - Whaaaaaaaaaaaaaaaaat?
+  - Can you do me a favor, please?
+  - "Oh come on, this isn\u2019t about the wasps again, is it?"
+  - "THEY ARE SCARY! And they\u2019re hanging around my house again. I have to book
+    it every single time I leave!"
+  - I already gave you the tools to deal with this. You need to step up for yourself!
+  - "AHHHHHHHHHHHH, FINE! If I die it\u2019s your fault!"
+  - "I\u2019ll make sure to be at your funeral."
+  Character1Name: Jade
+  Character2Name: 
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
+  WhoIsTalking: 0100000000000000010000000000000001000000000000000100000000000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []

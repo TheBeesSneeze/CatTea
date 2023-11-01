@@ -40,6 +40,7 @@ public class BossRoom : EnemyRoom
             cameraManager.StartFollowPlayer();
 
         SpawnBoss();
+        StartPlayingBackgroundMusic();
     }
 
     /// <summary>
@@ -63,6 +64,8 @@ public class BossRoom : EnemyRoom
 
     public void OnBossDeath()
     {
+        StopPlayingBackgroundMusic();
+
         bossDead = true;
         roomCleared = true;
 
@@ -74,5 +77,6 @@ public class BossRoom : EnemyRoom
     {
         return (bossDead);
     }
+
 
 }

@@ -74,8 +74,11 @@ public class EnemyBehaviour : CharacterBehaviour
     protected virtual void OnPlayerCollision(Collider2D collision)
     {
         Debug.Log("player on enemy contact???");
+        if(playerBehavior == null)
+            playerBehavior = GameObject.FindObjectOfType<PlayerBehaviour>();
 
-        playerBehavior.TakeDamage(contactDamage, this.transform.position, 1);
+        if(dealContactDamage)   
+            playerBehavior.TakeDamage(contactDamage, this.transform.position, 0);
     }
 
     /// <summary>
@@ -87,7 +90,9 @@ public class EnemyBehaviour : CharacterBehaviour
         string tag = collision.gameObject.tag;
 
         if (tag.Equals("Player"))
+        {
             OnPlayerCollision(collision);
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -103,7 +108,9 @@ public class EnemyBehaviour : CharacterBehaviour
         EnemyMove = CurrentEnemyStats.EnemyMove;
         TimeBetweenMovements = CurrentEnemyStats.TimeBetweenMovements;
 
+        MaxHealthPoints = CurrentEnemyStats.HealthPoints;
         HealthPoints = CurrentEnemyStats.HealthPoints;
+        
         Damage = CurrentEnemyStats.Damage;
         contactDamage = CurrentEnemyStats.ContactDamage;
         dealContactDamage = CurrentEnemyStats.DealContactDamage;    

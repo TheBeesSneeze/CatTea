@@ -12,7 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
   m_Name: HubDialogue7
   m_EditorClassIdentifier: 
-  TextList: []
-  WhoIsTalking: 
+  TextList:
+  - "AH HA! It was you wasn\u2019t it? Fess up!"
+  - Huh? What are you talking about?
+  - "Don\u2019t act dumb! I know what you did! You\u2019re as guilty as a bear!"
+  - "Wha-What are you talking about? I haven\u2019t done anything!"
+  - Yes, your grubby little bear claws have just been caught in the beehive and now
+    the swarm is descending upon you.
+  - "ADMIT IT! ADMIT YOU\u2019RE THE BEAR!"
+  - "I\u2019M NOT A BEAR!"
+  - LIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR!
+  - AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!
+  - ...
+  - ...
+  - Bear says what?
+  - What?
+  - Ah ha! So you do admit it!
+  - GOD DAMNIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIT!
+  Character1Name: Jade
+  Character2Name: 
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
+  WhoIsTalking: 000000000100000000000000010000000000000000000000010000000000000001000000010000000000000000000000010000000000000001000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []

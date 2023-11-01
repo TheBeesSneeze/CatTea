@@ -68,10 +68,12 @@ public class RoomTransition : MonoBehaviour
         MoveBox(currentRoom.Door.transform.position);
         StartCoroutine(ScaleTransitionBox(0, targetSize, tScale));
 
-        yield return new WaitForSeconds(TotalTransitionSeconds/1.5f);
-
         if (currentRoom != null)
+        {
             currentRoom.ExitRoom();
+        }
+
+        yield return new WaitForSeconds(TotalTransitionSeconds/1.5f);
 
         if (nextRoom != null)
             nextRoom.EnterRoom();

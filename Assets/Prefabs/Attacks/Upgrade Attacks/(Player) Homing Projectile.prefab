@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9021548887123074165}
   - component: {fileID: 3437011088008853731}
   - component: {fileID: 5988756503436904003}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: (Player) Homing Projectile
   m_TagString: Player Attack
   m_Icon: {fileID: 0}
@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   KnockbackForce: 0
-  DamageOnCollision: 1
   DestroyedByWalls: 1
   DestroyedAfterAttack: 1
   DestroyOtherAttacks: 0

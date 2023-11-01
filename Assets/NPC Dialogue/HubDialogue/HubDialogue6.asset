@@ -12,7 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
   m_Name: HubDialogue6
   m_EditorClassIdentifier: 
-  TextList: []
-  WhoIsTalking: 
+  TextList:
+  - You! You look like you could use a new enhancement!
+  - "Not particularly, but I\u2019ll shoot. What\u2019re you selling?"
+  - Oh, you will shoot. With the newest version of the Cannonizer, the Cannonizer
+    42!
+  - The 42nd already? What could they have possibly added this time?
+  - "I\u2019m glad you asked! One new camera, bringing the total to a whopping 45!"
+  - "Wonderful. I\u2019ll be sure to buy one at the nearest convience."
+  - "Great! Here\u2019s a pamphlet with some more information!"
+  - Ah gee wizz, sir. Thanks a bunch!
+  - "No problem! And remember, the Cannoizer\u2026"
+  - ...is the only cannon for your canon!
+  Character1Name: Jade
+  Character2Name: 
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
+  WhoIsTalking: 01000000000000000100000000000000010000000000000001000000000000000100000000000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []

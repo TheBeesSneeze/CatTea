@@ -12,12 +12,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
 
 public class FinalBossBehaviour : BossBehaviour
 {
     [Header("Final Boss")]
     public GameObject SawbladePrefab;
     private GameObject sawblade;
+
+    protected Animator jadebotAnimator;
+
+    protected Vector2 enemyDirection;
 
     public Transform GunPivot;
     public Transform GunSprite;
@@ -32,6 +37,10 @@ public class FinalBossBehaviour : BossBehaviour
         SpawnSawblade();
 
         StartCoroutine(RotateGunTowardsPlayer());
+
+        jadebotAnimator = GetComponent<Animator>();
+
+        StartCoroutine(UpdateAnimation());
     }
 
     /// <summary>
@@ -102,5 +111,20 @@ public class FinalBossBehaviour : BossBehaviour
             scale.y = -Mathf.Abs(scale.x);
         }
         GunSprite.localScale = scale;
+    }
+
+    protected IEnumerator UpdateAnimation()
+    {
+        while (true)
+        {
+            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
+            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
+
+            //Debug.Log(enemyDirection);
+
+            jadebotAnimator.SetFloat("XMovement", enemyDirection.x);
+            jadebotAnimator.SetFloat("YMovement", enemyDirection.y);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

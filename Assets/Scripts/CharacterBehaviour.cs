@@ -145,6 +145,11 @@ public class CharacterBehaviour : MonoBehaviour
 
     public virtual IEnumerator HitAnimation()
     {
+        if(mySpriteRenderer == null)
+        {
+            mySpriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
         mySpriteRenderer.color = new Color(1, 0.3f, 0.3f);
 
         yield return new WaitForSeconds(damageColorChangeSeconds);
@@ -162,7 +167,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public virtual void SetHealth(float value)
     {
-        Debug.Log(MaxHealthPoints + " max");
+        //Debug.Log(MaxHealthPoints + " max");
         if(capHPAtMax)
         {
             value = Mathf.Clamp(value, value, MaxHealthPoints);

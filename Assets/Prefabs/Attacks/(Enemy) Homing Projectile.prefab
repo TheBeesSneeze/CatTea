@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3437011088008853731}
   - component: {fileID: 5988756503436904003}
   - component: {fileID: -8181867445123336889}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: (Enemy) Homing Projectile
   m_TagString: Enemy Attack
   m_Icon: {fileID: 0}

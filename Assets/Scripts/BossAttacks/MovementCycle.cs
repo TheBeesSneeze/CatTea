@@ -9,6 +9,7 @@
 * Uses MoveUnitsPerSecond from BossBehaviour.cs
 * *****************************************************************************/
 
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,16 +37,18 @@ public class MovementCycle : BossAttackType
     private IEnumerator MoveAcross(Vector2 startPoint, Vector2 endPoint)
     {
         float distance = Vector2.Distance(startPoint, endPoint);
-        float totalSecondsToMove = distance * bossBehaviour.MoveUnitsPerSecond;
+        float totalSecondsToMove = distance / bossBehaviour.MoveUnitsPerSecond;
 
         float t = 0;
-        while(t < totalSecondsToMove)
+        while(t < 1)
         {
-            t += Time.deltaTime;
+            t += Time.deltaTime / totalSecondsToMove;
 
-            Vector2 newPosition = Vector2.Lerp(startPoint, endPoint, t/ totalSecondsToMove);
+            Vector2 newPosition = Vector2.Lerp(startPoint, endPoint, t);
 
             transform.position = newPosition;
+
+            Debug.DrawLine(startPoint, endPoint);
 
             yield return null;
         }
@@ -53,5 +56,24 @@ public class MovementCycle : BossAttackType
         moveCoroutine = null;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        string layer = LayerMask.LayerToName(collision.gameObject.layer);
 
+        if(layer.Equals("Level"))
+        {
+            GetOutOfWall(collision.transform.position);
+        }
+    }
+
+    private void GetOutOfWall(Vector2 wallPosition)
+    {
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+
+        Vector2 difference = (Vector2)transform.position - wallPosition;
+        Vector2 newTarget = difference.normalized * 10;
+
+        moveCoroutine = StartCoroutine(MoveAcross(wallPosition, newTarget));
+    }
 }
