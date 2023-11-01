@@ -56,7 +56,7 @@ public class ParryProjectiles : MonoBehaviour
 
         newBulletRB.velocity = enemyAttack.velocity.normalized * -1 * ParrySpeed;
 
-        newBulletRB.transform.eulerAngles = swordPivot.transform.eulerAngles;
+        newBulletRB.transform.eulerAngles = swordPivot.transform.eulerAngles + new Vector3(0,0,90);
 
         attack.Damage = attack.Damage * AttackDamageMultiplier;
 

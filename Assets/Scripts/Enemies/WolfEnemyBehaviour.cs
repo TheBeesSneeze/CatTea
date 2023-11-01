@@ -5,13 +5,6 @@
 *
 * Brief Description : sorry i deleted everything. i made it extend DogEnemyBehaviour
 *****************************************************************************/
-/*******************************************************************************
-* File Name :         WolfEnemyBehaviour.cs
-* Author(s) :         Aiden Vandeberg
-* Creation Date :     
-*
-* Brief Description : 
-*****************************************************************************/
 
 
 using System.Collections;

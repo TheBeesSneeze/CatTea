@@ -1,3 +1,11 @@
+/*******************************************************************************
+* File Name :         BombEnemyBehaviour.cs
+* Author(s) :         Toby Schamberger, Aiden Vandeberg
+* Creation Date :     
+*
+* Brief Description : 
+* *****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,6 +66,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
             listOfExplosions.Add(Instantiate(explosion, listOfBombs[i].transform.position, Quaternion.identity));
             Destroy(listOfBombs[i]);
         }
+
         yield return new WaitForSeconds(SecondsAfterExplode);
         for(int i = 0; i < amountOfBombs; i++)
         {
@@ -80,5 +89,18 @@ public class BombEnemyBehaviour : EnemyBehaviour
             jackalAnimator.SetFloat("YMovement", enemyDirection.y);
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    public override void Die()
+    {
+        SecondsUntilExplode = 0;
+        SecondsAfterExplode = 0;
+
+        for (int i = 0; i < amountOfBombs; i++)
+        {
+            Destroy(listOfBombs[i]);
+        }
+
+        base.Die();
     }
 }
