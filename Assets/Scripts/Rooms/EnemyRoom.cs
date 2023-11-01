@@ -257,7 +257,7 @@ public class EnemyRoom : RoomType
 
         EnemyBehaviour[] allEnemies = GameObject.FindObjectsOfType<EnemyBehaviour>();
 
-        foreach(EnemyBehaviour enemy in allEnemies) 
+        foreach(EnemyBehaviour enemy in allEnemies)
         {
             enemy.Die();
         }
