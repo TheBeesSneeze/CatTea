@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
 
     public RoomType CurrentRoom;
 
+    //magic numbers
+    protected float secondsBetweenDestroyingAttacks = 0.1f; 
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -63,6 +66,32 @@ public class GameManager : MonoBehaviour
     {
         HubRoom hub = GameObject.FindObjectOfType<HubRoom>();
         hub.EnterRoom();
+    }
+
+    /// <summary>
+    /// intended to be called by enemies/bosses when they die to despawn all attacks.
+    /// </summary>
+    /// <param name="destroyObjects"></param>
+    public void DestroyAllObjectsInList(List<GameObject> destroyObjects)
+    {
+        StartCoroutine(DestroyAllObjectsInListCoroutine(destroyObjects));
+    }
+
+    private IEnumerator DestroyAllObjectsInListCoroutine(List<GameObject> destroyObjects)
+    {
+        yield return new WaitForSeconds(secondsBetweenDestroyingAttacks);
+
+        for (int i = 0; i < destroyObjects.Count; i++)
+        {
+            GameObject attack = destroyObjects[i];
+
+            if (attack == null)
+                continue;
+
+            Destroy(attack);
+
+            yield return new WaitForSeconds(secondsBetweenDestroyingAttacks);
+        }
     }
 
     /*

@@ -42,12 +42,12 @@ public class BossBehaviour : CharacterBehaviour
 
     public override void Die()
     {
+        base.Die();
+
         GameEvents.Instance.OnEnemyDeath(this.transform.position);
 
         Debug.Log("Boss die!");
         MyRoom.OnBossDeath();
-
-        base.Die();
 
         //temp code hopefully
         Destroy(this.gameObject);
