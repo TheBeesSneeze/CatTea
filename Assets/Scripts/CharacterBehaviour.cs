@@ -42,6 +42,10 @@ public class CharacterBehaviour : MonoBehaviour
     [HideInInspector] public Color originalColor;
     [HideInInspector] public Color colorOverride;
 
+    [Header("Debug")]
+    public List<GameObject> AttacksSpawned; //most of the gameobjects in this list will be null
+    
+
     protected virtual void Start()
     {
         _healthPoints = MaxHealthPoints;
@@ -162,7 +166,7 @@ public class CharacterBehaviour : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
-        Debug.LogWarning("Override this function");
+        GameManager.Instance.DestroyAllObjectsInList(AttacksSpawned);
     }
 
     public virtual void SetHealth(float value)

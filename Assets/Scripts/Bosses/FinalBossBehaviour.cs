@@ -18,7 +18,6 @@ public class FinalBossBehaviour : BossBehaviour
 {
     [Header("Final Boss")]
     public GameObject SawbladePrefab;
-    private GameObject sawblade;
 
     protected Animator jadebotAnimator;
 
@@ -71,7 +70,8 @@ public class FinalBossBehaviour : BossBehaviour
 
     public void SpawnSawblade()
     {
-        sawblade = Instantiate(SawbladePrefab, transform.position, Quaternion.identity);
+        GameObject sawblade = Instantiate(SawbladePrefab, transform.position, SawbladePrefab.transform.rotation);
+        AttacksSpawned.Add(sawblade);
         sawsSpawned++;
     }
 
@@ -117,14 +117,9 @@ public class FinalBossBehaviour : BossBehaviour
     {
         while (true)
         {
-            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
-            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
-
-            //Debug.Log(enemyDirection);
-
-            jadebotAnimator.SetFloat("XMovement", enemyDirection.x);
-            jadebotAnimator.SetFloat("YMovement", enemyDirection.y);
-            yield return new WaitForSeconds(0.1f);
+            jadebotAnimator.SetFloat("XMovement", AimingDirection.x);
+            jadebotAnimator.SetFloat("YMovement", AimingDirection.y);
+            yield return null;
         }
     }
 }

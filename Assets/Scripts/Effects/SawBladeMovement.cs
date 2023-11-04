@@ -18,12 +18,14 @@ public class SawBladeMovement : MonoBehaviour
 {
     public float Speed;
 
+    private SpriteRenderer spriteRenderer;
     private ConstantRotation constantRotation;
     private Rigidbody2D myRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         constantRotation = GetComponent<ConstantRotation>();
         myRigidbody = GetComponent<Rigidbody2D>();
         RandomizeVelocity();
@@ -51,11 +53,13 @@ public class SawBladeMovement : MonoBehaviour
     {
         string layer = LayerMask.LayerToName(collision.gameObject.layer);
 
-        if (layer.Equals("Level"))
+        if (layer.Equals("Level") || layer.Equals("Attack"))
         {
             constantRotation.Speed *= -1;
 
             MaintainConstantVelocity();
+
+            spriteRenderer.flipX = !spriteRenderer.flipX;
         }
     }
 

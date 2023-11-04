@@ -30,7 +30,6 @@ public class EnemyRoom : RoomType
     protected float secondsForEnemyToSpawn = 2.5f;
 
     //magic numbers
-    private float shadowExpandingFrames = 40;
     public float shadowExpandingScale = 3; // t^x (this is x)
 
     private int challengePointsLeft;
@@ -219,7 +218,7 @@ public class EnemyRoom : RoomType
     {
         Vector3 shadowRotation = UniversalVariables.Instance.EnemySpawningShadowPrefab.transform.eulerAngles;
 
-        GameObject shadow = Instantiate(UniversalVariables.Instance.EnemySpawningShadowPrefab, shadowSpawnPoint.position, Quaternion.identity);
+        GameObject shadow = Instantiate(UniversalVariables.Instance.EnemySpawningShadowPrefab, shadowSpawnPoint.position, shadowSpawnPoint.transform.rotation);
         SpriteRenderer shadowSprite = shadow.GetComponent<SpriteRenderer>();
 
         shadow.transform.eulerAngles = shadowRotation;
@@ -233,16 +232,17 @@ public class EnemyRoom : RoomType
         shadowSprite.color = startShadowColor;
         shadow.transform.localScale = Vector3.zero;
 
-        float t = 0; // 0 -> 1
-        while(t < 1)
+        float t = 0; // 0 -> secondsForEnemyToSpawn
+        while (t < secondsForEnemyToSpawn)
         {
-            t += 1 / shadowExpandingFrames;
-            float tScaled = Mathf.Pow(t, shadowExpandingScale);
+            t += Time.deltaTime;
+
+            float tScaled = Mathf.Pow((t/ secondsForEnemyToSpawn), shadowExpandingScale);
             
             shadowSprite.color = Color.Lerp(startShadowColor, targetShadowColor, tScaled);
             shadow.transform.localScale = Vector3.Lerp(Vector3.zero, targetShadowTransform, tScaled);
 
-            yield return new WaitForSeconds(secondsForEnemyToSpawn / shadowExpandingFrames);
+            yield return null;
         }
 
         Destroy(shadow);

@@ -63,7 +63,10 @@ public class BombEnemyBehaviour : EnemyBehaviour
         yield return new WaitForSeconds(SecondsUntilExplode);
         for(int i = 0; i < amountOfBombs; i++)
         {
-            listOfExplosions.Add(Instantiate(explosion, listOfBombs[i].transform.position, Quaternion.identity));
+            GameObject newBomb = Instantiate(explosion, listOfBombs[i].transform.position, Quaternion.identity);
+            listOfExplosions.Add(newBomb);
+            AttacksSpawned.Add(newBomb);
+
             Destroy(listOfBombs[i]);
         }
 
@@ -74,6 +77,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
         }
         listOfBombs.Clear();
         listOfExplosions.Clear();
+        AttacksSpawned.Clear();
     }
 
     protected IEnumerator UpdateAnimation()
@@ -91,6 +95,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
         }
     }
 
+    /*
     public override void Die()
     {
         SecondsUntilExplode = 0;
@@ -108,4 +113,5 @@ public class BombEnemyBehaviour : EnemyBehaviour
 
         base.Die();
     }
+    */
 }

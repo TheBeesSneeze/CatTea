@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 158392565024314740}
   - component: {fileID: 4904447309484688576}
   - component: {fileID: 2896165392543653875}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Sawblade Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5314779875584245046}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
   m_LocalPosition: {x: 131.5388, y: -10.1273, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3495810804958844229}
@@ -78,9 +78,9 @@ SpriteRenderer:
   m_SortingLayerID: 50652535
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
-  m_Color: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: 06b3953af41376e4fb1f426aa5c6c67a, type: 3}
+  m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -169,10 +169,10 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: e1f31500c67a47345babb9db6d83d5db, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1664
+    m_Bits: 3712
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -187,9 +187,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3495810804958844229}
   - component: {fileID: 4363506936100866640}
-  - component: {fileID: 1374069416279121135}
+  - component: {fileID: 6018928179002979735}
   - component: {fileID: 7931081042861082117}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sawblade Attack
   m_TagString: Enemy Attack
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4793818055752144261}
   m_RootOrder: -1
@@ -232,8 +232,8 @@ MonoBehaviour:
   CanBeParried: 0
   DestroyAttackAfterSeconds: -1
   Attacker: 0
---- !u!58 &1374069416279121135
-CircleCollider2D:
+--- !u!70 &6018928179002979735
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -265,8 +265,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 2.43, y: 2.5}
+  m_Direction: 1
 --- !u!50 &7931081042861082117
 Rigidbody2D:
   serializedVersion: 4
@@ -289,7 +289,7 @@ Rigidbody2D:
     m_Bits: 640
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 7543
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
