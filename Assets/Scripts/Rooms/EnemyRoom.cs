@@ -255,11 +255,16 @@ public class EnemyRoom : RoomType
     {
         base.Cheat();
 
+        challengePointsLeft = 0;
+        wavesLeft = 0;
+
         EnemyBehaviour[] allEnemies = GameObject.FindObjectsOfType<EnemyBehaviour>();
 
-        foreach(EnemyBehaviour enemy in allEnemies) 
+        foreach(EnemyBehaviour enemy in allEnemies)
         {
             enemy.Die();
         }
+
+        ClearRoom();
     }
 }
