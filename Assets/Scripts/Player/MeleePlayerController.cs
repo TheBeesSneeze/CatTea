@@ -62,7 +62,8 @@ public class MeleePlayerController : MonoBehaviour
         SwordCollider.enabled = true;
         Attacking = true;
         playerController.CanAttack = false;
-        SwordSlash.Play();
+
+        PlaySwordSound();
 
         StartCoroutine(MeleeAttack());
 
@@ -203,5 +204,14 @@ public class MeleePlayerController : MonoBehaviour
         {
             SwordCollider.transform.localScale = new Vector3(-1, 1, 1);
         }
+    }
+
+    /// <summary>
+    /// randomizes pitch
+    /// </summary>
+    private void PlaySwordSound()
+    {
+        SwordSlash.pitch = Random.Range(0.75f, 1.25f);
+        SwordSlash.Play();
     }
 }

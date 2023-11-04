@@ -111,7 +111,7 @@ public class DissapearingEnemy : EnemyBehaviour
 
             if(distanceToPlayer <= AttackPlayerDistance)
             {
-                if(attackCoroutine == null && enemyVisible == false)
+                if(attackCoroutine == null && !enemyVisible)
                 {
                     attackCoroutine = StartCoroutine(Attacking());
                 }
@@ -132,10 +132,9 @@ public class DissapearingEnemy : EnemyBehaviour
             yield return new WaitForSeconds(0.3f);
             attack.SetActive(false);
         }
-        
-        attackCoroutine = null;
+
         StartCoroutine(Dissapear());
-        
+        attackCoroutine = null;
     }
 
     protected IEnumerator UpdateAnimation()
@@ -144,8 +143,6 @@ public class DissapearingEnemy : EnemyBehaviour
         {
             enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
             enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
-
-            //Debug.Log(enemyDirection);
 
             chameleonAnimator.SetFloat("XMovement", enemyDirection.x);
             chameleonAnimator.SetFloat("YMovement", enemyDirection.y);
