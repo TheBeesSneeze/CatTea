@@ -3,11 +3,10 @@
 * Author(s) :         Toby Schamberger
 * Creation Date :     9/4/2023
 *
-* "Brief" Description : Code mostly stolen from Gorp Game. Shoutouts to which
+* Brief Description : Code mostly stolen from Gorp Game. Shoutouts to which
 * ever TA wrote the sword swinging code.
 * 
 * TODO: rumble
-* Make sword stop more smooth
 *****************************************************************************/
 
 using System.Collections;
