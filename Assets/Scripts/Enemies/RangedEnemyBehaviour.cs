@@ -45,7 +45,10 @@ public class RangedEnemyBehaviour : EnemyBehaviour
 
             for(int i=0; i< BulletsSpawned; i++)
             {
-                Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+                GameObject newBullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+
+                AttacksSpawned.Add(newBullet);
+
                 yield return new WaitForSeconds(0.4f);
             }
         }
