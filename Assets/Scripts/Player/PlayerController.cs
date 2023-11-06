@@ -420,7 +420,7 @@ public class PlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerDash();
 
-        playerBehaviour.BecomeInvincible(slideSeconds / 1.1f);
+        playerBehaviour.BecomeInvincible(slideSeconds / 0.9f, true);
 
         myRigidbody.velocity = Vector2.zero;
         myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);

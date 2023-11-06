@@ -30,7 +30,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     //magic numbers
     protected bool capHPAtMax = true;
-    protected float damageColorChangeSeconds = 0.1f;
+    protected float damageColorChangeSeconds = 0.15f;
 
     //lame stuff
     protected Rigidbody2D myRigidbody2D;
@@ -185,30 +185,37 @@ public class CharacterBehaviour : MonoBehaviour
         //Debug.LogWarning("Override me!");
     }
 
-    /// <summary>
-    /// Makes the character invincible over invincibilitySeconds
-    /// </summary>
-    /// <param name="invincibilitySeconds">Length of invincibility</param>
-    public virtual void BecomeInvincible(float invincibilitySeconds)
+    public virtual void BecomeInvincible(float invincibilitySeconds, bool becomeClear)
     {
-        StartCoroutine(ScaleOpacity(0.5f, invincibilitySeconds));
+        if(becomeClear)
+            StartCoroutine(ScaleOpacity(0.5f, invincibilitySeconds));
 
         Invincible = true;
 
         if (invincibleCoroutine != null)
             StopCoroutine(invincibleCoroutine);
 
-        StartCoroutine(BecomeVincible(invincibilitySeconds));
+        StartCoroutine(BecomeVincible(invincibilitySeconds, becomeClear));
     }
 
-    private IEnumerator BecomeVincible(float invincibilitySeconds)
+    /// <summary>
+    /// Makes the character invincible over invincibilitySeconds
+    /// </summary>
+    /// <param name="invincibilitySeconds">Length of invincibility</param>
+    public virtual void BecomeInvincible(float invincibilitySeconds)
+    {
+        BecomeInvincible(invincibilitySeconds, false);
+    }
+
+    private IEnumerator BecomeVincible(float invincibilitySeconds, bool becomeClear)
     {
         yield return new WaitForSeconds(invincibilitySeconds);
         Invincible = false;
 
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
 
-        StartCoroutine(ScaleOpacity(1f, invincibilitySeconds*2));
+        if(becomeClear)
+            StartCoroutine(ScaleOpacity(1f, invincibilitySeconds*2));
     }
 
     private IEnumerator ScaleOpacity(float targetOpacity,float seconds)
