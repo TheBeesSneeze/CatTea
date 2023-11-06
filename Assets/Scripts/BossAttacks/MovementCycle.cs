@@ -27,7 +27,13 @@ public class MovementCycle : BossAttackType
         if (moveCoroutine != null)
             return;
 
-        Vector2 randomPosition = BossAttackUtilities.GetRandomPosition((Vector2)transform.position, MaxMovementDistance, LM);
+        Vector2 randomPosition;
+
+        do
+        {
+            randomPosition = BossAttackUtilities.GetRandomPosition((Vector2)transform.position, MaxMovementDistance, LM);
+        }
+        while (Vector2.Distance((Vector2)transform.position, randomPosition) < 3);
 
         //Debug.Log ("moving boss to " + randomPosition);
 
@@ -62,7 +68,7 @@ public class MovementCycle : BossAttackType
 
         if(layer.Equals("Level"))
         {
-            GetOutOfWall(collision.transform.position);
+            //GetOutOfWall(collision.GetContact(0).point);
         }
     }
 
@@ -74,6 +80,8 @@ public class MovementCycle : BossAttackType
         Vector2 difference = (Vector2)transform.position - wallPosition;
         Vector2 newTarget = difference.normalized * 10;
 
-        moveCoroutine = StartCoroutine(MoveAcross(wallPosition, newTarget));
+        Debug.Log("New target: " + newTarget);
+
+        moveCoroutine = StartCoroutine( MoveAcross(wallPosition, newTarget) );
     }
 }

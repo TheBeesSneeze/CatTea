@@ -188,9 +188,18 @@ public class RangedPlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerShoot(bullet.GetComponent<AttackType>());
 
-        ShootSound.Play();
+        PlayShootSound();
 
         UpdateGunSprite();
+    }
+
+    /// <summary>
+    /// randomizes pitch
+    /// </summary>
+    private void PlayShootSound()
+    {
+        ShootSound.pitch = Random.Range(0.95f, 1.25f);
+        ShootSound.Play();
     }
 
     private void SetBulletsLeft(int value)

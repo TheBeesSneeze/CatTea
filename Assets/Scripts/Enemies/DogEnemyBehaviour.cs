@@ -46,8 +46,6 @@ public class DogEnemyBehaviour : EnemyBehaviour
         StartCoroutine(UpdateAnimation());
     }
 
-    
-
     private IEnumerator RotateEnemy()
     {
         while(this.gameObject != null)

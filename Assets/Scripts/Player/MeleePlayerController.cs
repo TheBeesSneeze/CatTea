@@ -3,11 +3,10 @@
 * Author(s) :         Toby Schamberger
 * Creation Date :     9/4/2023
 *
-* "Brief" Description : Code mostly stolen from Gorp Game. Shoutouts to which
+* Brief Description : Code mostly stolen from Gorp Game. Shoutouts to which
 * ever TA wrote the sword swinging code.
 * 
 * TODO: rumble
-* Make sword stop more smooth
 *****************************************************************************/
 
 using System.Collections;
@@ -62,7 +61,8 @@ public class MeleePlayerController : MonoBehaviour
         SwordCollider.enabled = true;
         Attacking = true;
         playerController.CanAttack = false;
-        SwordSlash.Play();
+
+        PlaySwordSound();
 
         StartCoroutine(MeleeAttack());
 
@@ -203,5 +203,14 @@ public class MeleePlayerController : MonoBehaviour
         {
             SwordCollider.transform.localScale = new Vector3(-1, 1, 1);
         }
+    }
+
+    /// <summary>
+    /// randomizes pitch
+    /// </summary>
+    private void PlaySwordSound()
+    {
+        SwordSlash.pitch = Random.Range(0.75f, 1.25f);
+        SwordSlash.Play();
     }
 }
