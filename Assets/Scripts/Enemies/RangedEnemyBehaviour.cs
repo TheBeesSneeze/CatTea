@@ -65,7 +65,7 @@ public class RangedEnemyBehaviour : EnemyBehaviour
 
             guncatAnimator.SetFloat("XMovement", enemyDirection.x);
             guncatAnimator.SetFloat("YMovement", enemyDirection.y);
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
     }
 

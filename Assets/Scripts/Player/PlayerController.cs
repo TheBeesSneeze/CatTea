@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     //magic numbers
     [Tooltip("The amount of slippiness the player experiences when changing movement directions (THIS VALUE MUST BE BETWEEN 0 and 1)")]
     private static float slideAmount = 0.70f; // this needs to be a number between 0 and 1. higher number for more slidey
-    private static float slideSeconds = 0.6f;
+    private static float slideSeconds = 0.2f;
     private static float slowAmount = 0.3f; //also a number between 0 and 1
     private static float slowSeconds = 0.1f;
 
@@ -182,7 +182,6 @@ public class PlayerController : MonoBehaviour
     /// <param name="obj"></param>
     protected virtual void Move_performed(InputAction.CallbackContext obj)
     {
-
         if(ignoreMove || IgnoreAllInputs)
             return;
 
@@ -416,28 +415,23 @@ public class PlayerController : MonoBehaviour
 
     protected virtual IEnumerator PerformDash()
     {
+        ignoreMove = true;
+        canDash = false;
+
         GameEvents.Instance.OnPlayerDash();
 
-        canDash = false;
-        ignoreMove = true;
-
-        StartCoroutine(NoMovementRoutine(playerBehaviour.DashTime));
-
-        if (movingCoroutine != null)
-            StopCoroutine(movingCoroutine);
+        playerBehaviour.BecomeInvincible(slideSeconds / 1.1f);
 
         myRigidbody.velocity = Vector2.zero;
-        //myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
+        myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
 
-        MoveDirection = InputDirection * playerBehaviour.Speed;
-        myRigidbody.AddForce(MoveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);
-
-        StartCoroutine(NoMovementRoutine(playerBehaviour.DashTime));
-
-        if (MyGamepad != null)
+        //test
+        if (Settings.Instance.ControllerVibration && MyGamepad != null)
         {
-            MyGamepad.SetMotorSpeeds(0.1f, 0.1f);
+            MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
         }
+
+        StartCoroutine(NoMovementRoutine(slideSeconds));
 
         yield return new WaitForSeconds(playerBehaviour.DashRechargeSeconds);
         canDash = true;
