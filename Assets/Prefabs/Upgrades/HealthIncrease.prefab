@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 21300000, guid: c944f4cfc5915ae4aa7464cf1768f47e, type: 3}
   DisplayName: Operand Increaser
-  DisplayDescription: +5 HP
+  DisplayDescription: +15 HP
   ActivationType: 0
-  HealthIncrease: 5
+  HealthIncrease: 15

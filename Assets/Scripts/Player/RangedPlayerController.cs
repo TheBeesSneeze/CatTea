@@ -44,8 +44,8 @@ public class RangedPlayerController : MonoBehaviour
     }
 
     //really boring settings
-    [HideInInspector] public float MaxUpAngle = 25f;
-    [HideInInspector] public float MaxDownAngle = -25;
+    [HideInInspector] public float MaxUpAngle = 175f;
+    [HideInInspector] public float MaxDownAngle = -175;
 
     //etc
     private PlayerBehaviour playerBehaviour;
