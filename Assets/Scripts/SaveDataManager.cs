@@ -42,7 +42,7 @@ public class SaveDataManager : MonoBehaviour
     /// </summary>
     public void SaveSettings()
     {
-        //Debug.Log(settingsPath);
+        Debug.Log(settingsPath);
         var stringifiedData = JsonUtility.ToJson(SettingsData);
         if (File.Exists(settingsPath))
         {
