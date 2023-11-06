@@ -34,13 +34,6 @@ public class VolumeAdjuster : MonoBehaviour
         UpdateVolumeBySettings();
     }
 
-    private IEnumerator LateStart()
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        
-    }
-
     public void UpdateVolumeBySettings()
     {
         if(Type == SoundType.SoundEffect) 
