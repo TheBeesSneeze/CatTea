@@ -85,6 +85,8 @@ public class DogEnemyBehaviour : EnemyBehaviour
             yield return new WaitForSeconds(TimeBetweenAttacks);
             GameObject newAttack = Instantiate(dogAttackPrefab, transform.position, transform.rotation);
 
+            AttacksSpawned.Add(newAttack);
+
             Vector2 dif = (player.transform.position - this.transform.position);
             newAttack.GetComponent<Rigidbody2D>().velocity = dif.normalized * AttackVelocity;
         }
