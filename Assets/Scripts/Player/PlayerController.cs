@@ -237,7 +237,14 @@ public class PlayerController : MonoBehaviour
 
         //THIS IS TEMP CODE
         // Application.Quit();
-        settingsScript.OpenPauseMenu();
+        if (Settings.Instance.Paused)
+        {
+            Settings.Instance.ClosePauseMenu();
+        }
+        else
+        {
+            Settings.Instance.OpenPauseMenu();
+        }
     }
 
     protected virtual void Cheat_started(InputAction.CallbackContext obj)
