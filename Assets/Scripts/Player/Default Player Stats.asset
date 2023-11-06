@@ -15,8 +15,8 @@ MonoBehaviour:
   Speed: 7
   MaxHealthPoints: 25
   InvincibilitySeconds: 0.1
-  DashTime: 0.2
-  DashUnits: 1
+  DashTime: 0.6
+  DashUnits: 30
   DashRechargeSeconds: 0.75
   RangedAttackDamage: 1
   ProjectileSpeed: 8

@@ -182,7 +182,6 @@ public class PlayerController : MonoBehaviour
     /// <param name="obj"></param>
     protected virtual void Move_performed(InputAction.CallbackContext obj)
     {
-
         if(ignoreMove || IgnoreAllInputs)
             return;
 
@@ -416,28 +415,23 @@ public class PlayerController : MonoBehaviour
 
     protected virtual IEnumerator PerformDash()
     {
+        ignoreMove = true;
+        canDash = false;
+
         GameEvents.Instance.OnPlayerDash();
 
-        canDash = false;
-        ignoreMove = true;
-
-        StartCoroutine(NoMovementRoutine(playerBehaviour.DashTime));
-
-        if (movingCoroutine != null)
-            StopCoroutine(movingCoroutine);
+        playerBehaviour.BecomeInvincible(slideSeconds / 1.1f);
 
         myRigidbody.velocity = Vector2.zero;
-        //myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
+        myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
 
-        MoveDirection = InputDirection * playerBehaviour.Speed;
-        myRigidbody.AddForce(MoveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);
-
-        StartCoroutine(NoMovementRoutine(playerBehaviour.DashTime));
-
-        if (MyGamepad != null)
+        //test
+        if (Settings.Instance.ControllerVibration && MyGamepad != null)
         {
-            MyGamepad.SetMotorSpeeds(0.1f, 0.1f);
+            MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
         }
+
+        StartCoroutine(NoMovementRoutine(slideSeconds));
 
         yield return new WaitForSeconds(playerBehaviour.DashRechargeSeconds);
         canDash = true;
