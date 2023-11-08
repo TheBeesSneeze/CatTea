@@ -30,11 +30,11 @@ public class CharacterBehaviour : MonoBehaviour
 
     //magic numbers
     protected bool capHPAtMax = true;
-    protected float damageColorChangeSeconds = 0.1f;
+    protected float damageColorChangeSeconds = 0.15f;
 
     //lame stuff
     protected Rigidbody2D myRigidbody2D;
-    protected SpriteRenderer mySpriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
     private Coroutine hitAnimationCoroutine;
     private Coroutine invincibleCoroutine;
@@ -51,9 +51,9 @@ public class CharacterBehaviour : MonoBehaviour
         _healthPoints = MaxHealthPoints;
 
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        originalColor = mySpriteRenderer.color;
+        originalColor = spriteRenderer.color;
         colorOverride = originalColor;
 
         SetStatsToDefaults();
@@ -149,16 +149,16 @@ public class CharacterBehaviour : MonoBehaviour
 
     public virtual IEnumerator HitAnimation()
     {
-        if(mySpriteRenderer == null)
+        if(spriteRenderer == null)
         {
-            mySpriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        mySpriteRenderer.color = new Color(1, 0.3f, 0.3f);
+        spriteRenderer.color = new Color(1, 0.3f, 0.3f);
 
         yield return new WaitForSeconds(damageColorChangeSeconds);
 
-        mySpriteRenderer.color = colorOverride;
+        spriteRenderer.color = colorOverride;
     }
 
     /// <summary>
@@ -185,26 +185,54 @@ public class CharacterBehaviour : MonoBehaviour
         //Debug.LogWarning("Override me!");
     }
 
+    public virtual void BecomeInvincible(float invincibilitySeconds, bool becomeClear)
+    {
+        if(becomeClear)
+            StartCoroutine(ScaleOpacity(0.5f, invincibilitySeconds));
+
+        Invincible = true;
+
+        if (invincibleCoroutine != null)
+            StopCoroutine(invincibleCoroutine);
+
+        StartCoroutine(BecomeVincible(invincibilitySeconds, becomeClear));
+    }
+
     /// <summary>
     /// Makes the character invincible over invincibilitySeconds
     /// </summary>
     /// <param name="invincibilitySeconds">Length of invincibility</param>
     public virtual void BecomeInvincible(float invincibilitySeconds)
     {
-        Invincible = true;
-
-        if (invincibleCoroutine != null)
-            StopCoroutine(invincibleCoroutine);
-
-        StartCoroutine(BecomeVincible(invincibilitySeconds));
+        BecomeInvincible(invincibilitySeconds, false);
     }
 
-    private IEnumerator BecomeVincible(float invincibilitySeconds)
+    private IEnumerator BecomeVincible(float invincibilitySeconds, bool becomeClear)
     {
         yield return new WaitForSeconds(invincibilitySeconds);
         Invincible = false;
+
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
+
+        if(becomeClear)
+            StartCoroutine(ScaleOpacity(1f, invincibilitySeconds*2));
     }
 
+    private IEnumerator ScaleOpacity(float targetOpacity,float seconds)
+    {
+        float t = 0;
+        Color c = spriteRenderer.color;
+
+        while(t< seconds)
+        {
+            t += Time.deltaTime;
+            c.a = Mathf.Lerp(1 - targetOpacity, targetOpacity, t / seconds);
+
+            spriteRenderer.color = c;
+
+            yield return null;
+        }
+    }
     /*
     /// <summary>
     /// Makes the character start to take damage over duration.
@@ -223,9 +251,9 @@ public class CharacterBehaviour : MonoBehaviour
 
     private IEnumerator DamageOverTime(float totalDamage, float duration, float damageInterval)
     {
-        Color oldColor = mySpriteRenderer.color;
+        Color oldColor = spriteRenderer.color;
 
-        mySpriteRenderer.color = new Color(0.25f, 0.7f, 0.9f);
+        spriteRenderer.color = new Color(0.25f, 0.7f, 0.9f);
 
         int iterations = (int)(duration / damageInterval);
         int i = 0;
@@ -237,7 +265,7 @@ public class CharacterBehaviour : MonoBehaviour
             yield return new WaitForSeconds(damageInterval);
         }
 
-        mySpriteRenderer.color = oldColor;
+        spriteRenderer.color = oldColor;
     }
     */
 }

@@ -75,10 +75,10 @@ public class DissapearingEnemy : EnemyBehaviour
         {
             t+= Time.deltaTime / secondsToToggleInvisibility;
 
-            Color myColor = mySpriteRenderer.color;
+            Color myColor = spriteRenderer.color;
             myColor.a = 1-t;
 
-            mySpriteRenderer.color = myColor;
+            spriteRenderer.color = myColor;
         }
 
         yield return new WaitForSeconds(TimeBeforeAttacking);
@@ -93,10 +93,10 @@ public class DissapearingEnemy : EnemyBehaviour
         {
             t += Time.deltaTime / secondsToToggleInvisibility;
 
-            Color myColor = mySpriteRenderer.color;
+            Color myColor = spriteRenderer.color;
             myColor.a = t;
 
-            mySpriteRenderer.color = myColor;
+            spriteRenderer.color = myColor;
         }
 
         yield return new WaitForSeconds(TimeBeforeAttacking);

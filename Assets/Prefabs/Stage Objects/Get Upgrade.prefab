@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 6150773485270363876}
   - component: {fileID: 3992651958831033568}
   - component: {fileID: 5167686416468055757}
+  - component: {fileID: 3130517223216545995}
   m_Layer: 5
   m_Name: Get Upgrade
   m_TagString: Untagged
@@ -117,7 +118,7 @@ RectTransform:
   m_Children:
   - {fileID: 343791682580766840}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -225,3 +226,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &3130517223216545995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5762969548638433894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1737e37389e0b09459b9f9ccd0ac59a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitsToMove: 0.1
+  SecondsToReachTop: 1.5
