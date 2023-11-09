@@ -19,6 +19,7 @@ public class DamageOverTimeUpgrade : UpgradeType
 
     [Tooltip("between 0 and 1. Chance enemy will take DOT")]
     public float DOTChance;
+    private float _DOTChance;
 
     [Tooltip("How much damage will be taken after effect ends")]
     public float TotalDamage;
@@ -27,7 +28,6 @@ public class DamageOverTimeUpgrade : UpgradeType
     public float DOTDuration;
 
     public Color EnemyColor = new Color(0.25f, 0.7f, 0.9f);
-
 
     public override void UpgradeEffect(CharacterBehaviour eventCharacter)
     {
@@ -38,6 +38,13 @@ public class DamageOverTimeUpgrade : UpgradeType
             Debug.Log("dot!");
             StartCoroutine(DamageOverTime(eventCharacter));
         }
+    }
+
+    public override void DuplicateUpgradeEffect()
+    {
+        DamageOverTimeUpgrade originalDOT = originalUpgrade.GetComponent<DamageOverTimeUpgrade>();
+
+        originalDOT.DOTChance 
     }
 
     /// <summary>

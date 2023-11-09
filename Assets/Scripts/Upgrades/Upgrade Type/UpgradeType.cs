@@ -14,6 +14,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,9 @@ public class UpgradeType : MonoBehaviour
     public Sprite DisplaySprite;
     public string DisplayName;
     public string DisplayDescription;
+    [Tooltip("Description for when the player already has this upgrade")]
+    public string DuplicateDescription;
+    public bool Stackable;
 
     public enum UpgradeActivationType {OnStart, OnEnemyDeath, OnEnemyDamage, OnPlayerDamage, OnEnterRoom, OnPlayerGun, OnPlayerSword, OnPlayerDash}
 
@@ -33,6 +37,14 @@ public class UpgradeType : MonoBehaviour
     [HideInInspector] protected RangedPlayerController rangedPlayerController;
     private UpgradeUI upgradeUI;
 
+    [Header("Debug")]
+
+    [Tooltip("How many times this upgrade has been collected")]
+    public int NumberOfUpgrades;
+    public bool IsADuplicate;
+
+    protected UpgradeType originalUpgrade;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -42,7 +54,19 @@ public class UpgradeType : MonoBehaviour
 
         AddSpriteToUI();
 
-        if(ActivationType.Equals(UpgradeActivationType.OnStart))
+        IsADuplicate = CheckIfDuplicate();
+
+        if(IsADuplicate)
+        {
+            DuplicateUpgradeEffect();
+            FindOriginalUpgrade();
+            originalUpgrade.NumberOfUpgrades++;
+            return;
+        }
+
+        NumberOfUpgrades = 1;
+
+        if (ActivationType.Equals(UpgradeActivationType.OnStart))
         {
             UpgradeEffect();
             return;
@@ -50,6 +74,47 @@ public class UpgradeType : MonoBehaviour
         }
 
         AssignActivationEvent();
+    }
+
+    public virtual void DuplicateUpgradeEffect()
+    {
+        Debug.LogWarning("No override for duplicate upgrade effect in " + gameObject.name);
+    }
+
+    private bool CheckIfDuplicate()
+    {
+        int numberOfThis=0;
+        UpgradeType[] upgrades = GameObject.FindObjectsOfType<UpgradeType>();
+
+        for(int i=0; i< upgrades.Length; i++)
+        {
+            if (upgrades[i].gameObject.name == this.gameObject.name)
+                numberOfThis++;
+
+            if (numberOfThis >= 2)
+                return true;
+        }
+
+        return false;
+    }
+
+    private void FindOriginalUpgrade()
+    {
+        UpgradeType[] upgrades = GameObject.FindObjectsOfType<UpgradeType>();
+
+        foreach (UpgradeType upgrade in upgrades)
+        {
+            if(upgrade == this)
+            {
+                Debug.Log("same guy");
+            }
+
+            if (!upgrade.IsADuplicate)
+            {
+                originalUpgrade = upgrade;
+                return;
+            }
+        }
     }
 
     private void AddSpriteToUI()
@@ -99,6 +164,9 @@ public class UpgradeType : MonoBehaviour
 
     private void AssignActivationEvent()
     {
+        if (IsADuplicate)
+            return;
+
         switch (ActivationType) 
         {
             case UpgradeActivationType.OnEnemyDeath:

@@ -25,7 +25,7 @@ public class UpgradeChoiceButton : MonoBehaviour
     {
         UpgradeIndex = upgradePrefabIndex;
         UpgradePrefab = GameManager.Instance.CurrentUpgradePool[upgradePrefabIndex];
-        Debug.Log(UpgradeIndex);
+        //Debug.Log(UpgradeIndex);
 
         if (!updateButtonText)
             return;
@@ -43,8 +43,13 @@ public class UpgradeChoiceButton : MonoBehaviour
     public void OnClick()
     {
         Instantiate(UpgradePrefab);
+        
+        UpgradeType upgrade = UpgradePrefab.GetComponent<UpgradeType>();
 
-        GameManager.Instance.CurrentUpgradePool.RemoveAt(UpgradeIndex);
+        if(!upgrade.Stackable)
+        {
+            GameManager.Instance.CurrentUpgradePool.RemoveAt(UpgradeIndex);
+        }
 
         UpgradeChoiceInterface upgradeUI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
 

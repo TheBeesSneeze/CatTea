@@ -47,7 +47,10 @@ MonoBehaviour:
   DisplaySprite: {fileID: 21300000, guid: ff13b27801b254e42914363e3b966071, type: 3}
   DisplayName: Ooze
   DisplayDescription: Leave a trail of ooze, dealing damage over time to enemies.
+  DuplicateDescription: 
+  Stackable: 1
   ActivationType: 0
+  NumberOfUpgrades: 0
   OozePrefab: {fileID: 1346377120068739493, guid: 4b9f8f746f874854dbdd336260730bc6, type: 3}
   MinSecondsBetweenOozePuddles: 0
   MaxSecondsBetweenOozePuddles: 0.5
