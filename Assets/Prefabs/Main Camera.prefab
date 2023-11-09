@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce59b48fe243e4eb90a6fd666a70c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxDistanceFromPlayer: 0.5
-  MouseToPlayerScale: 10
+  MaxDistanceFromPlayer: 1
+  MouseToPlayerScale: 25
 --- !u!20 &7269980980679058379
 Camera:
   m_ObjectHideFlags: 0

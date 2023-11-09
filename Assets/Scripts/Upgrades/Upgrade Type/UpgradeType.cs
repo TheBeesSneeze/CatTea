@@ -22,7 +22,8 @@ public class UpgradeType : MonoBehaviour
     public Sprite DisplaySprite;
     public string DisplayName;
     public string DisplayDescription;
-
+    [Tooltip("If true, this upgrade can be collected multiple times without causing problems")]
+    public bool CanBeStacked;
     public enum UpgradeActivationType {OnStart, OnEnemyDeath, OnEnemyDamage, OnPlayerDamage, OnEnterRoom, OnPlayerGun, OnPlayerSword, OnPlayerDash}
 
     [Tooltip("When this upgrades effect runs")]
