@@ -47,6 +47,7 @@ MonoBehaviour:
   DisplaySprite: {fileID: 21300000, guid: c35f4f499cd1dea47b7c10dcc6210914, type: 3}
   DisplayName: Purge Virus
   DisplayDescription: 20% chance to make enemies bleed on hit
+  CanBeStacked: 1
   ActivationType: 2
   DOTChance: 0.2
   TotalDamage: 2
