@@ -54,6 +54,7 @@ public class SaveDataManager : MonoBehaviour
         else
         {
             File.Create(settingsPath);
+            stringifiedData = JsonUtility.ToJson(SettingsData);
             File.WriteAllText(settingsPath, stringifiedData);
         }
     }
@@ -61,8 +62,9 @@ public class SaveDataManager : MonoBehaviour
     /// <summary>
     /// Loads old settings from JSON. called when the thing is loaded
     /// </summary>
-    public SettingsDataClass LoadSettings()
+    public void LoadSettings()
     {
+        
         if (File.Exists(settingsPath))
         {
             string readText = File.ReadAllText(settingsPath);
@@ -70,11 +72,14 @@ public class SaveDataManager : MonoBehaviour
 
             Debug.Log("Sound: " + SettingsData.SoundVolume);
 
-            return SettingsData;
+        }
+        else
+        {
+            SettingsData = new SettingsDataClass(1, 1, true);
+            SaveSettings();
         }
 
         Debug.LogWarning("Could not load settings. File does not exist");
-        return null;
     }
 
     

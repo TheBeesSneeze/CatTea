@@ -44,7 +44,7 @@ public class Settings : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(DelayedStart());
+       // StartCoroutine(DelayedStart());
     }
 
     private IEnumerator DelayedStart()
