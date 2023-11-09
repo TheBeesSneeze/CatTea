@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ae455e2b1fb2b42ab9ef468e79d0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: 21300000, guid: e30a024f2fac1584ca176e9afb1ec847, type: 3}
+  DisplaySprite: {fileID: 21300000, guid: ff13b27801b254e42914363e3b966071, type: 3}
   DisplayName: Ooze
   DisplayDescription: Leave a trail of ooze, dealing damage over time to enemies.
   ActivationType: 0

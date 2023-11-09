@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb28d45072540c48b849527d915cf0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: -1856601973, guid: aeae53ab2362a5c4daa8d03f75db686e, type: 3}
+  DisplaySprite: {fileID: 21300000, guid: 161a5b345c2d17240805b425a0a0da8f, type: 3}
   DisplayName: Revitalizing Pedometer
   DisplayDescription: Heal +3HP when entering a room
+  CanBeStacked: 1
   ActivationType: 4
   HealAmount: 3

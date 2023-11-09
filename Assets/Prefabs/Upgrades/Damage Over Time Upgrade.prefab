@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884ec1efc2beb78498c833c606e5dafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: 21300000, guid: 96bb56bb5cfaa5047a3a36235860b72b, type: 3}
+  DisplaySprite: {fileID: 21300000, guid: c35f4f499cd1dea47b7c10dcc6210914, type: 3}
   DisplayName: Purge Virus
   DisplayDescription: 20% chance to make enemies bleed on hit
+  CanBeStacked: 1
   ActivationType: 2
-  DOTChance: 0.7
+  DOTChance: 0.2
   TotalDamage: 2
   DOTDuration: 10
   EnemyColor: {r: 0.19501601, g: 0.7830189, b: 0.41594073, a: 1}
