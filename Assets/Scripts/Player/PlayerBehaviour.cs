@@ -42,12 +42,11 @@ public class PlayerBehaviour : CharacterBehaviour
     [HideInInspector] public float SwordAttackCoolDown;
     [HideInInspector] public float MeleeAttackKnockback;
 
-    
-
     //components
     private PlayerController playerController;
 
     private PlayerHealthBar healthBar;
+    private PlayerAmmoBar ammoBar;
 
     private void Awake()
     {
@@ -60,10 +59,46 @@ public class PlayerBehaviour : CharacterBehaviour
         base.Start();
         playerController = GetComponent<PlayerController>();
 
-        try { healthBar = GameObject.FindObjectOfType<PlayerHealthBar>(); }
-        catch { Debug.LogWarning("No Player Health Bar in Scene"); }
+        healthBar = GameObject.FindObjectOfType<PlayerHealthBar>();
+        ammoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
         
         HealthPoints = MaxHealthPoints;
+
+        StartSwordMode();
+
+        if( ! SaveDataManager.Instance.SaveData.GunUnlocked)
+        {
+            OnGunLocked();
+        }
+
+    }
+
+    /// <summary>
+    /// Hides sword and brings out gun.
+    /// Does not do any attacking.
+    /// </summary>
+    public void StartGunMode()
+    {
+        playerController.GunSprite.enabled = true;
+        playerController.SwordSprite.enabled = false;
+    }
+
+    /// <summary>
+    /// Hides gun and brings out sword.
+    /// Does not do any attacking.
+    /// </summary>
+    public void StartSwordMode()
+    {
+        playerController.GunSprite.enabled = false;
+        playerController.SwordSprite.enabled = true;
+    }
+
+    /// <summary>
+    /// Hides ammo UI and aim icon
+    /// </summary>
+    private void OnGunLocked()
+    {
+        ammoBar.enabled = false;
     }
 
     public override void SetHealth(float Value)
@@ -72,11 +107,6 @@ public class PlayerBehaviour : CharacterBehaviour
 
         if (healthBar != null) 
             healthBar.UpdateHealth();
-
-        if(HealthPoints <= 0)
-        {
-            SceneManager.LoadScene(3);
-        }
     }
 
     public override bool TakeDamage(float Damage)
@@ -94,6 +124,11 @@ public class PlayerBehaviour : CharacterBehaviour
         BecomeInvincible(InvincibilitySeconds); 
 
         return died;
+    }
+
+    public override void Die()
+    {
+        SceneManager.LoadScene(3);
     }
 
     public override void SetStatsToDefaults()
@@ -118,17 +153,4 @@ public class PlayerBehaviour : CharacterBehaviour
         SwordAttackCoolDown = CurrentPlayerStats.SwordAttackCoolDown;
         MeleeAttackKnockback = CurrentPlayerStats.MeleeAttackKnockback;
     }
-}
-
-
-/*******************************************************************************
-* Class Name :        PlayerData
-* Author(s) :         Toby Schamberger
-* Creation Date :     9/26/2023
-*
-* Brief Description : hell if i know man
-*****************************************************************************/
-public class PlayerData
-{
-
 }

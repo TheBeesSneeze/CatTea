@@ -17,7 +17,9 @@ public class SaveDataManager : MonoBehaviour
     public static SaveDataManager Instance;
 
     public SettingsDataClass SettingsData;
+    public SaveDataClass SaveData;
     private string settingsPath;
+    private string saveDataPath;
 
     /// <summary>
     /// If there is an instance, and it's not me, delete myself.
@@ -33,8 +35,46 @@ public class SaveDataManager : MonoBehaviour
     {
         //SettingsDataClass = Settings.Instance;
         settingsPath = string.Concat(Application.persistentDataPath, "/SettingsData.json");
+        saveDataPath = string.Concat(Application.persistentDataPath, "/SaveData.json");
 
         LoadSettings();
+    }
+
+    /// <summary>
+    /// saves the current settings to JSON
+    /// </summary>
+    public void SaveSettings()
+    {
+        Debug.Log(settingsPath);
+        var stringifiedData = JsonUtility.ToJson(SettingsData);
+        if (File.Exists(settingsPath))
+        {
+            File.WriteAllText(settingsPath, stringifiedData);
+        }
+        else
+        {
+            File.Create(settingsPath);
+            File.WriteAllText(settingsPath, stringifiedData);
+        }
+    }
+
+    /// <summary>
+    /// Loads old settings from JSON. called when the thing is loaded
+    /// </summary>
+    public SettingsDataClass LoadSettings()
+    {
+        if (File.Exists(settingsPath))
+        {
+            string readText = File.ReadAllText(settingsPath);
+            SettingsData = JsonUtility.FromJson<SettingsDataClass>(readText);
+
+            Debug.Log("Sound: " + SettingsData.SoundVolume);
+
+            return SettingsData;
+        }
+
+        Debug.LogWarning("Could not load settings. File does not exist");
+        return null;
     }
 
     /// <summary>

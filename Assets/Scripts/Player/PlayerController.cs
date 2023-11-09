@@ -105,8 +105,6 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.FindObjectOfType<GameManager>();
         settingsScript = GameObject.FindObjectOfType<Settings>();
 
-        StartGunMode();
-
         InitializeControls();
 
         DetectInputDevice();
@@ -253,25 +251,7 @@ public class PlayerController : MonoBehaviour
         gameManager.CurrentRoom.Cheat();
     }
 
-    /// <summary>
-    /// Hides sword and brings out gun.
-    /// Does not do any attacking.
-    /// </summary>
-    public void StartGunMode()
-    {
-        GunSprite.enabled = true;
-        SwordSprite.enabled = false;
-    }
-
-    /// <summary>
-    /// Hides gun and brings out sword.
-    /// Does not do any attacking.
-    /// </summary>
-    public void StartSwordMode()
-    {
-        GunSprite.enabled = false;
-        SwordSprite.enabled = true;
-    }
+    
 
     /// <summary>
     /// Kind of unnessecary rn, but im cooking, ok

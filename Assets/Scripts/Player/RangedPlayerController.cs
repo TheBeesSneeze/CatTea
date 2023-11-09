@@ -99,7 +99,7 @@ public class RangedPlayerController : MonoBehaviour
 
     public void Gun_performed(InputAction.CallbackContext obj)
     {
-        playerController.StartGunMode();
+        playerBehaviour.StartGunMode();
 
         if (playerController.IgnoreAllInputs) return;
 
