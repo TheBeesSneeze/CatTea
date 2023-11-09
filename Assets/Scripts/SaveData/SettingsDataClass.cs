@@ -13,9 +13,16 @@ using UnityEngine;
 [System.Serializable]
 public class SettingsDataClass
 {
-    public float SoundVolume; // 0 < x < 1
-    public float MusicVolume; // "   "   "
+    public float SoundVolume ; // 0 < x < 1
+    public float MusicVolume ; // "   "   "
 
-    public bool ControllerVibration;
+    public bool ControllerVibration ;
+
+    public SettingsDataClass(float soundVolume, float musicVolume, bool controllerVibration)
+    {
+        SoundVolume = soundVolume;
+        MusicVolume = musicVolume;
+        ControllerVibration = controllerVibration;
+    }
 }
 
