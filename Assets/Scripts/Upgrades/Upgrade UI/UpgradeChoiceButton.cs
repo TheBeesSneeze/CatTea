@@ -16,6 +16,7 @@ public class UpgradeChoiceButton : MonoBehaviour
 {
     public TextMeshProUGUI Header;
     public TextMeshProUGUI Description;
+    public Image Icon;
 
     [Header("Debug")]
     public GameObject UpgradePrefab;
@@ -29,12 +30,12 @@ public class UpgradeChoiceButton : MonoBehaviour
 
         if (!updateButtonText)
             return;
-
         
         UpgradeType upgrade = UpgradePrefab.GetComponent<UpgradeType>();
 
         Header.text = upgrade.DisplayName;
         Description.text = upgrade.DisplayDescription;
+        Icon.sprite = upgrade.DisplaySprite;
     }
 
     /// <summary>
@@ -42,9 +43,11 @@ public class UpgradeChoiceButton : MonoBehaviour
     /// </summary>
     public void OnClick()
     {
-        Instantiate(UpgradePrefab);
+        GameObject upgradeGO = Instantiate(UpgradePrefab);
+        UpgradeType upgrade = upgradeGO.GetComponent<UpgradeType>();
 
-        GameManager.Instance.CurrentUpgradePool.RemoveAt(UpgradeIndex);
+        if(!upgrade.CanBeStacked)
+            GameManager.Instance.CurrentUpgradePool.RemoveAt(UpgradeIndex);
 
         UpgradeChoiceInterface upgradeUI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
 

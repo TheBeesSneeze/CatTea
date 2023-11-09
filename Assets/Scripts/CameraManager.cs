@@ -19,6 +19,7 @@ public class CameraManager : MonoBehaviour
     //[Tooltip("Units / sec the camera moves")]
     //public float CameraSpeed;
     public float MaxDistanceFromPlayer;
+    [Tooltip("Make this number higher for less durastic movements")]
     public float MouseToPlayerScale;
 
     private bool followingPlayer;
