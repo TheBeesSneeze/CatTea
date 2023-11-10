@@ -21,6 +21,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : CharacterBehaviour
 {
+    public static PlayerBehaviour Instance;
+
     //Player Stats
     public PlayerStats CurrentPlayerStats;
 
@@ -51,6 +53,13 @@ public class PlayerBehaviour : CharacterBehaviour
     private void Awake()
     {
         SetStatsToDefaults();
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+            Instance = this;
     }
 
     // Start is called before the first frame update
@@ -66,10 +75,19 @@ public class PlayerBehaviour : CharacterBehaviour
 
         StartSwordMode();
 
-        if( ! SaveDataManager.Instance.SaveData.GunUnlocked)
+        SaveDataManager.Instance.LoadSaveData();
+
+        if (SaveDataManager.Instance.SaveData == null)
         {
             OnGunLocked();
         }
+
+        if (!SaveDataManager.Instance.SaveData.GunUnlocked)
+        {
+            OnGunLocked();
+        }
+        else
+            OnGunUnlocked();
 
     }
 
@@ -96,9 +114,14 @@ public class PlayerBehaviour : CharacterBehaviour
     /// <summary>
     /// Hides ammo UI and aim icon
     /// </summary>
-    private void OnGunLocked()
+    public void OnGunLocked()
     {
         ammoBar.enabled = false;
+    }
+
+    public void OnGunUnlocked()
+    {
+        ammoBar.enabled = true;
     }
 
     public override void SetHealth(float Value)

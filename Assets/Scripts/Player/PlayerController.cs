@@ -249,6 +249,8 @@ public class PlayerController : MonoBehaviour
         if (IgnoreAllInputs) return;
 
         gameManager.CurrentRoom.Cheat();
+
+        SaveDataManager.Instance.SaveData.GunUnlocked = true;
     }
 
     
