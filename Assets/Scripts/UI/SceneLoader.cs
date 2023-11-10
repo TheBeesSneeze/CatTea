@@ -47,5 +47,9 @@ public class SceneLoader : MonoBehaviour
         Application.Quit();
     }
 
+    public void CutSceneLoad()
+    {
+        SceneManager.LoadScene(4);
+    }
 
 }
