@@ -17,6 +17,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : CharacterBehaviour
@@ -44,12 +45,16 @@ public class PlayerBehaviour : CharacterBehaviour
     [HideInInspector] public float SwordAttackCoolDown;
     [HideInInspector] public float MeleeAttackKnockback;
 
+    //magic numbers
+    private Color damageScreenColor = new Color(1, 0.7f, 0.7f); //the reddest the screen can be
+
     //components
     private PlayerController playerController;
     private RangedPlayerController rangedPlayerController;
 
     private PlayerHealthBar healthBar;
     private PlayerAmmoBar ammoBar;
+    private Light2D globalLight;
 
     private void Awake()
     {
@@ -72,6 +77,8 @@ public class PlayerBehaviour : CharacterBehaviour
 
         healthBar = GameObject.FindObjectOfType<PlayerHealthBar>();
         ammoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
+
+        globalLight = GameObject.Find("GlobalLight").GetComponent<Light2D>();
 
         HealthPoints = MaxHealthPoints;
 
@@ -129,6 +136,20 @@ public class PlayerBehaviour : CharacterBehaviour
 
         if (healthBar != null) 
             healthBar.UpdateHealth();
+
+        UpdateScreenColor();
+    }
+
+    /// <summary>
+    /// updates screen color by health
+    /// </summary>
+    public void UpdateScreenColor()
+    {
+        float t = 1 - (HealthPoints / MaxHealthPoints);
+        float tScaled = Mathf.Pow(t, 7);
+
+        globalLight.color = Color.Lerp(Color.white, damageScreenColor, tScaled);
+
     }
 
     public override bool TakeDamage(float Damage)
