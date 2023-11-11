@@ -46,6 +46,7 @@ public class PlayerBehaviour : CharacterBehaviour
 
     //components
     private PlayerController playerController;
+    private RangedPlayerController rangedPlayerController;
 
     private PlayerHealthBar healthBar;
     private PlayerAmmoBar ammoBar;
@@ -67,27 +68,23 @@ public class PlayerBehaviour : CharacterBehaviour
     {
         base.Start();
         playerController = GetComponent<PlayerController>();
+        rangedPlayerController = GetComponent<RangedPlayerController>();
 
         healthBar = GameObject.FindObjectOfType<PlayerHealthBar>();
         ammoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
-        
+
         HealthPoints = MaxHealthPoints;
 
         StartSwordMode();
 
         SaveDataManager.Instance.LoadSaveData();
 
-        if (SaveDataManager.Instance.SaveData == null)
+        if (SaveDataManager.Instance.SaveData.GunUnlocked)
         {
-            OnGunLocked();
-        }
-
-        if (!SaveDataManager.Instance.SaveData.GunUnlocked)
-        {
-            OnGunLocked();
+            OnGunUnlocked(); 
         }
         else
-            OnGunUnlocked();
+            OnGunLocked();
 
     }
 
@@ -116,12 +113,14 @@ public class PlayerBehaviour : CharacterBehaviour
     /// </summary>
     public void OnGunLocked()
     {
-        ammoBar.enabled = false;
+        ammoBar.gameObject.SetActive(false);
+        rangedPlayerController.RangedIcon.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void OnGunUnlocked()
     {
-        ammoBar.enabled = true;
+        ammoBar.gameObject.SetActive(true);
+        rangedPlayerController.RangedIcon.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public override void SetHealth(float Value)

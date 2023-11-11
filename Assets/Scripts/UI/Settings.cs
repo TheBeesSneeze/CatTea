@@ -44,16 +44,9 @@ public class Settings : MonoBehaviour
     /// </summary>
     private void Start()
     {
-       // StartCoroutine(DelayedStart());
-    }
-
-    private IEnumerator DelayedStart()
-    {
-        yield return new WaitForSeconds(0.05f);
-
+        // StartCoroutine(DelayedStart());
         UpdateSettingsFromJSON();
     }
-
     public void OpenPauseMenu()
     {
         SaveDataManager.Instance.LoadSettings();
@@ -85,7 +78,6 @@ public class Settings : MonoBehaviour
     {
         SoundSlider.value = SoundVolume;
         MusicSlider.value = MusicVolume;
-
     }
 
     public void OnSoundSliderChange()
