@@ -135,9 +135,8 @@ MonoBehaviour:
   ExplosionPrefab: {fileID: 4254857575187743282, guid: f61a03b7b3c8b1e41b1845f5c325afba, type: 3}
   RotateBomb: 1
   SuspendedTime: 2
-  FallingTime: 0.75
+  FallingTime: 1.25
   ExplosionTime: 0.25
-  FallingFrames: 250
   FallingAcceleration: 6
 --- !u!1 &4996604077981907450
 GameObject:

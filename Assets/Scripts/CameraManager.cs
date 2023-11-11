@@ -16,18 +16,23 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    //private bool followingPlayer;
-    [Tooltip("Units / sec the camera moves")]
-    public float CameraSpeed;
+    //[Tooltip("Units / sec the camera moves")]
+    //public float CameraSpeed;
+    public float MaxDistanceFromPlayer;
+    [Tooltip("Make this number higher for less durastic movements")]
+    public float MouseToPlayerScale;
 
-    public Vector2 CameraCenterPos;
+    private bool followingPlayer;
 
     //boring settings
-    private GameObject player;
+    private Transform player;
+    private Transform mousePosition;
+    private Coroutine followPlayerCoroutine;
 
     private void Start()
     {
-        player = GameObject.FindAnyObjectByType<PlayerBehaviour>().gameObject;
+        player = GameObject.FindAnyObjectByType<PlayerBehaviour>().transform;
+        mousePosition = GameObject.FindObjectOfType<RangedPlayerController>().RangedIcon.transform;
     }
 
     /// <summary>
@@ -55,16 +60,55 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     public void StopFollowPlayer()
     {
-        //followingPlayer = false;
+        followingPlayer = false;
         transform.SetParent(null);
     }
 
     public void StartFollowPlayer()
     {
-        //followingPlayer=true;
-        //StartCoroutine(FollowPlayer());
-        transform.SetParent(player.transform);
-        transform.localPosition = new Vector3(0,0, transform.localPosition.z);
+        followingPlayer=true;
+        //transform.SetParent(player.transform);
+        //transform.localPosition = new Vector3(0,0, transform.localPosition.z);
+
+        if (followPlayerCoroutine == null)
+            followPlayerCoroutine = StartCoroutine(MoveCameraToMouse());
+    }
+
+    private IEnumerator MoveCameraToMouse()
+    {
+        while(followingPlayer)
+        {
+            Vector3 newPosition = GetNewCameraPosition();
+            newPosition.z = -10;
+            transform.position = newPosition;
+
+            //yield return null;
+            yield return new WaitForFixedUpdate();
+        }
+        followPlayerCoroutine = null;
+    }
+
+    /// <summary>
+    /// Gets new camera position relaitvie to the player
+    /// </summary>
+    /// <returns>does not fix z axis!</returns>
+    private Vector3 GetNewCameraPosition()
+    {
+        Vector3 difference = mousePosition.position - player.position;
+        difference = difference / MouseToPlayerScale;
+
+        Vector3 newPosition = player.position + difference;
+
+        //mouse position is within good range :)
+        if (Vector2.Distance((Vector2)player.position, newPosition) < MaxDistanceFromPlayer)
+        {
+            return player.position + difference;
+        }
+
+        //rescale position to fix maxdistance
+        newPosition = player.position + (difference.normalized * MaxDistanceFromPlayer);
+
+        return newPosition;
     }
 
     /*

@@ -46,8 +46,16 @@ public class DoorManager : MonoBehaviour
     /// <returns></returns>
     public void OpenDoor()
     {
+        if (ThisRoom.ForceCloseDoorOverride)
+            return;
+
         open = true;
         //TODO: ANIMATION STUFF
+    }
+
+    public void CloseDoor()
+    {
+        open = false;
     }
 
     /// <summary>
@@ -81,6 +89,9 @@ public class DoorManager : MonoBehaviour
     protected virtual void AttemptEnterDoor()
     {
         if (OutputRoom == null)
+            return;
+
+        if (ThisRoom.ForceCloseDoorOverride)
             return;
 
         open = ThisRoom.CheckRoomCleared();

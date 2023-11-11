@@ -44,8 +44,8 @@ public class RangedPlayerController : MonoBehaviour
     }
 
     //really boring settings
-    [HideInInspector] public float MaxUpAngle = 25f;
-    [HideInInspector] public float MaxDownAngle = -25;
+    [HideInInspector] public float MaxUpAngle = 175f;
+    [HideInInspector] public float MaxDownAngle = -175;
 
     //etc
     private PlayerBehaviour playerBehaviour;
@@ -99,7 +99,10 @@ public class RangedPlayerController : MonoBehaviour
 
     public void Gun_performed(InputAction.CallbackContext obj)
     {
-        playerController.StartGunMode();
+        if (!SaveDataManager.Instance.SaveData.GunUnlocked)
+            return;
+
+        playerBehaviour.StartGunMode();
 
         if (playerController.IgnoreAllInputs) return;
 

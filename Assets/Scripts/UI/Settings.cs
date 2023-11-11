@@ -26,6 +26,8 @@ public class Settings : MonoBehaviour
 
     public bool ControllerVibration=true;
 
+    [HideInInspector] public bool Paused;
+
     /// <summary>
     /// If there is an instance, and it's not me, delete myself.
     /// </summary>
@@ -42,16 +44,9 @@ public class Settings : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine(DelayedStart());
-    }
-
-    private IEnumerator DelayedStart()
-    {
-        yield return new WaitForSeconds(0.05f);
-
+        // StartCoroutine(DelayedStart());
         UpdateSettingsFromJSON();
     }
-
     public void OpenPauseMenu()
     {
         SaveDataManager.Instance.LoadSettings();
@@ -59,11 +54,13 @@ public class Settings : MonoBehaviour
 
         PauseMenu.SetActive(true);
         Time.timeScale = 0;
+        Paused = true;
     }
     public void ClosePauseMenu()
     {
         PauseMenu.SetActive(false);
         Time.timeScale = 1;
+        Paused = false;
     }
 
     public void UpdateSettingsFromJSON()
@@ -81,7 +78,6 @@ public class Settings : MonoBehaviour
     {
         SoundSlider.value = SoundVolume;
         MusicSlider.value = MusicVolume;
-
     }
 
     public void OnSoundSliderChange()

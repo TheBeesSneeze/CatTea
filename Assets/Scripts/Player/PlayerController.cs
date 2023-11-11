@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     //magic numbers
     [Tooltip("The amount of slippiness the player experiences when changing movement directions (THIS VALUE MUST BE BETWEEN 0 and 1)")]
     private static float slideAmount = 0.70f; // this needs to be a number between 0 and 1. higher number for more slidey
-    private static float slideSeconds = 0.6f;
+    private static float slideSeconds = 0.2f;
     private static float slowAmount = 0.3f; //also a number between 0 and 1
     private static float slowSeconds = 0.1f;
 
@@ -104,8 +104,6 @@ public class PlayerController : MonoBehaviour
 
         gameManager = GameObject.FindObjectOfType<GameManager>();
         settingsScript = GameObject.FindObjectOfType<Settings>();
-
-        StartGunMode();
 
         InitializeControls();
 
@@ -182,7 +180,6 @@ public class PlayerController : MonoBehaviour
     /// <param name="obj"></param>
     protected virtual void Move_performed(InputAction.CallbackContext obj)
     {
-
         if(ignoreMove || IgnoreAllInputs)
             return;
 
@@ -237,7 +234,14 @@ public class PlayerController : MonoBehaviour
 
         //THIS IS TEMP CODE
         // Application.Quit();
-        settingsScript.OpenPauseMenu();
+        if (Settings.Instance.Paused)
+        {
+            Settings.Instance.ClosePauseMenu();
+        }
+        else
+        {
+            Settings.Instance.OpenPauseMenu();
+        }
     }
 
     protected virtual void Cheat_started(InputAction.CallbackContext obj)
@@ -245,27 +249,11 @@ public class PlayerController : MonoBehaviour
         if (IgnoreAllInputs) return;
 
         gameManager.CurrentRoom.Cheat();
+
+        SaveDataManager.Instance.SaveData.GunUnlocked = true;
     }
 
-    /// <summary>
-    /// Hides sword and brings out gun.
-    /// Does not do any attacking.
-    /// </summary>
-    public void StartGunMode()
-    {
-        GunSprite.enabled = true;
-        SwordSprite.enabled = false;
-    }
-
-    /// <summary>
-    /// Hides gun and brings out sword.
-    /// Does not do any attacking.
-    /// </summary>
-    public void StartSwordMode()
-    {
-        GunSprite.enabled = false;
-        SwordSprite.enabled = true;
-    }
+    
 
     /// <summary>
     /// Kind of unnessecary rn, but im cooking, ok
@@ -409,28 +397,23 @@ public class PlayerController : MonoBehaviour
 
     protected virtual IEnumerator PerformDash()
     {
+        ignoreMove = true;
+        canDash = false;
+
         GameEvents.Instance.OnPlayerDash();
 
-        canDash = false;
-        ignoreMove = true;
-
-        StartCoroutine(NoMovementRoutine(playerBehaviour.DashTime));
-
-        if (movingCoroutine != null)
-            StopCoroutine(movingCoroutine);
+        playerBehaviour.BecomeInvincible(slideSeconds / 0.9f, true);
 
         myRigidbody.velocity = Vector2.zero;
-        //myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
+        myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
 
-        MoveDirection = InputDirection * playerBehaviour.Speed;
-        myRigidbody.AddForce(MoveDirection * (playerBehaviour.DashUnits / playerBehaviour.DashTime), ForceMode2D.Impulse);
-
-        StartCoroutine(NoMovementRoutine(playerBehaviour.DashTime));
-
-        if (MyGamepad != null)
+        //test
+        if (Settings.Instance.ControllerVibration && MyGamepad != null)
         {
-            MyGamepad.SetMotorSpeeds(0.1f, 0.1f);
+            MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
         }
+
+        StartCoroutine(NoMovementRoutine(slideSeconds));
 
         yield return new WaitForSeconds(playerBehaviour.DashRechargeSeconds);
         canDash = true;
