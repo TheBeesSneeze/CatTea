@@ -68,14 +68,13 @@ public class SaveDataManager : MonoBehaviour
         {
             string readText = File.ReadAllText(saveDataPath);
             SaveData = JsonUtility.FromJson<SaveDataClass>(readText);
-            Debug.Log("Sound: " + SettingsData.SoundVolume);
         }
         else
         {
             SaveData = new SaveDataClass(1, false, false);
-            SaveSettings();
+            SaveSaveData();
         }
-        Debug.LogWarning("Could not load settings. File does not exist");
+        Debug.LogWarning("Could not load save data. File does not exist");
 
         if (SaveData.GunUnlocked)
             PlayerBehaviour.Instance.OnGunUnlocked();
