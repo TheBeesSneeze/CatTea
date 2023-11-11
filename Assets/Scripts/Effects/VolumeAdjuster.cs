@@ -36,6 +36,9 @@ public class VolumeAdjuster : MonoBehaviour
 
     public void UpdateVolumeBySettings()
     {
+        if (audioSource == null)
+            return;
+
         if(Type == SoundType.SoundEffect) 
             audioSource.volume = defaultVolume * Settings.Instance.SoundVolume;
 
