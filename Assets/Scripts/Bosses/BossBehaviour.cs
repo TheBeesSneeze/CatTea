@@ -19,6 +19,9 @@ public class BossBehaviour : CharacterBehaviour
     [HideInInspector] public BossRoom MyRoom;
     protected PlayerBehaviour playerBehaviour;
 
+    private float shakeAmount = 0.2f;
+    private float deathAnimationSeconds = 2f;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -50,6 +53,45 @@ public class BossBehaviour : CharacterBehaviour
         MyRoom.OnBossDeath();
 
         //temp code hopefully
+        StopAllAttacks();
+        StartCoroutine(DeathAnimation());
+    }
+
+    public void StopAllAttacks()
+    {
+        BossAttackType[] allAttacks = GetComponents<BossAttackType>();
+
+        foreach(BossAttackType attack in allAttacks)
+        {
+            attack.StopAttack();
+        }
+    }
+
+    /// <summary>
+    /// *Vibrates violently*
+    /// *dies*
+    /// </summary>
+    /// <returns></returns>
+    public virtual IEnumerator DeathAnimation()
+    {
+        Vector2 centerPosition = transform.position;
+
+        float t = 0;
+        while(t< deathAnimationSeconds)
+        {
+            t += Time.deltaTime;
+
+            float maxShakeAmount = Mathf.Lerp(0, shakeAmount, t / deathAnimationSeconds);
+
+            float x = Random.Range(-maxShakeAmount, maxShakeAmount);
+            float y = Random.Range(-maxShakeAmount, maxShakeAmount);
+
+            transform.localPosition = centerPosition + new Vector2(x, y);
+
+            yield return null;
+        }
+        
+
         Destroy(this.gameObject);
     }
 }

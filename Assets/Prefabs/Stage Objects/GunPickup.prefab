@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 69d892e022c30b64c897cca42578699a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3099726903369527529}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 4478534146978507507}
   - component: {fileID: 8315363259817582478}
   - component: {fileID: 3960929813530222297}
+  - component: {fileID: 8357928218684403065}
   m_Layer: 0
   m_Name: GunPickup
   m_TagString: Untagged
@@ -277,13 +278,13 @@ Transform:
   m_GameObject: {fileID: 7260921618105368807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 134.6597, y: -8.958135, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6471694999528081677}
   - {fileID: 6682768388044712398}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8315363259817582478
 CircleCollider2D:
@@ -333,3 +334,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BossDoor: {fileID: 0}
+--- !u!114 &8357928218684403065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260921618105368807}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31b4da93b0e0e489e82c2f363677ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxPlayerDistance: 10
