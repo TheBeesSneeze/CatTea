@@ -47,6 +47,7 @@ public class PlayerBehaviour : CharacterBehaviour
 
     //magic numbers
     private Color damageScreenColor = new Color(1, 0.7f, 0.7f); //the reddest the screen can be
+    private float secondsUntilDeathScreen = 3f;
 
     //components
     private PlayerController playerController;
@@ -171,7 +172,33 @@ public class PlayerBehaviour : CharacterBehaviour
 
     public override void Die()
     {
+        playerController.IgnoreAllInputs = true;
+
+        SaveDataManager.Instance.SaveData.RunNumber++;
+        SaveDataManager.Instance.SaveSaveData();
+
+        StartCoroutine(DarkenScreen());
+
         SceneManager.LoadScene(3);
+    }
+
+    /// <summary>
+    /// Runs on death. darkens screen
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DarkenScreen()
+    {
+        float old = globalLight.intensity;
+
+        float t = 0;
+        while (t<secondsUntilDeathScreen) 
+        {
+            t += Time.deltaTime;
+
+            globalLight.intensity = Mathf.Lerp(old, 0, t / secondsUntilDeathScreen);
+
+            yield return null;
+        }
     }
 
     public override void SetStatsToDefaults()
