@@ -17,7 +17,9 @@ using UnityEngine.UI;
 public class NPCBehaviour : MonoBehaviour
 {
     [Header("Dialogue")]
-    [SerializeField] private NPCScript DefaultDialogue;
+    //[SerializeField] private NPCScript DefaultDialogue;
+    [Tooltip("Order of scripts this npc uses. DOES NOT NEED TO BE NINE! The list will loop after a while")]
+    public NPCScript[] DialogueScripts;
 
     public NPCScript CurrentScript { 
         get { return CurrentScript; } 
@@ -67,7 +69,8 @@ public class NPCBehaviour : MonoBehaviour
         if(dialogueSoundSource == null)
             dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
 
-        LoadScript(DefaultDialogue);
+        int dialogueIndex = SaveDataManager.Instance.SaveData.RunNumber % DialogueScripts.Length;
+        LoadScript(DialogueScripts[dialogueIndex]);
 
         ButtonPrompt.SetActive(false);
     }
