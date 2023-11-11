@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2771233487435461765}
   - component: {fileID: 3462803694588365352}
-  - component: {fileID: 5245567489458016639}
+  - component: {fileID: -1320912864932843008}
   - component: {fileID: 4743146972439546756}
   - component: {fileID: 6588786030348524660}
   - component: {fileID: 2094796279921379945}
@@ -91,7 +91,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5245567489458016639
+--- !u!114 &-1320912864932843008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4651791696064841288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3e064a6cd6b1142a4ba928b944341c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a560efa89119604796c3e00ceadc9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _healthPoints: 0
@@ -111,9 +111,11 @@ MonoBehaviour:
   TakeKnockback: 1
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
+  AttacksSpawned: []
   StartHealth: 35
   MoveUnitsPerSecond: 0
   MyRoom: {fileID: 0}
+  GunPickupPrefab: {fileID: 7260921618105368807, guid: 3d180967b6b1c53479c5eb57f926f753, type: 3}
 --- !u!114 &4743146972439546756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +249,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
