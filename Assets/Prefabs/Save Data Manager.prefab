@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 357300211592826072}
-  - component: {fileID: 3296349904324154183}
+  - component: {fileID: 6235773861935375360}
   m_Layer: 0
   m_Name: Save Data Manager
   m_TagString: Untagged
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3296349904324154183
+--- !u!114 &6235773861935375360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4764610095692448682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5b56a776a212fe4e95da941f78739b8, type: 3}
+  m_Script: {fileID: 11500000, guid: f7c40390d91606c4e9b513b1f7ca230d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SettingsData:
+    SoundVolume: 0
+    MusicVolume: 0
+    ControllerVibration: 0
+  SaveData:
+    RunNumber: 0
+    TutorialCompleted: 0
+    GunUnlocked: 0

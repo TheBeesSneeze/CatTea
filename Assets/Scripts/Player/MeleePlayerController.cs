@@ -50,7 +50,7 @@ public class MeleePlayerController : MonoBehaviour
         if(playerController.IgnoreAllInputs) 
             return;
 
-        playerController.StartSwordMode();
+        playerBehaviour.StartSwordMode();
 
         //if not already attacking
         if (Attacking && !rangedPlayerController.PrimaryShooting)

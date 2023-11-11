@@ -19,4 +19,10 @@ public class SaveDataClass
     public bool TutorialCompleted=false;
     public bool GunUnlocked=false;
 
+    public SaveDataClass (int runNumber, bool tutorialCompleted, bool gunUnlocked)
+    {
+        RunNumber = runNumber;
+        TutorialCompleted = tutorialCompleted;
+        GunUnlocked = gunUnlocked;
+    }
 }
