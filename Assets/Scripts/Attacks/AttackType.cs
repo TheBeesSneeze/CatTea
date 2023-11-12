@@ -66,6 +66,8 @@ public class AttackType : MonoBehaviour
     /// </summary>
     public void DetermineAttackOwner()
     {
+        string tag = gameObject.tag;
+
         if (tag.Equals("General Attack"))
         {
             Attacker = AttackSource.General;
