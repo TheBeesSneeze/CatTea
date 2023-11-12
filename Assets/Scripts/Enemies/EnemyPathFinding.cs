@@ -33,6 +33,11 @@ public class EnemyPathFinding : MonoBehaviour
  //       StartCoroutine(UpdateTarget());
     }
 
+    private void Start()
+    {
+        
+    }
+
     //public virtual IEnumerator UpdateTarget()
     //{
     //    //sorry for changing this. i just have personal beef with update
@@ -41,8 +46,8 @@ public class EnemyPathFinding : MonoBehaviour
 
     private void Update()
     {
-          SetTargetPoisiton();
-            SetAgentPosition();
+        SetTargetPoisiton();
+        SetAgentPosition();
     }
   
     //        yield return null;
@@ -57,7 +62,7 @@ public class EnemyPathFinding : MonoBehaviour
 
     private void SetAgentPosition()
     {
-        if(agent.enabled == true)
+        if(agent.enabled)
         {
             agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
         }

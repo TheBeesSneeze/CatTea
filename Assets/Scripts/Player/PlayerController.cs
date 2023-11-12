@@ -24,6 +24,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     [Header("Unity")]
     public SpriteRenderer GunSprite;
     public SpriteRenderer SwordSprite;
@@ -59,7 +61,6 @@ public class PlayerController : MonoBehaviour
     //le sound
     public AudioSource walkSound;
 
-    protected PlayerBehaviour playerBehaviour;
     protected RangedPlayerController rangedPlayerController;
     protected MeleePlayerController meleePlayerController;
 
@@ -84,6 +85,20 @@ public class PlayerController : MonoBehaviour
     private bool ignoreMove;
     [HideInInspector]public bool IgnoreAllInputs;
 
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -98,7 +113,6 @@ public class PlayerController : MonoBehaviour
         MyGamepad = playerInput.GetDevice<Gamepad>();
         playerInput.currentActionMap.Enable();
 
-        playerBehaviour = GetComponent<PlayerBehaviour>();
         rangedPlayerController = GetComponent<RangedPlayerController>();
         meleePlayerController = GetComponent<MeleePlayerController>();
 
@@ -190,7 +204,7 @@ public class PlayerController : MonoBehaviour
         if (!moving)
         {
             InputDirection = obj.ReadValue<Vector2>();
-            MoveDirection = InputDirection * playerBehaviour.Speed / 2;
+            MoveDirection = InputDirection * PlayerBehaviour.Instance.Speed / 2;
             walkSound.Play();
         }
 
@@ -333,7 +347,7 @@ public class PlayerController : MonoBehaviour
             MoveDirection = BlendMovementDirections(MoveDirection, newMoveDiection, slideAmount);
 
             if (!ignoreMove)
-                myRigidbody.velocity = MoveDirection * playerBehaviour.Speed;
+                myRigidbody.velocity = MoveDirection * PlayerBehaviour.Instance.Speed;
 
             yield return null;
         }
@@ -353,7 +367,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!ignoreMove)
             {
-                myRigidbody.velocity = MoveDirection * playerBehaviour.Speed; //no Time.deltaTime bc its just velocity being changed
+                myRigidbody.velocity = MoveDirection * PlayerBehaviour.Instance.Speed; //no Time.deltaTime bc its just velocity being changed
             }
             yield return null;
         }
@@ -402,10 +416,10 @@ public class PlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerDash();
 
-        playerBehaviour.BecomeInvincible(slideSeconds / 0.9f, true);
+        PlayerBehaviour.Instance.BecomeInvincible(slideSeconds / 0.9f, true);
 
         myRigidbody.velocity = Vector2.zero;
-        myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
+        myRigidbody.AddForce(MoveDirection * PlayerBehaviour.Instance.DashUnits, ForceMode2D.Impulse);
 
         //test
         if (Settings.Instance.ControllerVibration && MyGamepad != null)
@@ -415,7 +429,7 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(NoMovementRoutine(slideSeconds));
 
-        yield return new WaitForSeconds(playerBehaviour.DashRechargeSeconds);
+        yield return new WaitForSeconds(PlayerBehaviour.Instance.DashRechargeSeconds);
         canDash = true;
     }
 

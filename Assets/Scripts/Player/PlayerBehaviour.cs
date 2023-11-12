@@ -24,6 +24,9 @@ public class PlayerBehaviour : CharacterBehaviour
 {
     public static PlayerBehaviour Instance;
 
+    public enum Weapon { Sword, Gun};
+    public Weapon WeaponSelected;
+
     //Player Stats
     public PlayerStats CurrentPlayerStats;
 
@@ -104,6 +107,8 @@ public class PlayerBehaviour : CharacterBehaviour
     {
         playerController.GunSprite.enabled = true;
         playerController.SwordSprite.enabled = false;
+
+        WeaponSelected = Weapon.Gun;
     }
 
     /// <summary>
@@ -114,6 +119,8 @@ public class PlayerBehaviour : CharacterBehaviour
     {
         playerController.GunSprite.enabled = false;
         playerController.SwordSprite.enabled = true;
+
+        WeaponSelected = Weapon.Sword;
     }
 
     /// <summary>
@@ -179,7 +186,7 @@ public class PlayerBehaviour : CharacterBehaviour
 
         StartCoroutine(DarkenScreen());
 
-        SceneManager.LoadScene(3);
+        
     }
 
     /// <summary>
@@ -199,6 +206,10 @@ public class PlayerBehaviour : CharacterBehaviour
 
             yield return null;
         }
+
+        yield return new WaitForSeconds(0.5f);
+
+        SceneManager.LoadScene(3);
     }
 
     public override void SetStatsToDefaults()

@@ -66,6 +66,8 @@ public class AttackType : MonoBehaviour
     /// </summary>
     public void DetermineAttackOwner()
     {
+        string tag = gameObject.tag;
+
         if (tag.Equals("General Attack"))
         {
             Attacker = AttackSource.General;
@@ -160,7 +162,7 @@ public class AttackType : MonoBehaviour
     {
         string tag = collision.tag;
 
-        //Debug.Log(tag);
+        Debug.Log(tag);
 
         if (tag.Equals("Wall") && DestroyedByWalls)
         {
