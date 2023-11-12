@@ -7,7 +7,9 @@ public class GunEnemy : EnemyBehaviour
 {
     private GameObject player;
     public GameObject firstAttack;
+    public GameObject firstAttackWarningZone;
     public GameObject secondAttack;
+    public GameObject secondAttackWarningZone;
 
     protected Animator hyenaAnimator;
 
@@ -24,7 +26,7 @@ public class GunEnemy : EnemyBehaviour
     {
         base.Start();
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
-        //StartCoroutine(RotateEnemy());
+        StartCoroutine(RotateEnemy());
         StartCoroutine(StartAttack());
 
         hyenaAnimator = GetComponent<Animator>();
@@ -74,13 +76,17 @@ public class GunEnemy : EnemyBehaviour
             switch (RandomAttack())
             {
                 case 0:
+                    firstAttackWarningZone.SetActive(true);
                     yield return new WaitForSeconds(1);
+                    firstAttackWarningZone.SetActive(false);
                     firstAttack.SetActive(true);
                     yield return new WaitForSeconds(1);
                     firstAttack.SetActive(false);
                     break;
                 case 1:
+                    secondAttackWarningZone.SetActive(true);
                     yield return new WaitForSeconds(1);
+                    secondAttackWarningZone.SetActive(false);
                     secondAttack.SetActive(true);
                     yield return new WaitForSeconds(1);
                     secondAttack.SetActive(false);
