@@ -28,8 +28,8 @@ public class NPCBehaviour : MonoBehaviour
 
     public enum Talking { Player, NPC, Nobody };
 
-    private string character1Name;
-    private string character2Name;
+    private string Character1Name;
+    private string Character2Name;
 
     private AudioClip Character1DialogueSound;
     private AudioClip Character2DialogueSound;
@@ -49,12 +49,8 @@ public class NPCBehaviour : MonoBehaviour
     public GameObject ButtonPrompt;
     public TextMeshProUGUI TextBox;
     public GameObject DialogueCanvas;
-    public GameObject DialogueArea;
     public Image PlayerSprite;
     public Image NPCSprite;
-
-    public TextMeshProUGUI Name1;
-    public TextMeshProUGUI Name2;
 
     private PlayerController player;
     private bool SkipText;
@@ -187,8 +183,6 @@ public class NPCBehaviour : MonoBehaviour
 
         SwitchTalkingSound();
 
-        SwitchNames();
-
         //typewriter text
         for (int i = 0; i < TextList[textIndex].Length + 1; i++)
         {
@@ -263,44 +257,6 @@ public class NPCBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// switches out names and flips text area
-    /// </summary>
-    private void SwitchNames()
-    {
-        if(Name1  == null || Name2 == null || DialogueArea == null)
-        {
-            Debug.LogWarning("Name Text boxes or Dialogue Area not defined in " + gameObject.name);
-
-            Name1.gameObject.SetActive(false);
-            Name2.gameObject.SetActive(false);
-
-            DialogueArea.transform.localScale = new Vector3(1, 1, 1);
-
-            return;
-        }
-
-        if (WhoIsTalking[textIndex].Equals(Talking.Player))
-        {
-            Name1.gameObject.SetActive(true);
-            Name2.gameObject.SetActive(false);
-
-            Name1.text = character1Name;
-
-            DialogueArea.transform.localScale = new Vector3(1, 1, 1);
-        }
-
-        if (WhoIsTalking[textIndex].Equals(Talking.NPC))
-        {
-            Name1.gameObject.SetActive(false);
-            Name2.gameObject.SetActive(true);
-
-            Name2.text = character2Name;
-
-            DialogueArea.transform.localScale = new Vector3(-1, 1, 1);
-        }
-    }
-
-    /// <summary>
     /// Animates the sprite by bobbing it up and down.
     /// </summary>
     /// <param name="Sprite"></param>
@@ -340,8 +296,8 @@ public class NPCBehaviour : MonoBehaviour
 
         WhoIsTalking = Script.WhoIsTalking;
 
-        character1Name = Script.Character1Name;
-        character2Name = Script.Character2Name;
+        Character1Name = Script.Character1Name;
+        Character2Name = Script.Character2Name;
 
         Character1DialogueSound = Script.Character1DialogueSound;
         Character2DialogueSound = Script.Character1DialogueSound; ;
