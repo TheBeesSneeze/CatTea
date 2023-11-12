@@ -179,7 +179,7 @@ public class PlayerBehaviour : CharacterBehaviour
 
         StartCoroutine(DarkenScreen());
 
-        SceneManager.LoadScene(3);
+        
     }
 
     /// <summary>
@@ -199,6 +199,10 @@ public class PlayerBehaviour : CharacterBehaviour
 
             yield return null;
         }
+
+        yield return new WaitForSeconds(0.5f);
+
+        SceneManager.LoadScene(3);
     }
 
     public override void SetStatsToDefaults()

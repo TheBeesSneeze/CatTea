@@ -23,6 +23,9 @@ public class EnemyStats : ScriptableObject
     [Tooltip("Leave as 0 for continous movement. After an enemy moves, it should stop briefly, before moving again")]
     public float TimeBetweenMovements;
 
+    [Tooltip("How far away the enemy has to be from the player until it stops moving")]
+    public float MaxFromPlayer;
+
     public int HealthPoints;
 
     [Tooltip("Amount of damage the enemies attack deals")]
