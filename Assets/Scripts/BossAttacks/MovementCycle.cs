@@ -34,7 +34,7 @@ public class MovementCycle : BossAttackType
         {
             anglePoint = BossAttackUtilities.GetRandomPosition((Vector2)transform.position, MaxMovementDistance, LM);
         }
-        while (Vector2.Distance((Vector2)transform.position, anglePoint) < 3);
+        while (Vector2.Distance((Vector2)transform.position, anglePoint) < 1);
 
         do
         {
@@ -52,7 +52,7 @@ public class MovementCycle : BossAttackType
     /// </summary>
     private IEnumerator MoveAcross(Vector2 startPoint, Vector2 anglePoint, Vector2 endPoint)
     {
-        float distance = Vector2.Distance(startPoint, endPoint);
+        float distance = GetBezierLength(startPoint,anglePoint, endPoint);
         float totalSecondsToMove = distance / bossBehaviour.MoveUnitsPerSecond;
 
         float time = 0;
@@ -62,6 +62,8 @@ public class MovementCycle : BossAttackType
             float t = time / totalSecondsToMove; // 0 <= t <= 1
 
             Vector2 newPosition = BezierCurve(startPoint, anglePoint, endPoint, t);
+
+            //Debug.Log("Distance: " + Vector2.Distance(transform.position, newPosition));
 
             transform.position = newPosition;
 
@@ -108,7 +110,27 @@ public class MovementCycle : BossAttackType
 
         Vector2 m = Vector2.Lerp(a_b, b_c, t);
 
+        Debug.DrawLine(a_b, b_c, Color.white);
+
         return m;
+    }
+
+    /// <summary>
+    /// approximates the length of a bezier curve by measuring the distance
+    /// of slices of a bezier curve
+    /// </summary>
+    private float GetBezierLength(Vector2 start, Vector2 angle, Vector2 end)
+    {
+        float totalDistance=0; 
+        for(float t=0; t<10; t++)
+        {
+            Vector2 a = BezierCurve(start, angle, end, t/10);
+            Vector2 b = BezierCurve(start, angle, end, (t+1)/10);
+
+            totalDistance += Vector2.Distance(a, b);
+        }
+
+        return totalDistance;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

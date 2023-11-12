@@ -112,6 +112,7 @@ MonoBehaviour:
   TakeKnockback: 1
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
+  AttacksSpawned: []
   StartHealth: 50
   MoveUnitsPerSecond: 1.5
   MyRoom: {fileID: 0}
@@ -148,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686485ceb0c56a9448312bf48823bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartAttackCycleOnAwake: 0
-  LoopAttack: 0
+  StartAttackCycleOnAwake: 1
+  LoopAttack: 1
   AttackCycleCooldown: 2.5
   AttackInterval: 0.5
   AttacksPerCycle: 2

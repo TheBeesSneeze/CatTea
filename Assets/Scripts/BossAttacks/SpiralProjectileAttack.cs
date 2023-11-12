@@ -20,6 +20,7 @@ public class SpiralProjectileAttack : BossAttackType
     public Transform RotationPivot;
     public Transform BulletSpawnPoint;
 
+
     //protected override void Start()
     //{
     //    yongenbossAnimator = GetComponent<Animator>();
