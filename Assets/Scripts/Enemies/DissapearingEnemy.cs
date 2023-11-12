@@ -15,6 +15,7 @@ public class DissapearingEnemy : EnemyBehaviour
 {
     private GameObject player;
     public GameObject attack;
+    public GameObject warningZone;
 
     protected Animator chameleonAnimator;
 
@@ -41,7 +42,7 @@ public class DissapearingEnemy : EnemyBehaviour
         enemyVisible = true;
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
 
-        //StartCoroutine(RotateEnemy());
+        StartCoroutine(RotateEnemy());
         StartCoroutine(Dissapear());
         StartCoroutine(StartAttack());
 
@@ -127,7 +128,9 @@ public class DissapearingEnemy : EnemyBehaviour
 
         for (int i = 0; i < AmountOfAttacks; i++)
         {
+            warningZone.SetActive(true);
             yield return new WaitForSeconds(0.3f);
+            warningZone.SetActive(false);
             attack.SetActive(true);
             yield return new WaitForSeconds(0.3f);
             attack.SetActive(false);
