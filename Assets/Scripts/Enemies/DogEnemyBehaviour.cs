@@ -38,7 +38,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
     {
         base.Start();
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
-        //StartCoroutine(RotateEnemy());
+        StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
 
         dogAnimator = GetComponent<Animator>();

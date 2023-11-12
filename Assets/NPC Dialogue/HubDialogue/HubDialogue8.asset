@@ -30,7 +30,7 @@ MonoBehaviour:
     Some Guy thanks you for your time today and hopes you enjoy your upgrades."
   - Yeah, thanks, I guess.
   Character1Name: Jade
-  Character2Name: 
+  Character2Name: Some Guy
   Character1DialogueSound: {fileID: 0}
   Character2DialogueSound: {fileID: 0}
   WhoIsTalking: 010000000000000001000000000000000100000000000000010000000000000001000000000000000100000000000000

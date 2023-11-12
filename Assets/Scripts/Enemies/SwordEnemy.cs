@@ -15,6 +15,7 @@ public class SwordEnemy : EnemyBehaviour
 {
     private GameObject player;
     public GameObject attack;
+    public GameObject warningzone;
 
     protected Animator stoatAnimator;
 
@@ -34,7 +35,7 @@ public class SwordEnemy : EnemyBehaviour
         base.Start();
         player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         canRotate = true;
-        //StartCoroutine(RotateEnemy());
+        StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
 
         stoatAnimator = GetComponent<Animator>();
@@ -81,7 +82,9 @@ public class SwordEnemy : EnemyBehaviour
     {
         for (int i = 0; i < AmountOfAttacks; i++)
         {
+            warningzone.SetActive(true);
             yield return new WaitForSeconds(1);
+            warningzone.SetActive(false);
             attack.SetActive(true);
             canRotate = false;
             gameObject.GetComponent<NavMeshAgent>().enabled = false;

@@ -41,21 +41,18 @@ public class BombEnemyBehaviour : EnemyBehaviour
 
     private IEnumerator SpawnBombs()
     {
-        while (this.gameObject != null)
-        {
-            yield return new WaitForSeconds(bombSpawnInterval);
+        yield return new WaitForSeconds(bombSpawnInterval);
 
-            for (int i = 0; i < amountOfBombs; i++)
-            {
-                yield return new WaitForSeconds(bombSpawnInterval);
-                Vector3 positionAroundPlayer = player.transform.position;
-                Vector3 randomPosition = Random.insideUnitCircle;
-                positionAroundPlayer.x += randomPosition.x;
-                positionAroundPlayer.y += randomPosition.y;
-                listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
-            }
-            StartCoroutine(Explode());
+        for (int i = 0; i < amountOfBombs; i++)
+        {
+            Vector3 positionAroundPlayer = player.transform.position;
+            Vector3 randomPosition = Random.insideUnitCircle;
+            positionAroundPlayer.x += randomPosition.x;
+            positionAroundPlayer.y += randomPosition.y;
+            listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
         }
+        StartCoroutine(Explode());
+        
     }
 
     private IEnumerator Explode()
@@ -78,6 +75,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
         listOfBombs.Clear();
         listOfExplosions.Clear();
         AttacksSpawned.Clear();
+        StartCoroutine(SpawnBombs());
     }
 
     protected IEnumerator UpdateAnimation()
