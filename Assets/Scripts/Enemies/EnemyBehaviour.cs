@@ -75,7 +75,6 @@ public class EnemyBehaviour : CharacterBehaviour
     /// </summary>
     protected virtual void OnPlayerCollision(Collider2D collision)
     {
-        Debug.Log("player on enemy contact???");
         if(playerBehavior == null)
             playerBehavior = GameObject.FindObjectOfType<PlayerBehaviour>();
 
