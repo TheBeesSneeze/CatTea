@@ -16,7 +16,6 @@ public class SharpShooterUpgrade : UpgradeType
     public LayerMask LM;
 
     private Transform gun;
-    private Transform aimIcon;
 
     private LineRenderer lineRenderer;
     
@@ -27,9 +26,9 @@ public class SharpShooterUpgrade : UpgradeType
 
         //such risky code but i am too lazy to do better rn
         gun = GameObject.Find("Gun").transform;
-        aimIcon = GameObject.Find("Aim Icon").transform;
 
         lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
 
         StartCoroutine(DrawAimLine());
     }
@@ -44,10 +43,20 @@ public class SharpShooterUpgrade : UpgradeType
     {
         while(true)
         {
-            Vector3 wallPoint = GetAimingPosition();
+            if(PlayerBehaviour.Instance.WeaponSelected == PlayerBehaviour.Weapon.Gun)
+            {
+                lineRenderer.enabled = true;
 
-            lineRenderer.SetPosition(0, gun.position);
-            lineRenderer.SetPosition(1, wallPoint);
+                Vector3 wallPoint = GetAimingPosition();
+
+                lineRenderer.SetPosition(0, gun.position);
+                lineRenderer.SetPosition(1, wallPoint);
+            }
+
+            if (PlayerBehaviour.Instance.WeaponSelected == PlayerBehaviour.Weapon.Sword)
+            {
+                lineRenderer.enabled = false;
+            }
 
             yield return null;
         }

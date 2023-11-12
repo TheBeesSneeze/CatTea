@@ -24,6 +24,9 @@ public class PlayerBehaviour : CharacterBehaviour
 {
     public static PlayerBehaviour Instance;
 
+    public enum Weapon { Sword, Gun};
+    public Weapon WeaponSelected;
+
     //Player Stats
     public PlayerStats CurrentPlayerStats;
 
@@ -104,6 +107,8 @@ public class PlayerBehaviour : CharacterBehaviour
     {
         playerController.GunSprite.enabled = true;
         playerController.SwordSprite.enabled = false;
+
+        WeaponSelected = Weapon.Gun;
     }
 
     /// <summary>
@@ -114,6 +119,8 @@ public class PlayerBehaviour : CharacterBehaviour
     {
         playerController.GunSprite.enabled = false;
         playerController.SwordSprite.enabled = true;
+
+        WeaponSelected = Weapon.Sword;
     }
 
     /// <summary>
