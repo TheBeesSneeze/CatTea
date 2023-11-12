@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -644018343590121158}
   m_Layer: 11
   m_Name: Zap Bomb
-  m_TagString: Enemy
+  m_TagString: General Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491294337054835271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5379286, y: 5.000238, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1465160303
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayerID: 50652535
+  m_SortingLayer: 1
+  m_SortingOrder: -2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
   m_FlipX: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   TakeKnockback: 1
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
+  AttacksSpawned: []
   CurrentEnemyStats: {fileID: 11400000, guid: dc6849f6fce769344a499c5af8ae5a37, type: 2}
   DifficultyCost: 0
   Damage: 0
@@ -247,8 +248,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1465160303
-  m_SortingLayer: 2
+  m_SortingLayerID: 50652535
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.9528302, g: 0.93518525, b: 0, a: 1}

@@ -50,7 +50,7 @@ MonoBehaviour:
   Damage: 1
   KnockbackForce: 0.05
   DestroyedByWalls: 1
-  DestroyedAfterAttack: 1
+  DestroyedAfterAttack: 0
   DestroyOtherAttacks: 0
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 1
