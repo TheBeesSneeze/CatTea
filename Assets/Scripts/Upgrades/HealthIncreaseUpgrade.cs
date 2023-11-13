@@ -18,8 +18,8 @@ public class HealthIncreaseUpgrade : UpgradeType
 
     public override void UpgradeEffect()
     {
-        playerBehaviour.MaxHealthPoints += HealthIncrease;
+        PlayerBehaviour.Instance.MaxHealthPoints += HealthIncrease;
 
-        playerBehaviour.HealthPoints += HealthIncrease;
+        PlayerBehaviour.Instance.HealthPoints += HealthIncrease;
     }
 }

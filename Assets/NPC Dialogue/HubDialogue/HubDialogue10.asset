@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185e4af1f375a2f4b87c62e35aac7b74, type: 3}
+  m_Name: HubDialogue10
+  m_EditorClassIdentifier: 
+  TextList:
+  - Hey! Have you-
+  - No, I do not want to be vindicated, thank you.
+  - "Please! You know something\u2019s wrong, deep down, you must. It\u2019s time
+    to step into the light and-"
+  - "There\u2019s light all around the city, lady. Don\u2019t need any of yours."
+  - These lights only make the shadows darker, you should know this.
+  - What a poignant observation. I truly could not have thought of something more
+    meaningful.
+  - "If you\u2019re just going to make fun of me, then leave. Go back to your apocryphal
+    lights."
+  - Gladly.
+  Character1Name: Jade
+  Character2Name: The Vindicated
+  Character1DialogueSound: {fileID: 0}
+  Character2DialogueSound: {fileID: 0}
+  WhoIsTalking: 0100000000000000010000000000000001000000000000000100000000000000
+  PlayerTalkingSprites: []
+  NPCTalkingSprites: []

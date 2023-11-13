@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     protected RangedPlayerController rangedPlayerController;
     protected MeleePlayerController meleePlayerController;
+    private SpriteRenderer gunSprite;
 
     protected enum WeaponMode { Gun, Sword };
     protected WeaponMode CurrentWeapon;
@@ -115,6 +116,8 @@ public class PlayerController : MonoBehaviour
 
         rangedPlayerController = GetComponent<RangedPlayerController>();
         meleePlayerController = GetComponent<MeleePlayerController>();
+
+        gunSprite = rangedPlayerController.Gun.GetComponent<SpriteRenderer>();
 
         gameManager = GameObject.FindObjectOfType<GameManager>();
         settingsScript = GameObject.FindObjectOfType<Settings>();
@@ -306,14 +309,37 @@ public class PlayerController : MonoBehaviour
             AimingDirection = MousePosition;
 
             //rotate awesome style
-            MousePosition = new Vector2(Mathf.Abs(MousePosition.x), MousePosition.y);
-            float angle = Mathf.Atan2(MousePosition.y, MousePosition.x) * Mathf.Rad2Deg;
-            angle = Mathf.Clamp(angle, rangedPlayerController.MaxDownAngle, rangedPlayerController.MaxUpAngle);
-            rangedPlayerController.RotationPivot.transform.localEulerAngles = new Vector3(0, 0, angle);
+
+            RotateGun(MousePosition);
 
             yield return null;
         }
         aimingCoroutine = null;
+    }
+
+    private void RotateGun(Vector2 aimDirection)
+    {
+        //MousePosition = new Vector2(Mathf.Abs(MousePosition.x), MousePosition.y);
+
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+
+        //angle = Mathf.Clamp(angle, rangedPlayerController.MaxDownAngle, rangedPlayerController.MaxUpAngle);
+
+        rangedPlayerController.RotationPivot.transform.localEulerAngles = new Vector3(0, 0, angle);
+
+        //flip gun to aim in right direction
+        if(aimDirection.x < 0)
+            GunSprite.flipY = true;
+
+        if (aimDirection.x > 0)
+            GunSprite.flipY = false;
+
+        //change layer to look right
+        if(aimDirection.y > 0)
+            GunSprite.sortingOrder = -5;
+
+        if (aimDirection.y < 0)
+            GunSprite.sortingOrder = 5;
     }
 
     private IEnumerator UpdateShootingDirectionByController()

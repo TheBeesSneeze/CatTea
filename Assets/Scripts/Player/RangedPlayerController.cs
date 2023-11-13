@@ -164,11 +164,13 @@ public class RangedPlayerController : MonoBehaviour
         if (playerController == null)
             return;
 
+        /*
         if (playerController.AimingDirection.x > 0)
             MirrorPivot.localScale = new Vector3(1, 1, 1);
 
         if (playerController.AimingDirection.x < 0)
             MirrorPivot.localScale = new Vector3(-1, 1, 1);
+        */
     }
     
 
