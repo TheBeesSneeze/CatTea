@@ -271,11 +271,6 @@ public class NPCBehaviour : MonoBehaviour
         {
             Debug.LogWarning("Name Text boxes or Dialogue Area not defined in " + gameObject.name);
 
-            Name1.gameObject.SetActive(false);
-            Name2.gameObject.SetActive(false);
-
-            DialogueArea.transform.localScale = new Vector3(1, 1, 1);
-
             return;
         }
 
