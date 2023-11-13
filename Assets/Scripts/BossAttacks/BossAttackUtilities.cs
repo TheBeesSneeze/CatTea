@@ -32,13 +32,13 @@ public class BossAttackUtilities : MonoBehaviour
 
         if (hitInfo.transform != null)
         {
-            Debug.DrawLine(centerPoint, hitInfo.point, Color.blue, 1);
+            //Debug.DrawLine(centerPoint, hitInfo.point, Color.blue, 1);
             return CorrectRandomPositionOutput(centerPoint, hitInfo.point);
         }
 
         else //if it hit nothing:
         {
-            Debug.DrawLine(centerPoint, (Vector2)centerPoint + (direction * (maxDistance * 0.5f)), Color.red, 1);
+            //Debug.DrawLine(centerPoint, (Vector2)centerPoint + (direction * (maxDistance * 0.5f)), Color.red, 1);
             return CorrectRandomPositionOutput(centerPoint, direction * maxDistance);
             //return (Vector2)centerPoint + (direction * (10 * randomPercent));
         }

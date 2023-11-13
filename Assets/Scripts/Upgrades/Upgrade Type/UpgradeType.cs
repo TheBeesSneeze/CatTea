@@ -30,14 +30,12 @@ public class UpgradeType : MonoBehaviour
     public UpgradeActivationType ActivationType;
 
     //unity stuff
-    [HideInInspector] protected PlayerBehaviour playerBehaviour;
     [HideInInspector] protected RangedPlayerController rangedPlayerController;
     private UpgradeUI upgradeUI;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         rangedPlayerController = GameObject.FindObjectOfType<RangedPlayerController>();
         upgradeUI = GameObject.FindObjectOfType<UpgradeUI>();
 

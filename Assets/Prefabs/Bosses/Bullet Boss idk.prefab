@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0ff8bb83816c8204e9773cf2f515826e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1465160303
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 62ed6451555465a45ad55d689becd30a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -112,6 +112,7 @@ MonoBehaviour:
   TakeKnockback: 1
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
+  AttacksSpawned: []
   StartHealth: 50
   MoveUnitsPerSecond: 1.5
   MyRoom: {fileID: 0}
@@ -148,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686485ceb0c56a9448312bf48823bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartAttackCycleOnAwake: 0
-  LoopAttack: 0
+  StartAttackCycleOnAwake: 1
+  LoopAttack: 1
   AttackCycleCooldown: 2.5
   AttackInterval: 0.5
   AttacksPerCycle: 2

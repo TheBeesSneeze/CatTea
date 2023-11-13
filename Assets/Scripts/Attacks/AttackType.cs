@@ -66,6 +66,8 @@ public class AttackType : MonoBehaviour
     /// </summary>
     public void DetermineAttackOwner()
     {
+        string tag = gameObject.tag;
+
         if (tag.Equals("General Attack"))
         {
             Attacker = AttackSource.General;
@@ -130,6 +132,16 @@ public class AttackType : MonoBehaviour
         }
     }
 
+    protected virtual void OnGeneralCollision(Collider2D collision)
+    {
+        CharacterBehaviour character = collision.GetComponent<CharacterBehaviour>();
+
+        character.TakeDamage(Damage, this.transform.position, KnockbackForce);
+
+        if (DestroyedAfterAttack)
+            Destroy(this.gameObject);
+    }
+
     protected virtual void OnAttackCollision(AttackType attack)
     {
         if (gameObject.tag == "Player Attack" && attack.gameObject.tag == "Player Attack")
@@ -150,7 +162,7 @@ public class AttackType : MonoBehaviour
     {
         string tag = collision.tag;
 
-        //Debug.Log(tag);
+        Debug.Log(tag);
 
         if (tag.Equals("Wall") && DestroyedByWalls)
         {
@@ -177,10 +189,17 @@ public class AttackType : MonoBehaviour
             return;
         }
 
+        if (tag.Equals("General Character"))
+        {
+            OnGeneralCollision(collision);
+            return;
+        }
+
         //hit other attack
-        if(tag.Equals("Enemy Attack") || tag.Equals("Player Attack") || tag.Equals("General Attack"))
+        if (tag.Equals("Enemy Attack") || tag.Equals("Player Attack") || tag.Equals("General Attack"))
         {
             AttackType attack = collision.GetComponent<AttackType>();
+
             if(attack != null) 
                 OnAttackCollision(attack);
 

@@ -24,6 +24,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     [Header("Unity")]
     public SpriteRenderer GunSprite;
     public SpriteRenderer SwordSprite;
@@ -59,9 +61,9 @@ public class PlayerController : MonoBehaviour
     //le sound
     public AudioSource walkSound;
 
-    protected PlayerBehaviour playerBehaviour;
     protected RangedPlayerController rangedPlayerController;
     protected MeleePlayerController meleePlayerController;
+    private SpriteRenderer gunSprite;
 
     protected enum WeaponMode { Gun, Sword };
     protected WeaponMode CurrentWeapon;
@@ -84,6 +86,20 @@ public class PlayerController : MonoBehaviour
     private bool ignoreMove;
     [HideInInspector]public bool IgnoreAllInputs;
 
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -98,9 +114,10 @@ public class PlayerController : MonoBehaviour
         MyGamepad = playerInput.GetDevice<Gamepad>();
         playerInput.currentActionMap.Enable();
 
-        playerBehaviour = GetComponent<PlayerBehaviour>();
         rangedPlayerController = GetComponent<RangedPlayerController>();
         meleePlayerController = GetComponent<MeleePlayerController>();
+
+        gunSprite = rangedPlayerController.Gun.GetComponent<SpriteRenderer>();
 
         gameManager = GameObject.FindObjectOfType<GameManager>();
         settingsScript = GameObject.FindObjectOfType<Settings>();
@@ -190,7 +207,7 @@ public class PlayerController : MonoBehaviour
         if (!moving)
         {
             InputDirection = obj.ReadValue<Vector2>();
-            MoveDirection = InputDirection * playerBehaviour.Speed / 2;
+            MoveDirection = InputDirection * PlayerBehaviour.Instance.Speed / 2;
             walkSound.Play();
         }
 
@@ -292,14 +309,37 @@ public class PlayerController : MonoBehaviour
             AimingDirection = MousePosition;
 
             //rotate awesome style
-            MousePosition = new Vector2(Mathf.Abs(MousePosition.x), MousePosition.y);
-            float angle = Mathf.Atan2(MousePosition.y, MousePosition.x) * Mathf.Rad2Deg;
-            angle = Mathf.Clamp(angle, rangedPlayerController.MaxDownAngle, rangedPlayerController.MaxUpAngle);
-            rangedPlayerController.RotationPivot.transform.localEulerAngles = new Vector3(0, 0, angle);
+
+            RotateGun(MousePosition);
 
             yield return null;
         }
         aimingCoroutine = null;
+    }
+
+    private void RotateGun(Vector2 aimDirection)
+    {
+        //MousePosition = new Vector2(Mathf.Abs(MousePosition.x), MousePosition.y);
+
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+
+        //angle = Mathf.Clamp(angle, rangedPlayerController.MaxDownAngle, rangedPlayerController.MaxUpAngle);
+
+        rangedPlayerController.RotationPivot.transform.localEulerAngles = new Vector3(0, 0, angle);
+
+        //flip gun to aim in right direction
+        if(aimDirection.x < 0)
+            GunSprite.flipY = true;
+
+        if (aimDirection.x > 0)
+            GunSprite.flipY = false;
+
+        //change layer to look right
+        if(aimDirection.y > 0)
+            GunSprite.sortingOrder = -5;
+
+        if (aimDirection.y < 0)
+            GunSprite.sortingOrder = 5;
     }
 
     private IEnumerator UpdateShootingDirectionByController()
@@ -333,7 +373,7 @@ public class PlayerController : MonoBehaviour
             MoveDirection = BlendMovementDirections(MoveDirection, newMoveDiection, slideAmount);
 
             if (!ignoreMove)
-                myRigidbody.velocity = MoveDirection * playerBehaviour.Speed;
+                myRigidbody.velocity = MoveDirection * PlayerBehaviour.Instance.Speed;
 
             yield return null;
         }
@@ -353,7 +393,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!ignoreMove)
             {
-                myRigidbody.velocity = MoveDirection * playerBehaviour.Speed; //no Time.deltaTime bc its just velocity being changed
+                myRigidbody.velocity = MoveDirection * PlayerBehaviour.Instance.Speed; //no Time.deltaTime bc its just velocity being changed
             }
             yield return null;
         }
@@ -402,10 +442,10 @@ public class PlayerController : MonoBehaviour
 
         GameEvents.Instance.OnPlayerDash();
 
-        playerBehaviour.BecomeInvincible(slideSeconds / 0.9f, true);
+        PlayerBehaviour.Instance.BecomeInvincible(slideSeconds / 0.9f, true);
 
         myRigidbody.velocity = Vector2.zero;
-        myRigidbody.AddForce(MoveDirection * playerBehaviour.DashUnits, ForceMode2D.Impulse);
+        myRigidbody.AddForce(MoveDirection * PlayerBehaviour.Instance.DashUnits, ForceMode2D.Impulse);
 
         //test
         if (Settings.Instance.ControllerVibration && MyGamepad != null)
@@ -415,7 +455,7 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(NoMovementRoutine(slideSeconds));
 
-        yield return new WaitForSeconds(playerBehaviour.DashRechargeSeconds);
+        yield return new WaitForSeconds(PlayerBehaviour.Instance.DashRechargeSeconds);
         canDash = true;
     }
 

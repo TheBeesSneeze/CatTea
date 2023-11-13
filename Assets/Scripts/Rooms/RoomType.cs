@@ -30,6 +30,9 @@ public class RoomType : MonoBehaviour
     [Tooltip("This should be assigned automatically in the door's script.")]
     public DoorManager Door;
 
+    [Header("Debug")]
+    public bool ForceCloseDoorOverride=false;
+
     [HideInInspector] public RoomSwitching EnemyDoor;
 
     public Transform CameraCenterPoint;

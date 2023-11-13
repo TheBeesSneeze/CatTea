@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.001150012, y: 0.0037499666, z: 0}
-    m_Extent: {x: 3.4984498, y: 3.49795, z: 0}
+    m_Center: {x: 0.0012000799, y: 0.0020999908, z: 0}
+    m_Extent: {x: 3.5052, y: 3.4962, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -176,8 +176,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00395, y: 0.0023499727, z: 0}
-    m_Extent: {x: 3.49645, y: 3.4970498, z: 0}
+    m_Center: {x: 0.0030499697, y: -0.00014996529, z: 0}
+    m_Extent: {x: 3.49365, y: 3.49855, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -286,8 +286,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0034999847, y: -0.008350015, z: 0}
-    m_Extent: {x: 3.4974, y: 3.5001502, z: 0}
+    m_Center: {x: 0.00454998, y: -0.008049965, z: 0}
+    m_Extent: {x: 3.49985, y: 3.49825, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4152,6 +4152,7 @@ MonoBehaviour:
   CameraFollowPlayer: 1
   CameraSize: 5
   Door: {fileID: 0}
+  ForceCloseDoorOverride: 0
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 1551796355845405812}
   PlayerSpawnPoint: {fileID: 1221772799358155002}
@@ -5923,8 +5924,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0029000044, y: 0.0061500072, z: 0}
-    m_Extent: {x: 3.5017, y: 3.49625, z: 0}
+    m_Center: {x: 0.0012500286, y: 0.001150012, z: 0}
+    m_Extent: {x: 3.49935, y: 3.5032501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6095,8 +6096,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0022000074, y: 0.00069999695, z: 0}
-    m_Extent: {x: 3.5036001, y: 3.5004, z: 0}
+    m_Center: {x: 0.006199956, y: -0.0056500435, z: 0}
+    m_Extent: {x: 3.5024, y: 3.49925, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

@@ -18,15 +18,17 @@ using UnityEngine;
 
 public class SaveDataManager : MonoBehaviour
 {
+    public static SaveDataManager Instance;
+
     public enum DebugMode { NormalMode, ClearDataOnStart, CheatyMode }
     [Tooltip("CheatyMode: start with everything")]
     public DebugMode debugMode;
-
-    public static SaveDataManager Instance;
+    
     public SettingsDataClass SettingsData;
     public SaveDataClass SaveData;
-    private string settingsPath;
-    private string saveDataPath;
+
+    //private string settingsPath;
+    //private string saveDataPath;
 
     /// <summary>
     /// If there is an instance, and it's not me, delete myself.
@@ -93,8 +95,8 @@ public class SaveDataManager : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("Run Number", SaveData.RunNumber);
-        PlayerPrefs.SetInt("Gun Unlocked", SaveData.GunUnlocked.ConvertTo<int>());
-        PlayerPrefs.SetInt("Tutorial Completed", SaveData.TutorialCompleted.ConvertTo<int>());
+        PlayerPrefs.SetInt("Gun Unlocked", (SaveData.GunUnlocked ? 1 : 0));
+        PlayerPrefs.SetInt("Tutorial Completed", (SaveData.TutorialCompleted ? 1 : 0));
 
         PlayerPrefs.Save();
         /*

@@ -18,15 +18,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Tooltip("0 - 8, for how many times the players died")]
-    public uint RunNumber;
 
     [Tooltip("List of every non-permenant upgrade")]
     public List<GameObject> UpgradePool;
     [HideInInspector]public List<GameObject> CurrentUpgradePool; 
-
-    [Header("Player Defined Settings")]
-    public bool Rumble;
 
     public int DefaultChallengePoints;
     public int CurrentChallengePoints;
@@ -56,9 +51,19 @@ public class GameManager : MonoBehaviour
 
         CurrentUpgradePool = new List<GameObject>(UpgradePool); //copys list awesome
 
-        EnterHub();
+        if(SaveDataManager.Instance.SaveData.TutorialCompleted)
+        {
+            EnterHub(); 
+        }
+        else
+            EnterTutorial();
     }
-
+    
+    private void EnterTutorial()
+    {
+        TutorialRoom tutorial = GameObject.FindObjectOfType<TutorialRoom>();
+        tutorial.EnterRoom();
+    }
     /// <summary>
     /// loads in the hub on start
     /// </summary>

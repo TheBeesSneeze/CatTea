@@ -49,13 +49,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c92221360636a14c83875d475baa79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultDialogue: {fileID: 0}
+  DialogueScripts: []
   LoopText: 0
   ButtonPrompt: {fileID: 2400125076962185776}
   TextBox: {fileID: 0}
   DialogueCanvas: {fileID: 0}
+  DialogueArea: {fileID: 0}
   PlayerSprite: {fileID: 0}
   NPCSprite: {fileID: 0}
+  Name1: {fileID: 0}
+  Name2: {fileID: 0}
   dialogueSoundSource: {fileID: 0}
 --- !u!212 &2018342994830484878
 SpriteRenderer:
@@ -77,7 +80,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0ff8bb83816c8204e9773cf2f515826e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -288,7 +291,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2400125076962185776}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1be5b3da1c210af4b96aacd69ea021fe, type: 2}
   m_CullingMode: 0
@@ -327,7 +330,7 @@ MonoBehaviour:
   - {x: 0.24999952, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 103866
+  m_InstanceId: 47086
   m_LocalBounds:
     m_Center: {x: -0.00000023841858, y: 0, z: 0}
     m_Extent: {x: 0.24999976, y: 0.25, z: 0}

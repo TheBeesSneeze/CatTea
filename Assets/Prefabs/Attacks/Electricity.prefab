@@ -70,8 +70,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 3.56
-  m_PointLightOuterRadius: 6.49
+  m_PointLightInnerRadius: 2.01
+  m_PointLightOuterRadius: 3.88
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 4260691985643505390}
   - component: {fileID: 1257350510651709163}
   - component: {fileID: 7912148639433709387}
+  - component: {fileID: -8859962561865256389}
   m_Layer: 11
   m_Name: Electricity
   m_TagString: General Attack
@@ -109,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 4132171572988800978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 139.0825, y: -4.07627, z: 0}
-  m_LocalScale: {x: 8, y: 4.8, z: 8}
+  m_LocalScale: {x: 6, y: 3.6000001, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2928586802925761511}
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2369b28f28a03da45b7b48baeac9878e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 8
+  Damage: 4
   KnockbackForce: 0
   DestroyedByWalls: 0
   DestroyedAfterAttack: 0
@@ -189,3 +190,38 @@ MonoBehaviour:
   CanBeParried: 0
   DestroyAttackAfterSeconds: 2
   Attacker: 0
+--- !u!70 &-8859962561865256389
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4132171572988800978}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1.01}
+  m_Direction: 1

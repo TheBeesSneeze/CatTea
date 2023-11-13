@@ -22,11 +22,15 @@ public class GunPickup : MonoBehaviour
             return;
 
         SaveDataManager.Instance.SaveData.GunUnlocked = true;
+        SaveDataManager.Instance.SaveSaveData();
         PlayerBehaviour.Instance.OnGunUnlocked();
 
-        if(BossDoor != null )
+        if (BossDoor != null)
+        {
+            BossDoor.ThisRoom.ForceCloseDoorOverride = false;
             BossDoor.OpenDoor();
-
+            
+        }
         Destroy(gameObject);
     }
 }

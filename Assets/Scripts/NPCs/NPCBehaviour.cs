@@ -17,7 +17,9 @@ using UnityEngine.UI;
 public class NPCBehaviour : MonoBehaviour
 {
     [Header("Dialogue")]
-    [SerializeField] private NPCScript DefaultDialogue;
+    //[SerializeField] private NPCScript DefaultDialogue;
+    [Tooltip("Order of scripts this npc uses. DOES NOT NEED TO BE NINE! The list will loop after a while")]
+    public NPCScript[] DialogueScripts;
 
     public NPCScript CurrentScript { 
         get { return CurrentScript; } 
@@ -26,8 +28,8 @@ public class NPCBehaviour : MonoBehaviour
 
     public enum Talking { Player, NPC, Nobody };
 
-    private string Character1Name;
-    private string Character2Name;
+    private string character1Name;
+    private string character2Name;
 
     private AudioClip Character1DialogueSound;
     private AudioClip Character2DialogueSound;
@@ -47,8 +49,12 @@ public class NPCBehaviour : MonoBehaviour
     public GameObject ButtonPrompt;
     public TextMeshProUGUI TextBox;
     public GameObject DialogueCanvas;
+    public GameObject DialogueArea;
     public Image PlayerSprite;
     public Image NPCSprite;
+
+    public TextMeshProUGUI Name1;
+    public TextMeshProUGUI Name2;
 
     private PlayerController player;
     private bool SkipText;
@@ -67,7 +73,8 @@ public class NPCBehaviour : MonoBehaviour
         if(dialogueSoundSource == null)
             dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
 
-        LoadScript(DefaultDialogue);
+        int dialogueIndex = SaveDataManager.Instance.SaveData.RunNumber % DialogueScripts.Length;
+        LoadScript(DialogueScripts[dialogueIndex]);
 
         ButtonPrompt.SetActive(false);
     }
@@ -180,6 +187,8 @@ public class NPCBehaviour : MonoBehaviour
 
         SwitchTalkingSound();
 
+        SwitchNames();
+
         //typewriter text
         for (int i = 0; i < TextList[textIndex].Length + 1; i++)
         {
@@ -254,6 +263,44 @@ public class NPCBehaviour : MonoBehaviour
     }
 
     /// <summary>
+    /// switches out names and flips text area
+    /// </summary>
+    private void SwitchNames()
+    {
+        if(Name1  == null || Name2 == null || DialogueArea == null)
+        {
+            Debug.LogWarning("Name Text boxes or Dialogue Area not defined in " + gameObject.name);
+
+            Name1.gameObject.SetActive(false);
+            Name2.gameObject.SetActive(false);
+
+            DialogueArea.transform.localScale = new Vector3(1, 1, 1);
+
+            return;
+        }
+
+        if (WhoIsTalking[textIndex].Equals(Talking.Player))
+        {
+            Name1.gameObject.SetActive(true);
+            Name2.gameObject.SetActive(false);
+
+            Name1.text = character1Name;
+
+            DialogueArea.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        if (WhoIsTalking[textIndex].Equals(Talking.NPC))
+        {
+            Name1.gameObject.SetActive(false);
+            Name2.gameObject.SetActive(true);
+
+            Name2.text = character2Name;
+
+            DialogueArea.transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+    /// <summary>
     /// Animates the sprite by bobbing it up and down.
     /// </summary>
     /// <param name="Sprite"></param>
@@ -293,8 +340,8 @@ public class NPCBehaviour : MonoBehaviour
 
         WhoIsTalking = Script.WhoIsTalking;
 
-        Character1Name = Script.Character1Name;
-        Character2Name = Script.Character2Name;
+        character1Name = Script.Character1Name;
+        character2Name = Script.Character2Name;
 
         Character1DialogueSound = Script.Character1DialogueSound;
         Character2DialogueSound = Script.Character1DialogueSound; ;
