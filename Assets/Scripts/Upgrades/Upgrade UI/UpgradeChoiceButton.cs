@@ -43,10 +43,29 @@ public class UpgradeChoiceButton : MonoBehaviour
     /// </summary>
     public void OnClick()
     {
+        UpgradeChoiceInterface UI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
+
+        UI.SelectOption(this);
+
+        /*
         GameObject upgradeGO = Instantiate(UpgradePrefab);
         UpgradeType upgrade = upgradeGO.GetComponent<UpgradeType>();
 
         if(!upgrade.CanBeStacked)
+            GameManager.Instance.CurrentUpgradePool.RemoveAt(UpgradeIndex);
+
+        UpgradeChoiceInterface upgradeUI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
+
+        upgradeUI.CloseUI();
+        */
+    }
+
+    public void ConfirmUpgrade()
+    {
+        GameObject upgradeGO = Instantiate(UpgradePrefab);
+        UpgradeType upgrade = upgradeGO.GetComponent<UpgradeType>();
+
+        if (!upgrade.CanBeStacked)
             GameManager.Instance.CurrentUpgradePool.RemoveAt(UpgradeIndex);
 
         UpgradeChoiceInterface upgradeUI = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
