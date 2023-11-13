@@ -152,4 +152,16 @@ public class RoomTransition : MonoBehaviour
             yield return null;
         }
     }
+
+    /// <summary>
+    /// Debug command which instantly skips to the next room
+    /// </summary>
+    public void ForceRoomSkip()
+    {
+        RoomType currentRoom = GameManager.Instance.CurrentRoom;
+        RoomType nextRoom = currentRoom.Door.OutputRoom;
+
+        SwitchRooms(currentRoom, nextRoom);
+    }
+
 }
