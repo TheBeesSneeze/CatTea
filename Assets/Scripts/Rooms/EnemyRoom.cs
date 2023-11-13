@@ -14,8 +14,13 @@ using Random = UnityEngine.Random;
 
 public class EnemyRoom : RoomType
 {
-    [SerializeField] private List<GameObject> EnemySpawnPool;
-    [SerializeField] private List<Transform> EnemySpawnPoints;
+    public bool SpawnUpgradeOnCompletion=true;
+
+    public List<GameObject> EnemySpawnPool;
+    public List<Transform> EnemySpawnPoints;
+
+    public int MinimumWaves = 3;
+    public int MaximumWaves = 5;
 
     [Header("Debug")]
     [SerializeField] private int aliveEnemies;
@@ -23,8 +28,6 @@ public class EnemyRoom : RoomType
     [SerializeField] private int challengePointsPerWave;
 
     //Secret settings
-    private int minWaves=3;
-    private int maxWaves = 5;
     protected float secondsUntilWaveStart = 2; 
     private float secondsBetweenEnemySpawns = 1f;
     protected float secondsForEnemyToSpawn = 2.5f;
@@ -38,7 +41,7 @@ public class EnemyRoom : RoomType
     {
         base.EnterRoom();
 
-        wavesLeft = Random.Range(minWaves, maxWaves+1);
+        wavesLeft = Random.Range(MinimumWaves, MaximumWaves + 1);
         challengePointsPerWave = GameManager.Instance.CurrentChallengePoints / wavesLeft;
 
         Debug.Log(wavesLeft + " waves, " + challengePointsPerWave + " challenge points per wave");
@@ -92,7 +95,8 @@ public class EnemyRoom : RoomType
 
         StopPlayingBackgroundMusic();
 
-        Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, playerBehaviour.transform.position, Quaternion.identity);
+        if(SpawnUpgradeOnCompletion)
+            Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, playerBehaviour.transform.position, Quaternion.identity);
     }
 
     public virtual IEnumerator SpawnNewWaveOfEnemies()

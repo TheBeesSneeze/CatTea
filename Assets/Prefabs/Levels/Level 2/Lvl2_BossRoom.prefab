@@ -97,8 +97,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.5262003, y: -4.5985994, z: 0}
-    m_Extent: {x: 18.926899, y: 8.6911, z: 0}
+    m_Center: {x: -1.5213003, y: -4.6088495, z: 0}
+    m_Extent: {x: 18.9253, y: 8.69495, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackgroundMusic: {fileID: 8300000, guid: 704f3e3f65d759e4cb88fc3daba554ff, type: 3}
-  BackgroundColor: {r: 0, g: 0.17254902, b: 0.1882353, a: 1}
+  BackgroundColor: {r: 0.055322148, g: 0.73102516, b: 0.7924528, a: 1}
   OpenDoorsOnStart: 1
   CameraFollowPlayer: 1
   CameraSize: 6
