@@ -50,13 +50,12 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public InputAction SkipText;
     protected InputAction cheat;
     protected InputAction mouse;
+    private InputAction roomSkip;
 
     // components:
     protected Rigidbody2D myRigidbody;
     public Gamepad MyGamepad;
     protected Animator myAnimator;
-    protected GameManager gameManager;
-    private Settings settingsScript;
     
     //le sound
     public AudioSource walkSound;
@@ -119,9 +118,6 @@ public class PlayerController : MonoBehaviour
 
         gunSprite = rangedPlayerController.Gun.GetComponent<SpriteRenderer>();
 
-        gameManager = GameObject.FindObjectOfType<GameManager>();
-        settingsScript = GameObject.FindObjectOfType<Settings>();
-
         InitializeControls();
 
         DetectInputDevice();
@@ -143,9 +139,10 @@ public class PlayerController : MonoBehaviour
         Pause = playerInput.currentActionMap.FindAction("Pause");
         Select = playerInput.currentActionMap.FindAction("Select");
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
-        cheat = playerInput.currentActionMap.FindAction("Cheat");
         aim = playerInput.currentActionMap.FindAction("Aiming");
         mouse = playerInput.currentActionMap.FindAction("Mouse");
+        cheat = playerInput.currentActionMap.FindAction("Cheat");
+        roomSkip = playerInput.currentActionMap.FindAction("Room Skip Cheat");
 
         move.performed += Move_performed;
         move.canceled += Move_canceled;
@@ -162,6 +159,8 @@ public class PlayerController : MonoBehaviour
         Pause.started += Pause_started;
 
         cheat.started += Cheat_started;
+        roomSkip.started += RoomSkipCheat_started;
+
 
         aim.performed += Aim_Performed;
     }
@@ -265,12 +264,17 @@ public class PlayerController : MonoBehaviour
     {
         if (IgnoreAllInputs) return;
 
-        gameManager.CurrentRoom.Cheat();
+        GameManager.Instance.CurrentRoom.Cheat();
 
         SaveDataManager.Instance.SaveData.GunUnlocked = true;
     }
 
-    
+    private void RoomSkipCheat_started(InputAction.CallbackContext obj)
+    {
+        if (IgnoreAllInputs) return;
+
+        RoomTransition.Instance.ForceRoomSkip();
+    }
 
     /// <summary>
     /// Kind of unnessecary rn, but im cooking, ok
@@ -514,5 +518,10 @@ public class PlayerController : MonoBehaviour
         Pause.started -= Pause_started;
 
         cheat.started -= Cheat_started;
+        roomSkip.started -= RoomSkipCheat_started;
+
+        Pause.started += Pause_started;
+
+        aim.performed += Aim_Performed;
     }
 }

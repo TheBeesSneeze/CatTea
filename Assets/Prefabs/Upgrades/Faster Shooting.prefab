@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3213492835922055141
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed0e1a6ad5e8d44c9f0f78e462a5735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: 21300000, guid: cfa810b55b041f5409fcfaf1292329fd, type: 3}
+  DisplaySprite: {fileID: 21300000, guid: 8897e3ecc4790574eb846f29c6e6ab36, type: 3}
   DisplayName: '[PlaceHolder name]'
   DisplayDescription: Ammo recharging and shooting speed increased.
   CanBeStacked: 1
