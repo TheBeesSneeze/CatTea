@@ -22,7 +22,7 @@ public class LightColorCycler : MonoBehaviour
     public float SecondsBetweenEachColor;
     public bool CycleColors = true;
 
-    private Light2D light;
+    private Light2D _light;
 
     private int colorIndex;
     private Coroutine transitionCoroutine;
@@ -49,11 +49,11 @@ public class LightColorCycler : MonoBehaviour
 
     private void Start()
     {
-        light = GetComponent<Light2D>();
+        _light = GetComponent<Light2D>();
 
         if(CycleColors)
         {
-            light.color = Colors[colorIndex];
+            _light.color = Colors[colorIndex];
 
             colorIndex = (colorIndex+1) % Colors.Length;
 
@@ -64,7 +64,7 @@ public class LightColorCycler : MonoBehaviour
 
     private IEnumerator LerpColor(Color color)
     {
-        Color oldColor = light.color;
+        Color oldColor = _light.color;
         color.a = 1;
 
         float t = 0;
@@ -73,7 +73,7 @@ public class LightColorCycler : MonoBehaviour
         {
             t+= Time.deltaTime;
             float tScaled = Mathf.Sin( (t*Mathf.PI)/(SecondsBetweenEachColor*2) );
-            light.color = Color.Lerp(oldColor, color, tScaled);
+            _light.color = Color.Lerp(oldColor, color, tScaled);
             yield return null;
         }
 

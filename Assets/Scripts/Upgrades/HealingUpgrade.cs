@@ -15,6 +15,6 @@ public class HealingUpgrade : UpgradeType
     public float HealAmount;
     public override void UpgradeEffect()
     {
-        playerBehaviour.HealthPoints = playerBehaviour.HealthPoints + HealAmount;
+        PlayerBehaviour.Instance.HealthPoints = PlayerBehaviour.Instance.HealthPoints + HealAmount;
     }
 }
