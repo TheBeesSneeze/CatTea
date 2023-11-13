@@ -44,6 +44,7 @@ public class FallingBomb : MonoBehaviour
     private Vector3 shadowTargetScaleTarget;
     private float targetShadowOpacity;
     private SpriteRenderer shadowSprite;
+    private LineRenderer lineRenderer;
 
     private float initialShadowOpacity = 0.3f;
 
@@ -55,6 +56,8 @@ public class FallingBomb : MonoBehaviour
         shadowSprite = Shadow.GetComponent<SpriteRenderer>();
         targetShadowOpacity = shadowSprite.color.a;
         shadowSprite.color = new Color(shadowSprite.color.r, shadowSprite.color.g, shadowSprite.color.b, initialShadowOpacity);
+
+        lineRenderer = GetComponent<LineRenderer>();
 
         StartCoroutine(InitializeBomb());
 
@@ -71,10 +74,9 @@ public class FallingBomb : MonoBehaviour
     public IEnumerator InitializeBomb()
     {
         //magic numbers
-        float opacityFrames = 50;
         float unitsUp = 1;
 
-        float t = 0;
+        float time = 0;
         Vector3 newBombPosition;
 
         Vector3 targetShadowSize = Shadow.transform.localScale;
@@ -89,9 +91,10 @@ public class FallingBomb : MonoBehaviour
         //make bomb more clear over waiting time
 
         //float opacityInterval = (FallingTime * SuspendedTime) / FallingFrames; //had to bust out the middle school algebra for this one //it didnt work
-        while (t < 1)
+        while (time < SuspendedTime)
         {
-            t += 1.5f / opacityFrames;
+            time += Time.deltaTime;
+            float t = time / SuspendedTime;
             float tScaled = Mathf.Pow(t, FallingAcceleration);
 
             //make visible
@@ -100,14 +103,17 @@ public class FallingBomb : MonoBehaviour
 
             //move up slightly
             newBombPosition = Bomb.transform.position;
-            newBombPosition.y += unitsUp / opacityFrames;
+            newBombPosition.y += unitsUp * Time.deltaTime;
             Bomb.transform.position = newBombPosition;
 
             //expand shadow slightly
             Shadow.transform.localScale = Vector3.Lerp(Vector3.zero, targetShadowSize, t);
             shadowSprite.color = Color.Lerp(shadowSprite.color, targetShadowColor, t) ; //guys i am fucking losing it
 
-            yield return new WaitForSeconds(SuspendedTime / opacityFrames);
+            //draw line
+            UpdateLineRenderer();
+
+            yield return null;
         }
 
         StartCoroutine(DropBomb());
@@ -123,7 +129,7 @@ public class FallingBomb : MonoBehaviour
     {
         transform.SetParent(null);
 
-        float t = 0;
+        
 
         Vector3 bombStart = Bomb.transform.position;
         Vector3 bombTarget = Shadow.transform.position;
@@ -132,11 +138,13 @@ public class FallingBomb : MonoBehaviour
 
         float shadowStartOpacity = shadowSprite.color.a;
 
+        float time = 0;
         //drop bomb. expand shadow. expand opacity
-        while (t < 1)
+        while (time < FallingTime)
         {
             //i feel like a baby calf and the lerp function is the udder of which i derive my nutrients
-            t += Time.deltaTime / FallingTime;
+            time += Time.deltaTime;
+            float t = time / FallingTime;
             float tScaled = Mathf.Pow(t, FallingAcceleration);
 
             Bomb.transform.position = Vector3.Lerp(bombStart, bombTarget, tScaled);
@@ -146,13 +154,19 @@ public class FallingBomb : MonoBehaviour
             shadowColor.a = Mathf.Lerp(shadowStartOpacity, targetShadowOpacity,tScaled);
             shadowSprite.color = shadowColor;
 
+            UpdateLineRenderer();
+
             yield return null;
         }
 
         StartCoroutine(Explode());
     }
 
-    
+    private void UpdateLineRenderer()
+    {
+        lineRenderer.SetPosition(0, Bomb.transform.position);
+        lineRenderer.SetPosition(1, Shadow.transform.position);
+    }
 
     public IEnumerator RotateBombCoroutine()
     {
@@ -165,7 +179,7 @@ public class FallingBomb : MonoBehaviour
 
             Bomb.transform.eulerAngles = new Vector3(0,0,angle);
 
-            yield return new WaitForSeconds(increment);
+            yield return null;
         }
     }
 
