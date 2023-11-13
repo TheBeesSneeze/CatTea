@@ -40,7 +40,7 @@ public class PlayerBehaviour : CharacterBehaviour
     [HideInInspector] public float ProjectileSpeed;
     [HideInInspector] public int ShotsPerBurst;
     [HideInInspector] public float TimeBetweenShots;
-    [HideInInspector] public float AmmoRechargeTime;
+    public float AmmoRechargeTime;
     [HideInInspector] public float RangedAttackKnockback;
 
     [HideInInspector] public int MeleeAttackDamage;

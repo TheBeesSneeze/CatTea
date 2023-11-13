@@ -31,12 +31,14 @@ public class CharacterBehaviour : MonoBehaviour
     //magic numbers
     protected bool capHPAtMax = true;
     protected float damageColorChangeSeconds = 0.15f;
+    private float damageBouncePercent = 0.2f;
 
     //lame stuff
     protected Rigidbody2D myRigidbody2D;
     protected SpriteRenderer spriteRenderer;
 
     private Coroutine hitAnimationCoroutine;
+    private Coroutine bounceAnimationCoroutine;
     private Coroutine invincibleCoroutine;
 
     [HideInInspector] public Color originalColor;
@@ -154,11 +156,39 @@ public class CharacterBehaviour : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        if(bounceAnimationCoroutine == null)
+            bounceAnimationCoroutine = StartCoroutine(HitBounceAnimation());
+
         spriteRenderer.color = new Color(1, 0.3f, 0.3f);
 
         yield return new WaitForSeconds(damageColorChangeSeconds);
 
         spriteRenderer.color = colorOverride;
+    }
+
+    /// <summary>
+    /// this could totally be done with the animator but i like code >:)
+    /// </summary>
+    private IEnumerator HitBounceAnimation()
+    {
+        float defaultScale = transform.localScale.y;
+
+        float time = 0;
+        while(time< damageColorChangeSeconds)
+        {
+            time+= Time.deltaTime;
+            float t = time / damageColorChangeSeconds;
+
+            float p = Mathf.Sin(2 * Mathf.PI * t);
+
+            float y = defaultScale + (defaultScale * damageBouncePercent * p); ;
+            transform.localScale = new Vector3(transform.localScale.x, y, transform.localScale.z);
+            
+            yield return null;
+        }
+        transform.localScale = new Vector3(transform.localScale.x, defaultScale, transform.localScale.z);
+
+        bounceAnimationCoroutine = null;
     }
 
     /// <summary>

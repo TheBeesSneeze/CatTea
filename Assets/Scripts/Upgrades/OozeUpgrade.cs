@@ -44,7 +44,7 @@ public class OozeUpgrade : UpgradeType
             randomPosition.y -= 0.2f;
 
             
-            Instantiate(OozePrefab, playerBehaviour.transform.position + randomPosition, Quaternion.identity);
+            Instantiate(OozePrefab, PlayerBehaviour.Instance.transform.position + randomPosition, Quaternion.identity);
 
             //Ooze initialization is in OozeAttack
         }

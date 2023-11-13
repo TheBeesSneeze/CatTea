@@ -14,6 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UpgradeChoiceInterface : MonoBehaviour
@@ -60,7 +61,6 @@ public class UpgradeChoiceInterface : MonoBehaviour
     {
         Destroy(ChoiceObject.gameObject);
         UpgradeScreen.SetActive(false);
-        
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public class UpgradeChoiceInterface : MonoBehaviour
     /// </summary>
     public void ConfirmSelection()
     {
-        //selectedButton.ConfirmUpgrade();
+        selectedButton.ConfirmUpgrade();
         CloseUI();
     }
 
@@ -90,6 +90,8 @@ public class UpgradeChoiceInterface : MonoBehaviour
         UpgradeButton1.GetComponent<Image>().color = deselectedColor;
         UpgradeButton2.GetComponent<Image>().color = deselectedColor;
         MysteryButton.GetComponent<Image>().color = deselectedColor;
+
+        EventSystem.current.SetSelectedGameObject(null);
 
     }
 
