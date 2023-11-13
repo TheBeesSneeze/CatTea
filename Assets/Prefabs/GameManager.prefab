@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65877288aef35634bb10b1cd707c7ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunNumber: 0
   UpgradePool:
   - {fileID: 1390736279501406060, guid: d9569cdb15b7a684583630eb60f4770f, type: 3}
   - {fileID: 5210622287566210706, guid: 14d6f788cb795e9428da5d9f3ebd12d7, type: 3}
@@ -56,8 +55,8 @@ MonoBehaviour:
   - {fileID: 1082004107626594682, guid: d1d04ad236a4ca64cbdffa6d6db88f58, type: 3}
   - {fileID: 5841676320258807325, guid: 1fb769e23a953e548b68451df2a7d443, type: 3}
   - {fileID: 731504767085075442, guid: 0b49640d0497bbb4f91e0421d22a2494, type: 3}
+  - {fileID: 5223131552129023511, guid: 5b4609a9a91ec1b4ab71516f6cbafb0c, type: 3}
   CurrentUpgradePool: []
-  Rumble: 0
   DefaultChallengePoints: 15
   CurrentChallengePoints: 15
   CurrentRoom: {fileID: 0}

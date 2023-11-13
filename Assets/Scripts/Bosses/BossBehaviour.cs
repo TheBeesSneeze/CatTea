@@ -47,6 +47,8 @@ public class BossBehaviour : CharacterBehaviour
     {
         base.Die();
 
+        Debug.Log("OH NO IM DYING!");
+
         GameEvents.Instance.OnEnemyDeath(this.transform.position);
 
         Debug.Log("Boss die!");
