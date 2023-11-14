@@ -29,8 +29,6 @@ public class MeleePlayerController : MonoBehaviour
     private Coroutine RotatingSwordCoroutine;
 
     //etc
-    private PlayerBehaviour playerBehaviour;
-    protected PlayerController playerController;
     protected RangedPlayerController rangedPlayerController;
 
     // le sound
@@ -38,8 +36,6 @@ public class MeleePlayerController : MonoBehaviour
 
     protected void Start()
     {
-        playerBehaviour = GetComponent<PlayerBehaviour>();
-        playerController = GetComponent<PlayerController>();
         rangedPlayerController = GetComponent<RangedPlayerController>();
 
         RotatingSwordCoroutine = StartCoroutine(RotateSword());
@@ -47,20 +43,23 @@ public class MeleePlayerController : MonoBehaviour
 
     public void Sword_started(InputAction.CallbackContext obj)
     {
-        if(playerController.IgnoreAllInputs) 
+        if(PlayerController.Instance.IgnoreAllInputs) 
             return;
-
-        playerBehaviour.StartSwordMode();
 
         //if not already attacking
         if (Attacking && !rangedPlayerController.PrimaryShooting)
             return;
 
+        if (!PlayerController.Instance.CanAttack)
+            return;
+
+        PlayerBehaviour.Instance.StartSwordMode();
+
         GameEvents.Instance.OnPlayerSword();
 
         SwordCollider.enabled = true;
         Attacking = true;
-        playerController.CanAttack = false;
+        PlayerController.Instance.CanAttack = false;
 
         PlaySwordSound();
 
@@ -77,7 +76,7 @@ public class MeleePlayerController : MonoBehaviour
     }
     public void Sword_canceled(InputAction.CallbackContext obj)
     {
-        if (playerController.IgnoreAllInputs) return;
+        if (PlayerController.Instance.IgnoreAllInputs) return;
         //TODO
         //StartCoroutine(StopAttack());
 
@@ -94,11 +93,11 @@ public class MeleePlayerController : MonoBehaviour
         endAngle.z += -PrimaryStrikeAngle / 2;
 
         float t = 0;
-        while(t< playerBehaviour.TimeBetweenShots)
+        while(t< PlayerBehaviour.Instance.TimeBetweenShots)
         {
             t += Time.deltaTime;
 
-            Vector3 target = Vector3.Lerp(startAngle, endAngle, t / playerBehaviour.TimeBetweenShots);
+            Vector3 target = Vector3.Lerp(startAngle, endAngle, t / PlayerBehaviour.Instance.TimeBetweenShots);
             RotatePoint.transform.eulerAngles = target;
 
             yield return null;
@@ -121,33 +120,10 @@ public class MeleePlayerController : MonoBehaviour
         SwordCollider.enabled = false;
         Attacking = false;
 
-        /*
-
-        float moveSwordBackSeconds = playerBehaviour.AmmoRechargeTime / 2;
-
-        float startAngle = MirrorPivot.transform.eulerAngles.z;
-        float targetAngle = (Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg);
-
-        startAngle = (startAngle+360) % 360;
-        targetAngle = (targetAngle+360) % 360;
-
-        Debug.Log(startAngle);
-        Debug.Log(targetAngle);
-
-        //return sword to where it started
-        for (int i = 0; i < 20; i++) 
-        {
-            float target = Mathf.Lerp(startAngle, targetAngle, i / StrikeFrames);
-            MirrorPivot.transform.eulerAngles = new Vector3(0,0,target);
-
-            yield return new WaitForSeconds(moveSwordBackSeconds / 20);
-        }
-        */
-
         RotatingSwordCoroutine = StartCoroutine(RotateSword());
 
-        yield return new WaitForSeconds(playerBehaviour.AmmoRechargeTime/2);
-        playerController.CanAttack = true;
+        yield return new WaitForSeconds(PlayerBehaviour.Instance.SwordAttackCoolDown);
+        PlayerController.Instance.CanAttack = true;
     }
 
     /// <summary>
@@ -157,7 +133,7 @@ public class MeleePlayerController : MonoBehaviour
     private IEnumerator RotateSword()
     {
         //float angle = Mathf.Atan2(playerController.MoveDirection.y, playerController.MoveDirection.x) * Mathf.Rad2Deg;
-        float angle = Mathf.Atan2(playerController.AimingDirection.y, playerController.AimingDirection.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(PlayerController.Instance.AimingDirection.y, PlayerController.Instance.AimingDirection.x) * Mathf.Rad2Deg;
         float lastAngle;
 
         //this could be a function, it should be called whenever the player moves. but its also gotta be constant
@@ -165,7 +141,7 @@ public class MeleePlayerController : MonoBehaviour
         {
             lastAngle = angle;
             //float angle = Mathf.Atan2(move.ReadValue<Vector2>().y, move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
-            angle = Mathf.Atan2(playerController.AimingDirection.y, playerController.AimingDirection.x) * Mathf.Rad2Deg;
+            angle = Mathf.Atan2(PlayerController.Instance.AimingDirection.y, PlayerController.Instance.AimingDirection.x) * Mathf.Rad2Deg;
             angle += 360;
 
             if (angle != lastAngle)

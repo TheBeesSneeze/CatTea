@@ -118,10 +118,44 @@ public class UpgradeChoiceInterface : MonoBehaviour
     {
         int randomIndex = Random.Range(0, upgradeIndexes.Count);
         int result = upgradeIndexes[randomIndex];
+
         upgradeIndexes.RemoveAt(randomIndex);
 
         return result;
+        /*
+        bool validUpgrade = false;
+        int result;
+
+        do
+        {
+            int randomIndex = Random.Range(0, upgradeIndexes.Count);
+            result = upgradeIndexes[randomIndex];
+
+            validUpgrade = CheckIfUpgradeIsValid(result);
+            if(validUpgrade)
+            {
+                Debug.Log(GameManager.Instance.CurrentUpgradePool[result]);
+            }
+
+            upgradeIndexes.RemoveAt(randomIndex);
+        }
+        while (!validUpgrade || !SaveDataManager.Instance.SaveData.GunUnlocked);
+
+        return result;
+        */
     }
 
+    /// <summary>
+    /// checks if upgrade can be collected (based on gun collected vs if upgrade recquires gun)
+    /// </summary>
+    /// <returns></returns>
+    private bool CheckIfUpgradeIsValid(int index)
+    {
+        Debug.Log("dont use this fucking function ");
+        GameObject upgrade = GameManager.Instance.CurrentUpgradePool[index];
 
+        UpgradeType upgradeType = upgrade.GetComponent<UpgradeType>();
+
+        return (!upgradeType.RecquiresGun || SaveDataManager.Instance.SaveData.GunUnlocked);
+    }
 }

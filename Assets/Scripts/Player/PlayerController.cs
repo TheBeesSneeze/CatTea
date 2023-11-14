@@ -161,23 +161,19 @@ public class PlayerController : MonoBehaviour
         cheat.started += Cheat_started;
         roomSkip.started += RoomSkipCheat_started;
 
-
         aim.performed += Aim_Performed;
     }
-
 
     private void Aim_Performed(InputAction.CallbackContext obj)
     {
         AimingDirection = obj.ReadValue<Vector2>();
     }
 
-
     protected void DetectInputDevice()
     {
         try { MyGamepad = playerInput.GetDevice<Gamepad>(); }
         catch { MyGamepad = null; }
         
-
         bool isKeyboardAndMouse = false ;
         if (MyGamepad == null)
             isKeyboardAndMouse = true;
@@ -239,8 +235,6 @@ public class PlayerController : MonoBehaviour
     protected virtual void Dash_canceled(InputAction.CallbackContext obj)
     {
         if (IgnoreAllInputs) return;
-
-        //TODO
     }
 
     protected virtual void Pause_started(InputAction.CallbackContext obj)
