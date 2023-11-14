@@ -48,6 +48,7 @@ MonoBehaviour:
   DisplayName: '[PlaceHolder name]'
   DisplayDescription: Ammo recharging and shooting speed increased.
   CanBeStacked: 1
+  RecquiresGun: 1
   ActivationType: 0
   RechargeTimeMultiplier: 0.8
   ProjectileSpeedMultiplier: 0.8

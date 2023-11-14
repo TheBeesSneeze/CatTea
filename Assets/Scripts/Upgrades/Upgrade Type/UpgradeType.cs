@@ -24,6 +24,8 @@ public class UpgradeType : MonoBehaviour
     public string DisplayDescription;
     [Tooltip("If true, this upgrade can be collected multiple times without causing problems")]
     public bool CanBeStacked;
+    [Tooltip("If true, this upgrade can only be collected after unlocking the gun")]
+    public bool RecquiresGun;
     public enum UpgradeActivationType {OnStart, OnEnemyDeath, OnEnemyDamage, OnPlayerDamage, OnEnterRoom, OnPlayerGun, OnPlayerSword, OnPlayerDash}
 
     [Tooltip("When this upgrades effect runs")]
