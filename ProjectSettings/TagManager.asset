@@ -70,3 +70,6 @@ TagManager:
   - name: Front Walls
     uniqueID: 2570634901
     locked: 0
+  - name: Door
+    uniqueID: 3626047519
+    locked: 0
