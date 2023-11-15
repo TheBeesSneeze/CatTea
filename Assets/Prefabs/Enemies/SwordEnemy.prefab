@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 3462840017336462698}
   m_Layer: 0
   m_Name: SwordEnemyWarningZone
-  m_TagString: Enemy Attack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

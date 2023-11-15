@@ -12,6 +12,7 @@ TagManager:
   - Player Attack
   - Primary Player Attack
   - General Character
+  - Warning Zone
   layers:
   - Default
   - TransparentFX
