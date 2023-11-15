@@ -60,7 +60,8 @@ MonoBehaviour:
   TakeKnockback: 1
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
-  StartHealth: 70
+  AttacksSpawned: []
+  StartHealth: 20
   MoveUnitsPerSecond: 5
   MyRoom: {fileID: 0}
   SawbladePrefab: {fileID: 5314779875584245046, guid: c103dd96fa6b7024e92f4e2150a23756, type: 3}

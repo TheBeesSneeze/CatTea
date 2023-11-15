@@ -112,7 +112,7 @@ MonoBehaviour:
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
   AttacksSpawned: []
-  StartHealth: 35
+  StartHealth: 5
   MoveUnitsPerSecond: 0
   MyRoom: {fileID: 0}
   GunPickupPrefab: {fileID: 7260921618105368807, guid: 3d180967b6b1c53479c5eb57f926f753, type: 3}
