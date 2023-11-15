@@ -19,6 +19,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -166,7 +167,8 @@ public class PlayerController : MonoBehaviour
 
     private void Aim_Performed(InputAction.CallbackContext obj)
     {
-        AimingDirection = obj.ReadValue<Vector2>();
+        //AimingDirection = Camera.main.ScreenToWorldPoint(obj.ReadValue<Vector2>());
+        //Debug.Log("A_P " + AimingDirection);
     }
 
     protected void DetectInputDevice()

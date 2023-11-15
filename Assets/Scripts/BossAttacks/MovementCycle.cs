@@ -56,7 +56,7 @@ public class MovementCycle : BossAttackType
         float totalSecondsToMove = distance / bossBehaviour.MoveUnitsPerSecond;
 
         float time = 0;
-        while (time < totalSecondsToMove)
+        while (time < totalSecondsToMove && bossBehaviour.HealthPoints > 0)
         {
             time += Time.deltaTime;
             float t = time / totalSecondsToMove; // 0 <= t <= 1
