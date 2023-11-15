@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Default Player Stats
   m_EditorClassIdentifier: 
   Speed: 7
-  MaxHealthPoints: 50
+  MaxHealthPoints: 25
   InvincibilitySeconds: 0.1
   DashTime: 0.6
   DashUnits: 30
@@ -26,5 +26,5 @@ MonoBehaviour:
   RangedAttackKnockback: 0
   MeleeAttackDamage: 5
   SwingSeconds: 0.1
-  SwordAttackCoolDown: 0.2
+  SwordAttackCoolDown: 0.5
   MeleeAttackKnockback: 2
