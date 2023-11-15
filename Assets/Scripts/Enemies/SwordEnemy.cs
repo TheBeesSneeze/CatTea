@@ -92,6 +92,7 @@ public class SwordEnemy : EnemyBehaviour
             gameObject.GetComponent<NavMeshAgent>().enabled = true;
             canRotate = true;
             attack.SetActive(false);
+            yield return new WaitForSeconds(1);
         }
         yield return new WaitForSeconds(TimeBeforeAttacking);
         attackingCoroutine = null;
