@@ -1914,6 +1914,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 135602031}
     - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
+      propertyPath: CurrentChallengePoints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
+      propertyPath: DefaultChallengePoints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250060864491448804, guid: b0a6c307731df5c449ca52038c43bb4e, type: 3}
       propertyPath: UpgradePool.Array.size
       value: 8
       objectReference: {fileID: 0}
