@@ -7350,15 +7350,15 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 3313015836916654082}
   PlayerSpawnPoint: {fileID: 6605955869092887282}
-  SpawnUpgradeOnCompletion: 1
+  SpawnUpgradeOnCompletion: 0
   EnemySpawnPool:
   - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
   EnemySpawnPoints:
   - {fileID: 5626841519735396924}
   - {fileID: 3607758089372895653}
   - {fileID: 957044542419750629}
-  MinimumWaves: 3
-  MaximumWaves: 3
+  MinimumWaves: 1
+  MaximumWaves: 1
   aliveEnemies: 0
   wavesLeft: 0
   challengePointsPerWave: 0
@@ -9538,8 +9538,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0019000769, y: 0.0023999214, z: 0}
-    m_Extent: {x: 3.5047998, y: 3.4984, z: 0}
+    m_Center: {x: -0.005300045, y: 0.0033500195, z: 0}
+    m_Extent: {x: 3.4982, y: 3.49965, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9679,8 +9679,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0056499243, y: -0.002750039, z: 0}
-    m_Extent: {x: 3.4974499, y: 3.49855, z: 0}
+    m_Center: {x: -0.004099965, y: -0.00065004826, z: 0}
+    m_Extent: {x: 3.4996, y: 3.5064502, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
