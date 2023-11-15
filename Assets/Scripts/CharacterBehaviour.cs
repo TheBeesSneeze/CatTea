@@ -47,7 +47,10 @@ public class CharacterBehaviour : MonoBehaviour
     [Header("Debug")]
     public List<GameObject> AttacksSpawned; //most of the gameobjects in this list will be null
     
-
+    protected virtual void Awake()
+    {
+        
+    }
     protected virtual void Start()
     {
         _healthPoints = MaxHealthPoints;

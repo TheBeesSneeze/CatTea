@@ -24,7 +24,7 @@ public class EnemyStats : ScriptableObject
     public float TimeBetweenMovements;
 
     [Tooltip("How far away the enemy has to be from the player until it stops moving")]
-    public float MaxFromPlayer;
+    public float MaxDistanceFromPlayer;
 
     public int HealthPoints;
 

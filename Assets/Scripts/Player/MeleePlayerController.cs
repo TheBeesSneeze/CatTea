@@ -89,11 +89,11 @@ public class MeleePlayerController : MonoBehaviour
         Vector3 startAngle = RotatePoint.rotation.eulerAngles;
         Vector3 endAngle = RotatePoint.rotation.eulerAngles;
 
-        startAngle.z += PrimaryStrikeAngle / 2;
-        endAngle.z += -PrimaryStrikeAngle / 2;
+        startAngle.z += PrimaryStrikeAngle / 1.5f;
+        endAngle.z += -PrimaryStrikeAngle / 1.5f;
 
         float t = 0;
-        while(t< PlayerBehaviour.Instance.TimeBetweenShots)
+        while(t < PlayerBehaviour.Instance.TimeBetweenShots)
         {
             t += Time.deltaTime;
 
@@ -158,7 +158,7 @@ public class MeleePlayerController : MonoBehaviour
 
             UpdateSwordMirrorDirection();
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         RotatingSwordCoroutine = null;

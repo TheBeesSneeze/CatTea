@@ -25,6 +25,6 @@ MonoBehaviour:
   AmmoRechargeTime: 0.5
   RangedAttackKnockback: 0
   MeleeAttackDamage: 5
-  SwingSeconds: 0.15
+  SwingSeconds: 0.1
   SwordAttackCoolDown: 0.5
   MeleeAttackKnockback: 2
