@@ -7350,7 +7350,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 3313015836916654082}
   PlayerSpawnPoint: {fileID: 6605955869092887282}
-  SpawnUpgradeOnCompletion: 1
+  SpawnUpgradeOnCompletion: 0
   EnemySpawnPool:
   - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
   EnemySpawnPoints:
@@ -9538,8 +9538,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0019000769, y: 0.0023999214, z: 0}
-    m_Extent: {x: 3.5047998, y: 3.4984, z: 0}
+    m_Center: {x: 0.005949974, y: 0.0026999712, z: 0}
+    m_Extent: {x: 3.50205, y: 3.5026999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9679,8 +9679,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0056499243, y: -0.002750039, z: 0}
-    m_Extent: {x: 3.4974499, y: 3.49855, z: 0}
+    m_Center: {x: -0.0014499426, y: -0.001349926, z: 0}
+    m_Extent: {x: 3.5011501, y: 3.50315, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
