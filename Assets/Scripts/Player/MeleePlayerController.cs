@@ -86,6 +86,8 @@ public class MeleePlayerController : MonoBehaviour
 
     private IEnumerator MeleeAttack()
     {
+        PlayerBehaviour.Instance.Speed = PlayerBehaviour.Instance.Speed/2;
+
         Vector3 startAngle = RotatePoint.rotation.eulerAngles;
         Vector3 endAngle = RotatePoint.rotation.eulerAngles;
 
@@ -103,6 +105,7 @@ public class MeleePlayerController : MonoBehaviour
             yield return null;
         }
 
+        PlayerBehaviour.Instance.Speed = PlayerBehaviour.Instance.CurrentPlayerStats.Speed;
         StartCoroutine(StopAttack());
     }
 

@@ -23,7 +23,7 @@ public class RoomType : MonoBehaviour
     //public bool RoomLoaded;
     public bool OpenDoorsOnStart;
     [Tooltip("If true, camera will follow the player")]
-    public bool CameraFollowPlayer;
+    public bool CameraFollowPlayer=true;
     [Tooltip("Zooms in and out")]
     public float CameraSize = 6;
 

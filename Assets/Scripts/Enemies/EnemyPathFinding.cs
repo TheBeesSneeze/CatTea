@@ -65,15 +65,15 @@ public class EnemyPathFinding : MonoBehaviour
 
         if(distance >= enemyBehaviour.MaxDistanceToPlayer)
         {
+            Debug.Log("too close!");
             target = player.position;
             return;
         }
 
-        target = transform.position;
+        //target = transform.position;
 
-        //Vector2 difference = player.position - transform.position;
-        //difference.Normalize();
-        //target = difference * (enemyBehaviour.Speed * Time.deltaTime * -1);
+        target = transform.position + (transform.position-player.position);
+        Debug.Log("not too close!" + target);
     }
 
     private void SetAgentPosition()
