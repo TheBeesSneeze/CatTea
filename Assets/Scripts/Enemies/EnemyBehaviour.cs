@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBehaviour : CharacterBehaviour
 {
@@ -21,6 +22,7 @@ public class EnemyBehaviour : CharacterBehaviour
     [HideInInspector] public float TimeBetweenMovements;
     [HideInInspector] protected int contactDamage;
     [HideInInspector] protected bool dealContactDamage;
+    [HideInInspector] public float MaxDistanceToPlayer;
 
     [HideInInspector] public EnemyRoom Room;
 
@@ -114,8 +116,16 @@ public class EnemyBehaviour : CharacterBehaviour
         
         Damage = CurrentEnemyStats.Damage;
         contactDamage = CurrentEnemyStats.ContactDamage;
-        dealContactDamage = CurrentEnemyStats.DealContactDamage;    
+        dealContactDamage = CurrentEnemyStats.DealContactDamage;
+
+        MaxDistanceToPlayer = CurrentEnemyStats.MaxDistanceFromPlayer;
 
         KnockbackForce = CurrentEnemyStats.KnockBackForce;
+
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        if(agent != null)
+        {
+            agent.speed = Speed;
+        }
     }
 }

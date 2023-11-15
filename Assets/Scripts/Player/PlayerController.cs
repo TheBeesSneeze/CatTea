@@ -261,6 +261,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.CurrentRoom.Cheat();
 
         SaveDataManager.Instance.SaveData.GunUnlocked = true;
+        PlayerBehaviour.Instance.OnGunUnlocked();
     }
 
     private void RoomSkipCheat_started(InputAction.CallbackContext obj)

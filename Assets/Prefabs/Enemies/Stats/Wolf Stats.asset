@@ -16,6 +16,7 @@ MonoBehaviour:
   Speed: 4
   EnemyMove: 1
   TimeBetweenMovements: 0
+  MaxDistanceFromPlayer: 1
   HealthPoints: 2
   Damage: 1
   ContactDamage: 0

@@ -14,6 +14,7 @@ using Random = UnityEngine.Random;
 
 public class EnemyRoom : RoomType
 {
+    [Header("Settings")]
     public bool SpawnUpgradeOnCompletion=true;
 
     public List<GameObject> EnemySpawnPool;
@@ -111,7 +112,7 @@ public class EnemyRoom : RoomType
 
         List<Transform> spawnPointsAvailable = new List<Transform>(EnemySpawnPoints);
 
-        while (challengePointsLeft > 0)
+        while (challengePointsLeft > 0 && spawnPointsAvailable.Count > 0)
         {
             Transform spawnPoint = GetSpawnPoint(ref spawnPointsAvailable);
             StartCoroutine(SpawnEnemyShadow(spawnPoint));
@@ -119,6 +120,8 @@ public class EnemyRoom : RoomType
 
             yield return new WaitForSeconds(secondsBetweenEnemySpawns);
         }
+
+        challengePointsLeft = 0;
     }
 
     /// <summary>

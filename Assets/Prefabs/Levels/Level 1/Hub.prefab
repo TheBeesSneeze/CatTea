@@ -97,8 +97,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0020999908, y: 0.005100012, z: 0}
-    m_Extent: {x: 3.503, y: 3.5033, z: 0}
+    m_Center: {x: -0.0030499697, y: -0.0055999756, z: 0}
+    m_Extent: {x: 3.5009499, y: 3.4968, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -207,8 +207,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0031499863, y: -0.0023499727, z: 0}
-    m_Extent: {x: 3.50005, y: 3.5011501, z: 0}
+    m_Center: {x: -0.00065004826, y: -0.0028500557, z: 0}
+    m_Extent: {x: 3.5057502, y: 3.49685, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackgroundMusic: {fileID: 8300000, guid: 9f82f91b81827e34480d475e9b0cf4e2, type: 3}
-  BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  BackgroundColor: {r: 0, g: 0.5294118, b: 0.13725491, a: 1}
   OpenDoorsOnStart: 1
   CameraFollowPlayer: 0
   CameraSize: 8
@@ -7880,8 +7880,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0054500103, y: -0.0013999939, z: 0}
-    m_Extent: {x: 3.50315, y: 3.4963, z: 0}
+    m_Center: {x: 0.006850004, y: -0.0034000874, z: 0}
+    m_Extent: {x: 3.50005, y: 3.4944, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -7990,8 +7990,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0052000284, y: 0.004099965, z: 0}
-    m_Extent: {x: 3.5017, y: 3.5032, z: 0}
+    m_Center: {x: -0.0038499832, y: 0.002300024, z: 0}
+    m_Extent: {x: 3.50035, y: 3.5053, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

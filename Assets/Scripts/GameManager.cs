@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         TutorialRoom tutorial = GameObject.FindObjectOfType<TutorialRoom>();
         tutorial.EnterRoom();
+        Camera.main.backgroundColor = tutorial.BackgroundColor;
     }
     /// <summary>
     /// loads in the hub on start
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         HubRoom hub = GameObject.FindObjectOfType<HubRoom>();
         hub.EnterRoom();
+        Camera.main.backgroundColor = hub.BackgroundColor;
     }
 
     /// <summary>

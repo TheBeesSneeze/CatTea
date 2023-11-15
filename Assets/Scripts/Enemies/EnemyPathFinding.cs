@@ -16,15 +16,16 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyPathFinding : MonoBehaviour
 {
-
     private Vector3 target;
-    public GameObject player;
-    NavMeshAgent agent;
+    private Transform player;
+    private NavMeshAgent agent;
+    private EnemyBehaviour enemyBehaviour;
 
     // Start is called before the first frame update
     void Awake()
     {
-        player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
+        player = PlayerBehaviour.Instance.transform;
+        enemyBehaviour = GetComponent<EnemyBehaviour>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -33,9 +34,10 @@ public class EnemyPathFinding : MonoBehaviour
  //       StartCoroutine(UpdateTarget());
     }
 
+
     private void Start()
     {
-        
+        //agent.speed = enemyBehaviour.Speed;
     }
 
     //public virtual IEnumerator UpdateTarget()
@@ -54,10 +56,24 @@ public class EnemyPathFinding : MonoBehaviour
     //    }
     //}
 
-
+    /// <summary>
+    /// starts to inch away slightly if player gets too close
+    /// </summary>
     private void SetTargetPoisiton()
     {
-        target = player.transform.position;
+        float distance = Vector2.Distance(transform.position, target);
+
+        if(distance >= enemyBehaviour.MaxDistanceToPlayer)
+        {
+            target = player.position;
+            return;
+        }
+
+        target = transform.position;
+
+        //Vector2 difference = player.position - transform.position;
+        //difference.Normalize();
+        //target = difference * (enemyBehaviour.Speed * Time.deltaTime * -1);
     }
 
     private void SetAgentPosition()

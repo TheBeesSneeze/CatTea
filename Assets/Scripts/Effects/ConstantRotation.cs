@@ -14,11 +14,6 @@ public class ConstantRotation : MonoBehaviour
 {
     public float Speed = 4f;
 
-    private void Start()
-    {
-        Debug.Log(transform.eulerAngles);
-    }
-
     // Update is called once per frame
     void Update()
     {
