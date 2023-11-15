@@ -13,6 +13,8 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
 {
+    public GameObject CharacterSprite;
+
     [SerializeField]private float _healthPoints;
     public float HealthPoints
     {
@@ -53,10 +55,13 @@ public class CharacterBehaviour : MonoBehaviour
     }
     protected virtual void Start()
     {
+        if (CharacterSprite == null)
+            CharacterSprite = gameObject;
+
         _healthPoints = MaxHealthPoints;
 
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = CharacterSprite.GetComponent<SpriteRenderer>();
 
         originalColor = spriteRenderer.color;
         colorOverride = originalColor;

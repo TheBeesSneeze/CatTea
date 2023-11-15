@@ -15,9 +15,10 @@ public class BossBehaviour : CharacterBehaviour
     public float StartHealth;
     public float MoveUnitsPerSecond;
     //public int CurrentHealth;
+    
 
     [HideInInspector] public BossRoom MyRoom;
-    protected PlayerBehaviour playerBehaviour;
+    private Animator animator;
 
     private float shakeAmount = 0.2f;
     private float deathAnimationSeconds = 2f;
@@ -25,8 +26,11 @@ public class BossBehaviour : CharacterBehaviour
     // Start is called before the first frame update
     protected override void Start()
     {
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
+        animator = CharacterSprite.GetComponent<Animator>();
         MaxHealthPoints = StartHealth; //yeah
+
+        SetHealth(StartHealth);
+
         base.Start();
     }
 
@@ -43,6 +47,19 @@ public class BossBehaviour : CharacterBehaviour
         return base.TakeDamage(damage);
     }
 
+    public override void SetHealth(float value)
+    {
+        base.SetHealth(value);
+
+        if (animator == null)
+        {
+            Debug.LogWarning(gameObject.name + " does not have an animator");
+            return;
+        }
+
+        animator.SetFloat("Health", value);
+    }
+
     public override void Die()
     {
         base.Die();
@@ -52,11 +69,18 @@ public class BossBehaviour : CharacterBehaviour
         GameEvents.Instance.OnEnemyDeath(this.transform.position);
 
         Debug.Log("Boss die!");
-        MyRoom.OnBossDeath();
-
+        
         //temp code hopefully
         StopAllAttacks();
-        StartCoroutine(DeathAnimation());
+        //StartCoroutine(DeathAnimation());
+    }
+
+    /// <summary>
+    /// called at end of animation
+    /// </summary>
+    public virtual void DieForReal()
+    {
+        MyRoom.OnBossDeath();
     }
 
     public void StopAllAttacks()
