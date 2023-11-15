@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Dissapearing Enemy Stats
   m_EditorClassIdentifier: 
   DifficultyCost: 2
-  Speed: 10
+  Speed: 0.5
   EnemyMove: 0
   TimeBetweenMovements: 1
+  MaxDistanceFromPlayer: 0
   HealthPoints: 6
   Damage: 2
   ContactDamage: 0

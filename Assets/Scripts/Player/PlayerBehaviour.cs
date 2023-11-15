@@ -60,7 +60,7 @@ public class PlayerBehaviour : CharacterBehaviour
     private PlayerAmmoBar ammoBar;
     private Light2D globalLight;
 
-    private void Awake()
+    protected override void Awake()
     {
         SetStatsToDefaults();
 

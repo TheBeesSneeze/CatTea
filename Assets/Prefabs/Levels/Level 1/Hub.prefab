@@ -97,8 +97,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0030499697, y: -0.0055999756, z: 0}
-    m_Extent: {x: 3.5009499, y: 3.4968, z: 0}
+    m_Center: {x: 0.0012999773, y: -0.0000500679, z: 0}
+    m_Extent: {x: 3.4987001, y: 3.49825, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -207,8 +207,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00065004826, y: -0.0028500557, z: 0}
-    m_Extent: {x: 3.5057502, y: 3.49685, z: 0}
+    m_Center: {x: 0.0013999939, y: 0.001850009, z: 0}
+    m_Extent: {x: 3.5001, y: 3.50525, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   BackgroundMusic: {fileID: 8300000, guid: 9f82f91b81827e34480d475e9b0cf4e2, type: 3}
   BackgroundColor: {r: 0, g: 0.5294118, b: 0.13725491, a: 1}
   OpenDoorsOnStart: 1
-  CameraFollowPlayer: 0
+  CameraFollowPlayer: 1
   CameraSize: 8
   Door: {fileID: 0}
   ForceCloseDoorOverride: 0
@@ -7880,8 +7880,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.006850004, y: -0.0034000874, z: 0}
-    m_Extent: {x: 3.50005, y: 3.4944, z: 0}
+    m_Center: {x: -0.0009999275, y: 0.0047000647, z: 0}
+    m_Extent: {x: 3.4963, y: 3.5026999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -7990,8 +7990,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0038499832, y: 0.002300024, z: 0}
-    m_Extent: {x: 3.50035, y: 3.5053, z: 0}
+    m_Center: {x: 0.003450036, y: -0.0009999275, z: 0}
+    m_Extent: {x: 3.50075, y: 3.4995, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
