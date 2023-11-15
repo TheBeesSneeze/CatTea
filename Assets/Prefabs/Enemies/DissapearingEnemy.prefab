@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72291ac4afcca2e4c80454b66243bf54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 495910377819613235, guid: 66366a701340a8545b30df8e341afcf4, type: 3}
 --- !u!114 &8277032188919753421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +79,6 @@ MonoBehaviour:
   Damage: 0
   EnemyMove: 0
   TimeBetweenMovements: 0
-  MaxDistanceToPlayer: 0
   Room: {fileID: 0}
   attack: {fileID: 2913571313289321869}
   warningZone: {fileID: 2465320291170412087}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 5291841920552746431}
   m_Layer: 0
   m_Name: DissapearingEnemyWarningZone
-  m_TagString: Untagged
+  m_TagString: Enemy Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
