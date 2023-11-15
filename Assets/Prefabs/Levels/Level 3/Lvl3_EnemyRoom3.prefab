@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da4
+  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da495c63899
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -190,8 +190,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0016000271, y: 0.0020999908, z: 0}
-    m_Extent: {x: 3.4962, y: 3.5007, z: 0}
+    m_Center: {x: -0.007099986, y: 0.005300045, z: 0}
+    m_Extent: {x: 3.5001001, y: 3.501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9269,6 +9269,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 7375146438864869534}
   PlayerSpawnPoint: {fileID: 7531893600855492109}
+  SpawnUpgradeOnCompletion: 1
   EnemySpawnPool:
   - {fileID: 243094356304930800, guid: 938e67d4f95bd2a4586ee96332663dd8, type: 3}
   - {fileID: 456551249424453927, guid: 168236ecb104f6c4b8bd26b66fc35a37, type: 3}
@@ -9286,6 +9287,8 @@ MonoBehaviour:
   - {fileID: 3330323503572622801}
   - {fileID: 2077224015090699976}
   - {fileID: 9053024019911982803}
+  MinimumWaves: 3
+  MaximumWaves: 5
   aliveEnemies: 0
   wavesLeft: 0
   challengePointsPerWave: 0
@@ -11763,7 +11766,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da4
+  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da495c63899
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -11777,8 +11780,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0020999908, y: -0.0060499907, z: 0}
-    m_Extent: {x: 3.4959, y: 3.50145, z: 0}
+    m_Center: {x: -0.006700039, y: -0.0034000874, z: 0}
+    m_Extent: {x: 3.4988, y: 3.4991, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -11997,7 +12000,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da4
+  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da495c63899
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -12011,8 +12014,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0010999441, y: 0.003000021, z: 0}
-    m_Extent: {x: 3.4991999, y: 3.4975, z: 0}
+    m_Center: {x: -0.00014996529, y: 0.0033999681, z: 0}
+    m_Extent: {x: 3.49825, y: 3.5057, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -12107,7 +12110,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da4
+  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da495c63899
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -12121,8 +12124,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0039000511, y: -0.00034999847, z: 0}
-    m_Extent: {x: 3.5018, y: 3.49225, z: 0}
+    m_Center: {x: -0.0033500195, y: -0.002750039, z: 0}
+    m_Extent: {x: 3.49945, y: 3.5011501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -12248,7 +12251,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da4
+  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da495c63899
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -12262,8 +12265,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00034999847, y: -0.0029000044, z: 0}
-    m_Extent: {x: 3.50005, y: 3.4977002, z: 0}
+    m_Center: {x: -0.0028499365, y: -0.00045001507, z: 0}
+    m_Extent: {x: 3.5030499, y: 3.4983501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -13861,8 +13864,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8378389978865913714}
     - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -668919777
       objectReference: {fileID: 0}
     - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -8611,6 +8611,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 5588449302380880593}
   PlayerSpawnPoint: {fileID: 5005249875403054702}
+  SpawnUpgradeOnCompletion: 1
   EnemySpawnPool:
   - {fileID: 243094356304930800, guid: 938e67d4f95bd2a4586ee96332663dd8, type: 3}
   - {fileID: 456551249424453927, guid: 168236ecb104f6c4b8bd26b66fc35a37, type: 3}
@@ -8628,6 +8629,8 @@ MonoBehaviour:
   - {fileID: 6069281177382536390}
   - {fileID: 527034091152484810}
   - {fileID: 5495539454476129361}
+  MinimumWaves: 3
+  MaximumWaves: 5
   aliveEnemies: 0
   wavesLeft: 0
   challengePointsPerWave: 0
@@ -11151,7 +11154,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da4
+  m_ApplyToSortingLayers: db6f9e7b4dff05c50000000077e50403916daba811af564a07a88da495c63899
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -11165,8 +11168,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.38975, y: 0.17024994, z: 0}
-    m_Extent: {x: 10.508751, y: 3.65375, z: 0}
+    m_Center: {x: -0.3901, y: 0.16299999, z: 0}
+    m_Extent: {x: 10.5107, y: 3.6602, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -12770,8 +12773,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5010440211261068111}
     - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -668919777
       objectReference: {fileID: 0}
     - target: {fileID: 6978124187940009560, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_Materials.Array.data[0]
