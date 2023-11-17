@@ -26,6 +26,13 @@ public class SpiralProjectileAttack : BossAttackType
     //    yongenbossAnimator = GetComponent<Animator>();
     //}
 
+    public override float StartAttackCycle()
+    {
+        animator.SetTrigger("SpiralAttack");
+
+        return base.StartAttackCycle();
+    }
+
     public override void PerformAttack()
     {
         Vector2 bulletVelocity = (BulletSpawnPoint.position - RotationPivot.position).normalized * ProjectileSpeed;

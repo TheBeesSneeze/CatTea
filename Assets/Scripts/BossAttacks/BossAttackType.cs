@@ -90,16 +90,7 @@ public class BossAttackType : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Starts the attack cycle coroutine
-    /// </summary>
-    /// <returns>The number of seconds until every attack has been spawened</returns>
-    public float StartAttackCycle()
-    {
-        StartCoroutine(AttackCycle());
-
-        return AttackInterval * AttacksPerCycle;
-    }
+   
 
     /// <summary>
     /// constantly loops through attack
@@ -118,6 +109,17 @@ public class BossAttackType : MonoBehaviour
         }
 
         AttackCoroutine = null;
+    }
+
+    /// <summary>
+    /// Starts the attack cycle coroutine
+    /// </summary>
+    /// <returns>The number of seconds until every attack has been spawened</returns>
+    public virtual float StartAttackCycle()
+    {
+        StartCoroutine(AttackCycle());
+
+        return AttackInterval * AttacksPerCycle;
     }
 
     private IEnumerator AttackCycle()

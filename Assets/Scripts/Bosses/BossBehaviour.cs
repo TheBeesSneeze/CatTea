@@ -62,17 +62,20 @@ public class BossBehaviour : CharacterBehaviour
 
     public override void Die()
     {
+        Debug.Log("im dying!");
         base.Die();
 
-        Debug.Log("OH NO IM DYING!");
-
         GameEvents.Instance.OnEnemyDeath(this.transform.position);
-
-        Debug.Log("Boss die!");
         
-        //temp code hopefully
         StopAllAttacks();
-        //StartCoroutine(DeathAnimation());
+
+        StartCoroutine(DeathDelay());
+    }
+
+    protected IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(deathAnimationSeconds);
+        DieForReal();
     }
 
     /// <summary>
@@ -81,6 +84,7 @@ public class BossBehaviour : CharacterBehaviour
     public virtual void DieForReal()
     {
         MyRoom.OnBossDeath();
+        Destroy(gameObject);
     }
 
     public void StopAllAttacks()
@@ -98,6 +102,7 @@ public class BossBehaviour : CharacterBehaviour
     /// *dies*
     /// </summary>
     /// <returns></returns>
+    /*
     public virtual IEnumerator DeathAnimation()
     {
         Vector2 centerPosition = transform.position;
@@ -120,4 +125,5 @@ public class BossBehaviour : CharacterBehaviour
 
         Destroy(this.gameObject);
     }
+    */
 }
