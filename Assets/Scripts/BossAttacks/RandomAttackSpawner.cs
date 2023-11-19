@@ -17,13 +17,13 @@ public class RandomAttackSpawner : BossAttackType
 
     public GameObject AttackPrefab;
 
-    //protected Animator ratbossAnimator;
+    //protected MyAnimator ratbossAnimator;
 
     public LayerMask LM;
 
     //protected override void Start()
     //{
-    //    ratbossAnimator = GetComponent<Animator>();
+    //    ratbossAnimator = GetComponent<MyAnimator>();
     //}
     public override void PerformAttack()
     {
@@ -33,6 +33,8 @@ public class RandomAttackSpawner : BossAttackType
         GameObject newBomb = Instantiate(AttackPrefab, randomPosition, Quaternion.identity);
 
         bossBehaviour.AttacksSpawned.Add(newBomb);
+
+        animator.SetTrigger("FireMortar");
     }
 
     

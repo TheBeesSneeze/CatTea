@@ -18,15 +18,13 @@ public class BossBehaviour : CharacterBehaviour
     
 
     [HideInInspector] public BossRoom MyRoom;
-    private Animator animator;
 
-    private float shakeAmount = 0.2f;
     private float deathAnimationSeconds = 2f;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        animator = CharacterSprite.GetComponent<Animator>();
+        MyAnimator = CharacterSprite.GetComponent<Animator>();
         MaxHealthPoints = StartHealth; //yeah
 
         SetHealth(StartHealth);
@@ -51,13 +49,13 @@ public class BossBehaviour : CharacterBehaviour
     {
         base.SetHealth(value);
 
-        if (animator == null)
+        if (MyAnimator == null)
         {
             Debug.LogWarning(gameObject.name + " does not have an animator");
             return;
         }
 
-        animator.SetFloat("Health", value);
+        MyAnimator.SetFloat("Health", value);
     }
 
     public override void Die()

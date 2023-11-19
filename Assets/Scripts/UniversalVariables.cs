@@ -35,4 +35,16 @@ public class UniversalVariables : MonoBehaviour
 
     // Start is called before the first frame update
     
+    public SpriteRenderer GetCharacterSpriteRenderer(GameObject character)
+    {
+        SpriteRenderer sprite = character.GetComponent<SpriteRenderer>();
+
+        if(sprite != null)
+            return sprite;
+
+        CharacterBehaviour characterBehaviour = character.GetComponent<CharacterBehaviour>();
+
+        return characterBehaviour.CharacterSprite.GetComponent<SpriteRenderer>();
+    }
+
 }

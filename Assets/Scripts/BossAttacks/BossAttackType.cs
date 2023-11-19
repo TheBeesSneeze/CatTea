@@ -46,7 +46,7 @@ public class BossAttackType : MonoBehaviour
         //Player = playerBehaviour.gameObject;
 
         bossBehaviour = GetComponent<BossBehaviour>();
-        animator = GetComponent<Animator>();
+        animator = bossBehaviour.MyAnimator;
 
         if (StartAttackCycleOnAwake)
         {

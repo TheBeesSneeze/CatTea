@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
     // components:
     protected Rigidbody2D myRigidbody;
     public Gamepad MyGamepad;
-    protected Animator myAnimator;
     
     //le sound
     public AudioSource walkSound;
@@ -106,7 +105,6 @@ public class PlayerController : MonoBehaviour
     {
         //initialize a lot of variables
         myRigidbody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
 
         //Initialize input stuff
         playerInput = GetComponent<PlayerInput>();
@@ -486,13 +484,21 @@ public class PlayerController : MonoBehaviour
     {
         while(true)
         {
-            myAnimator.SetFloat("XMovement", AimingDirection.x);
-            myAnimator.SetFloat("YMovement", AimingDirection.y);
-
-            rangedPlayerController.CorrectGunPosition();
+            if(!IgnoreAllInputs && PlayerBehaviour.Instance.MyAnimator != null)
+            {
+                UpdateAnimationValues();
+            }
 
             yield return null;
         }
+    }
+
+    private void UpdateAnimationValues()
+    {
+        PlayerBehaviour.Instance.MyAnimator.SetFloat("XMovement", AimingDirection.x);
+        PlayerBehaviour.Instance.MyAnimator.SetFloat("YMovement", AimingDirection.y);
+
+        rangedPlayerController.CorrectGunPosition();
     }
 
     public void OnDestroy()
