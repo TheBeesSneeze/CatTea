@@ -42,8 +42,8 @@ public class DefaultPlayerController : MonoBehaviour
 
     protected InputAction move;
     protected InputAction dash;
-    protected InputAction primary;
-    protected InputAction secondary;
+    protected InputAction GunAction;
+    protected InputAction swordAction;
     [HideInInspector] public InputAction Pause;
     [HideInInspector] public InputAction Select;
     [HideInInspector] public InputAction SkipText;
@@ -102,8 +102,8 @@ public class DefaultPlayerController : MonoBehaviour
     {
         move = playerInput.currentActionMap.FindAction("Move");
         dash = playerInput.currentActionMap.FindAction("Dash");
-        primary = playerInput.currentActionMap.FindAction("Primary Attack");
-        secondary = playerInput.currentActionMap.FindAction("Secondary Attack");
+        GunAction = playerInput.currentActionMap.FindAction("Primary Attack");
+        swordAction = playerInput.currentActionMap.FindAction("Secondary Attack");
         Pause = playerInput.currentActionMap.FindAction("Pause");
         Select = playerInput.currentActionMap.FindAction("Select");
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
@@ -116,11 +116,11 @@ public class DefaultPlayerController : MonoBehaviour
         dash.performed += Dash_started;
         dash.canceled += Dash_canceled;
 
-        primary.performed += Primary_performed;
-        primary.canceled += Primary_canceled;
+        GunAction.performed += Primary_performed;
+        GunAction.canceled += Primary_canceled;
 
-        secondary.performed += Secondary_performed;
-        secondary.canceled += Secondary_canceled;
+        swordAction.performed += Secondary_performed;
+        swordAction.canceled += Secondary_canceled;
 
         Pause.started += Pause_started;
 
@@ -372,11 +372,11 @@ public class DefaultPlayerController : MonoBehaviour
         dash.performed -= Dash_started;
         dash.canceled -= Dash_canceled;
 
-        primary.performed -= Primary_performed;
-        primary.canceled -= Primary_canceled;
+        GunAction.performed -= Primary_performed;
+        GunAction.canceled -= Primary_canceled;
 
-        secondary.performed -= Secondary_performed;
-        secondary.canceled -= Secondary_canceled;
+        swordAction.performed -= Secondary_performed;
+        swordAction.canceled -= Secondary_canceled;
 
         Pause.started -= Pause_started;
 
