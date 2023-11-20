@@ -76,6 +76,7 @@ public class PlayerBehaviour : CharacterBehaviour
     protected override void Start()
     {
         base.Start();
+
         playerController = GetComponent<PlayerController>();
         rangedPlayerController = GetComponent<RangedPlayerController>();
 

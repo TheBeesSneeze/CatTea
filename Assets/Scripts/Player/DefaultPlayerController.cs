@@ -54,7 +54,7 @@ public class DefaultPlayerController : MonoBehaviour
     protected Rigidbody2D myRigidbody;
     protected PlayerBehaviour playerBehaviour;
     public Gamepad MyGamepad;
-    protected Animator myAnimator;
+    protected MyAnimator myAnimator;
     protected GameManager gameManager;
 
     protected enum ControllerType {Keyboard, Controller};
@@ -79,7 +79,7 @@ public class DefaultPlayerController : MonoBehaviour
         //initialize a lot of variables
         myRigidbody = GetComponent<Rigidbody2D>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
-        myAnimator = GetComponent<Animator>();
+        myAnimator = GetComponent<MyAnimator>();
 
         //Initialize input stuff
         playerInput = GetComponent<PlayerInput>();

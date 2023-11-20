@@ -26,7 +26,7 @@ public class DamageOverTime : MonoBehaviour
         //Debug.Log("Damaging over second on " + gameObject.name);
 
         characterBehaviour = GetComponent<CharacterBehaviour>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = UniversalVariables.Instance.GetCharacterSpriteRenderer(gameObject);
 
         originalColor = characterBehaviour.colorOverride;
         overrideColor = originalColor;

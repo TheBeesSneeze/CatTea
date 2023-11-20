@@ -79,7 +79,7 @@ public class FinalBossBehaviour : BossBehaviour
     {
         while(this!= null)
         {
-            Vector2 playerPosition = playerBehaviour.transform.position;
+            Vector2 playerPosition = PlayerBehaviour.Instance.transform.position;
 
             playerPosition -= (Vector2)transform.position;
             playerPosition = playerPosition.normalized;

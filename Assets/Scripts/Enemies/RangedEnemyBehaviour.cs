@@ -14,9 +14,6 @@ using UnityEngine.AI;
 public class RangedEnemyBehaviour : EnemyBehaviour
 {
     public GameObject BulletPrefab;
-    protected Animator guncatAnimator;
-
-    protected Vector2 enemyDirection;
 
     [Tooltip("How many bullets to spawn in a burst")]
     public int BulletsSpawned;
@@ -30,11 +27,6 @@ public class RangedEnemyBehaviour : EnemyBehaviour
         base.Start();
 
         StartCoroutine(SpawnBullets());
-
-        guncatAnimator = GetComponent<Animator>();
-
-        StartCoroutine(UpdateAnimation());
-
     }
 
     private IEnumerator SpawnBullets()
@@ -53,21 +45,4 @@ public class RangedEnemyBehaviour : EnemyBehaviour
             }
         }
     }
-
-    protected IEnumerator UpdateAnimation()
-    {
-        while (true)
-        {
-            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
-            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
-
-            //Debug.Log(enemyDirection);
-
-            guncatAnimator.SetFloat("XMovement", enemyDirection.x);
-            guncatAnimator.SetFloat("YMovement", enemyDirection.y);
-            yield return null;
-        }
-    }
-
-
 }

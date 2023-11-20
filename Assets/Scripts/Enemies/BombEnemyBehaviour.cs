@@ -13,7 +13,6 @@ using UnityEngine.AI;
 
 public class BombEnemyBehaviour : EnemyBehaviour
 {
-    private GameObject player;
     public GameObject bomb;
     public GameObject explosion;
     public int amountOfBombs;
@@ -23,20 +22,11 @@ public class BombEnemyBehaviour : EnemyBehaviour
     private List<GameObject> listOfBombs = new List<GameObject>();
     private List<GameObject> listOfExplosions = new List<GameObject>();
 
-    protected Animator jackalAnimator;
-
-    protected Vector2 enemyDirection;
-
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         StartCoroutine(SpawnBombs());
-
-        jackalAnimator = GetComponent<Animator>();
-
-        StartCoroutine(UpdateAnimation());
     }
 
     private IEnumerator SpawnBombs()
@@ -74,24 +64,11 @@ public class BombEnemyBehaviour : EnemyBehaviour
         }
         listOfBombs.Clear();
         listOfExplosions.Clear();
-        AttacksSpawned.Clear();
+        //AttacksSpawned.Clear();
         StartCoroutine(SpawnBombs());
     }
 
-    protected IEnumerator UpdateAnimation()
-    {
-        while (true)
-        {
-            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
-            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
-
-            //Debug.Log(enemyDirection);
-
-            jackalAnimator.SetFloat("XMovement", enemyDirection.x);
-            jackalAnimator.SetFloat("YMovement", enemyDirection.y);
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
+    
 
     /*
     public override void Die()
