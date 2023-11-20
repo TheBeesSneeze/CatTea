@@ -270,3 +270,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SecondsToDisappear: 3
+  GunSprite: {fileID: 2907352460551018045}
+  MouseSprite: {fileID: 3380992509509272637}

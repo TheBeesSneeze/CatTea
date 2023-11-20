@@ -41,7 +41,7 @@ public class GunTutorial : MonoBehaviour
             float t = time / SecondsToDisappear;
 
             Color color= GunSprite.color;
-            color.a = t;
+            color.a = 1-t;
 
             GunSprite.color = color;
             MouseSprite.color = color;
