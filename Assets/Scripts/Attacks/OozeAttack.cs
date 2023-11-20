@@ -48,6 +48,7 @@ public class OozeAttack : AttackType
         float a = 0.5f * r;
 
         SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+
         Color c = sprite.color;
 
         sprite.color = new Color(c.r, c.g, c.b, a);

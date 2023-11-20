@@ -15,18 +15,20 @@ public class BossBehaviour : CharacterBehaviour
     public float StartHealth;
     public float MoveUnitsPerSecond;
     //public int CurrentHealth;
+    
 
     [HideInInspector] public BossRoom MyRoom;
-    protected PlayerBehaviour playerBehaviour;
 
-    private float shakeAmount = 0.2f;
     private float deathAnimationSeconds = 2f;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
+        MyAnimator = CharacterSprite.GetComponent<Animator>();
         MaxHealthPoints = StartHealth; //yeah
+
+        SetHealth(StartHealth);
+
         base.Start();
     }
 
@@ -43,20 +45,44 @@ public class BossBehaviour : CharacterBehaviour
         return base.TakeDamage(damage);
     }
 
+    public override void SetHealth(float value)
+    {
+        base.SetHealth(value);
+
+        if (MyAnimator == null)
+        {
+            Debug.LogWarning(gameObject.name + " does not have an animator");
+            return;
+        }
+
+        MyAnimator.SetFloat("Health", value);
+    }
+
     public override void Die()
     {
+        Debug.Log("im dying!");
         base.Die();
 
-        Debug.Log("OH NO IM DYING!");
-
         GameEvents.Instance.OnEnemyDeath(this.transform.position);
-
-        Debug.Log("Boss die!");
-        MyRoom.OnBossDeath();
-
-        //temp code hopefully
+        
         StopAllAttacks();
-        StartCoroutine(DeathAnimation());
+
+        StartCoroutine(DeathDelay());
+    }
+
+    protected IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(deathAnimationSeconds);
+        DieForReal();
+    }
+
+    /// <summary>
+    /// called at end of animation
+    /// </summary>
+    public virtual void DieForReal()
+    {
+        MyRoom.OnBossDeath();
+        Destroy(gameObject);
     }
 
     public void StopAllAttacks()
@@ -74,6 +100,7 @@ public class BossBehaviour : CharacterBehaviour
     /// *dies*
     /// </summary>
     /// <returns></returns>
+    /*
     public virtual IEnumerator DeathAnimation()
     {
         Vector2 centerPosition = transform.position;
@@ -96,4 +123,5 @@ public class BossBehaviour : CharacterBehaviour
 
         Destroy(this.gameObject);
     }
+    */
 }

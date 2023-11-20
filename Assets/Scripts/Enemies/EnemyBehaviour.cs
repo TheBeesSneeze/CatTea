@@ -26,15 +26,16 @@ public class EnemyBehaviour : CharacterBehaviour
 
     [HideInInspector] public EnemyRoom Room;
 
-    //weird stuff
-    private PlayerBehaviour playerBehavior;
+    protected Vector2 enemyDirection;
+    protected GameObject player;
 
     protected override void Start()
     {
         base.Start();
         transform.eulerAngles = Vector3.zero;
+        player = PlayerBehaviour.Instance.gameObject;
 
-        playerBehavior = GameObject.FindObjectOfType<PlayerBehaviour>();
+        StartCoroutine(UpdateAnimation());
     }
 
     /// <summary>
@@ -47,7 +48,6 @@ public class EnemyBehaviour : CharacterBehaviour
 
     public override bool TakeDamage(float damage)
     {
-        StartCoroutine(HitAnimation());
         return TakeDamage(damage, true);
     }
 
@@ -77,11 +77,8 @@ public class EnemyBehaviour : CharacterBehaviour
     /// </summary>
     protected virtual void OnPlayerCollision(Collider2D collision)
     {
-        if(playerBehavior == null)
-            playerBehavior = GameObject.FindObjectOfType<PlayerBehaviour>();
-
-        if(dealContactDamage)   
-            playerBehavior.TakeDamage(contactDamage, this.transform.position, 0);
+        if(dealContactDamage)
+            PlayerBehaviour.Instance.TakeDamage(contactDamage, this.transform.position, 0);
     }
 
     /// <summary>
@@ -126,6 +123,21 @@ public class EnemyBehaviour : CharacterBehaviour
         if(agent != null)
         {
             agent.speed = Speed;
+        }
+    }
+
+    protected virtual IEnumerator UpdateAnimation()
+    {
+        while (true)
+        {
+            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
+            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
+
+            //Debug.Log(enemyDirection);
+
+            MyAnimator.SetFloat("XMovement", enemyDirection.x);
+            MyAnimator.SetFloat("YMovement", enemyDirection.y);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

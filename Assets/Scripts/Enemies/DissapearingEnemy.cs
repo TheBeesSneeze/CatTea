@@ -13,13 +13,8 @@ using UnityEngine.AI;
 
 public class DissapearingEnemy : EnemyBehaviour
 {
-    private GameObject player;
     public GameObject attack;
     public GameObject warningZone;
-
-    protected Animator chameleonAnimator;
-
-    protected Vector2 enemyDirection;
 
     protected float rotationModifier = 90;
 
@@ -27,7 +22,8 @@ public class DissapearingEnemy : EnemyBehaviour
     public float TimeBeforeAttacking;
     public float AttackPlayerDistance = 3;
     public int AmountOfAttacks;
-    public bool enemyVisible;
+
+    private bool enemyVisible;
 
     //magic numbers
     private float secondsToToggleInvisibility = 0.5f;
@@ -40,18 +36,11 @@ public class DissapearingEnemy : EnemyBehaviour
     {
         base.Start();
         enemyVisible = true;
-        player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
 
         StartCoroutine(RotateEnemy());
         StartCoroutine(Dissapear());
         StartCoroutine(StartAttack());
-
-        chameleonAnimator = GetComponent<Animator>();
-
-        StartCoroutine(UpdateAnimation());
     }
-
-    
 
     private IEnumerator RotateEnemy()
     {
@@ -84,7 +73,6 @@ public class DissapearingEnemy : EnemyBehaviour
 
         yield return new WaitForSeconds(TimeBeforeAttacking);
         enemyVisible = false;
-        
     }
 
     private IEnumerator Appear()
@@ -123,7 +111,6 @@ public class DissapearingEnemy : EnemyBehaviour
 
     private IEnumerator Attacking()
     {
-        
         StartCoroutine(Appear());
 
         for (int i = 0; i < AmountOfAttacks; i++)
@@ -138,18 +125,5 @@ public class DissapearingEnemy : EnemyBehaviour
 
         StartCoroutine(Dissapear());
         attackCoroutine = null;
-    }
-
-    protected IEnumerator UpdateAnimation()
-    {
-        while (true)
-        {
-            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
-            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
-
-            chameleonAnimator.SetFloat("XMovement", enemyDirection.x);
-            chameleonAnimator.SetFloat("YMovement", enemyDirection.y);
-            yield return null;
-        }
     }
 }
