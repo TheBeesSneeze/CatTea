@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour
 
     protected InputAction move;
     protected InputAction dash;
-    protected InputAction primary;
-    protected InputAction secondary;
+    [HideInInspector] public InputAction GunAction;
+    protected InputAction swordAction;
     protected InputAction aim;
     [HideInInspector] public InputAction Pause;
     [HideInInspector] public InputAction Select;
@@ -132,8 +132,8 @@ public class PlayerController : MonoBehaviour
     {
         move = playerInput.currentActionMap.FindAction("Move");
         dash = playerInput.currentActionMap.FindAction("Dash");
-        primary = playerInput.currentActionMap.FindAction("Primary Attack");
-        secondary = playerInput.currentActionMap.FindAction("Secondary Attack");
+        GunAction = playerInput.currentActionMap.FindAction("Primary Attack");
+        swordAction = playerInput.currentActionMap.FindAction("Secondary Attack");
         Pause = playerInput.currentActionMap.FindAction("Pause");
         Select = playerInput.currentActionMap.FindAction("Select");
         SkipText = playerInput.currentActionMap.FindAction("Skip Text");
@@ -148,11 +148,11 @@ public class PlayerController : MonoBehaviour
         dash.performed += Dash_started;
         dash.canceled += Dash_canceled;
 
-        primary.performed += rangedPlayerController.Gun_performed;
-        primary.canceled += rangedPlayerController.Gun_canceled;
+        GunAction.performed += rangedPlayerController.Gun_performed;
+        GunAction.canceled += rangedPlayerController.Gun_canceled;
 
-        secondary.performed += meleePlayerController.Sword_started;
-        secondary.canceled += meleePlayerController.Sword_canceled;
+        swordAction.performed += meleePlayerController.Sword_started;
+        swordAction.canceled += meleePlayerController.Sword_canceled;
 
         Pause.started += Pause_started;
 
@@ -511,11 +511,11 @@ public class PlayerController : MonoBehaviour
         dash.performed -= Dash_started;
         dash.canceled -= Dash_canceled;
 
-        primary.performed -= rangedPlayerController.Gun_performed;
-        primary.canceled -= rangedPlayerController.Gun_canceled;
+        GunAction.performed -= rangedPlayerController.Gun_performed;
+        GunAction.canceled -= rangedPlayerController.Gun_canceled;
 
-        secondary.performed -= meleePlayerController.Sword_started;
-        secondary.canceled -= meleePlayerController.Sword_canceled;
+        swordAction.performed -= meleePlayerController.Sword_started;
+        swordAction.canceled -= meleePlayerController.Sword_canceled;
 
         Pause.started -= Pause_started;
 
