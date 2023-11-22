@@ -69,6 +69,9 @@ public class EnemyBehaviour : CharacterBehaviour
 
     public override void KnockBack(GameObject target, Vector3 damageSourcePosition, float force)
     {
+        if (force <= 0)
+            return;
+
         if (knockbackCoroutine != null)
             StopCoroutine(knockbackCoroutine);
 
