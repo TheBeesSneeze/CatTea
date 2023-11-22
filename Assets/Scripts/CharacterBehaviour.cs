@@ -155,9 +155,6 @@ public class CharacterBehaviour : MonoBehaviour
             myRigidbody2D.AddForce(positionDifference * force, ForceMode2D.Impulse);
     }
 
-    
-    
-
     /// <summary>
     /// Code for when the characters health reaches below 0
     /// </summary>
