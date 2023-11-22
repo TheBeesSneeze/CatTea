@@ -128,8 +128,6 @@ public class CharacterBehaviour : MonoBehaviour
         return false;
     }
 
-    
-
     /// <summary>
     /// Knocks back target away from damageSourcePosition
     /// </summary>
@@ -152,7 +150,10 @@ public class CharacterBehaviour : MonoBehaviour
         positionDifference.Normalize();
 
         if (myRigidbody2D != null)
+        {
+            Debug.Log(positionDifference);
             myRigidbody2D.AddForce(positionDifference * force, ForceMode2D.Impulse);
+        }
     }
 
     /// <summary>

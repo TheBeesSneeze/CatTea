@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Melee Enemy
   m_EditorClassIdentifier: 
   DifficultyCost: 1
-  Speed: 1
+  Speed: 3
   EnemyMove: 0
   TimeBetweenMovements: 0
+  MaxDistanceFromPlayer: 0
   HealthPoints: 5
   Damage: 0
   ContactDamage: 2
