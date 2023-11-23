@@ -47,14 +47,14 @@ public class NPCBehaviour : MonoBehaviour
 
     [Header("Unity Stuff")]
     public GameObject ButtonPrompt;
-    public TextMeshProUGUI TextBox;
-    public GameObject DialogueCanvas;
-    public GameObject DialogueArea;
-    public Image PlayerSprite;
-    public Image NPCSprite;
+    [HideInInspector]public TextMeshProUGUI TextBox;
+    [HideInInspector] public GameObject DialogueCanvas;
+    [HideInInspector] public GameObject DialogueArea;
+    [HideInInspector] public Image PlayerSprite;
+    [HideInInspector] public Image NPCSprite;
 
-    public TextMeshProUGUI Name1;
-    public TextMeshProUGUI Name2;
+    [HideInInspector] public TextMeshProUGUI Name1;
+    [HideInInspector] public TextMeshProUGUI Name2;
 
     private bool SkipText;
     public AudioSource dialogueSoundSource;
