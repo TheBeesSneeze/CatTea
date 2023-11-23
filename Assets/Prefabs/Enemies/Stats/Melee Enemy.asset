@@ -19,6 +19,5 @@ MonoBehaviour:
   MaxDistanceFromPlayer: 0
   HealthPoints: 5
   Damage: 0
-  ContactDamage: 2
-  KnockBackForce: 35
+  ContactDamage: 1
   DealContactDamage: 1

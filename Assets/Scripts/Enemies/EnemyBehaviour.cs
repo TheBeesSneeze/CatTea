@@ -31,9 +31,11 @@ public class EnemyBehaviour : CharacterBehaviour
     protected NavMeshAgent agent;
 
     private Coroutine knockbackCoroutine;
+    private Coroutine contactDamageCoroutine;
 
     //magic numbers
     private float KnockBackSeconds = 0.13f; //how long the navmesh agent will be turned off
+    private float SecondsBetweenContactDamage = 0.5f;
 
     protected override void Start()
     {
@@ -114,8 +116,22 @@ public class EnemyBehaviour : CharacterBehaviour
     /// </summary>
     protected virtual void OnPlayerCollision(Collider2D collision)
     {
-        if(dealContactDamage)
+        if (dealContactDamage)
+        {
             PlayerBehaviour.Instance.TakeDamage(contactDamage, this.transform.position, 0);
+            contactDamageCoroutine = StartCoroutine(RefreshCollider());
+        }
+    }
+
+    private IEnumerator RefreshCollider()
+    {
+        yield return new WaitForSeconds(SecondsBetweenContactDamage);
+
+        Collider2D collider = GetComponent<Collider2D>();
+        collider.enabled = false;
+        collider.enabled = true;
+
+        contactDamageCoroutine = null;
     }
 
     /// <summary>
@@ -129,6 +145,15 @@ public class EnemyBehaviour : CharacterBehaviour
         if (tag.Equals("Player"))
         {
             OnPlayerCollision(collision);
+        }
+    }
+
+    public virtual void OnTriggerExit(Collider other)
+    {
+        if (tag.Equals("Player"))
+        {
+            if (contactDamageCoroutine != null)
+                StopCoroutine(contactDamageCoroutine);
         }
     }
 
@@ -153,8 +178,6 @@ public class EnemyBehaviour : CharacterBehaviour
         dealContactDamage = CurrentEnemyStats.DealContactDamage;
 
         MaxDistanceToPlayer = CurrentEnemyStats.MaxDistanceFromPlayer;
-
-        KnockbackForce = CurrentEnemyStats.KnockBackForce;
 
         if(agent != null)
         {
