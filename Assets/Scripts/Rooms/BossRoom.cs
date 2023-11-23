@@ -18,6 +18,7 @@ public class BossRoom : EnemyRoom
     public Transform BossSpawnPosition;
 
     private GameObject bossObject;
+    private BossDialogue bossDialogue;
     private BossBehaviour bossScript;
     private bool bossDead;
 
@@ -40,7 +41,7 @@ public class BossRoom : EnemyRoom
             cameraManager.StartFollowPlayer();
 
         SpawnBoss();
-        StartPlayingBackgroundMusic();
+        
     }
 
     /// <summary>
@@ -58,8 +59,35 @@ public class BossRoom : EnemyRoom
 
         bossObject = Instantiate(BossPool[randomBossIndex], BossSpawnPosition.position, Quaternion.identity);
         bossScript = bossObject.GetComponent<BossBehaviour>();
+        bossDialogue = bossObject.GetComponent<BossDialogue>();
+
         bossScript.MyRoom = this;
         bossDead = false;
+
+        if (bossDialogue == null)
+        {
+            bossScript.DialogueEnded = true;
+            return;
+        }
+
+        bossDialogue.Room = this;
+
+        StartBossText();
+    }
+
+    private void StartBossText()
+    {
+        bossDialogue.Initialize();
+        bossDialogue.ActivateSpeech();
+    }
+
+    public void OnBossTextEnded()
+    {
+        Debug.Log("Boss text ended");
+
+        StartPlayingBackgroundMusic();
+
+        bossScript.DialogueEnded = true;
     }
 
     public void OnBossDeath()

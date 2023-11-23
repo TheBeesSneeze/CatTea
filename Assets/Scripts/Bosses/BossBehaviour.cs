@@ -15,7 +15,8 @@ public class BossBehaviour : CharacterBehaviour
     public float StartHealth;
     public float MoveUnitsPerSecond;
     //public int CurrentHealth;
-    
+
+    [HideInInspector]public bool DialogueEnded;
 
     [HideInInspector] public BossRoom MyRoom;
 
