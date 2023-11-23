@@ -9,17 +9,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GunPickup : MonoBehaviour
 {
-    public DoorManager BossDoor;
+    public SpriteRenderer ButtonPrompt;
+    public GameObject GunTutorialPrefab;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    [HideInInspector] public DoorManager BossDoor;
+
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        string tag = collision.tag;
+        string tag = collider.tag;
 
         if (!tag.Equals("Player"))
             return;
+
+        if (ButtonPrompt != null)
+        {
+            ButtonPrompt.enabled = true;
+            Debug.Log("in");
+        }
+
+        PlayerController.Instance.Select.started += Interact;
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        string tag = collider.tag;
+
+        if (!tag.Equals("Player"))
+            return;
+
+        if (ButtonPrompt != null)
+        {
+            ButtonPrompt.enabled = false;
+            Debug.Log("out");
+        }
+
+        PlayerController.Instance.Select.started -= Interact;
+    }
+
+    public void Interact(InputAction.CallbackContext obj)
+    {
+        UnlockGun();
+    }
+
+    private void UnlockGun()
+    {
+        Instantiate(GunTutorialPrefab,null);
 
         SaveDataManager.Instance.SaveData.GunUnlocked = true;
         SaveDataManager.Instance.SaveSaveData();
@@ -29,7 +67,7 @@ public class GunPickup : MonoBehaviour
         {
             BossDoor.ThisRoom.ForceCloseDoorOverride = false;
             BossDoor.OpenDoor();
-            
+
         }
         Destroy(gameObject);
     }

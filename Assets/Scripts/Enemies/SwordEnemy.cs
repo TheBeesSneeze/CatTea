@@ -13,13 +13,8 @@ using UnityEngine.AI;
 
 public class SwordEnemy : EnemyBehaviour
 {
-    private GameObject player;
     public GameObject attack;
     public GameObject warningzone;
-
-    protected Animator stoatAnimator;
-
-    protected Vector2 enemyDirection;
 
     protected float rotationModifier = 90;
     public float AttackPlayerDistance = 7;
@@ -33,14 +28,9 @@ public class SwordEnemy : EnemyBehaviour
     protected override void Start()
     {
         base.Start();
-        player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
         canRotate = true;
-        StartCoroutine(RotateEnemy());
+        //StartCoroutine(RotateEnemy());
         StartCoroutine(Attack());
-
-        stoatAnimator = GetComponent<Animator>();
-
-        StartCoroutine(UpdateAnimation());
     }
 
     private IEnumerator RotateEnemy()
@@ -82,34 +72,18 @@ public class SwordEnemy : EnemyBehaviour
     {
         for (int i = 0; i < AmountOfAttacks; i++)
         {
-            canRotate = false;
-            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             warningzone.SetActive(true);
             yield return new WaitForSeconds(1);
             warningzone.SetActive(false);
             attack.SetActive(true);
+            canRotate = false;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             yield return new WaitForSeconds(1);
+            attack.SetActive(false);
             gameObject.GetComponent<NavMeshAgent>().enabled = true;
             canRotate = true;
-            attack.SetActive(false);
-            yield return new WaitForSeconds(1);
         }
         yield return new WaitForSeconds(TimeBeforeAttacking);
         attackingCoroutine = null;
-    }
-
-    protected IEnumerator UpdateAnimation()
-    {
-        while (true)
-        {
-            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
-            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
-
-            //Debug.Log(enemyDirection);
-
-            stoatAnimator.SetFloat("XMovement", enemyDirection.x);
-            stoatAnimator.SetFloat("YMovement", enemyDirection.y);
-            yield return new WaitForSeconds(0.1f);
-        }
     }
 }

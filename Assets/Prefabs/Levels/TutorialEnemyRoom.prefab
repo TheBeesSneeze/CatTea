@@ -7357,8 +7357,8 @@ MonoBehaviour:
   - {fileID: 5626841519735396924}
   - {fileID: 3607758089372895653}
   - {fileID: 957044542419750629}
-  MinimumWaves: 3
-  MaximumWaves: 3
+  MinimumWaves: 1
+  MaximumWaves: 1
   aliveEnemies: 0
   wavesLeft: 0
   challengePointsPerWave: 0
@@ -9538,8 +9538,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.005949974, y: 0.0026999712, z: 0}
-    m_Extent: {x: 3.50205, y: 3.5026999, z: 0}
+    m_Center: {x: -0.0017499924, y: -0.003000021, z: 0}
+    m_Extent: {x: 3.49845, y: 3.5047, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9679,8 +9679,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0014499426, y: -0.001349926, z: 0}
-    m_Extent: {x: 3.5011501, y: 3.50315, z: 0}
+    m_Center: {x: 0.0013500452, y: -0.0041999817, z: 0}
+    m_Extent: {x: 3.4969501, y: 3.5034, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

@@ -53,7 +53,6 @@ public class PlayerBehaviour : CharacterBehaviour
     private float secondsUntilDeathScreen = 3f;
 
     //components
-    private PlayerController playerController;
     private RangedPlayerController rangedPlayerController;
 
     private PlayerHealthBar healthBar;
@@ -76,7 +75,7 @@ public class PlayerBehaviour : CharacterBehaviour
     protected override void Start()
     {
         base.Start();
-        playerController = GetComponent<PlayerController>();
+
         rangedPlayerController = GetComponent<RangedPlayerController>();
 
         healthBar = GameObject.FindObjectOfType<PlayerHealthBar>();
@@ -105,8 +104,8 @@ public class PlayerBehaviour : CharacterBehaviour
     /// </summary>
     public void StartGunMode()
     {
-        playerController.GunSprite.enabled = true;
-        playerController.SwordSprite.enabled = false;
+        PlayerController.Instance.GunSprite.enabled = true;
+        PlayerController.Instance.SwordSprite.enabled = false;
 
         WeaponSelected = Weapon.Gun;
     }
@@ -117,8 +116,8 @@ public class PlayerBehaviour : CharacterBehaviour
     /// </summary>
     public void StartSwordMode()
     {
-        playerController.GunSprite.enabled = false;
-        playerController.SwordSprite.enabled = true;
+        PlayerController.Instance.GunSprite.enabled = false;
+        PlayerController.Instance.SwordSprite.enabled = true;
 
         WeaponSelected = Weapon.Sword;
     }
@@ -179,7 +178,7 @@ public class PlayerBehaviour : CharacterBehaviour
 
     public override void Die()
     {
-        playerController.IgnoreAllInputs = true;
+        PlayerController.Instance.IgnoreAllInputs = true;
 
         SaveDataManager.Instance.SaveData.RunNumber++;
         SaveDataManager.Instance.SaveSaveData();

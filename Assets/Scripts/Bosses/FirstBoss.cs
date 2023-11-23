@@ -15,10 +15,15 @@ public class FirstBoss : BossBehaviour
     public GameObject GunPickupPrefab;
     public override void Die()
     {
-        base.Die();
-
         MyRoom.ForceCloseDoorOverride = true;
+
+        base.Die();
+    }
+
+    public override void DieForReal()
+    {
         AttemptToDropGun();
+        base.DieForReal();
     }
 
     private void AttemptToDropGun()

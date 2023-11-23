@@ -32,7 +32,5 @@ public class EnemyStats : ScriptableObject
     public int Damage;
     public int ContactDamage;
 
-    public float KnockBackForce;
-
     public bool DealContactDamage;
 }
