@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2771233487435461765}
   - component: {fileID: -1320912864932843008}
+  - component: {fileID: 2003512905966868139}
   - component: {fileID: 4743146972439546756}
   - component: {fileID: 6588786030348524660}
   - component: {fileID: 2094796279921379945}
@@ -57,13 +58,40 @@ MonoBehaviour:
   Speed: 0
   KnockbackForce: 0
   TakeKnockback: 1
+  MyAnimator: {fileID: 0}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
   AttacksSpawned: []
   StartHealth: 35
   MoveUnitsPerSecond: 0
+  DialogueEnded: 0
   MyRoom: {fileID: 0}
   GunPickupPrefab: {fileID: 7260921618105368807, guid: 3d180967b6b1c53479c5eb57f926f753, type: 3}
+--- !u!114 &2003512905966868139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4651791696064841288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f446c8263734fa48865d2ab054f6b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueScripts:
+  - {fileID: 11400000, guid: cee4997f67c18904b8ad40b80bc4b8cd, type: 2}
+  LoopText: 0
+  ButtonPrompt: {fileID: 0}
+  TextBox: {fileID: 0}
+  DialogueCanvas: {fileID: 0}
+  DialogueArea: {fileID: 0}
+  PlayerSprite: {fileID: 0}
+  NPCSprite: {fileID: 0}
+  Name1: {fileID: 0}
+  Name2: {fileID: 0}
+  dialogueSoundSource: {fileID: 0}
+  Room: {fileID: 0}
 --- !u!114 &4743146972439546756
 MonoBehaviour:
   m_ObjectHideFlags: 0

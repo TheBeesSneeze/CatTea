@@ -10,7 +10,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UniversalVariables : MonoBehaviour
 {
@@ -19,6 +21,19 @@ public class UniversalVariables : MonoBehaviour
     public GameObject EnemySpawningShadowPrefab;
     public GameObject UpgradeCollectionPrefab;
     public GameObject DefaultPlayerBulletPrefab;
+
+    [Header("Dialogue Canvas Stuff")]
+    public TextMeshProUGUI TextBox;
+    public GameObject DialogueCanvas;
+    public GameObject DialogueArea;
+    public Image PlayerSprite;
+    public Image NPCSprite;
+
+    public TextMeshProUGUI Name1;
+    public TextMeshProUGUI Name2;
+
+    public AudioSource dialogueSoundSource;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.

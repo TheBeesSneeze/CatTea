@@ -117,6 +117,9 @@ public class BossAttackType : MonoBehaviour
     /// <returns>The number of seconds until every attack has been spawened</returns>
     public virtual float StartAttackCycle()
     {
+        if (!bossBehaviour.DialogueEnded)
+            return 0;
+
         StartCoroutine(AttackCycle());
 
         return AttackInterval * AttacksPerCycle;
