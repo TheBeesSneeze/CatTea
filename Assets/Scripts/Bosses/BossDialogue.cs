@@ -34,6 +34,7 @@ public class BossDialogue : NPCBehaviour
 
     public override void CancelSpeech()
     {
+        PlayerController.Instance.Select.started -= ActivateSpeech;
         PlayerController.Instance.IgnoreAllInputs = false;
         PlayerController.Instance.MoveDirection = Vector3.zero;
 
@@ -41,7 +42,6 @@ public class BossDialogue : NPCBehaviour
 
         Room.OnBossTextEnded();
 
-        Destroy(this);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

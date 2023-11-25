@@ -100,6 +100,8 @@ public class BossBehaviour : CharacterBehaviour
 
         MyRoom.OnBossDeath();
         Destroy(gameObject);
+
+        BossHealthBar.Instance.HideHealthBar();
     }
 
     public void StopAllAttacks()

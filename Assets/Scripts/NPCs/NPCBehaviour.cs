@@ -138,8 +138,6 @@ public class NPCBehaviour : MonoBehaviour
     public void ActivateSpeech(InputAction.CallbackContext obj)
     {
         ActivateSpeech();
-
-        
     }
 
     public virtual void ActivateSpeech()

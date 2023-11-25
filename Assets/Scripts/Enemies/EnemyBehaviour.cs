@@ -86,6 +86,9 @@ public class EnemyBehaviour : CharacterBehaviour
     /// <returns></returns>
     private IEnumerator KnockBackAgent(GameObject target, Vector3 damageSourcePosition, float force)
     {
+        if (agent == null)
+            yield break;
+
         agent.enabled = false;
         myRigidbody2D.isKinematic = false;
 
@@ -188,6 +191,9 @@ public class EnemyBehaviour : CharacterBehaviour
 
     protected virtual IEnumerator UpdateAnimation()
     {
+        if (agent == null)
+            yield break;
+        
         while (true)
         {
             enemyDirection.x = agent.velocity.x;
