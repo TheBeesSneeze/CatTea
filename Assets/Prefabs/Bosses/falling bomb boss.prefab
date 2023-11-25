@@ -64,6 +64,7 @@ MonoBehaviour:
   AttacksSpawned: []
   StartHealth: 35
   MoveUnitsPerSecond: 0
+  DropUpgradeOnDeath: 1
   DialogueEnded: 0
   MyRoom: {fileID: 0}
   GunPickupPrefab: {fileID: 7260921618105368807, guid: 3d180967b6b1c53479c5eb57f926f753, type: 3}

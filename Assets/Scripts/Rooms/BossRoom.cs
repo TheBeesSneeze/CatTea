@@ -34,7 +34,7 @@ public class BossRoom : EnemyRoom
         //copy and paste the code from roomType
         cameraManager.MoveCamera(CameraCenterPoint);
 
-        playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+        PlayerBehaviour.Instance.transform.position = PlayerSpawnPoint.transform.position;
         Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)
@@ -66,7 +66,7 @@ public class BossRoom : EnemyRoom
 
         if (bossDialogue == null)
         {
-            bossScript.DialogueEnded = true;
+            OnBossTextEnded();
             return;
         }
 
@@ -83,11 +83,11 @@ public class BossRoom : EnemyRoom
 
     public void OnBossTextEnded()
     {
-        Debug.Log("Boss text ended");
-
         StartPlayingBackgroundMusic();
 
         bossScript.DialogueEnded = true;
+
+        bossScript.Initialize();
     }
 
     public void OnBossDeath()

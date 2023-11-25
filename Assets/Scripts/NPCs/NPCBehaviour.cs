@@ -108,8 +108,6 @@ public class NPCBehaviour : MonoBehaviour
 
         if (tag.Equals("Player"))
         {
-            CancelSpeech();
-
             if (ButtonPrompt != null)
                 ButtonPrompt.SetActive(false);
 
@@ -131,6 +129,7 @@ public class NPCBehaviour : MonoBehaviour
 
         if(DialogueCanvas != null)
             DialogueCanvas.SetActive(false);
+
     }
 
     /// <summary>

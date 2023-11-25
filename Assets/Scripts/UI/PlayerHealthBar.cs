@@ -14,24 +14,18 @@ using UnityEngine.UI;
 public class PlayerHealthBar : MonoBehaviour
 {
     private float MaxHealth;
-    private PlayerBehaviour playerBehaviour;
     public Slider healthBar;
 
     // Start is called before the first frame update
     void Start()
-    {
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
-        
+    {        
         UpdateHealth();
     }
 
     public void UpdateHealth()
     {
-        if(playerBehaviour == null)
-            return;
-            
-        MaxHealth = playerBehaviour.MaxHealthPoints;
+        MaxHealth = PlayerBehaviour.Instance.MaxHealthPoints;
         healthBar.maxValue = MaxHealth;
-        healthBar.value = playerBehaviour.HealthPoints;
+        healthBar.value = PlayerBehaviour.Instance.HealthPoints;
     }
 }
