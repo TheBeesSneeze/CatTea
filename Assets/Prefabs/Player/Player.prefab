@@ -42,7 +42,7 @@ Transform:
   - {fileID: 661591813813728082}
   - {fileID: 360745115152640070}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6108971749265902741
 MonoBehaviour:
@@ -97,6 +97,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunSprite: {fileID: 2004260516437011601}
   SwordSprite: {fileID: 317149631529205859}
+  GunAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   Pause:
     m_Name: 
     m_Type: 0
@@ -172,6 +181,7 @@ MonoBehaviour:
   PrimaryStrikeAngle: 90
   SwordCollider: {fileID: 6104793393067217820}
   RotatePoint: {fileID: 8235565922712789482}
+  SwordAnimator: {fileID: 1469223475218330879}
   SwordSlash: {fileID: 6469831411983301483}
 --- !u!114 &5059097961904087229
 MonoBehaviour:
@@ -662,6 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
+  defaultVolume: 0
 --- !u!1 &2590870216629343977
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8235565922712789482}
+  - component: {fileID: 1469223475218330879}
   m_Layer: 7
   m_Name: Sword Pivot
   m_TagString: Untagged
@@ -687,13 +699,34 @@ Transform:
   m_GameObject: {fileID: 2590870216629343977}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7033930321256186247}
   m_Father: {fileID: 6710800174069000953}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1469223475218330879
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2590870216629343977}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0cebb166a61dc5a46811eaebcc8b30b5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3151463731022571631
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +821,6 @@ GameObject:
   - component: {fileID: 317149631529205859}
   - component: {fileID: 4584060895869052367}
   - component: {fileID: 6104793393067217820}
-  - component: {fileID: 319323541721045418}
   m_Layer: 7
   m_Name: Sword
   m_TagString: Player Attack
@@ -806,7 +838,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8235565922712789482}
   m_RootOrder: -1
@@ -929,27 +961,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!95 &319323541721045418
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4080577201303143270}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0cebb166a61dc5a46811eaebcc8b30b5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4473017638749496494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
+  defaultVolume: 0
 --- !u!1 &7393016580109881934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,3 +1394,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
+  defaultVolume: 0
