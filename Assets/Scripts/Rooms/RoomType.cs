@@ -38,7 +38,6 @@ public class RoomType : MonoBehaviour
     public Transform CameraCenterPoint;
     public Transform PlayerSpawnPoint;
 
-    protected PlayerBehaviour playerBehaviour;
     protected CameraManager cameraManager;
     protected AudioSource backgroundMusicPlayer;
     private float defaultBGMVolume;
@@ -46,7 +45,6 @@ public class RoomType : MonoBehaviour
     public virtual void Start()
     {
         roomCleared = OpenDoorsOnStart;
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         cameraManager = GameObject.FindObjectOfType<CameraManager>();
         backgroundMusicPlayer = GameObject.Find("Background Music").GetComponent<AudioSource>();
         defaultBGMVolume = backgroundMusicPlayer.volume;
@@ -65,7 +63,7 @@ public class RoomType : MonoBehaviour
         if(CameraCenterPoint != null && cameraManager != null)
             cameraManager.MoveCamera(CameraCenterPoint);
         
-        playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+        PlayerBehaviour.Instance.transform.position = PlayerSpawnPoint.transform.position;
         Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)
@@ -91,7 +89,7 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual void Cheat()
     {
-        playerBehaviour.HealthPoints = playerBehaviour.MaxHealthPoints;
+        PlayerBehaviour.Instance.HealthPoints = PlayerBehaviour.Instance.MaxHealthPoints;
 
         roomCleared = true;
         OpenDoorsOnStart = true;
@@ -122,6 +120,7 @@ public class RoomType : MonoBehaviour
     /// <returns></returns>
     private IEnumerator ScaleBackgroundMusic(float TargetVolume)
     {
+        float startingVolume = backgroundMusicPlayer.volume;
         float scaleSeconds = RoomTransition.Instance.TotalTransitionSeconds/2;
         float t = 0;
 
@@ -129,7 +128,9 @@ public class RoomType : MonoBehaviour
         {
             t += Time.deltaTime / scaleSeconds;
             float tScaled = Mathf.Pow(t, 1f / 2f);
-            backgroundMusicPlayer.volume = defaultBGMVolume * Mathf.Lerp(1-TargetVolume,TargetVolume, tScaled);
+
+            float volumeScale = SaveDataManager.Instance.SettingsData.MusicVolume * defaultBGMVolume;
+            backgroundMusicPlayer.volume = volumeScale * Mathf.Lerp(startingVolume, TargetVolume, tScaled);
 
             yield return null;
         }

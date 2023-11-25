@@ -34,7 +34,7 @@ public class BossRoom : EnemyRoom
         //copy and paste the code from roomType
         cameraManager.MoveCamera(CameraCenterPoint);
 
-        playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+        PlayerBehaviour.Instance.transform.position = PlayerSpawnPoint.transform.position;
         Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)

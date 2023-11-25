@@ -97,7 +97,7 @@ public class EnemyRoom : RoomType
         StopPlayingBackgroundMusic();
 
         if(SpawnUpgradeOnCompletion)
-            Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, playerBehaviour.transform.position, Quaternion.identity);
+            Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, PlayerBehaviour.Instance.transform.position, Quaternion.identity);
     }
 
     public virtual IEnumerator SpawnNewWaveOfEnemies()

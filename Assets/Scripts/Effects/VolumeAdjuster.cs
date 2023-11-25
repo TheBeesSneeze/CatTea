@@ -21,16 +21,19 @@ public class VolumeAdjuster : MonoBehaviour
     }
     public SoundType Type;
 
-    private float defaultVolume;
+    [Header("Debug:")]
+    [SerializeField] private float defaultVolume;
     private AudioSource audioSource;
 
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        defaultVolume = audioSource.volume;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        defaultVolume = audioSource.volume;
-
         UpdateVolumeBySettings();
     }
 

@@ -14,6 +14,9 @@ public class BossBehaviour : CharacterBehaviour
 {
     public float StartHealth;
     public float MoveUnitsPerSecond;
+
+    [Tooltip("Wont drop an upgrade if the gun is supposed to be dropped instead")]
+    public bool DropUpgradeOnDeath = true;
     //public int CurrentHealth;
 
     [HideInInspector]public bool DialogueEnded;
@@ -92,6 +95,9 @@ public class BossBehaviour : CharacterBehaviour
     /// </summary>
     public virtual void DieForReal()
     {
+        if (DropUpgradeOnDeath)
+            Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, transform.position, Quaternion.identity);
+
         MyRoom.OnBossDeath();
         Destroy(gameObject);
     }

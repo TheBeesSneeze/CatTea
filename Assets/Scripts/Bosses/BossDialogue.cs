@@ -24,14 +24,24 @@ public class BossDialogue : NPCBehaviour
     public void Initialize()
     {
         base.Start();
+
+        PlayerController.Instance.IgnoreAllInputs = true;
+        Rigidbody2D body = PlayerBehaviour.Instance.GetComponent<Rigidbody2D>();
+        body.velocity = Vector3.zero;
+
         PlayerController.Instance.Select.started += ActivateSpeech;
     }
 
     public override void CancelSpeech()
     {
+        PlayerController.Instance.IgnoreAllInputs = false;
+        PlayerController.Instance.MoveDirection = Vector3.zero;
+
         base.CancelSpeech();
 
         Room.OnBossTextEnded();
+
+        Destroy(this);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

@@ -64,6 +64,8 @@ MonoBehaviour:
   AttacksSpawned: []
   StartHealth: 50
   MoveUnitsPerSecond: 1.5
+  DropUpgradeOnDeath: 1
+  DialogueEnded: 0
   MyRoom: {fileID: 0}
 --- !u!114 &6547316761508115879
 MonoBehaviour:

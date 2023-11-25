@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
     private Coroutine aimingCoroutine;
 
     private bool ignoreMove;
-    [HideInInspector]public bool IgnoreAllInputs;
+    public bool IgnoreAllInputs;
 
     private void Awake()
     {
@@ -389,7 +389,7 @@ public class PlayerController : MonoBehaviour
     {
         while (moving)
         {
-            if (!ignoreMove)
+            if (!ignoreMove && !IgnoreAllInputs)
             {
                 myRigidbody.velocity = MoveDirection * PlayerBehaviour.Instance.Speed; //no Time.deltaTime bc its just velocity being changed
             }
@@ -420,7 +420,7 @@ public class PlayerController : MonoBehaviour
     protected IEnumerator SlowMovement()
     {
         float t = 0; // 0 <= t <= slowSeconds
-        while(t < slowSeconds)
+        while(t < slowSeconds && !IgnoreAllInputs)
         {
             t+= Time.deltaTime;
 

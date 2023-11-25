@@ -22,6 +22,11 @@ public class FirstBoss : BossBehaviour
 
     public override void DieForReal()
     {
+        if( !SaveDataManager.Instance.SaveData.GunUnlocked)
+        {
+            DropUpgradeOnDeath = false;
+        }
+
         AttemptToDropGun();
         base.DieForReal();
     }
