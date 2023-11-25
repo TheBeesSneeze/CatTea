@@ -66,7 +66,7 @@ public class BossRoom : EnemyRoom
 
         if (bossDialogue == null)
         {
-            bossScript.DialogueEnded = true;
+            OnBossTextEnded();
             return;
         }
 
@@ -83,11 +83,11 @@ public class BossRoom : EnemyRoom
 
     public void OnBossTextEnded()
     {
-        Debug.Log("Boss text ended");
-
         StartPlayingBackgroundMusic();
 
         bossScript.DialogueEnded = true;
+
+        bossScript.Initialize();
     }
 
     public void OnBossDeath()

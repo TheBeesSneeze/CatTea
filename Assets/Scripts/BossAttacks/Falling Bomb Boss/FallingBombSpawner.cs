@@ -24,7 +24,6 @@ public class FallingBombSpawner : RandomAttackSpawner
 
         if (animator != null)
         {
-            Debug.Log("animate");
             animator.SetTrigger("FireMortar");
         }
     }

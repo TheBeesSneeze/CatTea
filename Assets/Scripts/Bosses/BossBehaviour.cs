@@ -33,6 +33,14 @@ public class BossBehaviour : CharacterBehaviour
         base.Start();
     }
 
+    /// <summary>
+    /// Runs when the boss is ready to be fought
+    /// </summary>
+    public virtual void Initialize()
+    {
+        BossHealthBar.Instance.ActivateHealthBar(this);
+    }
+
     public override bool TakeDamage(float damage)
     {
         return TakeDamage(damage,true);
@@ -57,6 +65,8 @@ public class BossBehaviour : CharacterBehaviour
         }
 
         MyAnimator.SetFloat("Health", value);
+
+        BossHealthBar.Instance.UpdateHealth();
     }
 
     public override void Die()
