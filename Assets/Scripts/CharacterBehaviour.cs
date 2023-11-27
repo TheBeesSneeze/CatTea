@@ -9,11 +9,16 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
 {
     public GameObject CharacterSprite;
+
+    [Header("Sounds")]
+    public AudioSource DamageSound;
+    public AudioClip DeathClip;
 
     [SerializeField]private float _healthPoints;
     public float HealthPoints
@@ -44,8 +49,8 @@ public class CharacterBehaviour : MonoBehaviour
     [HideInInspector] public Color originalColor;
     [HideInInspector] public Color colorOverride;
 
-    [Header("Debug")]
-    public List<GameObject> AttacksSpawned; //most of the gameobjects in this list will be null
+    //[Header("Debug")]
+    [HideInInspector] public List<GameObject> AttacksSpawned; //most of the gameobjects in this list will be null
     
     protected virtual void Awake()
     {
@@ -90,6 +95,9 @@ public class CharacterBehaviour : MonoBehaviour
             Die();
             return true;
         }
+
+        PlayDamageSound();
+
         return false;
     }
 
@@ -161,6 +169,7 @@ public class CharacterBehaviour : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
+        PlayDeathSound();
         GameManager.Instance.DestroyAllObjectsInList(AttacksSpawned);
     }
 
@@ -178,6 +187,37 @@ public class CharacterBehaviour : MonoBehaviour
     public virtual void SetStatsToDefaults()
     {
         //Debug.LogWarning("Override me!");
+    }
+    
+    public virtual void PlayDamageSound()
+    {
+        if (DamageSound == null)
+        {
+            Debug.LogWarning(gameObject.name + " does not have a damage audio source");
+            return;
+        }
+
+        if (DamageSound.clip == null)
+        {
+            Debug.LogWarning(gameObject.name + " does has an audio source, but no damage audio clip");
+            return;
+        }
+
+        float randomPitch = Random.Range(0.9f, 1.1f);
+
+        DamageSound.pitch = randomPitch;
+        DamageSound.Play();
+    }
+
+    public virtual void PlayDeathSound()
+    {
+        if(DeathClip == null)
+        {
+            Debug.LogWarning(gameObject.name + " does not have a death audio clip");
+            return;
+        }
+
+        AudioSource.PlayClipAtPoint(DeathClip, transform.position, SaveDataManager.Instance.SettingsData.SoundVolume);
     }
 
     public virtual void BecomeInvincible(float invincibilitySeconds, bool becomeClear)
