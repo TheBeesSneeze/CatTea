@@ -4075,7 +4075,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 165923459645456739, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_Name
-      value: Snakeman (NPC)
+      value: ChuckLevel2
       objectReference: {fileID: 0}
     - target: {fileID: 1425086508942081019, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4147,7 +4147,7 @@ PrefabInstance:
       objectReference: {fileID: 728761830}
     - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: DialogueScripts.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6463354550440856149, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: DialogueScripts.Array.data[0]
@@ -4533,7 +4533,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 165923459645456739, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_Name
-      value: Chuck
+      value: ChuckLevel1
       objectReference: {fileID: 0}
     - target: {fileID: 1425086508942081019, guid: 86a0936ccf2398b45a640a2e44bfb3f6, type: 3}
       propertyPath: m_Materials.Array.data[0]
