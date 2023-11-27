@@ -13,29 +13,28 @@ MonoBehaviour:
   m_Name: FergusDialogue1
   m_EditorClassIdentifier: 
   TextList:
+  - ...
   - Hey! HEEEEEEEEEEEEYYYYYY!
-  - "Oh, what\u2019s that? There\u2019s a 200kg weed shipment at the entrance?"
+  - ...
+  - "Oh, what\u2019s that? 200 kilos of weed at the entrance?"
   - What!? Let them in!
   - "Wait, who the bloody hell are you? How\u2019d you get in here?"
-  - "Doesn\u2019t matter. Where\u2019s my gun?"
-  - "Your laugh? Wait a minute\u2026 you\u2019re that punk Jade. I thought my people
-    grained you?"
-  - If you mean killed, then yes, they did. But the pungent odor of revenge has brought
-    me back! Smells kinda like it does here, actually.
-  - "I don\u2019t have pears for this. Do you actually got any tea?"
-  - "What-What are you talking about? I don\u2019t have any tea, idiot."
-  - "So you're rude, annoying, and a liar AND my people are useless. This flower\u2019s
-    just going wonderfully."
-  - "I don\u2019t want to hear about your flower! Just tell me where the gun is!"
-  - "It\u2019s great, you know? I\u2019m surrounded by these bloody idiots who couldn\u2019t
-    make out the tip of their dogs from the tip of their\u2026!"
-  - Dumbass! Focus. Gun. Where is it?
-  - "Gotta deal with this tooth myself. Alright, let\u2019s get this over with."
+  - "Doesn\u2019t matter. The gun. Where is it?"
+  - "Gun? Wait a minute\u2026 you\u2019re that punk Jade. I thought my people offed
+    you?"
+  - "They did. Long story short, I\u2019m back. And I want that gun. Oh, some Frostrite
+    would be great too."
+  - "That gun doesn\u2019t even bloody work. Put Frostrite in it and everything.
+    Bloody waste of time if you ask me."
+  - "That\u2019s because it requires a specific piece. Which I still have."
+  - "Amazing. I\u2019m surrounded by bloody idiots. Gotta do everything myself, I
+    guess. Let\u2019s get this over with."
   Character1Name: Jade
   Character2Name: Fergus
-  Character1DialogueSound: {fileID: 0}
-  Character2DialogueSound: {fileID: 0}
-  WhoIsTalking: 0000000000000000010000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000
-  PlayerTalkingSprites: []
+  Character1DialogueSound: {fileID: 8300000, guid: 857406ecf06fff440aafae362726fe07, type: 3}
+  Character2DialogueSound: {fileID: 8300000, guid: a4d9806aedca5c04781ef801cbd6f0e3, type: 3}
+  WhoIsTalking: 010000000000000001000000000000000100000001000000000000000100000000000000010000000000000001000000
+  PlayerTalkingSprites:
+  - {fileID: 21300000, guid: 107864498673b4f478be06f366a49196, type: 3}
   NPCTalkingSprites:
   - {fileID: 21300000, guid: 72d12e5fae560c6479239c9e4be9758b, type: 3}
