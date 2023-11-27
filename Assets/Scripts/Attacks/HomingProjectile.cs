@@ -19,8 +19,7 @@ public class HomingProjectile : AttackType
 {
     public float Speed;
 
-    public float TimeUntilDestroyed;
-    [Tooltip("Percent 0-1. 0 for perfect aim. 1 for the worst")]
+    [Tooltip("Percent 0-1. 1 for perfect aim. 0 for no aim")]
     public float Angle;
 
     [Header("Debug only:")]
@@ -33,30 +32,35 @@ public class HomingProjectile : AttackType
         base.Start();
 
         if(Attacker.Equals(AttackSource.Enemy) || Attacker.Equals(AttackSource.General))
-            target = GameObject.FindAnyObjectByType<PlayerBehaviour>().transform;
+            target = PlayerBehaviour.Instance.transform;
 
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Home());
-        StartCoroutine(SelfDestruct());
     }
 
     public IEnumerator Home()
     {
+        rb.velocity = GetTargetVelocity();
+
         while(this.gameObject != null)
         {
-            Vector2 positionDifference = target.transform.position - transform.position;
-            positionDifference.Normalize();
-            rb.velocity = positionDifference * Speed;
+            Vector2 targetVelocity = GetTargetVelocity();
+
+            Vector2 newVelocity = Vector2.Lerp(rb.velocity, targetVelocity, Angle* Time.deltaTime);
+            newVelocity.Normalize();
+
+            rb.velocity = newVelocity * Speed;
 
             //rb.transform.position = Vector2.MoveTowards()
 
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
     }
 
-    public IEnumerator SelfDestruct()
+    private Vector2 GetTargetVelocity()
     {
-        yield return new WaitForSeconds(TimeUntilDestroyed);
-        Destroy(this.gameObject);
+        Vector2 positionDifference = target.transform.position - transform.position;
+        positionDifference.Normalize();
+        return positionDifference * Speed;
     }
 }

@@ -58,9 +58,8 @@ MonoBehaviour:
   CanBeParried: 1
   DestroyAttackAfterSeconds: 9
   Attacker: 0
-  Speed: 2.2
-  TimeUntilDestroyed: 12
-  Angle: 0.12
+  Speed: 3
+  Angle: 0.3
   target: {fileID: 0}
 --- !u!212 &9021548887123074165
 SpriteRenderer:

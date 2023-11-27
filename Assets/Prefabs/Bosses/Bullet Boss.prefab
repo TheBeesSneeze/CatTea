@@ -130,7 +130,7 @@ MonoBehaviour:
   MaxMovementDistance: 25
   LM:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 256
 --- !u!50 &-1769227030051256610
 Rigidbody2D:
   serializedVersion: 4
