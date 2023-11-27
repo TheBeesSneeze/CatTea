@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UpgradeChoiceInterface : MonoBehaviour
@@ -43,14 +44,32 @@ public class UpgradeChoiceInterface : MonoBehaviour
         MysteryButton.GetComponent<Image>().color = deselectedColor;
     }
 
-    public void OpenUI()
+    public void OpenUI(bool randomizeChoices)
     {
+        PlayerController.Instance.IgnoreAllInputs = true;
+        PlayerController.Instance.Pause.started += CancelUI;
+
         UpgradeScreen.SetActive(true);
 
         ConfirmUpgradeButton.interactable = false;
         DeselectAllOptions();
 
-        RandomizeUpgradeChoices();
+        if(randomizeChoices)
+        {
+            RandomizeUpgradeChoices();
+        }
+    }
+
+    /// <summary>
+    /// Cancels UI interface, player can come back tho
+    /// </summary>
+    /// <param name="obj"></param>
+    public void CancelUI(InputAction.CallbackContext obj)
+    {
+        PlayerController.Instance.Pause.started -= CancelUI;
+        PlayerController.Instance.IgnoreAllInputs = false;
+
+        UpgradeScreen.SetActive(false);
     }
 
     /// <summary>
@@ -59,6 +78,8 @@ public class UpgradeChoiceInterface : MonoBehaviour
     /// </summary>
     public void CloseUI()
     {
+        PlayerController.Instance.IgnoreAllInputs = false;
+
         Destroy(ChoiceObject.gameObject);
         UpgradeScreen.SetActive(false);
     }
