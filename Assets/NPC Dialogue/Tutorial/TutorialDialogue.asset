@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: TutorialDialogue
   m_EditorClassIdentifier: 
   TextList:
+  - "Ughhh, my head\u2019s killing me."
   - Hello.
-  - "Yeah, hi. I\u2019m a little lost right now. Can you tell me where we are?"
+  - "Yeah, hi. I\u2019m kinda lost right now. Do you know where we are?"
   - "This is a recording put here for your convenience. You\u2019re probably very
     lost right now."
-  - Really? You think so?
-  - "Don\u2019t worry, I\u2019m here to help you out! There's some danger up ahead,
-    but I know you\u2019re prepared. You should still have your energy sword and
-    your quick boots."
-  - Wait, how do you-
-  - The sword is easy! Just use the left click to swing! To use your quick boots,
+  - "Really? You think so? How am I even alive right now? And where\u2019s my gun?"
+  - "You\u2019re probably wondering how you\u2019re alive and where your gun is.
+    Don\u2019t worry, I\u2019m here to help you out! There\u2019s some danger up
+    ahead, but I know you\u2019re prepared. You should still have the Frostrite for
+    your gun, your energy sword and your quick boots."
+  - Oh, I do have the Frostrite. They must have forgotten to take it. How do you
+    know all this?
+  - The sword is easy! Just use the right click to swing! To use your quick boots,
     just press the spacebar! Easy as pie!
   - What are you talking about? Who are you?! WHAT IS GOING ON?!
   - "I\u2019m sure this cleared up any confusion you may have had. Good luck!"
@@ -32,6 +35,6 @@ MonoBehaviour:
   Character2Name: '"Steve"'
   Character1DialogueSound: {fileID: 0}
   Character2DialogueSound: {fileID: 0}
-  WhoIsTalking: 0100000000000000010000000000000001000000000000000100000000000000010000000000000000000000
+  WhoIsTalking: 000000000100000000000000010000000000000001000000000000000100000000000000010000000000000000000000
   PlayerTalkingSprites: []
   NPCTalkingSprites: []
