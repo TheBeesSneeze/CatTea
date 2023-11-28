@@ -18,6 +18,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
 
     public int AttacksPerWave;
     public float TimeBetweenAttacks;
+    public float TimeAfterAttack;
     public float AttackVelocity;
     public float AttackPlayerDistance = 7;
 
@@ -73,6 +74,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
         for(int i =0; i< AttacksPerWave; i++)
         {
             yield return new WaitForSeconds(TimeBetweenAttacks);
+
             GameObject newAttack = Instantiate(dogAttackPrefab, transform.position, transform.rotation);
 
             AttacksSpawned.Add(newAttack);
@@ -80,6 +82,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
             Vector2 dif = (player.transform.position - this.transform.position);
             newAttack.GetComponent<Rigidbody2D>().velocity = dif.normalized * AttackVelocity;
         }
+        yield return new WaitForSeconds(TimeAfterAttack);
         waveCoroutine = null;
     }
 }
