@@ -29,6 +29,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     //[Tooltip("Ignores damage if true")]
     [HideInInspector] public bool Invincible;
+    private bool died;
 
     [HideInInspector] public float MaxHealthPoints;
     [HideInInspector] public float Speed;
@@ -90,7 +91,7 @@ public class CharacterBehaviour : MonoBehaviour
 
         HealthPoints -= damage;
 
-        if (HealthPoints <= 0)
+        if (HealthPoints <= 0 && !died)
         {
             Die();
             return true;
@@ -169,6 +170,7 @@ public class CharacterBehaviour : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
+        died = true;
         PlayDeathSound();
         GameManager.Instance.DestroyAllObjectsInList(AttacksSpawned);
     }
