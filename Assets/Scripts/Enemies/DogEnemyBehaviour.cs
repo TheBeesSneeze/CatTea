@@ -41,7 +41,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
     {
         while(this.gameObject != null)
         {
-            Vector3 vectorToTarget = player.transform.position - transform.position;
+            Vector3 vectorToTarget = PlayerBehaviour.Instance.transform.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * Speed);
@@ -55,13 +55,13 @@ public class DogEnemyBehaviour : EnemyBehaviour
     {
         while(this.gameObject != null)
         {
-            float distanceToPlayer = Vector2.Distance(this.transform.position, player.transform.position);
+            float distanceToPlayer = Vector2.Distance(this.transform.position, PlayerBehaviour.Instance.transform.position);
 
             if (distanceToPlayer <= AttackPlayerDistance)
             {
                 if(waveCoroutine == null)
                 {
-                    waveCoroutine = StartCoroutine(SpawnWaves());
+                    waveCoroutine = StartCoroutine(SpawnBullets());
                 }
             }
 
@@ -69,7 +69,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
         }
     }
 
-    protected virtual IEnumerator SpawnWaves()
+    protected virtual IEnumerator SpawnBullets()
     {
         for(int i =0; i< AttacksPerWave; i++)
         {
@@ -79,7 +79,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
 
             AttacksSpawned.Add(newAttack);
 
-            Vector2 dif = (player.transform.position - this.transform.position);
+            Vector2 dif = (PlayerBehaviour.Instance.transform.position - this.transform.position);
             newAttack.GetComponent<Rigidbody2D>().velocity = dif.normalized * AttackVelocity;
         }
         yield return new WaitForSeconds(TimeAfterAttack);
