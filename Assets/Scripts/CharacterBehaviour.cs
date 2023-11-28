@@ -160,7 +160,6 @@ public class CharacterBehaviour : MonoBehaviour
 
         if (myRigidbody2D != null)
         {
-            Debug.Log(positionDifference);
             myRigidbody2D.AddForce(positionDifference * force, ForceMode2D.Impulse);
         }
     }
