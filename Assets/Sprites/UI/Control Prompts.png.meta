@@ -110,15 +110,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mouse
+      name: Mouse_R
       rect:
         serializedVersion: 2
-        x: 27
-        y: 59
+        x: 0
+        y: 1088
         width: 321
         height: 528
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,12 +134,12 @@ TextureImporter:
       name: Gun
       rect:
         serializedVersion: 2
-        x: 448
-        y: 117
+        x: 421
+        y: 1146
         width: 691
         height: 423
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,6 +147,90 @@ TextureImporter:
       bones: []
       spriteID: d666f7772838dc744bb21727c370c411
       internalID: -1960261797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouse_L
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 321
+        height: 528
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e196e4330c39ad14b9ccd4147ae537d1
+      internalID: -783315402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sword
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 560
+        width: 540
+        height: 518
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8ce81e78320364d961fe02c1a9c0b9
+      internalID: 850636703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Space_Bar
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 52
+        width: 400
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98074974ac0492e48b1a5e533fc3add4
+      internalID: -1848849284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Icon
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 0
+        width: 366
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7b93c51c9da8544b47e94feb6ba3bd
+      internalID: 1668549768
       vertices: []
       indices: 
       edges: []
@@ -162,8 +246,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Control Prompts_1: -783315402
+      Control Prompts_3: 850636703
+      Control Prompts_5: -1848849284
+      Control Prompts_7: 1668549768
+      Control Prompts_8: 327891408
+      Control Prompts_9: 779293395
+      Dash Icon: 1668549768
       Gun: -1960261797
-      Mouse: 1511362133
+      Mouse_L: -783315402
+      Mouse_R: 1511362133
+      Space_Bar: -1848849284
+      Sword: 850636703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
