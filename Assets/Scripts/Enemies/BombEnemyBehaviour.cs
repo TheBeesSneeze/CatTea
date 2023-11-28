@@ -35,7 +35,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
 
         for (int i = 0; i < amountOfBombs; i++)
         {
-            Vector3 positionAroundPlayer = player.transform.position;
+            Vector3 positionAroundPlayer = PlayerBehaviour.Instance.transform.position;
             Vector3 randomPosition = Random.insideUnitCircle;
             positionAroundPlayer.x += randomPosition.x;
             positionAroundPlayer.y += randomPosition.y;

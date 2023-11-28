@@ -46,7 +46,7 @@ public class DissapearingEnemy : EnemyBehaviour
     {
         while (this.gameObject != null)
         {
-            Vector3 vectorToTarget = player.transform.position - transform.position;
+            Vector3 vectorToTarget = PlayerBehaviour.Instance.transform.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * Speed);
@@ -96,7 +96,7 @@ public class DissapearingEnemy : EnemyBehaviour
     {
         while(this.gameObject != null)
         {
-            float distanceToPlayer = Vector2.Distance(this.transform.position, player.transform.position);
+            float distanceToPlayer = Vector2.Distance(this.transform.position, PlayerBehaviour.Instance.transform.position);
 
             if(distanceToPlayer <= AttackPlayerDistance)
             {

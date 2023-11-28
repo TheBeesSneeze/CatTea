@@ -27,7 +27,6 @@ public class EnemyBehaviour : CharacterBehaviour
     [HideInInspector] public EnemyRoom Room;
 
     protected Vector2 enemyDirection;
-    protected GameObject player;
     protected NavMeshAgent agent;
 
     private Coroutine knockbackCoroutine;
@@ -40,7 +39,6 @@ public class EnemyBehaviour : CharacterBehaviour
     protected override void Start()
     {
         transform.eulerAngles = Vector3.zero;
-        player = PlayerBehaviour.Instance.gameObject;
         agent = GetComponent<NavMeshAgent>();
 
         base.Start();
