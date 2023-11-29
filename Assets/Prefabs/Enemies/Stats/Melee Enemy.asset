@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16334250edfb714db1236322a856f06, type: 3}
   m_Name: Melee Enemy
   m_EditorClassIdentifier: 
-  DifficultyCost: 1
+  DifficultyCost: 2
   Speed: 3
   EnemyMove: 0
   TimeBetweenMovements: 0

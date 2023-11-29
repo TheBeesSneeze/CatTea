@@ -1,21 +1,20 @@
 /*******************************************************************************
-* File Name :         SwordBossAttack.cs
+* File Name :         SwordEnemyAttack.cs
 * Author(s) :         Toby Schamberger
-* Creation Date :     10/29/2023
+* Creation Date :     11/29/2023
 *
-* Brief Description : Does not extend boss attack type. Enables a sword when the
-* player gets close.
-* Gives the player a second to anticipate the sword. slows down while aiming.
-* 
-* might disable the gun when it goes sword mode
+* Brief Description : Functionally very similar to SwordBossAttack. I am too tired
+* and crunched and lazy to do this properly
 *****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class SwordBossAttack : MonoBehaviour
+public class SwordEnemyAttack : MonoBehaviour
 {
+    public SwordEnemy swordEnemy;
     public Collider2D SwordCollider;
     [Tooltip("Speed of the boss when it is walking towards player")]
     public float ApproachPlayerMovementSpeed;
@@ -29,12 +28,12 @@ public class SwordBossAttack : MonoBehaviour
     public float IdleAfterAttackSeconds;
     [Tooltip("Seconds until another sword attack can happen")]
     public float SwordAttackCooldown;
-    
+
 
     private float swordAngle; //steal from player
 
     //magic numbers
-    private float shakeSwordAmount=0.05f;
+    private float shakeSwordAmount = 0.05f;
 
     //private bool playerInsideRange;
     private bool swordAttackInProgress;
@@ -42,13 +41,10 @@ public class SwordBossAttack : MonoBehaviour
 
     private MeleePlayerController meleePlayer;
 
-    private FinalBossBehaviour finalBossBehaviour;
-    private GunBossAttack gunBossAttack;
-    private MovementCycle movementCycle;
-    private SpriteRenderer gunSpriteRenderer;
+    private NavMeshAgent navMeshAgent;
     private SpriteRenderer swordSpriteRenderer;
+    private Collider2D swordActivationTrigger;
 
-    private float defaultMoveSpeed;
     private Vector2 defaultSwordPosition;
     private Vector3 defaultSwordScale;
 
@@ -56,16 +52,13 @@ public class SwordBossAttack : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        finalBossBehaviour = GameObject.FindObjectOfType<FinalBossBehaviour>();
-        gunBossAttack = finalBossBehaviour.GetComponent<GunBossAttack>();
-        movementCycle = finalBossBehaviour.GetComponent<MovementCycle>();
-        gunSpriteRenderer = finalBossBehaviour.GunSprite.GetComponent<SpriteRenderer>();
+        navMeshAgent = swordEnemy.GetComponent<NavMeshAgent>();
         swordSpriteRenderer = SwordCollider.GetComponent<SpriteRenderer>();
+        swordActivationTrigger = GetComponent<Collider2D>();
 
         meleePlayer = GameObject.FindObjectOfType<MeleePlayerController>();
         swordAngle = meleePlayer.PrimaryStrikeAngle;
 
-        defaultMoveSpeed = finalBossBehaviour.MoveUnitsPerSecond;
         defaultSwordPosition = SwordCollider.transform.localPosition;
         defaultSwordScale = SwordCollider.transform.localScale;
 
@@ -80,7 +73,6 @@ public class SwordBossAttack : MonoBehaviour
     {
         swordAttackInProgress = true;
         EnableSword();
-        DisableGun();
         DisableMovement();
 
         float t = 0; // 0 <= t <= ReadySwordSeconds
@@ -133,16 +125,15 @@ public class SwordBossAttack : MonoBehaviour
     /// <returns></returns>
     private IEnumerator StopAttack()
     {
-        //EnableMovement();
+        swordActivationTrigger.enabled = false;
 
         yield return new WaitForSeconds(IdleAfterAttackSeconds);
 
         EnableMovement();
 
-        DisableSword();
-        EnableGun();
-
         yield return new WaitForSeconds(SwordAttackCooldown);
+
+        swordActivationTrigger.enabled = true;
 
         swordAttackInProgress = false;
     }
@@ -152,8 +143,10 @@ public class SwordBossAttack : MonoBehaviour
     /// </summary>
     private void AngleSwordAtPlayer(float percent)
     {
+        Vector2 aimingDirection = GetPlayerDirection();
+
         //float angle = Mathf.Atan2(move.ReadValue<Vector2>().y, move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
-        float angle = Mathf.Atan2(finalBossBehaviour.AimingDirection.y, finalBossBehaviour.AimingDirection.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
         angle -= (swordAngle / 2) + ((swordAngle / 2) * percent);
 
         swordRotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -163,11 +156,17 @@ public class SwordBossAttack : MonoBehaviour
         UpdateSwordMirrorDirection();
     }
 
+    private Vector2 GetPlayerDirection()
+    {
+        Vector2 difference = PlayerBehaviour.Instance.transform.position - swordEnemy.transform.position;
+        return difference.normalized;
+    }
+
     private void UpdateSwordMirrorDirection()
     {
         //idk figure it out
     }
-    
+
     /// <summary>
     /// scales the sword from 0 to whatever it is at start
     /// </summary>
@@ -194,7 +193,7 @@ public class SwordBossAttack : MonoBehaviour
     /// </summary>
     private void MoveTowardsPlayer()
     {
-        Vector2 bossPosition = finalBossBehaviour.transform.position;
+        Vector2 bossPosition = swordEnemy.transform.position;
         Vector2 playerPositon = meleePlayer.transform.position;
 
         Vector2 moveTowardPlayerPosition = Vector2.MoveTowards(bossPosition, playerPositon, ApproachPlayerMovementSpeed * Time.deltaTime);
@@ -204,7 +203,7 @@ public class SwordBossAttack : MonoBehaviour
         if (distance < TargetPlayerDistance)
             return;
 
-        finalBossBehaviour.transform.position = moveTowardPlayerPosition;
+        swordEnemy.transform.position = moveTowardPlayerPosition;
     }
 
     /// <summary>
@@ -215,46 +214,34 @@ public class SwordBossAttack : MonoBehaviour
         SwordCollider.transform.localPosition = defaultSwordPosition;
         swordSpriteRenderer.enabled = true;
     }
-    private void DisableGun()
-    {
-        gunSpriteRenderer.enabled = false;
-        gunBossAttack.StopAttack();
-    }
     private void DisableMovement()
     {
-        finalBossBehaviour.MoveUnitsPerSecond = 0;
-        movementCycle.StopAttack();
+        navMeshAgent.enabled = false;   
     }
 
     /// <summary>
     /// called after sword swings
     /// </summary>
-    private void DisableSword() 
+    private void DisableSword()
     {
         swordSpriteRenderer.enabled = false;
         SwordCollider.enabled = false;
     }
-    
-    private void EnableGun()
-    {
-        gunSpriteRenderer.enabled = true;
-        gunBossAttack.StartAttack();
-    }
+
     private void EnableMovement()
     {
-        finalBossBehaviour.MoveUnitsPerSecond = defaultMoveSpeed;
-        movementCycle.StartAttack();
+        navMeshAgent.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.tag;
 
-        if(tag.Equals("Player"))
+        if (tag.Equals("Player"))
         {
             //playerInsideRange = true;
 
-            if(!swordAttackInProgress)
+            if (!swordAttackInProgress)
             {
                 StartCoroutine(ReadySwordAttack());
             }

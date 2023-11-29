@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16334250edfb714db1236322a856f06, type: 3}
   m_Name: Gun Enemy
   m_EditorClassIdentifier: 
-  DifficultyCost: 1
+  DifficultyCost: 4
   Speed: 3
   EnemyMove: 0
   TimeBetweenMovements: 1
@@ -20,5 +20,4 @@ MonoBehaviour:
   HealthPoints: 5
   Damage: 2
   ContactDamage: 0
-  KnockBackForce: 1
   DealContactDamage: 0

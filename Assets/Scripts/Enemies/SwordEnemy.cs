@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name :         SwordEnemy.cs
-* Author(s) :         Aiden Vandeberg
+* Author(s) :         Aiden Vandeberg, Toby Schamberger
 * Creation Date :     
 *
 * Brief Description : 
@@ -13,10 +13,11 @@ using UnityEngine.AI;
 
 public class SwordEnemy : EnemyBehaviour
 {
+    /*
     public GameObject attack;
     public GameObject warningzone;
 
-    protected float rotationModifier = 90;
+    [HideInInspector] public float rotationModifier = 90;
     public float AttackPlayerDistance = 7;
     public int AmountOfAttacks;
     public float TimeBeforeAttacking;
@@ -28,9 +29,8 @@ public class SwordEnemy : EnemyBehaviour
     protected override void Start()
     {
         base.Start();
-        canRotate = true;
         //StartCoroutine(RotatePivot());
-        StartCoroutine(Attack());
+        //StartCoroutine(Attack());
     }
 
     private IEnumerator RotateEnemy()
@@ -86,4 +86,5 @@ public class SwordEnemy : EnemyBehaviour
         yield return new WaitForSeconds(TimeBeforeAttacking);
         attackingCoroutine = null;
     }
+    */
 }
