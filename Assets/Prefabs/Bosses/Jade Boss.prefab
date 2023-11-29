@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1794970512911786747}
   - component: {fileID: 3153251004914458514}
   - component: {fileID: 3787080263181486677}
+  - component: {fileID: 7414333415116756248}
   - component: {fileID: 3033391271483458877}
   - component: {fileID: 6597008307900420906}
   m_Layer: 0
@@ -113,6 +114,31 @@ MonoBehaviour:
   AttackInterval: -1
   AttacksPerCycle: -1
   BulletPrefab: {fileID: 2738865446770433985, guid: 3238391e7830faf4cb4e2e59c23e5786, type: 3}
+--- !u!114 &7414333415116756248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833572816468279668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f446c8263734fa48865d2ab054f6b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueScripts:
+  - {fileID: 11400000, guid: 08d2d341eed5f194e99810d3f67da6ce, type: 2}
+  LoopText: 0
+  ButtonPrompt: {fileID: 0}
+  TextBox: {fileID: 0}
+  DialogueCanvas: {fileID: 0}
+  DialogueArea: {fileID: 0}
+  PlayerSprite: {fileID: 0}
+  NPCSprite: {fileID: 0}
+  Name1: {fileID: 0}
+  Name2: {fileID: 0}
+  dialogueSoundSource: {fileID: 0}
+  Room: {fileID: 0}
 --- !u!70 &3033391271483458877
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
