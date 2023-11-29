@@ -33,13 +33,19 @@ public class FinalBossBehaviour : BossBehaviour
     protected override void Start()
     {
         base.Start();
-        SpawnSawblade();
 
         StartCoroutine(RotateGunTowardsPlayer());
 
         jadebotAnimator = GetComponent<Animator>();
 
         StartCoroutine(UpdateAnimation());
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SpawnSawblade();
     }
 
     /// <summary>
