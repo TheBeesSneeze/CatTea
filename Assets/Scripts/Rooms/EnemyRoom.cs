@@ -72,7 +72,7 @@ public class EnemyRoom : RoomType
         aliveEnemies--;
         Debug.Log(aliveEnemies);
 
-        if(wavesLeft > 0 && aliveEnemies <= 2 && !currentlySpawningEnemies)
+        if(wavesLeft > 0 && aliveEnemies <= 2 &&  !currentlySpawningEnemies)
         {
             wavesLeft--;
             StartCoroutine(SpawnNewWaveOfEnemies());
