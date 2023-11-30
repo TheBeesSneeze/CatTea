@@ -15,6 +15,8 @@ using Random = UnityEngine.Random;
 public class EnemyRoom : RoomType
 {
     [Header("Settings")]
+    public AudioClip RoomClearedMusic;
+
     public bool SpawnUpgradeOnCompletion=true;
 
     public List<GameObject> EnemySpawnPool;
@@ -91,20 +93,26 @@ public class EnemyRoom : RoomType
 
         if (wavesLeft <= 0)
         {
-            ClearRoom();
+            OnRoomClear();
             return;
         }
     }
 
-    private void ClearRoom()
+    private void OnRoomClear()
     {
         Debug.Log("All enemies died! Opening door");
         Door.OpenDoor();
 
-        StopPlayingBackgroundMusic();
-
         if(SpawnUpgradeOnCompletion)
             Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, PlayerBehaviour.Instance.transform.position, Quaternion.identity);
+
+        if(RoomClearedMusic != null)
+        {
+            GameManager.Instance.TransitionMusic(RoomClearedMusic);
+            return;
+        }
+
+        StopPlayingBackgroundMusic();
     }
 
     public virtual IEnumerator SpawnNewWaveOfEnemies()
@@ -280,6 +288,6 @@ public class EnemyRoom : RoomType
             enemy.Die();
         }
 
-        ClearRoom();
+        OnRoomClear();
     }
 }
