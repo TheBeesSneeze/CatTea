@@ -24,6 +24,7 @@ public class UpgradeChoiceInterface : MonoBehaviour
     private Color deselectedColor;
 
     public GameObject UpgradeScreen;
+    
 
     [Header("Upgrade Buttons")]
     public UpgradeChoiceButton UpgradeButton1;
@@ -181,4 +182,6 @@ public class UpgradeChoiceInterface : MonoBehaviour
 
         return (!upgradeType.RecquiresGun || SaveDataManager.Instance.SaveData.GunUnlocked);
     }
+
+   
 }

@@ -323,7 +323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeScreen: {fileID: 5054442103902686284}
-  ClosingAnimation: {fileID: 0}
   UpgradeButton1: {fileID: 3548738546462722171}
   UpgradeButton2: {fileID: 6488863251198947564}
   MysteryButton: {fileID: 4594334431871898362}
