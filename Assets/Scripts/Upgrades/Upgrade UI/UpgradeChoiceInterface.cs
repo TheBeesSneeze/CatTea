@@ -17,6 +17,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class UpgradeChoiceInterface : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class UpgradeChoiceInterface : MonoBehaviour
         PlayerController.Instance.Pause.started += CancelUI;
 
         UpgradeScreen.SetActive(true);
+        UpgradeScreen.GetComponent<PlayableDirector>().Play();
 
         ConfirmUpgradeButton.interactable = false;
         DeselectAllOptions();

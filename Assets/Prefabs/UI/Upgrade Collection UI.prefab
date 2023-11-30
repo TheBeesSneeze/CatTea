@@ -303,7 +303,7 @@ RectTransform:
   m_Children:
   - {fileID: 4238686377088946606}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -323,6 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeScreen: {fileID: 5054442103902686284}
+  ClosingAnimation: {fileID: 0}
   UpgradeButton1: {fileID: 3548738546462722171}
   UpgradeButton2: {fileID: 6488863251198947564}
   MysteryButton: {fileID: 4594334431871898362}
@@ -1407,6 +1408,8 @@ GameObject:
   - component: {fileID: 4238686377088946606}
   - component: {fileID: 6527755932388912092}
   - component: {fileID: 2339216472304839517}
+  - component: {fileID: 4397318610732258960}
+  - component: {fileID: 3401950811472331626}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1421,7 +1424,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5054442103902686284}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1473,6 +1476,46 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!320 &4397318610732258960
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5054442103902686284}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 4ec0645aa966edc428491aeb444417e2, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -9029625966951799475, guid: 4ec0645aa966edc428491aeb444417e2, type: 2}
+    value: {fileID: 3401950811472331626}
+  m_ExposedReferences:
+    m_References: []
+--- !u!95 &3401950811472331626
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5054442103902686284}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85c2733c306d6984d89040b3cdfc373d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5194541491146071974
 GameObject:
   m_ObjectHideFlags: 0
