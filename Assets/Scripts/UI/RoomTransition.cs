@@ -163,5 +163,4 @@ public class RoomTransition : MonoBehaviour
 
         SwitchRooms(currentRoom, nextRoom);
     }
-
 }
