@@ -92,13 +92,19 @@ public class BossRoom : EnemyRoom
 
     public void OnBossDeath()
     {
-        StopPlayingBackgroundMusic();
-
         bossDead = true;
         roomCleared = true;
 
         if(Door != null)
             Door.OpenDoor();
+
+        if (RoomClearedMusic != null)
+        {
+            GameManager.Instance.TransitionMusic(RoomClearedMusic);
+            return;
+        }
+
+        StopPlayingBackgroundMusic();
     }
 
     public override bool CheckRoomCleared()
