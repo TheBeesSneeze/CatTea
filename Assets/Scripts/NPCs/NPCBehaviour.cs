@@ -76,6 +76,7 @@ public class NPCBehaviour : MonoBehaviour
 
         int run = SaveDataManager.Instance.SaveData.RunNumber;
         int dialogueIndex = Mathf.Min(run, DialogueScripts.Length - 1);
+
         LoadScript(DialogueScripts[dialogueIndex]);
 
         if(ButtonPrompt != null)
