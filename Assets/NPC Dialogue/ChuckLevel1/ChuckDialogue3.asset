@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: ChuckDialogue3
   m_EditorClassIdentifier: 
   TextList:
-  - Jade, what do you think finding Valentine will accomplish?
+  - Jade, what exactly do you think finding Valentine will accomplish?
   - It could help the city. Is that not enough?
-  - "It is, but what if he left for a reason? Maybe you can\u2019t find him because
-    he doesn\u2019t want to be found."
-  - "No. He wouldn\u2019t just abandon this city. He puts all this effort into changing
-    it, then he just abandons it out of nowhere? It doesn\u2019t make any sense.
-    I need to find out why."
-  - "You\u2019re going to be disappointed when you find him, I\u2019m telling you."
+  - "Sure, but what if he left for a reason? Maybe you can\u2019t find him because
+    he doesn\u2019t want to be found. Maybe it would be better if he wasn\u2019t
+    found. I just think there are some things you aren\u2019t considering here."
+  - "No. He wouldn\u2019t just abandon this city. He puts all this effort into making
+    it his \u201Cperfect vision\u201D, then he just leaves out of nowhere? It doesn\u2019t
+    make any sense. I need to find out why."
+  - "He is going to be dissapointaing when you find him, I\u2019m telling you. People
+    like him always are."
   - Maybe. But I still need to know.
-  - Okay. Take care, alright?
+  - "Alright. Just don\u2019t want you to get your hopes too high. Take care."
   - Always.
   Character1Name: Jade
   Character2Name: Chuck
