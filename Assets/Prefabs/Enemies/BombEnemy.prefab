@@ -319,7 +319,7 @@ MonoBehaviour:
   TimeBetweenMovements: 0
   MaxDistanceToPlayer: 0
   Room: {fileID: 0}
-  bomb: {fileID: 6976842289019245976, guid: 19bb3c5519105814bb1b0f04798f4c2a, type: 3}
+  bomb: {fileID: 450806731333310575, guid: 989cf1231ea23ae4496b92af27c64c84, type: 3}
   explosion: {fileID: 30708773153286463, guid: 35060d375a1389e4281e5813746bd6f4, type: 3}
   amountOfBombs: 3
   bombSpawnInterval: 5

@@ -41,7 +41,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
             positionAroundPlayer.y += randomPosition.y;
             listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
         }
-        StartCoroutine(Explode());
+        //StartCoroutine(Explode());
         
     }
 
