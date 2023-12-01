@@ -84,12 +84,11 @@ MonoBehaviour:
   TimeBetweenMovements: 0
   MaxDistanceToPlayer: 0
   Room: {fileID: 0}
+  SpeedWhenInvisible: 0.5
   attack: {fileID: 2913571313289321869}
   warningZone: {fileID: 2465320291170412087}
-  TimeBeforeDissapearing: 3
-  TimeBeforeAttacking: 3
-  AttackPlayerDistance: 3
-  AmountOfAttacks: 6
+  BecomeInvisibleDistance: 7
+  AttackPlayerDistance: 1
 --- !u!58 &6806993869786903885
 CircleCollider2D:
   m_ObjectHideFlags: 0
