@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSprite: {fileID: 1912031363135449227}
   DamageSound: {fileID: 3709310632224066246}
-  DeathClip: {fileID: 0}
+  DeathClip: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
   _healthPoints: 5
   Invincible: 0
   MaxHealthPoints: 0
@@ -1479,6 +1479,7 @@ MonoBehaviour:
   Room: {fileID: 0}
   BulletPrefab: {fileID: 2738865446770433985, guid: e3339f3bac6db3440806a2aa614aa571, type: 3}
   AttackPlayerDistance: 7
+  WarningSecondsUntilAttack: 0
   NumberOfBullets: 5
   SecondsBetweenBullets: 0.3
   SecondsBetweenAttacks: 1
@@ -1806,7 +1807,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

@@ -43,7 +43,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b7b5a6156961bac44a67504d42ce6fcf, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSprite: {fileID: 7988970365139116022}
   DamageSound: {fileID: 8389291237149867293}
-  DeathClip: {fileID: 0}
+  DeathClip: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
   _healthPoints: 0
   Invincible: 0
   MaxHealthPoints: 0

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSprite: {fileID: 5075632303338542198}
   DamageSound: {fileID: 7182717416330034579}
-  DeathClip: {fileID: 0}
+  DeathClip: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
   _healthPoints: 3
   Invincible: 0
   MaxHealthPoints: 0
@@ -216,7 +216,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
