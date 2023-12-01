@@ -99,6 +99,7 @@ public class SaveDataManager : MonoBehaviour
         PlayerPrefs.SetInt("Tutorial Completed", (SaveData.TutorialCompleted ? 1 : 0));
 
         PlayerPrefs.Save();
+        PlayerPrefs.Save();
         /*
         Debug.Log(saveDataPath);
         var stringifiedData = JsonUtility.ToJson(SaveData);

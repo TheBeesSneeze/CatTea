@@ -587,7 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordEnemy: {fileID: 8914944257408925827}
   SwordCollider: {fileID: 7370112726897792032}
-  ApproachPlayerMovementSpeed: 1
+  ApproachPlayerMovementSpeed: 1.25
   TargetPlayerDistance: 1.25
   ReadySwordSeconds: 2
   SwingSwordSeconds: 0.75

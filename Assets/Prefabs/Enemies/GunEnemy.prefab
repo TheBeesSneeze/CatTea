@@ -1481,9 +1481,9 @@ MonoBehaviour:
   AttackPlayerDistance: 7
   WarningSecondsUntilAttack: 0
   NumberOfBullets: 5
-  SecondsBetweenBullets: 0.3
-  SecondsBetweenAttacks: 1
-  BulletSpeed: 5
+  SecondsBetweenBullets: 0.5
+  SecondsBetweenAttacks: 3
+  BulletSpeed: 3.5
   AimRotationSpeed: 0.75
   Pivot: {fileID: 6919244936486926450}
   FirstAttackWarningZone: {fileID: 1991518621885810459}
