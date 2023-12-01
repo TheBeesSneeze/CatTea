@@ -58,14 +58,12 @@ public class DissapearingEnemy : EnemyBehaviour
         if (distance > AttackPlayerDistance)
         {
             AdjustOpacity(t);
-            Debug.Log(t);
         }
 
         if (distance < AttackPlayerDistance)
         {
             float i = (AttackPlayerDistance - distance) / AttackPlayerDistance;
             AdjustOpacity(i);
-            Debug.Log("very close!");
         }
     }
 
@@ -93,8 +91,6 @@ public class DissapearingEnemy : EnemyBehaviour
         color.a = t;
 
         spriteRenderer.color = color;
-
-        Debug.Log(spriteRenderer.color);
     }
 
     protected override void OnPlayerCollision(Collider2D collision)

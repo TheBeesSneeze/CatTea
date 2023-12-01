@@ -74,7 +74,8 @@ public class NPCBehaviour : MonoBehaviour
             dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
         }
 
-        int dialogueIndex = SaveDataManager.Instance.SaveData.RunNumber % DialogueScripts.Length;
+        int run = SaveDataManager.Instance.SaveData.RunNumber;
+        int dialogueIndex = Mathf.Min(run, DialogueScripts.Length - 1);
         LoadScript(DialogueScripts[dialogueIndex]);
 
         if(ButtonPrompt != null)
