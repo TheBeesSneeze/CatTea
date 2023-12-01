@@ -15,23 +15,27 @@ MonoBehaviour:
   TextList:
   - "You\u2019re back?"
   - Yep. I died.
-  - "Okay that\u2019s the second time you\u2019ve said this. What is going on?"
-  - "I have no idea. I\u2019m sure it has something to do with the Frostrite, though."
-  - Wonderful. Did you at least manage to get some more of it?
+  - "Okay that\u2019s the second time you\u2019ve said this. What is going on? You
+    said you\u2019d tell me later and that\u2019s now."
+  - "I was really hoping I\u2019d have a better answer by now, but I don\u2019t.
+    I\u2019m sure it has something to do with the Frostrite, though."
+  - "Well, if you\u2019re sure, then it must. Did you at least manage to get some
+    more of it?"
   - "Uhhhhh, for a little bit. Then I died and lost all of it. And I\u2019m pretty
-    sure everyone I killed is back as well. I can sense them."
+    sure everyone I killed is back as well. I can sense them through the Frostrite."
   - "You\u2019re serious? This is gonna draw a lot of attention from the Fides, Jade."
   - "I know. I\u2019ll be quick, I promise."
-  - "You could just leave it alone. Stop searching for Valentine. It\u2019s not too
-    late."
+  - "You could also just stop. Stop searching for Valentine. It\u2019s not too late.
+    These problems aren\u2019t too big to fix yet."
   - ...
-  - No. I have to find him. Sorry.
-  - "It\u2019s fine. I get it. Good luck."
+  - "No. I have to find him. I don\u2019t care what it takes. Sorry."
+  - "Yeah, that\u2019s what I thought you\u2019d say. Take care."
+  - Always.
   Character1Name: Jade
   Character2Name: Chuck
   Character1DialogueSound: {fileID: 8300000, guid: 857406ecf06fff440aafae362726fe07, type: 3}
   Character2DialogueSound: {fileID: 8300000, guid: 6c679bf73a507714793b1a8b593db6fd, type: 3}
-  WhoIsTalking: 010000000000000001000000000000000100000000000000010000000000000001000000000000000000000001000000
+  WhoIsTalking: 01000000000000000100000000000000010000000000000001000000000000000100000000000000000000000100000000000000
   PlayerTalkingSprites:
   - {fileID: 21300000, guid: 107864498673b4f478be06f366a49196, type: 3}
   NPCTalkingSprites:

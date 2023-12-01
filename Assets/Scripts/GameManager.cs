@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     public RoomType CurrentRoom;
 
+    protected AudioSource backgroundMusicPlayer;
+    private float defaultBGMVolume;
+
     //magic numbers
     protected float secondsBetweenDestroyingAttacks = 0.1f; 
 
@@ -47,6 +50,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        backgroundMusicPlayer = GameObject.Find("Background Music").GetComponent<AudioSource>();
+        defaultBGMVolume = backgroundMusicPlayer.volume;
+
         CurrentChallengePoints = DefaultChallengePoints;
 
         CurrentUpgradePool = new List<GameObject>(UpgradePool); //copys list awesome
@@ -58,7 +64,59 @@ public class GameManager : MonoBehaviour
         else
             EnterTutorial();
     }
-    
+
+    /// <summary>
+    /// Fades current playing song into another
+    /// Rooms do not use this code. i dont have time to do that.
+    /// this is only used when you clear enemy/boss rooms
+    /// </summary>
+    public void TransitionMusic(AudioClip newSong)
+    {
+        StartCoroutine(TransitionMusicCoroutine(newSong));
+    }
+
+    private IEnumerator TransitionMusicCoroutine(AudioClip newSong)
+    {
+        if (backgroundMusicPlayer.volume > 0)
+        {
+            ScaleBackgroundMusic(0);
+            yield return new WaitForSeconds(RoomTransition.Instance.TotalTransitionSeconds / 2);
+        }
+
+        backgroundMusicPlayer.clip = newSong;
+        ScaleBackgroundMusic(1);
+    }
+
+    public void ScaleBackgroundMusic(float targetVolume)
+    {
+        StartCoroutine(ScaleBackgroundMusicCoroutine(targetVolume));
+    }
+
+    /// <summary>
+    /// Turns up or down the music volume, over the same amount of seconds it takes to transition rooms
+    /// </summary>
+    /// <param name="TargetVolume"> 0-1</param>
+    /// <returns></returns>
+    private IEnumerator ScaleBackgroundMusicCoroutine(float TargetVolume)
+    {
+        float startingVolume = backgroundMusicPlayer.volume;
+        float scaleSeconds = RoomTransition.Instance.TotalTransitionSeconds / 2;
+        float time = 0;
+
+        while (time < scaleSeconds)
+        {
+            time += Time.deltaTime;
+
+            float t = time / scaleSeconds;
+            float tScaled = Mathf.Pow(t, 1f / 2f);
+
+            float volumeScale = SaveDataManager.Instance.SettingsData.MusicVolume * defaultBGMVolume;
+            backgroundMusicPlayer.volume = volumeScale * Mathf.Lerp(startingVolume, TargetVolume, tScaled);
+
+            yield return null;
+        }
+    }
+
     private void EnterTutorial()
     {
         TutorialRoom tutorial = GameObject.FindObjectOfType<TutorialRoom>();

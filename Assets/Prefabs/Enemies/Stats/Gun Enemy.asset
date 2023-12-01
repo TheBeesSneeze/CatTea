@@ -17,7 +17,7 @@ MonoBehaviour:
   EnemyMove: 0
   TimeBetweenMovements: 1
   MaxDistanceFromPlayer: 5
-  HealthPoints: 5
+  HealthPoints: 7
   Damage: 2
   ContactDamage: 0
   DealContactDamage: 0

@@ -129,6 +129,8 @@ public class DefaultPlayerController : MonoBehaviour
         cheat.started += Cheat_started;
     }
 
+    
+
     protected void DetectInputDevice()
     {
         try { MyGamepad = playerInput.GetDevice<Gamepad>(); }
@@ -146,6 +148,7 @@ public class DefaultPlayerController : MonoBehaviour
             PlayerControllerType = ControllerType.Controller;
     }
 
+    
     /// <summary>
     /// Kind of averages the players input direction with the last input direction when
     /// a key is pressed, so it creates a slightly slippery effect.

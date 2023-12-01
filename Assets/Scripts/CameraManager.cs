@@ -78,9 +78,12 @@ public class CameraManager : MonoBehaviour
     {
         while(followingPlayer)
         {
-            Vector3 newPosition = GetNewCameraPosition();
-            newPosition.z = -10;
-            transform.position = newPosition;
+            if(!PlayerController.Instance.IgnoreAllInputs)
+            {
+                Vector3 newPosition = GetNewCameraPosition();
+                newPosition.z = -10;
+                transform.position = newPosition;
+            }
 
             //yield return null;
             yield return new WaitForFixedUpdate();

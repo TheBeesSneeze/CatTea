@@ -30,7 +30,7 @@ public class EnemyStats : ScriptableObject
 
     [Tooltip("Amount of damage the enemies attack deals")]
     public int Damage;
-    public int ContactDamage;
+    public float ContactDamage;
 
     public bool DealContactDamage;
 }

@@ -15,6 +15,8 @@ using Random = UnityEngine.Random;
 public class EnemyRoom : RoomType
 {
     [Header("Settings")]
+    public AudioClip RoomClearedMusic;
+
     public bool SpawnUpgradeOnCompletion=true;
 
     public List<GameObject> EnemySpawnPool;
@@ -37,6 +39,7 @@ public class EnemyRoom : RoomType
     public float shadowExpandingScale = 3; // t^x (this is x)
 
     private int challengePointsLeft;
+    private bool currentlySpawningEnemies;
 
     public override void EnterRoom()
     {
@@ -69,6 +72,14 @@ public class EnemyRoom : RoomType
     public virtual void OnEnemyDeath()
     {
         aliveEnemies--;
+        Debug.Log(aliveEnemies);
+
+        if(wavesLeft > 0 && aliveEnemies <= 2 &&  !currentlySpawningEnemies)
+        {
+            wavesLeft--;
+            StartCoroutine(SpawnNewWaveOfEnemies());
+            return;
+        }
 
         if(aliveEnemies <= 0)
         {
@@ -82,33 +93,37 @@ public class EnemyRoom : RoomType
 
         if (wavesLeft <= 0)
         {
-            ClearRoom();
+            OnRoomClear();
             return;
         }
-
-        StartCoroutine(SpawnNewWaveOfEnemies());
     }
 
-    private void ClearRoom()
+    private void OnRoomClear()
     {
         Debug.Log("All enemies died! Opening door");
         Door.OpenDoor();
 
-        StopPlayingBackgroundMusic();
-
         if(SpawnUpgradeOnCompletion)
             Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, PlayerBehaviour.Instance.transform.position, Quaternion.identity);
+
+        if(RoomClearedMusic != null)
+        {
+            GameManager.Instance.TransitionMusic(RoomClearedMusic);
+            return;
+        }
+
+        StopPlayingBackgroundMusic();
     }
 
     public virtual IEnumerator SpawnNewWaveOfEnemies()
     {
+        currentlySpawningEnemies = true;
+
         yield return new WaitForSeconds(secondsUntilWaveStart);
 
-        challengePointsLeft = challengePointsPerWave;
+        challengePointsLeft += challengePointsPerWave;
 
         Debug.Log("New wave! Using " + challengePointsLeft);
-
-        aliveEnemies = 0;
 
         List<Transform> spawnPointsAvailable = new List<Transform>(EnemySpawnPoints);
 
@@ -122,6 +137,7 @@ public class EnemyRoom : RoomType
         }
 
         challengePointsLeft = 0;
+        currentlySpawningEnemies = false;
     }
 
     /// <summary>
@@ -272,6 +288,6 @@ public class EnemyRoom : RoomType
             enemy.Die();
         }
 
-        ClearRoom();
+        OnRoomClear();
     }
 }

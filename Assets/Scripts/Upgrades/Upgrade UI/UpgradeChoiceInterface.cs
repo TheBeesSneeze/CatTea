@@ -17,12 +17,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class UpgradeChoiceInterface : MonoBehaviour
 {
     private Color deselectedColor;
 
     public GameObject UpgradeScreen;
+    public GameObject UpgradeScreenOpening;
+    public GameObject UpgradeScreenClosing;
 
     [Header("Upgrade Buttons")]
     public UpgradeChoiceButton UpgradeButton1;
@@ -50,6 +53,7 @@ public class UpgradeChoiceInterface : MonoBehaviour
         PlayerController.Instance.Pause.started += CancelUI;
 
         UpgradeScreen.SetActive(true);
+        UpgradeScreenOpening.GetComponent<PlayableDirector>().Play();
 
         ConfirmUpgradeButton.interactable = false;
         DeselectAllOptions();
@@ -81,7 +85,7 @@ public class UpgradeChoiceInterface : MonoBehaviour
         PlayerController.Instance.IgnoreAllInputs = false;
 
         Destroy(ChoiceObject.gameObject);
-        UpgradeScreen.SetActive(false);
+        StartCoroutine(ClosingAnimation());
     }
 
     /// <summary>
@@ -178,5 +182,12 @@ public class UpgradeChoiceInterface : MonoBehaviour
         UpgradeType upgradeType = upgrade.GetComponent<UpgradeType>();
 
         return (!upgradeType.RecquiresGun || SaveDataManager.Instance.SaveData.GunUnlocked);
+    }
+
+    private IEnumerator ClosingAnimation()
+    {
+        UpgradeScreenClosing.GetComponent<PlayableDirector>().Play();
+        yield return new WaitForSeconds(0.5f);
+        UpgradeScreen.SetActive(false);
     }
 }
