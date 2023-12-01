@@ -688,7 +688,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1459840693}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: GameSceneLoad
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -924,6 +924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creditsPage: {fileID: 0}
   controlsPage: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  loadGameButton: {fileID: 0}
 --- !u!114 &1459840694
 MonoBehaviour:
   m_ObjectHideFlags: 0
