@@ -153,7 +153,7 @@ public class MeleePlayerController : MonoBehaviour
             angle = Mathf.Atan2(PlayerController.Instance.AimingDirection.y, PlayerController.Instance.AimingDirection.x) * Mathf.Rad2Deg;
             angle += 360;
 
-            if (angle != lastAngle)
+            if (angle != lastAngle && !PlayerController.Instance.IgnoreAllInputs)
             {
                 //kinda smoothen the angle
                 float difference = Mathf.Abs(angle - lastAngle);
