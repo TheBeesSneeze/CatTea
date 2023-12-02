@@ -16,11 +16,14 @@ public class DogEnemyBehaviour : EnemyBehaviour
     [Header("Wolf Settings:")]
     public GameObject dogAttackPrefab;
 
+    public Transform Pivot;
+
     public int AttacksPerWave;
     public float TimeBetweenAttacks;
     public float TimeAfterAttack;
     public float AttackVelocity;
     public float AttackPlayerDistance = 7;
+    public float AimRotationSpeed;
 
     //magic numbers
     protected float rotationModifier = 90;
@@ -33,23 +36,27 @@ public class DogEnemyBehaviour : EnemyBehaviour
     protected override void Start()
     {
         base.Start();
-        StartCoroutine(RotateEnemy());
+        StartCoroutine(RotatePivot());
         StartCoroutine(Attack());
     }
 
-    private IEnumerator RotateEnemy()
+
+    private IEnumerator RotatePivot()
     {
-        while(this.gameObject != null)
+        while (this.gameObject != null)
         {
             Vector3 vectorToTarget = PlayerBehaviour.Instance.transform.position - transform.position;
+
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * Speed);
+
+            Pivot.rotation = Quaternion.Slerp(Pivot.rotation, q, Time.deltaTime * AimRotationSpeed);
 
             yield return null;
         }
-        
+
     }
+    
 
     private IEnumerator Attack()
     {
@@ -75,7 +82,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
         {
             yield return new WaitForSeconds(TimeBetweenAttacks);
 
-            GameObject newAttack = Instantiate(dogAttackPrefab, transform.position, transform.rotation);
+            GameObject newAttack = Instantiate(dogAttackPrefab, Pivot.transform.position, Pivot.transform.rotation);
 
             AttacksSpawned.Add(newAttack);
 
