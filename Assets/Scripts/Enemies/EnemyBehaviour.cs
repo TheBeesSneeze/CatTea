@@ -20,7 +20,7 @@ public class EnemyBehaviour : CharacterBehaviour
     [HideInInspector] public int Damage;
     [HideInInspector] public bool EnemyMove; // if enemy should be stationary or nah
     [HideInInspector] public float TimeBetweenMovements;
-    [HideInInspector] protected int contactDamage;
+    [HideInInspector] protected float contactDamage;
     [HideInInspector] protected bool dealContactDamage;
     [HideInInspector] public float MaxDistanceToPlayer;
 

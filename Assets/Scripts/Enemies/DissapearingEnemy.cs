@@ -3,7 +3,8 @@
 * Author(s) :         Aiden Vandeberg, TobySchamberger
 * Creation Date :     
 *
-* Brief Description : 
+* Brief Description : Becomes invisible when close enough to player.
+* when even closer to player, it becomes visible again and hurts you!
 *******************************************************************************/
 
 using System.Collections;
@@ -13,36 +14,211 @@ using UnityEngine.AI;
 
 public class DissapearingEnemy : EnemyBehaviour
 {
+    public float SpeedWhenInvisible;
+    private float defaultSpeed;
+
     public GameObject attack;
     public GameObject warningZone;
 
-    protected float rotationModifier = 90;
+    //public float TimeBeforeDissapearing;
+    //public float TimeBeforeAttacking;
 
-    public float TimeBeforeDissapearing;
-    public float TimeBeforeAttacking;
-    public float AttackPlayerDistance = 3;
-    public int AmountOfAttacks;
+    public float BecomeInvisibleDistance = 15;
+    public float AttackPlayerDistance = 0.1f;
+    //public int AmountOfAttacks;
 
-    private bool enemyVisible;
+    private bool runningFromPlayer;
 
-    //magic numbers
-    private float secondsToToggleInvisibility = 0.5f;
-
-    private Coroutine attackCoroutine;
-    
-   
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        enemyVisible = true;
 
-        StartCoroutine(RotateEnemy());
-        StartCoroutine(Dissapear());
-        StartCoroutine(StartAttack());
+        defaultSpeed = agent.speed;
+
+        //StartCoroutine(RotateEnemy());
+        //StartCoroutine(Dissapear());
+        //(StartAttack());
+
+        StartCoroutine(ChangeOpacityByPlayerDistance());
     }
 
-    private IEnumerator RotateEnemy()
+    /// <summary>
+    /// hating myself for using update but this is literally the only solution i could find and ive been working on this for 4 hours straight
+    /// </summary>
+    private void LateUpdate()
+    {
+        float distance = Vector2.Distance(this.transform.position, PlayerBehaviour.Instance.transform.position);
+        distance = Mathf.Clamp(distance, AttackPlayerDistance, BecomeInvisibleDistance);
+
+        float t = distance / BecomeInvisibleDistance;
+        //t = Mathf.Pow(t, 0.2f);
+        AdjustSpeed(t);
+
+        if (distance > AttackPlayerDistance)
+        {
+            AdjustOpacity(t);
+        }
+
+        if (distance < AttackPlayerDistance)
+        {
+            float i = (AttackPlayerDistance - distance) / AttackPlayerDistance;
+            AdjustOpacity(i);
+        }
+    }
+
+    /// <summary>
+    /// for some reason EVERYTHING breaks if i get rid of this coroutine so i guess its fucking staying
+    /// </summary>
+    private IEnumerator ChangeOpacityByPlayerDistance()
+    {
+        yield return null;
+    }
+
+    private void AdjustSpeed(float t)
+    {
+        if (runningFromPlayer)
+            return;
+
+        float tScaled = Mathf.Pow(t, 0.5f);
+
+        agent.speed = Mathf.Lerp(SpeedWhenInvisible, defaultSpeed, tScaled);
+    }
+
+    private void AdjustOpacity(float t)
+    {
+        Color color = spriteRenderer.color;
+        color.a = t;
+
+        spriteRenderer.color = color;
+    }
+
+    protected override void OnPlayerCollision(Collider2D collision)
+    {
+        base.OnPlayerCollision(collision);
+
+        StartCoroutine(RunFromPlayer());
+    }
+
+    private IEnumerator RunFromPlayer()
+    {
+        runningFromPlayer= true;
+        agent.speed = -defaultSpeed;
+
+        yield return new WaitForSeconds(3);
+
+        agent.speed = defaultSpeed;
+        runningFromPlayer = false;
+    }
+
+    /*
+    private IEnumerator Dissapear()
+    {
+        enemyVisible = false;
+
+        Debug.Log("disappearing");
+
+        float time = 0;
+        while(time < secondsToBecomeInvisible)
+        {
+            time+= Time.deltaTime;
+            float t = time / secondsToBecomeInvisible;
+
+            Color myColor = spriteRenderer.color;
+            myColor.a = 1.05f-t;
+
+            spriteRenderer.color = myColor;
+
+            AdjustSpeedByOpacity();
+
+            yield return null;
+        }
+
+        visibilityCoroutine = null;
+    }
+
+    private IEnumerator Appear()
+    {
+        enemyVisible = true;
+
+        float time = 0;
+        while (time < secondsToBecomeVisible)
+        {
+            time += Time.deltaTime;
+            float t = time / secondsToBecomeVisible;
+
+            Color myColor = spriteRenderer.color;
+            myColor.a = t;
+
+            spriteRenderer.color = myColor;
+
+            AdjustSpeedByOpacity();
+
+            yield return null;
+        }
+
+        visibilityCoroutine = null;
+    }
+
+    private void AdjustSpeedByOpacity()
+    {
+        float a = spriteRenderer.color.a;
+        float aScaled = Mathf.Pow(a, 0.5f);
+
+        agent.speed = Mathf.Lerp(SpeedWhenInvisible, defaultSpeed, a);
+    }
+
+    private IEnumerator ChangeOpacityByPlayerDistance()
+    {
+        while(true)
+        {
+            float distance = Vector2.Distance(this.transform.position, PlayerBehaviour.Instance.transform.position);
+
+            if(AttackPlayerDistance < distance && distance < BecomeInvisibleDistance)
+            {
+                BecomeInvisible();
+            }
+            if(distance < AttackPlayerDistance || distance > BecomeInvisibleDistance)
+            {
+                BecomeVisible();
+            }
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    private void BecomeInvisible()
+    {
+        if (!enemyVisible)
+        {
+            return;
+        }
+
+        if(visibilityCoroutine != null)
+        {
+            StopCoroutine(visibilityCoroutine);
+        }
+
+        visibilityCoroutine = StartCoroutine(Dissapear());
+    }
+
+    private void BecomeVisible()
+    {
+        if (enemyVisible)
+            return;
+
+        if (visibilityCoroutine != null)
+        {
+            StopCoroutine(visibilityCoroutine);
+        }
+
+        visibilityCoroutine = StartCoroutine(Appear());
+    }
+    */
+
+    /*
+    
+     private IEnumerator RotateEnemy()
     {
         while (this.gameObject != null)
         {
@@ -54,42 +230,6 @@ public class DissapearingEnemy : EnemyBehaviour
             yield return null;
         }
 
-    }
-
-    private IEnumerator Dissapear()
-    {
-        yield return new WaitForSeconds(TimeBeforeDissapearing);
-
-        float t = 0;
-        while(t < 1)
-        {
-            t+= Time.deltaTime / secondsToToggleInvisibility;
-
-            Color myColor = spriteRenderer.color;
-            myColor.a = 1-t;
-
-            spriteRenderer.color = myColor;
-        }
-
-        yield return new WaitForSeconds(TimeBeforeAttacking);
-        enemyVisible = false;
-    }
-
-    private IEnumerator Appear()
-    {
-        float t = 0;
-        while (t < 1)
-        {
-            t += Time.deltaTime / secondsToToggleInvisibility;
-
-            Color myColor = spriteRenderer.color;
-            myColor.a = t;
-
-            spriteRenderer.color = myColor;
-        }
-
-        yield return new WaitForSeconds(TimeBeforeAttacking);
-        enemyVisible = true;
     }
 
     private IEnumerator StartAttack()
@@ -126,4 +266,5 @@ public class DissapearingEnemy : EnemyBehaviour
         StartCoroutine(Dissapear());
         attackCoroutine = null;
     }
+    */
 }

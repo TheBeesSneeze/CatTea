@@ -43,7 +43,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSprite: {fileID: 5524626414991716743}
   DamageSound: {fileID: 3409256746870013013}
-  DeathClip: {fileID: 0}
+  DeathClip: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
   _healthPoints: 0
   Invincible: 0
   MaxHealthPoints: 0
@@ -319,9 +319,9 @@ MonoBehaviour:
   TimeBetweenMovements: 0
   MaxDistanceToPlayer: 0
   Room: {fileID: 0}
-  bomb: {fileID: 6976842289019245976, guid: 19bb3c5519105814bb1b0f04798f4c2a, type: 3}
+  bomb: {fileID: 450806731333310575, guid: 989cf1231ea23ae4496b92af27c64c84, type: 3}
   explosion: {fileID: 30708773153286463, guid: 35060d375a1389e4281e5813746bd6f4, type: 3}
-  amountOfBombs: 3
+  amountOfBombs: 1
   bombSpawnInterval: 5
   SecondsUntilExplode: 1
   SecondsAfterExplode: 0.5

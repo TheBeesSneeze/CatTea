@@ -26,5 +26,5 @@ MonoBehaviour:
   RangedAttackKnockback: 0
   MeleeAttackDamage: 5
   SwingSeconds: 0.1
-  SwordAttackCoolDown: 0.5
+  SwordAttackCoolDown: 0.3
   MeleeAttackKnockback: 2

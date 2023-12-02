@@ -52,6 +52,8 @@ public class UpgradeChoiceInterface : MonoBehaviour
         PlayerController.Instance.IgnoreAllInputs = true;
         PlayerController.Instance.Pause.started += CancelUI;
 
+        PlayerController.Instance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
         UpgradeScreen.SetActive(true);
         UpgradeScreenOpening.GetComponent<PlayableDirector>().Play();
 

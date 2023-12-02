@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2144704927622778996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5439650258630363436}
+  m_Layer: 0
+  m_Name: AttackPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5439650258630363436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144704927622778996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5547734666173741432}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2201471818238836669
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +66,7 @@ Transform:
   m_Children:
   - {fileID: 4804859625927888706}
   - {fileID: 9087705418476971652}
+  - {fileID: 5439650258630363436}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSprite: {fileID: 5926817225726381908}
   DamageSound: {fileID: 8357513789879078686}
-  DeathClip: {fileID: 0}
+  DeathClip: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
   _healthPoints: 0
   Invincible: 0
   MaxHealthPoints: 0
@@ -71,11 +103,13 @@ MonoBehaviour:
   MaxDistanceToPlayer: 0
   Room: {fileID: 0}
   dogAttackPrefab: {fileID: 1635809448085294935, guid: 56a658699bc46f343aa530c6e13fd752, type: 3}
+  Pivot: {fileID: 5439650258630363436}
   AttacksPerWave: 2
   TimeBetweenAttacks: 1
   TimeAfterAttack: 6
   AttackVelocity: 6
   AttackPlayerDistance: 7
+  AimRotationSpeed: 4
 --- !u!114 &1796777962228605073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +249,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
