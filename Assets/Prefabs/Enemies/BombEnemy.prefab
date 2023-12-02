@@ -321,7 +321,7 @@ MonoBehaviour:
   Room: {fileID: 0}
   bomb: {fileID: 450806731333310575, guid: 989cf1231ea23ae4496b92af27c64c84, type: 3}
   explosion: {fileID: 30708773153286463, guid: 35060d375a1389e4281e5813746bd6f4, type: 3}
-  amountOfBombs: 3
+  amountOfBombs: 1
   bombSpawnInterval: 5
   SecondsUntilExplode: 1
   SecondsAfterExplode: 0.5

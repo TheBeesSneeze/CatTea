@@ -31,16 +31,20 @@ public class BombEnemyBehaviour : EnemyBehaviour
 
     private IEnumerator SpawnBombs()
     {
-        yield return new WaitForSeconds(bombSpawnInterval);
-
-        for (int i = 0; i < amountOfBombs; i++)
+        while(this.gameObject != null)
         {
-            Vector3 positionAroundPlayer = PlayerBehaviour.Instance.transform.position;
-            Vector3 randomPosition = Random.insideUnitCircle;
-            positionAroundPlayer.x += randomPosition.x;
-            positionAroundPlayer.y += randomPosition.y;
-            listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
+            yield return new WaitForSeconds(bombSpawnInterval);
+
+            for (int i = 0; i < amountOfBombs; i++)
+            {
+                Vector3 positionAroundPlayer = PlayerBehaviour.Instance.transform.position;
+                Vector3 randomPosition = Random.insideUnitCircle;
+                positionAroundPlayer.x += randomPosition.x;
+                positionAroundPlayer.y += randomPosition.y;
+                listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
+            }
         }
+       
         //StartCoroutine(Explode());
         
     }
