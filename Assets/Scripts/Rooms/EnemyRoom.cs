@@ -72,31 +72,29 @@ public class EnemyRoom : RoomType
     public virtual void OnEnemyDeath()
     {
         aliveEnemies--;
-        Debug.Log(aliveEnemies);
+        Debug.Log(aliveEnemies + "enemies left");
 
-        if(wavesLeft > 0 && aliveEnemies <= 2 &&  !currentlySpawningEnemies)
+        if (currentlySpawningEnemies)
+            return;
+
+        //spawn a new wave!
+        if(wavesLeft > 0 && aliveEnemies <= 2)
         {
             wavesLeft--;
+            currentlySpawningEnemies = true;
+
             StartCoroutine(SpawnNewWaveOfEnemies());
             return;
         }
 
-        if(aliveEnemies <= 0)
-        {
-            OnWaveEnd();
-        }
-    }
-
-    private void OnWaveEnd()
-    {
-        wavesLeft--;
-
-        if (wavesLeft <= 0)
+        //end everything!
+        if (wavesLeft <= 0 && aliveEnemies <=0)
         {
             OnRoomClear();
             return;
         }
     }
+
 
     private void OnRoomClear()
     {

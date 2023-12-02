@@ -3,11 +3,8 @@
 * Author(s) :         Toby Schamberger
 * Creation Date :     9/15/2023
 *
-* Brief Description : Accessed by rooms. Can follow the player. 
-* Can lerp/slide between two points.
-* 
-* TODO:
-* Follow player
+* Brief Description : Centered to the player. follows the mouse slightly.
+* also moves the background seperately
 *****************************************************************************/
 
 using System.Collections;
@@ -21,6 +18,10 @@ public class CameraManager : MonoBehaviour
     public float MaxDistanceFromPlayer;
     [Tooltip("Make this number higher for less durastic movements")]
     public float MouseToPlayerScale;
+    [Tooltip("Make this number higher for less durastic movements")]
+    public float BackgroundMouseToPlayerScale;
+
+    public Transform Background;
 
     private bool followingPlayer;
 
@@ -31,8 +32,10 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindAnyObjectByType<PlayerBehaviour>().transform;
+        player = PlayerBehaviour.Instance.transform;
         mousePosition = GameObject.FindObjectOfType<RangedPlayerController>().RangedIcon.transform;
+
+        Background.SetParent(null);
     }
 
     /// <summary>
@@ -80,9 +83,9 @@ public class CameraManager : MonoBehaviour
         {
             if(!PlayerController.Instance.IgnoreAllInputs)
             {
-                Vector3 newPosition = GetNewCameraPosition();
-                newPosition.z = -10;
-                transform.position = newPosition;
+                UpdateCameraPosition();
+
+                UpdateBackgroundPosition();
             }
 
             //yield return null;
@@ -91,14 +94,28 @@ public class CameraManager : MonoBehaviour
         followPlayerCoroutine = null;
     }
 
+    private void UpdateCameraPosition()
+    {
+        Vector3 newPosition = GetNewCameraPosition(MouseToPlayerScale);
+        newPosition.z = -10;
+        transform.position = newPosition;
+    }
+
+    private void UpdateBackgroundPosition()
+    {
+        Vector3 newPosition = GetNewCameraPosition(BackgroundMouseToPlayerScale);
+        newPosition.z = 10;
+        Background.position = newPosition;
+    }
+
     /// <summary>
     /// Gets new camera position relaitvie to the player
     /// </summary>
     /// <returns>does not fix z axis!</returns>
-    private Vector3 GetNewCameraPosition()
+    private Vector3 GetNewCameraPosition(float scale)
     {
         Vector3 difference = mousePosition.position - player.position;
-        difference = difference / MouseToPlayerScale;
+        difference = difference / scale;
 
         Vector3 newPosition = player.position + difference;
 
@@ -113,6 +130,8 @@ public class CameraManager : MonoBehaviour
 
         return newPosition;
     }
+
+
 
     /*
     private IEnumerator FollowPlayer()

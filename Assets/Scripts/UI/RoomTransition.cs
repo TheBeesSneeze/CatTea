@@ -21,7 +21,8 @@ public class RoomTransition : MonoBehaviour
     private float targetSize = 1600;
     private float tScale = 0.90f;
 
-    private GameObject player;
+    private SpriteRenderer backgroundSprite;
+
     private Coroutine transitonCoroutine;
 
     private void Awake()
@@ -40,7 +41,13 @@ public class RoomTransition : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindObjectOfType<PlayerBehaviour>().gameObject;
+        GameObject background = GameObject.Find("Background");
+        if(background == null)
+        {
+            Debug.LogWarning("Cant find background in scene");
+            return;
+        }
+        backgroundSprite = background.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -78,7 +85,7 @@ public class RoomTransition : MonoBehaviour
         if (nextRoom != null)
             nextRoom.EnterRoom();
 
-        MoveBox(player.transform.position);
+        MoveBox(PlayerBehaviour.Instance.transform.position);
         StartCoroutine(ScaleTransitionBox(targetSize, 0, tScale));
     }
 
@@ -141,10 +148,11 @@ public class RoomTransition : MonoBehaviour
     {
         float secondsToChangeBackgroundColor = TotalTransitionSeconds * 1.5f;
 
-        float t = 0; // 0 <= t <= 1
-        while(t < secondsToChangeBackgroundColor)
+        float time = 0;
+        while(time < secondsToChangeBackgroundColor)
         {
-            t += Time.deltaTime;
+            time += Time.deltaTime;
+            float t = time / secondsToChangeBackgroundColor;
             //float tScaled = Mathf.Pow(t, 3);
 
             Camera.main.backgroundColor = Color.Lerp(startColor, targetColor, t);
