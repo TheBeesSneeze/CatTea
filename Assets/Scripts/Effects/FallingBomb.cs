@@ -164,6 +164,9 @@ public class FallingBomb : MonoBehaviour
 
     private void UpdateLineRenderer()
     {
+        Color startColor = lineRenderer.startColor;
+        //Color startColor = lineRenderer.startColor;
+
         lineRenderer.SetPosition(0, Bomb.transform.position);
         lineRenderer.SetPosition(1, Shadow.transform.position);
     }

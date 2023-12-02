@@ -369,7 +369,7 @@ Transform:
   - {fileID: 6682768388044712398}
   - {fileID: 1474034319995040122}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3960929813530222297
 MonoBehaviour:
@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonPrompt: {fileID: 6352871091845254631}
+  GunTutorialPrefab: {fileID: 8830588836972787430, guid: baf11df7c10a5fe4488029cb294138e1, type: 3}
   BossDoor: {fileID: 0}
 --- !u!58 &8315363259817582478
 CircleCollider2D:
@@ -419,7 +420,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &8357928218684403065
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,13 +15,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class UpgradeChoiceInterface : MonoBehaviour
 {
     private Color deselectedColor;
 
     public GameObject UpgradeScreen;
+    public GameObject UpgradeScreenOpening;
+    public GameObject UpgradeScreenClosing;
 
     [Header("Upgrade Buttons")]
     public UpgradeChoiceButton UpgradeButton1;
@@ -43,14 +47,35 @@ public class UpgradeChoiceInterface : MonoBehaviour
         MysteryButton.GetComponent<Image>().color = deselectedColor;
     }
 
-    public void OpenUI()
+    public void OpenUI(bool randomizeChoices)
     {
+        PlayerController.Instance.IgnoreAllInputs = true;
+        PlayerController.Instance.Pause.started += CancelUI;
+
+        PlayerController.Instance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
         UpgradeScreen.SetActive(true);
+        UpgradeScreenOpening.GetComponent<PlayableDirector>().Play();
 
         ConfirmUpgradeButton.interactable = false;
         DeselectAllOptions();
 
-        RandomizeUpgradeChoices();
+        if(randomizeChoices)
+        {
+            RandomizeUpgradeChoices();
+        }
+    }
+
+    /// <summary>
+    /// Cancels UI interface, player can come back tho
+    /// </summary>
+    /// <param name="obj"></param>
+    public void CancelUI(InputAction.CallbackContext obj)
+    {
+        PlayerController.Instance.Pause.started -= CancelUI;
+        PlayerController.Instance.IgnoreAllInputs = false;
+
+        UpgradeScreen.SetActive(false);
     }
 
     /// <summary>
@@ -59,8 +84,10 @@ public class UpgradeChoiceInterface : MonoBehaviour
     /// </summary>
     public void CloseUI()
     {
+        PlayerController.Instance.IgnoreAllInputs = false;
+
         Destroy(ChoiceObject.gameObject);
-        UpgradeScreen.SetActive(false);
+        StartCoroutine(ClosingAnimation());
     }
 
     /// <summary>
@@ -157,5 +184,12 @@ public class UpgradeChoiceInterface : MonoBehaviour
         UpgradeType upgradeType = upgrade.GetComponent<UpgradeType>();
 
         return (!upgradeType.RecquiresGun || SaveDataManager.Instance.SaveData.GunUnlocked);
+    }
+
+    private IEnumerator ClosingAnimation()
+    {
+        UpgradeScreenClosing.GetComponent<PlayableDirector>().Play();
+        yield return new WaitForSeconds(0.5f);
+        UpgradeScreen.SetActive(false);
     }
 }

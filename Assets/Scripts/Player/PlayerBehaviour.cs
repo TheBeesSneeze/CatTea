@@ -169,6 +169,12 @@ public class PlayerBehaviour : CharacterBehaviour
         if (onDamageEvent)
             GameEvents.Instance.OnPlayerDamage();
 
+        //if player already dead
+        if(HealthPoints <= 0)
+        {
+            return true;
+        }
+
         bool died = base.TakeDamage(damage);
 
         BecomeInvincible(InvincibilitySeconds); 
@@ -183,9 +189,12 @@ public class PlayerBehaviour : CharacterBehaviour
         SaveDataManager.Instance.SaveData.RunNumber++;
         SaveDataManager.Instance.SaveSaveData();
 
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector3.zero;
+
         StartCoroutine(DarkenScreen());
 
-        
+        Debug.Log("Player died. Run number is now " + SaveDataManager.Instance.SaveData.RunNumber);
     }
 
     /// <summary>

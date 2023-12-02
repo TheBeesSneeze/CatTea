@@ -18,6 +18,7 @@ public class BossRoom : EnemyRoom
     public Transform BossSpawnPosition;
 
     private GameObject bossObject;
+    private BossDialogue bossDialogue;
     private BossBehaviour bossScript;
     private bool bossDead;
 
@@ -33,14 +34,14 @@ public class BossRoom : EnemyRoom
         //copy and paste the code from roomType
         cameraManager.MoveCamera(CameraCenterPoint);
 
-        playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+        PlayerBehaviour.Instance.transform.position = PlayerSpawnPoint.transform.position;
         Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)
             cameraManager.StartFollowPlayer();
 
         SpawnBoss();
-        StartPlayingBackgroundMusic();
+        
     }
 
     /// <summary>
@@ -58,19 +59,52 @@ public class BossRoom : EnemyRoom
 
         bossObject = Instantiate(BossPool[randomBossIndex], BossSpawnPosition.position, Quaternion.identity);
         bossScript = bossObject.GetComponent<BossBehaviour>();
+        bossDialogue = bossObject.GetComponent<BossDialogue>();
+
         bossScript.MyRoom = this;
         bossDead = false;
+
+        if (bossDialogue == null)
+        {
+            OnBossTextEnded();
+            return;
+        }
+
+        bossDialogue.Room = this;
+
+        StartBossText();
+    }
+
+    private void StartBossText()
+    {
+        bossDialogue.Initialize();
+        bossDialogue.ActivateSpeech();
+    }
+
+    public void OnBossTextEnded()
+    {
+        StartPlayingBackgroundMusic();
+
+        bossScript.DialogueEnded = true;
+
+        bossScript.Initialize();
     }
 
     public void OnBossDeath()
     {
-        StopPlayingBackgroundMusic();
-
         bossDead = true;
         roomCleared = true;
 
         if(Door != null)
             Door.OpenDoor();
+
+        if (RoomClearedMusic != null)
+        {
+            GameManager.Instance.TransitionMusic(RoomClearedMusic);
+            return;
+        }
+
+        StopPlayingBackgroundMusic();
     }
 
     public override bool CheckRoomCleared()

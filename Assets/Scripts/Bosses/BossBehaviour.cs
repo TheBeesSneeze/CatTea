@@ -14,8 +14,12 @@ public class BossBehaviour : CharacterBehaviour
 {
     public float StartHealth;
     public float MoveUnitsPerSecond;
+
+    [Tooltip("Wont drop an upgrade if the gun is supposed to be dropped instead")]
+    public bool DropUpgradeOnDeath = true;
     //public int CurrentHealth;
-    
+
+    [HideInInspector]public bool DialogueEnded;
 
     [HideInInspector] public BossRoom MyRoom;
 
@@ -30,6 +34,14 @@ public class BossBehaviour : CharacterBehaviour
         SetHealth(StartHealth);
 
         base.Start();
+    }
+
+    /// <summary>
+    /// Runs when the boss is ready to be fought
+    /// </summary>
+    public virtual void Initialize()
+    {
+        BossHealthBar.Instance.ActivateHealthBar(this);
     }
 
     public override bool TakeDamage(float damage)
@@ -56,6 +68,8 @@ public class BossBehaviour : CharacterBehaviour
         }
 
         MyAnimator.SetFloat("Health", value);
+
+        BossHealthBar.Instance.UpdateHealth();
     }
 
     public override void Die()
@@ -81,8 +95,13 @@ public class BossBehaviour : CharacterBehaviour
     /// </summary>
     public virtual void DieForReal()
     {
+        if (DropUpgradeOnDeath)
+            Instantiate(UniversalVariables.Instance.UpgradeCollectionPrefab, transform.position, Quaternion.identity);
+
         MyRoom.OnBossDeath();
         Destroy(gameObject);
+
+        BossHealthBar.Instance.HideHealthBar();
     }
 
     public void StopAllAttacks()

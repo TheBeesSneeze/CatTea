@@ -38,18 +38,15 @@ public class RoomType : MonoBehaviour
     public Transform CameraCenterPoint;
     public Transform PlayerSpawnPoint;
 
-    protected PlayerBehaviour playerBehaviour;
     protected CameraManager cameraManager;
     protected AudioSource backgroundMusicPlayer;
-    private float defaultBGMVolume;
 
     public virtual void Start()
     {
-        roomCleared = OpenDoorsOnStart;
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
-        cameraManager = GameObject.FindObjectOfType<CameraManager>();
         backgroundMusicPlayer = GameObject.Find("Background Music").GetComponent<AudioSource>();
-        defaultBGMVolume = backgroundMusicPlayer.volume;
+
+        roomCleared = OpenDoorsOnStart;
+        cameraManager = GameObject.FindObjectOfType<CameraManager>();
     }
 
     /// <summary>
@@ -65,7 +62,7 @@ public class RoomType : MonoBehaviour
         if(CameraCenterPoint != null && cameraManager != null)
             cameraManager.MoveCamera(CameraCenterPoint);
         
-        playerBehaviour.transform.position = PlayerSpawnPoint.transform.position;
+        PlayerBehaviour.Instance.transform.position = PlayerSpawnPoint.transform.position;
         Camera.main.orthographicSize = CameraSize;
 
         if (CameraFollowPlayer)
@@ -91,7 +88,7 @@ public class RoomType : MonoBehaviour
     /// </summary>
     public virtual void Cheat()
     {
-        playerBehaviour.HealthPoints = playerBehaviour.MaxHealthPoints;
+        PlayerBehaviour.Instance.HealthPoints = PlayerBehaviour.Instance.MaxHealthPoints;
 
         roomCleared = true;
         OpenDoorsOnStart = true;
@@ -105,33 +102,14 @@ public class RoomType : MonoBehaviour
 
         backgroundMusicPlayer.clip = BackgroundMusic;
 
-        StartCoroutine(ScaleBackgroundMusic(1));
+        GameManager.Instance.ScaleBackgroundMusic(1);
         backgroundMusicPlayer.Play();
     }
 
     public virtual void StopPlayingBackgroundMusic()
     {
         //backgroundMusicPlayer.clip = null;
-        StartCoroutine(ScaleBackgroundMusic(0));
+        GameManager.Instance.ScaleBackgroundMusic(0);
     }
 
-    /// <summary>
-    /// Turns up or down the music volume, over the same amount of seconds it takes to transition rooms
-    /// </summary>
-    /// <param name="TargetVolume"> 0-1</param>
-    /// <returns></returns>
-    private IEnumerator ScaleBackgroundMusic(float TargetVolume)
-    {
-        float scaleSeconds = RoomTransition.Instance.TotalTransitionSeconds/2;
-        float t = 0;
-
-        while(t<1)
-        {
-            t += Time.deltaTime / scaleSeconds;
-            float tScaled = Mathf.Pow(t, 1f / 2f);
-            backgroundMusicPlayer.volume = defaultBGMVolume * Mathf.Lerp(1-TargetVolume,TargetVolume, tScaled);
-
-            yield return null;
-        }
-    }
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name :         SwordEnemy.cs
-* Author(s) :         Aiden Vandeberg
+* Author(s) :         Aiden Vandeberg, Toby Schamberger
 * Creation Date :     
 *
 * Brief Description : 
@@ -13,10 +13,11 @@ using UnityEngine.AI;
 
 public class SwordEnemy : EnemyBehaviour
 {
+    /*
     public GameObject attack;
     public GameObject warningzone;
 
-    protected float rotationModifier = 90;
+    [HideInInspector] public float rotationModifier = 90;
     public float AttackPlayerDistance = 7;
     public int AmountOfAttacks;
     public float TimeBeforeAttacking;
@@ -28,9 +29,8 @@ public class SwordEnemy : EnemyBehaviour
     protected override void Start()
     {
         base.Start();
-        canRotate = true;
-        //StartCoroutine(RotateEnemy());
-        StartCoroutine(Attack());
+        //StartCoroutine(RotatePivot());
+        //StartCoroutine(Attack());
     }
 
     private IEnumerator RotateEnemy()
@@ -39,7 +39,7 @@ public class SwordEnemy : EnemyBehaviour
         {
             if(canRotate == true)
             {
-                Vector3 vectorToTarget = player.transform.position - transform.position;
+                Vector3 vectorToTarget = PlayerBehaviour.Instance.transform.position - transform.position;
                 float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
                 Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
                 transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * Speed);
@@ -54,7 +54,7 @@ public class SwordEnemy : EnemyBehaviour
     {
         while (this.gameObject != null)
         {
-            float distanceToPlayer = Vector2.Distance(this.transform.position, player.transform.position);
+            float distanceToPlayer = Vector2.Distance(this.transform.position, PlayerBehaviour.Instance.transform.position);
 
             if (distanceToPlayer <= AttackPlayerDistance)
             {
@@ -86,4 +86,5 @@ public class SwordEnemy : EnemyBehaviour
         yield return new WaitForSeconds(TimeBeforeAttacking);
         attackingCoroutine = null;
     }
+    */
 }

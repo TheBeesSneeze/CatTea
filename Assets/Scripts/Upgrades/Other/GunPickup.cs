@@ -14,6 +14,7 @@ using UnityEngine.InputSystem;
 public class GunPickup : MonoBehaviour
 {
     public SpriteRenderer ButtonPrompt;
+    public GameObject GunTutorialPrefab;
 
     [HideInInspector] public DoorManager BossDoor;
 
@@ -56,6 +57,8 @@ public class GunPickup : MonoBehaviour
 
     private void UnlockGun()
     {
+        Instantiate(GunTutorialPrefab,null);
+
         SaveDataManager.Instance.SaveData.GunUnlocked = true;
         SaveDataManager.Instance.SaveSaveData();
         PlayerBehaviour.Instance.OnGunUnlocked();

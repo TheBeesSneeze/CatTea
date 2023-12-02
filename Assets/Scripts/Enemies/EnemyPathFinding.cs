@@ -29,22 +29,7 @@ public class EnemyPathFinding : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        
-
- //       StartCoroutine(UpdateTarget());
-    }
-
-
-    private void Start()
-    {
-        //agent.speed = enemyBehaviour.Speed;
-    }
-
-    //public virtual IEnumerator UpdateTarget()
-    //{
-    //    //sorry for changing this. i just have personal beef with update
-    //    while(this != null)
-    //    {
+     }
 
     private void Update()
     {
@@ -52,20 +37,19 @@ public class EnemyPathFinding : MonoBehaviour
         SetAgentPosition();
     }
   
-    //        yield return null;
-    //    }
-    //}
 
     /// <summary>
     /// starts to inch away slightly if player gets too close
     /// </summary>
     private void SetTargetPoisiton()
     {
+        target = player.position;
+
+        /*
         float distance = Vector2.Distance(transform.position, target);
 
         if(distance >= enemyBehaviour.MaxDistanceToPlayer)
         {
-            Debug.Log("too close!");
             target = player.position;
             return;
         }
@@ -73,7 +57,7 @@ public class EnemyPathFinding : MonoBehaviour
         //target = transform.position;
 
         target = transform.position + (transform.position-player.position);
-        Debug.Log("not too close!" + target);
+        */
     }
 
     private void SetAgentPosition()

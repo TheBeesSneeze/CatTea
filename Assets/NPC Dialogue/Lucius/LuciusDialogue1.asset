@@ -44,11 +44,13 @@ MonoBehaviour:
     if this is the result we got."
   - ENOUGH! I will not stand this disrespect of mommy any longer! Draw your weapon,
     child, and let us end this.
-  - Fucking finally.
+  - Finally.
   Character1Name: Jade
   Character2Name: Lucius
-  Character1DialogueSound: {fileID: 0}
-  Character2DialogueSound: {fileID: 0}
+  Character1DialogueSound: {fileID: 8300000, guid: 857406ecf06fff440aafae362726fe07, type: 3}
+  Character2DialogueSound: {fileID: 8300000, guid: a4d9806aedca5c04781ef801cbd6f0e3, type: 3}
   WhoIsTalking: 010000000000000001000000010000000100000001000000010000000100000001000000010000000000000001000000010000000000000001000000000000000100000000000000
-  PlayerTalkingSprites: []
-  NPCTalkingSprites: []
+  PlayerTalkingSprites:
+  - {fileID: 21300000, guid: 107864498673b4f478be06f366a49196, type: 3}
+  NPCTalkingSprites:
+  - {fileID: 21300000, guid: 62ed6451555465a45ad55d689becd30a, type: 3}

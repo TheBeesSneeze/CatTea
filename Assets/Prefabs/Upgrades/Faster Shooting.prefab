@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 21300000, guid: 8897e3ecc4790574eb846f29c6e6ab36, type: 3}
-  DisplayName: '[PlaceHolder name]'
+  DisplayName: Slick Shot
   DisplayDescription: Ammo recharging and shooting speed increased.
   CanBeStacked: 1
   RecquiresGun: 1

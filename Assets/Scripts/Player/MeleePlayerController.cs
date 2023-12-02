@@ -3,7 +3,7 @@
 * Author(s) :         Toby Schamberger
 * Creation Date :     9/4/2023
 *
-* Brief Description : Code mostly stolen from Gorp Game. Shoutouts to which
+* Brief Description : Singleton. Code mostly stolen from Gorp Game. Shoutouts to which
 * ever TA wrote the sword swinging code.
 * 
 * TODO: rumble
@@ -16,17 +16,19 @@ using UnityEngine.InputSystem;
 
 public class MeleePlayerController : MonoBehaviour
 {
+    public static MeleePlayerController Instance;
+
     [Header("Settings")]
     public float PrimaryStrikeAngle = 120;
 
     [Header("Unity Stuff")]
     public Collider2D SwordCollider;
     public Transform RotatePoint;
+    public Animator SwordAnimator;
 
     [Header("Controls")]
     private Quaternion swordRotation;
     private bool Attacking;
-    private Coroutine RotatingSwordCoroutine;
 
     //etc
     protected RangedPlayerController rangedPlayerController;
@@ -38,7 +40,7 @@ public class MeleePlayerController : MonoBehaviour
     {
         rangedPlayerController = GetComponent<RangedPlayerController>();
 
-        RotatingSwordCoroutine = StartCoroutine(RotateSword());
+         StartCoroutine(RotateSword());
     }
 
     public void Sword_started(InputAction.CallbackContext obj)
@@ -56,6 +58,8 @@ public class MeleePlayerController : MonoBehaviour
         PlayerBehaviour.Instance.StartSwordMode();
 
         GameEvents.Instance.OnPlayerSword();
+
+        SwordAnimator.SetBool("Attacking", true);
 
         SwordCollider.enabled = true;
         Attacking = true;
@@ -119,11 +123,13 @@ public class MeleePlayerController : MonoBehaviour
     {
         //if (GameManager.Instance.Rumble && MyGamepad != null)
         //    MyGamepad.SetMotorSpeeds(0, 0);
-        
+
+        SwordAnimator.SetBool("Attacking", false);
+
         SwordCollider.enabled = false;
         Attacking = false;
 
-        RotatingSwordCoroutine = StartCoroutine(RotateSword());
+        StartCoroutine(RotateSword());
 
         yield return new WaitForSeconds(PlayerBehaviour.Instance.SwordAttackCoolDown);
         PlayerController.Instance.CanAttack = true;
@@ -147,7 +153,7 @@ public class MeleePlayerController : MonoBehaviour
             angle = Mathf.Atan2(PlayerController.Instance.AimingDirection.y, PlayerController.Instance.AimingDirection.x) * Mathf.Rad2Deg;
             angle += 360;
 
-            if (angle != lastAngle)
+            if (angle != lastAngle && !PlayerController.Instance.IgnoreAllInputs)
             {
                 //kinda smoothen the angle
                 float difference = Mathf.Abs(angle - lastAngle);
@@ -163,8 +169,6 @@ public class MeleePlayerController : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-
-        RotatingSwordCoroutine = null;
 
         //i KNOW this function will cause issues in the future
         //leaving these comments for whoever gets the pleasure of fixing it :)
@@ -191,5 +195,19 @@ public class MeleePlayerController : MonoBehaviour
     {
         SwordSlash.pitch = Random.Range(0.75f, 1.25f);
         SwordSlash.Play();
+    }
+
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 }

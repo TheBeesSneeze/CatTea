@@ -133,9 +133,11 @@ public class SwordBossAttack : MonoBehaviour
     /// <returns></returns>
     private IEnumerator StopAttack()
     {
-        EnableMovement();
+        //EnableMovement();
 
         yield return new WaitForSeconds(IdleAfterAttackSeconds);
+
+        EnableMovement();
 
         DisableSword();
         EnableGun();

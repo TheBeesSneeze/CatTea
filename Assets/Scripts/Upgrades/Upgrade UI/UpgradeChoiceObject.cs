@@ -3,7 +3,8 @@
 * Author(s) :         Toby Schamberger
 * Creation Date :     10/7/2023
 *
-* Brief Description : prompts the user to select the upgrade
+* Brief Description : The object that the user presses E at.
+* prompts the user to select the upgrade.
 *****************************************************************************/
 using System;
 using System.Collections;
@@ -15,13 +16,13 @@ public class UpgradeChoiceObject : MonoBehaviour
 {
     public GameObject ButtonPrompt;
 
+    private bool playerInteracted = false;
+
     [SerializeField] private UpgradeChoiceInterface UpgradeUICanvas;
-    private PlayerController playerBehaviour;
 
     private void Start()
     {
         UpgradeUICanvas = GameObject.FindObjectOfType<UpgradeChoiceInterface>();
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,9 +33,7 @@ public class UpgradeChoiceObject : MonoBehaviour
             if (ButtonPrompt != null)
                 ButtonPrompt.SetActive(true);
 
-            playerBehaviour = collision.GetComponent<PlayerController>();
-            playerBehaviour.Select.started += ActivateUpgradeUI;
-            
+            PlayerController.Instance.Select.started += ActivateUpgradeUI;
         }
     }
 
@@ -47,19 +46,18 @@ public class UpgradeChoiceObject : MonoBehaviour
             if (ButtonPrompt != null)
                 ButtonPrompt.SetActive(false);
 
-            playerBehaviour.Select.started -= ActivateUpgradeUI;
-            playerBehaviour.IgnoreAllInputs = false;
+            PlayerController.Instance.Select.started -= ActivateUpgradeUI;
+            //PlayerController.Instance.IgnoreAllInputs = false;
         }
     }
 
     private void ActivateUpgradeUI(InputAction.CallbackContext obj)
     {
-        playerBehaviour.Select.started -= ActivateUpgradeUI;
+        PlayerController.Instance.Select.started -= ActivateUpgradeUI;
 
-        //if(UpgradeUICanvas == null)
+        UpgradeUICanvas.OpenUI(!playerInteracted);
 
-
-        UpgradeUICanvas.OpenUI();
+        playerInteracted = true;
 
         UpgradeUICanvas.ChoiceObject = this;
     }

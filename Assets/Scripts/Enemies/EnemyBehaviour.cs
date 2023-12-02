@@ -20,20 +20,28 @@ public class EnemyBehaviour : CharacterBehaviour
     [HideInInspector] public int Damage;
     [HideInInspector] public bool EnemyMove; // if enemy should be stationary or nah
     [HideInInspector] public float TimeBetweenMovements;
-    [HideInInspector] protected int contactDamage;
+    [HideInInspector] protected float contactDamage;
     [HideInInspector] protected bool dealContactDamage;
     [HideInInspector] public float MaxDistanceToPlayer;
 
     [HideInInspector] public EnemyRoom Room;
 
     protected Vector2 enemyDirection;
-    protected GameObject player;
+    protected NavMeshAgent agent;
+
+    private Coroutine knockbackCoroutine;
+    private Coroutine contactDamageCoroutine;
+
+    //magic numbers
+    private float KnockBackSeconds = 0.13f; //how long the navmesh agent will be turned off
+    private float SecondsBetweenContactDamage = 0.5f;
 
     protected override void Start()
     {
-        base.Start();
         transform.eulerAngles = Vector3.zero;
-        player = PlayerBehaviour.Instance.gameObject;
+        agent = GetComponent<NavMeshAgent>();
+
+        base.Start();
 
         StartCoroutine(UpdateAnimation());
     }
@@ -59,6 +67,38 @@ public class EnemyBehaviour : CharacterBehaviour
         return base.TakeDamage(damage);
     }
 
+    public override void KnockBack(GameObject target, Vector3 damageSourcePosition, float force)
+    {
+        if (force <= 0)
+            return;
+
+        if (knockbackCoroutine != null)
+            StopCoroutine(knockbackCoroutine);
+
+        knockbackCoroutine = StartCoroutine(KnockBackAgent(target, damageSourcePosition, force));
+    }
+
+    /// <summary>
+    /// turns off/on navmesh agent 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator KnockBackAgent(GameObject target, Vector3 damageSourcePosition, float force)
+    {
+        if (agent == null)
+            yield break;
+
+        agent.enabled = false;
+        myRigidbody2D.isKinematic = false;
+
+        base.KnockBack(target, damageSourcePosition, force);
+
+        yield return new WaitForSeconds(KnockBackSeconds);
+
+        agent.enabled = true;
+        myRigidbody2D.isKinematic = true;
+        myRigidbody2D.velocity = Vector3.zero;
+    }
+
     public override void Die()
     {
         base.Die();
@@ -77,8 +117,22 @@ public class EnemyBehaviour : CharacterBehaviour
     /// </summary>
     protected virtual void OnPlayerCollision(Collider2D collision)
     {
-        if(dealContactDamage)
+        if (dealContactDamage)
+        {
             PlayerBehaviour.Instance.TakeDamage(contactDamage, this.transform.position, 0);
+            contactDamageCoroutine = StartCoroutine(RefreshCollider());
+        }
+    }
+
+    private IEnumerator RefreshCollider()
+    {
+        yield return new WaitForSeconds(SecondsBetweenContactDamage);
+
+        Collider2D collider = GetComponent<Collider2D>();
+        collider.enabled = false;
+        collider.enabled = true;
+
+        contactDamageCoroutine = null;
     }
 
     /// <summary>
@@ -92,6 +146,15 @@ public class EnemyBehaviour : CharacterBehaviour
         if (tag.Equals("Player"))
         {
             OnPlayerCollision(collision);
+        }
+    }
+
+    public virtual void OnTriggerExit(Collider other)
+    {
+        if (tag.Equals("Player"))
+        {
+            if (contactDamageCoroutine != null)
+                StopCoroutine(contactDamageCoroutine);
         }
     }
 
@@ -117,27 +180,29 @@ public class EnemyBehaviour : CharacterBehaviour
 
         MaxDistanceToPlayer = CurrentEnemyStats.MaxDistanceFromPlayer;
 
-        KnockbackForce = CurrentEnemyStats.KnockBackForce;
-
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
         if(agent != null)
         {
             agent.speed = Speed;
+            agent.stoppingDistance = MaxDistanceToPlayer;
         }
     }
 
     protected virtual IEnumerator UpdateAnimation()
     {
+        if (agent == null)
+            yield break;
+        
         while (true)
         {
-            enemyDirection.x = GetComponent<NavMeshAgent>().velocity.x;
-            enemyDirection.y = GetComponent<NavMeshAgent>().velocity.y;
+            enemyDirection.x = agent.velocity.x;
+            enemyDirection.y = agent.velocity.y;
 
             //Debug.Log(enemyDirection);
 
             MyAnimator.SetFloat("XMovement", enemyDirection.x);
             MyAnimator.SetFloat("YMovement", enemyDirection.y);
-            yield return new WaitForSeconds(0.1f);
+
+            yield return null;
         }
     }
 }

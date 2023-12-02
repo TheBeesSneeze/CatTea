@@ -47,43 +47,48 @@ public class NPCBehaviour : MonoBehaviour
 
     [Header("Unity Stuff")]
     public GameObject ButtonPrompt;
-    public TextMeshProUGUI TextBox;
-    public GameObject DialogueCanvas;
-    public GameObject DialogueArea;
-    public Image PlayerSprite;
-    public Image NPCSprite;
+    [HideInInspector]public TextMeshProUGUI TextBox;
+    [HideInInspector] public GameObject DialogueCanvas;
+    [HideInInspector] public GameObject DialogueArea;
+    [HideInInspector] public Image PlayerSprite;
+    [HideInInspector] public Image NPCSprite;
 
-    public TextMeshProUGUI Name1;
-    public TextMeshProUGUI Name2;
+    [HideInInspector] public TextMeshProUGUI Name1;
+    [HideInInspector] public TextMeshProUGUI Name2;
 
-    private PlayerController player;
     private bool SkipText;
     public AudioSource dialogueSoundSource;
 
     private int textIndex = 0;
     private bool typing;
 
-    private void Start()
+    public virtual void Start()
     {
-        player = GameObject.FindObjectOfType<PlayerBehaviour>().GetComponent<PlayerController>();
+        PopulateCanvasVariables();
 
         if(DialogueCanvas == null)
             DialogueCanvas = GameObject.Find("NPC Dialogue");
 
-        if(dialogueSoundSource == null)
+        if (dialogueSoundSource == null)
+        {
             dialogueSoundSource = DialogueCanvas.GetComponent<AudioSource>();
+        }
 
-        int dialogueIndex = SaveDataManager.Instance.SaveData.RunNumber % DialogueScripts.Length;
+        int run = SaveDataManager.Instance.SaveData.RunNumber;
+        int dialogueIndex = Mathf.Min(run, DialogueScripts.Length - 1);
+
         LoadScript(DialogueScripts[dialogueIndex]);
 
-        ButtonPrompt.SetActive(false);
+        if(ButtonPrompt != null)
+            ButtonPrompt.SetActive(false);
     }
+
 
     /// <summary>
     /// when on speaking box, can start text
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
         if (tag.Equals("Player"))
@@ -91,8 +96,7 @@ public class NPCBehaviour : MonoBehaviour
             if(ButtonPrompt != null)
                 ButtonPrompt.SetActive(true);
 
-            player = collision.GetComponent<PlayerController>();
-            player.Select.started += ActivateSpeech;
+            PlayerController.Instance.Select.started += ActivateSpeech;
         }
     }
 
@@ -100,26 +104,26 @@ public class NPCBehaviour : MonoBehaviour
     /// when off speaking box, no start text
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
 
         if (tag.Equals("Player"))
         {
-            CancelSpeech();
-
             if (ButtonPrompt != null)
                 ButtonPrompt.SetActive(false);
 
-            player.Select.started -= ActivateSpeech;
+            PlayerController.Instance.Select.started -= ActivateSpeech;
         }
     }
 
-    public void CancelSpeech()
+    public virtual void CancelSpeech()
     {
-        player.IgnoreAllInputs = false;
-        player.Pause.started -= Exit_text;
-        player.SkipText.started -= Skip_text;
+        Debug.Log("Cancelling speech");
+
+        PlayerController.Instance.IgnoreAllInputs = false;
+        PlayerController.Instance.Pause.started -= Exit_text;
+        PlayerController.Instance.SkipText.started -= Skip_text;
 
         textIndex = 0;
         if (ButtonPrompt != null)
@@ -127,18 +131,25 @@ public class NPCBehaviour : MonoBehaviour
 
         if(DialogueCanvas != null)
             DialogueCanvas.SetActive(false);
+
     }
 
     /// <summary>
     /// starts the coroutine
     /// </summary>
-    /// <param name="obj"></param>
     public void ActivateSpeech(InputAction.CallbackContext obj)
     {
-        player.IgnoreAllInputs = true;
+        ActivateSpeech();
+    }
 
-        player.Pause.started += Exit_text;
-        player.SkipText.started += Skip_text;
+    public virtual void ActivateSpeech()
+    {
+        Debug.Log("Activating speech");
+
+        PlayerController.Instance.IgnoreAllInputs = true;
+
+        PlayerController.Instance.Pause.started += Exit_text;
+        PlayerController.Instance.SkipText.started += Skip_text;
 
         //if end dialogue
         if (!LoopText && textIndex == TextList.Count)
@@ -152,11 +163,11 @@ public class NPCBehaviour : MonoBehaviour
             StartCoroutine(StartText());
         }
 
-        if(ButtonPrompt!=null)
+        if (ButtonPrompt != null)
             ButtonPrompt.SetActive(false);
     }
 
-    public void Exit_text(InputAction.CallbackContext obj) 
+    public virtual void Exit_text(InputAction.CallbackContext obj) 
     {
         CancelSpeech();
     }
@@ -173,7 +184,7 @@ public class NPCBehaviour : MonoBehaviour
     /// coroutine that does the scrolly typewriter text
     /// </summary>
     /// <returns></returns>
-    public IEnumerator StartText()
+    public virtual IEnumerator StartText()
     {
         yield return new WaitForSeconds(ScrollSpeed);
         typing = true;
@@ -324,6 +335,21 @@ public class NPCBehaviour : MonoBehaviour
 
             yield return new WaitForSeconds(bobAnimationTime / 100);
         }
+    }
+
+    public void PopulateCanvasVariables()
+    {
+        TextBox = UniversalVariables.Instance.TextBox;
+        DialogueCanvas = UniversalVariables.Instance.DialogueCanvas;
+        DialogueArea = UniversalVariables.Instance.DialogueArea;
+        PlayerSprite = UniversalVariables.Instance.PlayerSprite;
+        NPCSprite = UniversalVariables.Instance.NPCSprite;
+
+        Name1 = UniversalVariables.Instance.Name1;
+        Name2 = UniversalVariables.Instance.Name2;
+
+        if (dialogueSoundSource == null)
+            dialogueSoundSource = UniversalVariables.Instance.dialogueSoundSource;
     }
 
     public void LoadScript(NPCScript Script)

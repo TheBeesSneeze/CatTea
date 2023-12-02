@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00059998035, y: 0.007850051, z: 0}
-    m_Extent: {x: 3.4975, y: 3.50005, z: 0}
+    m_Center: {x: -0.006850004, y: -0.0036998987, z: 0}
+    m_Extent: {x: 3.49995, y: 3.4963999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -176,8 +176,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0014998913, y: -0.001349926, z: 0}
-    m_Extent: {x: 3.5079, y: 3.50475, z: 0}
+    m_Center: {x: -0.0079, y: 0.0000500679, z: 0}
+    m_Extent: {x: 3.5012, y: 3.50035, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -286,8 +286,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0038000345, y: 0.0018999577, z: 0}
-    m_Extent: {x: 3.4977999, y: 3.4981, z: 0}
+    m_Center: {x: -0.0036000013, y: 0.0075000525, z: 0}
+    m_Extent: {x: 3.4952998, y: 3.5011, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4146,8 +4146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6bb6ad36fbbba41aad0a60512aaee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundMusic: {fileID: 8300000, guid: 9f82f91b81827e34480d475e9b0cf4e2, type: 3}
-  BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  BackgroundMusic: {fileID: 8300000, guid: c9093eabf030a9841a54e6691ce54977, type: 3}
+  BackgroundColor: {r: 0.24747388, g: 0.0012815695, b: 0.33962262, a: 1}
   OpenDoorsOnStart: 1
   CameraFollowPlayer: 1
   CameraSize: 5
@@ -5924,8 +5924,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: -0.007850051, z: 0}
-    m_Extent: {x: 3.502, y: 3.50215, z: 0}
+    m_Center: {x: 0.006349921, y: -0.00024998188, z: 0}
+    m_Extent: {x: 3.4969501, y: 3.49515, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6096,8 +6096,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00065004826, y: 0.00095009804, z: 0}
-    m_Extent: {x: 3.49795, y: 3.49545, z: 0}
+    m_Center: {x: 0.0015500784, y: -0.004349947, z: 0}
+    m_Extent: {x: 3.4969501, y: 3.50075, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6198,11 +6198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.02
+      value: 11.81
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 36.98
+      value: 36.49
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6262,9 +6262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cde7ab0577e62044815443955fdca6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OpenDoorSprite: {fileID: 21300000, guid: 2b13be06e1e2b6146a00e5d86962a488, type: 3}
+  ClosedDoorSprite: {fileID: 21300000, guid: 9b53ee3c297cab9458694f8bdb3e0262, type: 3}
   OutputRoom: {fileID: 0}
   ThisRoom: {fileID: 3643724245941059478}
-  open: 0
+  open: 1
   Rooms:
   - {fileID: 0}
   - {fileID: 0}
