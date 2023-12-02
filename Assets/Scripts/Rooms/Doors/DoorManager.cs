@@ -14,6 +14,9 @@ using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
+    public Sprite OpenDoorSprite;
+    public Sprite ClosedDoorSprite;
+
     [Tooltip("Room the door leads too")]
     public RoomType OutputRoom;
     [Tooltip("Room the door is on")]
@@ -23,11 +26,11 @@ public class DoorManager : MonoBehaviour
     [SerializeField] protected bool open;
 
     //gross... unity...
-    protected PlayerBehaviour playerBehaviour;
+    private SpriteRenderer spriteRenderer;
 
     protected virtual void Start()
     {
-        playerBehaviour = GameObject.FindAnyObjectByType<PlayerBehaviour>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if(ThisRoom == null)
         {
@@ -35,7 +38,14 @@ public class DoorManager : MonoBehaviour
             return;
         }
 
-        open = ThisRoom.OpenDoorsOnStart;
+        if(ThisRoom.OpenDoorsOnStart)
+        {
+            OpenDoor();
+        }
+        else
+        {
+            CloseDoor();
+        }
 
         ThisRoom.Door = this;
     }
@@ -51,11 +61,15 @@ public class DoorManager : MonoBehaviour
 
         open = true;
         //TODO: ANIMATION STUFF
+
+        spriteRenderer.sprite = OpenDoorSprite;
     }
 
     public void CloseDoor()
     {
         open = false;
+
+        spriteRenderer.sprite = ClosedDoorSprite;
     }
 
     /// <summary>
