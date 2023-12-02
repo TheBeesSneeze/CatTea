@@ -9,7 +9,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
@@ -104,7 +103,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public virtual bool TakeDamage(float damage, bool onDamageEvent)
     {
-        Debug.LogWarning("Override this function");
+        //Debug.LogWarning("Override this function");
         return TakeDamage(damage);
     }
 

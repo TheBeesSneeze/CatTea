@@ -26,6 +26,8 @@ public class Settings : MonoBehaviour
 
     public bool ControllerVibration=true;
 
+    private GameObject UI;
+
     [HideInInspector] public bool Paused;
 
     /// <summary>
@@ -44,11 +46,14 @@ public class Settings : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        UI = GameObject.Find("UI");
         // StartCoroutine(DelayedStart());
         UpdateSettingsFromJSON();
     }
     public void OpenPauseMenu()
     {
+        UI.SetActive(false);
+        PlayerController.Instance.IgnoreAllInputs = true;
         SaveDataManager.Instance.LoadSettings();
         UpdateSettingsUI();
 
@@ -58,6 +63,8 @@ public class Settings : MonoBehaviour
     }
     public void ClosePauseMenu()
     {
+        UI.SetActive(true);
+        PlayerController.Instance.IgnoreAllInputs = false;
         PauseMenu.SetActive(false);
         Time.timeScale = 1;
         Paused = false;

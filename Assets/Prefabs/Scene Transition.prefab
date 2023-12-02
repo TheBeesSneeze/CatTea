@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e3e895b9420a649a59f2280b6f5992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SecondsBeforeFading: 0.2
+  SecondsToFadeIn: 1.25
 --- !u!222 &2513399727978534274
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -222,7 +224,7 @@ RectTransform:
   - {fileID: 1347847109617021266}
   - {fileID: 6397714878240000930}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
