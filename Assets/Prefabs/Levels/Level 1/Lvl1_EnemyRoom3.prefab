@@ -1177,8 +1177,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0012999773, y: -0.00395, z: 0}
-    m_Extent: {x: 3.4984002, y: 3.4991498, z: 0}
+    m_Center: {x: 0.00039994717, y: 0.0019500256, z: 0}
+    m_Extent: {x: 3.4934, y: 3.49475, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1287,8 +1287,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0012999773, y: 0.0018999577, z: 0}
-    m_Extent: {x: 3.4936, y: 3.4954, z: 0}
+    m_Center: {x: 0.003700018, y: 0.0001500845, z: 0}
+    m_Extent: {x: 3.4991, y: 3.4983501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1490,8 +1490,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0031000376, y: 0.0034499168, z: 0}
-    m_Extent: {x: 3.4984999, y: 3.50475, z: 0}
+    m_Center: {x: -0.0041000843, y: -0.0040500164, z: 0}
+    m_Extent: {x: 3.4998, y: 3.50355, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1662,8 +1662,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0015000105, y: -0.0010499954, z: 0}
-    m_Extent: {x: 3.5073, y: 3.50755, z: 0}
+    m_Center: {x: 0.00039994717, y: -0.0029500723, z: 0}
+    m_Extent: {x: 3.4941, y: 3.5016499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -10789,7 +10789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105abde1475da8a4b89b7cb8babf321b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundMusic: {fileID: 8300000, guid: 334c22b3bd01e66498f00b46eccc5819, type: 3}
+  BackgroundMusic: {fileID: 8300000, guid: 545a7e1e6c706134f8382a750452e0bd, type: 3}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   OpenDoorsOnStart: 0
   CameraFollowPlayer: 1
@@ -10799,6 +10799,7 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 3095669600853417006}
   PlayerSpawnPoint: {fileID: 5906164296576537176}
+  RoomClearedMusic: {fileID: 0}
   SpawnUpgradeOnCompletion: 1
   EnemySpawnPool:
   - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
@@ -13386,11 +13387,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 63.37
+      value: 63.23
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 34.59
+      value: 34.4
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.z
