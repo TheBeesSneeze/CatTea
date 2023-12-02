@@ -41,13 +41,7 @@ public class RoomTransition : MonoBehaviour
 
     private void Start()
     {
-        GameObject background = GameObject.Find("Background");
-        if(background == null)
-        {
-            Debug.LogWarning("Cant find background in scene");
-            return;
-        }
-        backgroundSprite = background.GetComponent<SpriteRenderer>();
+        backgroundSprite = UniversalVariables.Instance.GetBackgroundSpriteRenderer();
     }
 
     /// <summary>
@@ -155,7 +149,10 @@ public class RoomTransition : MonoBehaviour
             float t = time / secondsToChangeBackgroundColor;
             //float tScaled = Mathf.Pow(t, 3);
 
-            Camera.main.backgroundColor = Color.Lerp(startColor, targetColor, t);
+            Color newColor = Color.Lerp(startColor, targetColor, t);
+
+            Camera.main.backgroundColor = newColor;
+            backgroundSprite.color = newColor;
 
             yield return null;
         }
