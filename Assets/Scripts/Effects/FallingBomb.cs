@@ -200,7 +200,7 @@ public class FallingBomb : MonoBehaviour
 
         yield return new WaitForSeconds(ExplosionTime);
 
-        Destroy(explosion);
+        //Destroy(explosion);
     }
 }
 

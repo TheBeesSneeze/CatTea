@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6781111479496363850}
   - component: {fileID: 5456073523674893132}
   - component: {fileID: -5332139480965215540}
+  - component: {fileID: -3169051458056625407}
   m_Layer: 11
   m_Name: Player Explosion
   m_TagString: Player Attack
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.78431374, g: 0.24622332, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2b4f5cc4be2a4134fa654a3d250d9609, type: 3}
+  m_Color: {r: 1, g: 0.135849, b: 0.8891255, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -160,7 +161,8 @@ MonoBehaviour:
   DestroyOtherAttacks: 1
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
-  DestroyAttackAfterSeconds: 0.3
+  DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 2
 --- !u!58 &5456073523674893132
 CircleCollider2D:
@@ -293,3 +295,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-3169051458056625407
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4254857575187743282}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2f5826ccb45ff534a919a221f893a1a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

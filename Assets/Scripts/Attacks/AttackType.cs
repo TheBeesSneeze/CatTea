@@ -120,6 +120,14 @@ public class AttackType : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// intended to be used in animation events
+    /// </summary>
+    public void DestroyAttack()
+    {
+        Destroy(gameObject);
+    }
+
     protected virtual void OnBossCollision(Collider2D collision)
     {
         if (Attacker.Equals(AttackSource.Player))

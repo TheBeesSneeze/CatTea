@@ -69,7 +69,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
 
         for(int i = 0; i < amountOfBombs; i++)
         {
-            Destroy(listOfExplosions[i]);
+            //Destroy(listOfExplosions[i]);
             yield return new WaitForSeconds(SecondsBetweenBombSpawns);
         }
         listOfBombs.Clear();
