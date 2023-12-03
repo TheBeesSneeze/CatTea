@@ -205,4 +205,11 @@ public class EnemyBehaviour : CharacterBehaviour
             yield return null;
         }
     }
+
+    public Vector2 GetPlayerDirection()
+    {
+        Vector2 d = PlayerController.Instance.transform.position - transform.position;
+
+        return d.normalized;
+    }
 }
