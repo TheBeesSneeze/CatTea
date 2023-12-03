@@ -22,6 +22,14 @@ public class MovementCycle : BossAttackType
 
     private Coroutine moveCoroutine;
 
+    private Vector2 startPosition;
+
+    protected override void Start()
+    {
+        base.Start();
+        startPosition=transform.position;
+    }
+
     public override void PerformAttack()
     {
         if (moveCoroutine != null)
@@ -97,6 +105,11 @@ public class MovementCycle : BossAttackType
         }
 
         moveCoroutine = null;
+
+        if(Vector2.Distance(startPosition, transform.position) > 100)
+        {
+            transform.position = startPosition;
+        }
     }
 
 

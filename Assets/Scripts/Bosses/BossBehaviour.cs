@@ -25,6 +25,8 @@ public class BossBehaviour : CharacterBehaviour
 
     private float deathAnimationSeconds = 2f;
 
+    protected Vector2 startPosition;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -34,6 +36,8 @@ public class BossBehaviour : CharacterBehaviour
         SetHealth(StartHealth);
 
         base.Start();
+
+        
     }
 
     /// <summary>

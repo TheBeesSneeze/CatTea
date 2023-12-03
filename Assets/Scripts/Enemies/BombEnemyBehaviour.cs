@@ -19,6 +19,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
     public int bombSpawnInterval;
     public float SecondsUntilExplode=1f;
     public float SecondsAfterExplode=0.5f;
+    public bool bombSpawned;
     private List<GameObject> listOfBombs = new List<GameObject>();
     private List<GameObject> listOfExplosions = new List<GameObject>();
 
@@ -26,26 +27,26 @@ public class BombEnemyBehaviour : EnemyBehaviour
     protected override void Start()
     {
         base.Start();
+        bombSpawned = false;
         StartCoroutine(SpawnBombs());
     }
 
     private IEnumerator SpawnBombs()
     {
-        while(this.gameObject != null)
-        {
-            yield return new WaitForSeconds(bombSpawnInterval);
+        yield return new WaitForSeconds(bombSpawnInterval);
 
-            for (int i = 0; i < amountOfBombs; i++)
-            {
-                Vector3 positionAroundPlayer = PlayerBehaviour.Instance.transform.position;
-                Vector3 randomPosition = Random.insideUnitCircle;
-                positionAroundPlayer.x += randomPosition.x;
-                positionAroundPlayer.y += randomPosition.y;
-                listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
-            }
+        for (int i = 0; i < amountOfBombs; i++)
+        {
+            Vector3 positionAroundPlayer = PlayerBehaviour.Instance.transform.position;
+            Vector3 randomPosition = Random.insideUnitCircle;
+            positionAroundPlayer.x += randomPosition.x;
+            positionAroundPlayer.y += randomPosition.y;
+            listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
         }
+        StartCoroutine(Explode());
+        
        
-        //StartCoroutine(Explode());
+        
         
     }
 
@@ -70,6 +71,7 @@ public class BombEnemyBehaviour : EnemyBehaviour
         listOfExplosions.Clear();
         //AttacksSpawned.Clear();
         StartCoroutine(SpawnBombs());
+        
     }
 
     
