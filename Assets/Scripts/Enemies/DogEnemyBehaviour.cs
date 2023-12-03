@@ -16,7 +16,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
     [Header("Wolf Settings:")]
     public GameObject dogAttackPrefab;
 
-    public Transform Pivot;
+    public GameObject Pivot;
 
     public int AttacksPerWave;
     public float TimeBetweenAttacks;
@@ -50,7 +50,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            Pivot.rotation = Quaternion.Slerp(Pivot.rotation, q, Time.deltaTime * AimRotationSpeed);
+            Pivot.transform.rotation = Quaternion.Slerp(Pivot.transform.rotation, q, Time.deltaTime * AimRotationSpeed);
 
             yield return null;
         }
@@ -69,6 +69,7 @@ public class DogEnemyBehaviour : EnemyBehaviour
                 if(waveCoroutine == null)
                 {
                     waveCoroutine = StartCoroutine(SpawnBullets());
+                    
                 }
             }
 
@@ -87,9 +88,11 @@ public class DogEnemyBehaviour : EnemyBehaviour
             AttacksSpawned.Add(newAttack);
 
             Vector2 dif = (PlayerBehaviour.Instance.transform.position - this.transform.position);
-            newAttack.GetComponent<Rigidbody2D>().velocity = dif.normalized * AttackVelocity;
+            newAttack.GetComponent<Rigidbody2D>().velocity = dif * AttackVelocity;
         }
         yield return new WaitForSeconds(TimeAfterAttack);
         waveCoroutine = null;
     }
+
+    
 }

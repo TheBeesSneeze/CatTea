@@ -36,7 +36,7 @@ MonoBehaviour:
     or something?
   - "I don\u2019t know! That\u2019s a future me problem. Present me needs to get
     my damn gun back."
-  - "Oh, okay, I\u2019m sure she\u2019ll figure it out. Listen, meet me in the ruins
+  - "Oh, okay, I\u2019m sure she will figure it out. Listen, meet me in the ruins
     when you find the gun, alright. Wanna make sure it doesn\u2019t blow up in your
     face or anything."
   - Okay, you worrywort.
@@ -49,6 +49,42 @@ MonoBehaviour:
   Character2DialogueSound: {fileID: 8300000, guid: 6c679bf73a507714793b1a8b593db6fd, type: 3}
   WhoIsTalking: 00000000010000000000000001000000000000000100000000000000010000000100000000000000010000000000000001000000000000000100000000000000010000000000000001000000
   PlayerTalkingSprites:
-  - {fileID: 21300000, guid: 107864498673b4f478be06f366a49196, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
+  - {fileID: 21300000, guid: d138558ee87f73540b733c6f541d4772, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
   NPCTalkingSprites:
-  - {fileID: 21300000, guid: 1a9617d6967ee0140917f0e1b9fac0ed, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
+  - {fileID: 21300000, guid: 9c923859cad0c9c4a8b31c073448fa2c, type: 3}
+  - {fileID: 21300000, guid: f4e68680002db0c46919300e38cfbab3, type: 3}
