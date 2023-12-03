@@ -19,8 +19,6 @@ public class FinalBossBehaviour : BossBehaviour
     [Header("Final Boss")]
     public GameObject SawbladePrefab;
 
-    protected Animator jadebotAnimator;
-
     protected Vector2 enemyDirection;
 
     public Transform GunPivot;
@@ -36,7 +34,6 @@ public class FinalBossBehaviour : BossBehaviour
 
         StartCoroutine(RotateGunTowardsPlayer());
 
-        jadebotAnimator = GetComponent<Animator>();
 
         StartCoroutine(UpdateAnimation());
     }
@@ -123,8 +120,8 @@ public class FinalBossBehaviour : BossBehaviour
     {
         while (true)
         {
-            jadebotAnimator.SetFloat("XMovement", AimingDirection.x);
-            jadebotAnimator.SetFloat("YMovement", AimingDirection.y);
+            MyAnimator.SetFloat("XMovement", AimingDirection.x);
+            MyAnimator.SetFloat("YMovement", AimingDirection.y);
             yield return null;
         }
     }
