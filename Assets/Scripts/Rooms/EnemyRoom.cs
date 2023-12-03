@@ -74,9 +74,6 @@ public class EnemyRoom : RoomType
         aliveEnemies--;
         Debug.Log(aliveEnemies + "enemies left");
 
-        if (currentlySpawningEnemies)
-            return;
-
         //spawn a new wave!
         if(wavesLeft > 0 && aliveEnemies <= 2)
         {
@@ -86,6 +83,9 @@ public class EnemyRoom : RoomType
             StartCoroutine(SpawnNewWaveOfEnemies());
             return;
         }
+
+        if (currentlySpawningEnemies)
+            return;
 
         //end everything!
         if (wavesLeft <= 0 && aliveEnemies <=0)
