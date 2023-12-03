@@ -287,7 +287,6 @@ GameObject:
   m_Component:
   - component: {fileID: 283858877932956759}
   - component: {fileID: 1186035808904134289}
-  - component: {fileID: 7700387576369729927}
   - component: {fileID: 7692405913214460460}
   m_Layer: 7
   m_Name: Player Sprite
@@ -363,36 +362,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7700387576369729927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135723798250523871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: c800216fea270ea4c8e43b04ea78afd2, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player Default
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!95 &7692405913214460460
 Animator:
   serializedVersion: 5
@@ -1061,6 +1030,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
   DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 2
 --- !u!61 &6104793393067217820
 BoxCollider2D:

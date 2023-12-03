@@ -189,6 +189,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
   DestroyAttackAfterSeconds: 2
+  SoundWhenDestroyed: {fileID: 8300000, guid: 40b73062b3c85f84e95afee80570fbdc, type: 3}
   Attacker: 0
 --- !u!70 &-8859962561865256389
 CapsuleCollider2D:

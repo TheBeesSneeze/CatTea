@@ -155,12 +155,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1.5
   KnockbackForce: 1
-  DestroyedByWalls: 0
+  DestroyedByWalls: 1
   DestroyedAfterAttack: 0
   DestroyOtherAttacks: 1
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
   DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 8300000, guid: 84eaa674ac14cc24bbe9332353355561, type: 3}
   Attacker: 0
 --- !u!58 &5456073523674893132
 CircleCollider2D:

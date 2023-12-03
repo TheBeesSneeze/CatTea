@@ -44,6 +44,7 @@ public class AttackType : MonoBehaviour
     [Tooltip("If this # is less than 0, the attack will not be destroyed. Otherwise, destroys this gameobject")]
     public float DestroyAttackAfterSeconds = -1;
 
+    public AudioClip SoundWhenDestroyed;
     
     public enum AttackSource { General, Enemy, Player};
     //public enum PlayerAttack { NA, Primary, Secondary };
@@ -216,4 +217,14 @@ public class AttackType : MonoBehaviour
 
         Destroy(this.gameObject);
     }
+
+    protected void OnDestroy()
+    {
+        if (SoundWhenDestroyed != null)
+        {
+            Debug.Log("playing");
+            AudioSource.PlayClipAtPoint(SoundWhenDestroyed, PlayerBehaviour.Instance.transform.position, SaveDataManager.Instance.SettingsData.SoundVolume);
+        }
+    }
+
 }
