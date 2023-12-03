@@ -17,8 +17,11 @@ public class BombEnemyBehaviour : EnemyBehaviour
     public GameObject explosion;
     public int amountOfBombs;
     public int bombSpawnInterval;
+    public float SecondsBetweenBombSpawns = 0.3f;
+
     public float SecondsUntilExplode=1f;
     public float SecondsAfterExplode=0.5f;
+    
     public bool bombSpawned;
     private List<GameObject> listOfBombs = new List<GameObject>();
     private List<GameObject> listOfExplosions = new List<GameObject>();
@@ -42,17 +45,16 @@ public class BombEnemyBehaviour : EnemyBehaviour
             positionAroundPlayer.x += randomPosition.x;
             positionAroundPlayer.y += randomPosition.y;
             listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
+
+            yield return new WaitForSeconds(SecondsBetweenBombSpawns);
         }
         StartCoroutine(Explode());
-        
-       
-        
-        
     }
 
     private IEnumerator Explode()
     {
-        yield return new WaitForSeconds(SecondsUntilExplode);
+        yield return new WaitForSeconds(SecondsUntilExplode - (SecondsBetweenBombSpawns * amountOfBombs));
+
         for(int i = 0; i < amountOfBombs; i++)
         {
             GameObject newBomb = Instantiate(explosion, listOfBombs[i].transform.position, Quaternion.identity);
@@ -60,12 +62,15 @@ public class BombEnemyBehaviour : EnemyBehaviour
             AttacksSpawned.Add(newBomb);
 
             Destroy(listOfBombs[i]);
+            yield return new WaitForSeconds(SecondsBetweenBombSpawns);
         }
 
-        yield return new WaitForSeconds(SecondsAfterExplode);
+        yield return new WaitForSeconds(SecondsAfterExplode - (SecondsBetweenBombSpawns * amountOfBombs));
+
         for(int i = 0; i < amountOfBombs; i++)
         {
             Destroy(listOfExplosions[i]);
+            yield return new WaitForSeconds(SecondsBetweenBombSpawns);
         }
         listOfBombs.Clear();
         listOfExplosions.Clear();
