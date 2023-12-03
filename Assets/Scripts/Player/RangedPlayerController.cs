@@ -121,6 +121,8 @@ public class RangedPlayerController : MonoBehaviour
     {
         PrimaryShooting = false;
 
+        PlayerBehaviour.Instance.Speed = PlayerBehaviour.Instance.CurrentPlayerStats.Speed;
+
         if (playerController.IgnoreAllInputs) return;
 
         //shootingCoroutine = null;
