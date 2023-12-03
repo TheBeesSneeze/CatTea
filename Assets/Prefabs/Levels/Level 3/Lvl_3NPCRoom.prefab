@@ -1137,8 +1137,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0072499514, y: 0.007099986, z: 0}
-    m_Extent: {x: 3.4969501, y: 3.4998999, z: 0}
+    m_Center: {x: 0.004799962, y: -0.0028499365, z: 0}
+    m_Extent: {x: 3.5004, y: 3.5032501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2322,8 +2322,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.005050063, y: 0.00059998035, z: 0}
-    m_Extent: {x: 3.4976501, y: 3.5061002, z: 0}
+    m_Center: {x: 0.0026000738, y: 0.0000500679, z: 0}
+    m_Extent: {x: 3.4952002, y: 3.50475, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -8800,8 +8800,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0025999546, y: -0.0019999743, z: 0}
-    m_Extent: {x: 3.4986, y: 3.4966998, z: 0}
+    m_Center: {x: -0.00080001354, y: -0.0065500736, z: 0}
+    m_Extent: {x: 3.4958, y: 3.50125, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -8910,8 +8910,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0051499605, y: 0.0032000542, z: 0}
-    m_Extent: {x: 3.50145, y: 3.5011, z: 0}
+    m_Center: {x: -0.00364995, y: -0.006899953, z: 0}
+    m_Extent: {x: 3.50225, y: 3.5026999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -8962,6 +8962,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8320924537673522867}
     m_Modifications:
+    - target: {fileID: 2076167779502998563, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5688280781843762987, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_Name
       value: NPCDoor
