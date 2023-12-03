@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144704927622778996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5547734666173741432}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1 &2201471818238836669
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,11 +103,11 @@ MonoBehaviour:
   MaxDistanceToPlayer: 0
   Room: {fileID: 0}
   dogAttackPrefab: {fileID: 1635809448085294935, guid: 56a658699bc46f343aa530c6e13fd752, type: 3}
-  Pivot: {fileID: 5439650258630363436}
+  Pivot: {fileID: 2144704927622778996}
   AttacksPerWave: 2
   TimeBetweenAttacks: 1
   TimeAfterAttack: 6
-  AttackVelocity: 6
+  AttackVelocity: 2
   AttackPlayerDistance: 7
   AimRotationSpeed: 4
 --- !u!114 &1796777962228605073
