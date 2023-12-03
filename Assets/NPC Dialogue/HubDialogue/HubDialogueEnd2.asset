@@ -20,6 +20,6 @@ MonoBehaviour:
   Character2DialogueSound: {fileID: 8300000, guid: a4d9806aedca5c04781ef801cbd6f0e3, type: 3}
   WhoIsTalking: 01000000
   PlayerTalkingSprites:
-  - {fileID: 21300000, guid: 107864498673b4f478be06f366a49196, type: 3}
+  - {fileID: 21300000, guid: 1706973df72051548bb67538163e3aea, type: 3}
   NPCTalkingSprites:
   - {fileID: 21300000, guid: 618facd2a86642e4682bba77212f436c, type: 3}
