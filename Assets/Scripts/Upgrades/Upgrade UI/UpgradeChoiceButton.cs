@@ -26,7 +26,6 @@ public class UpgradeChoiceButton : MonoBehaviour
     {
         UpgradeIndex = upgradePrefabIndex;
         UpgradePrefab = GameManager.Instance.CurrentUpgradePool[upgradePrefabIndex];
-        Debug.Log(UpgradeIndex);
 
         if (!updateButtonText)
             return;

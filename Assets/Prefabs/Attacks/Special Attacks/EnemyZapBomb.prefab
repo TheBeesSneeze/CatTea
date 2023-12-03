@@ -139,7 +139,7 @@ MonoBehaviour:
   CharacterSprite: {fileID: 450806731333310575}
   DamageSound: {fileID: 8730180845665812634}
   DeathClip: {fileID: 0}
-  _healthPoints: 2
+  _healthPoints: 3
   Invincible: 0
   MaxHealthPoints: 0
   Speed: 0

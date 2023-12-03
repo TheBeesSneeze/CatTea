@@ -72,6 +72,8 @@ public class BossRoom : EnemyRoom
 
         bossDialogue.Room = this;
 
+        Door.CloseDoor();
+
         StartBossText();
     }
 
