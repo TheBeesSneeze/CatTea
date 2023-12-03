@@ -13291,8 +13291,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.5239, y: -4.6033, z: 0}
-    m_Extent: {x: 18.914398, y: 8.6946, z: 0}
+    m_Center: {x: -1.52635, y: -4.6074, z: 0}
+    m_Extent: {x: 18.92095, y: 8.6948, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -13467,6 +13467,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5823300423164802282}
     m_Modifications:
+    - target: {fileID: 2076167779502998563, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5688280781843762987, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_Name
       value: BossDoor

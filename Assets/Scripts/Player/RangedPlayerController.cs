@@ -18,6 +18,8 @@ using UnityEngine.InputSystem;
 
 public class RangedPlayerController : MonoBehaviour
 {
+    public static RangedPlayerController Instance;
+
     [Header("Ranged Settings")]
     public GameObject BulletPrefab;
     [Tooltip("Divides the players speed while they're shooting by this #")]
@@ -242,4 +244,17 @@ public class RangedPlayerController : MonoBehaviour
         reloadAmmoCoroutine = null;
     }
 
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 }

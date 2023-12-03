@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
 
     protected virtual void Pause_started(InputAction.CallbackContext obj)
     {
-        if (IgnoreAllInputs)
+        if (IgnoreAllInputs && !Settings.Instance.Paused)
             return;
 
         //THIS IS TEMP CODE

@@ -62,4 +62,15 @@ public class UniversalVariables : MonoBehaviour
         return characterBehaviour.CharacterSprite.GetComponent<SpriteRenderer>();
     }
 
+    public SpriteRenderer GetBackgroundSpriteRenderer()
+    {
+        GameObject background = GameObject.FindGameObjectWithTag("Background");
+        if (background == null)
+        {
+            Debug.LogWarning("Cant find background in scene");
+            return null;
+        }
+        return background.GetComponent<SpriteRenderer>();
+    }
+
 }

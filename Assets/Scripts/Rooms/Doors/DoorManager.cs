@@ -103,15 +103,29 @@ public class DoorManager : MonoBehaviour
     protected virtual void AttemptEnterDoor()
     {
         if (OutputRoom == null)
+        {
+            CloseDoor();
             return;
+        }
 
         if (ThisRoom.ForceCloseDoorOverride)
+        {
+            CloseDoor();
             return;
+        }
 
         open = ThisRoom.CheckRoomCleared();
 
+        if(open)
+        {
+            OpenDoor();
+        }
+
         if (!open)
+        {
+            CloseDoor();
             return;
+        }
 
         EnterDoor();
     }

@@ -11,7 +11,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -27,6 +26,8 @@ public class GameManager : MonoBehaviour
     public int CurrentChallengePoints;
 
     public RoomType CurrentRoom;
+
+    private SpriteRenderer backgroundSprite;
 
     protected AudioSource backgroundMusicPlayer;
     private float defaultBGMVolume;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        backgroundSprite = UniversalVariables.Instance.GetBackgroundSpriteRenderer();
         backgroundMusicPlayer = GameObject.Find("Background Music").GetComponent<AudioSource>();
         defaultBGMVolume = backgroundMusicPlayer.volume;
 
@@ -122,6 +124,7 @@ public class GameManager : MonoBehaviour
         TutorialRoom tutorial = GameObject.FindObjectOfType<TutorialRoom>();
         tutorial.EnterRoom();
         Camera.main.backgroundColor = tutorial.BackgroundColor;
+        backgroundSprite.color = tutorial.BackgroundColor;
     }
     /// <summary>
     /// loads in the hub on start
@@ -131,6 +134,8 @@ public class GameManager : MonoBehaviour
         HubRoom hub = GameObject.FindObjectOfType<HubRoom>();
         hub.EnterRoom();
         Camera.main.backgroundColor = hub.BackgroundColor;
+        backgroundSprite.color = hub.BackgroundColor;
+
     }
 
     /// <summary>

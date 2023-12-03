@@ -35,7 +35,6 @@ public class DamageOverTimeUpgrade : UpgradeType
 
         if(r <= DOTChance)
         {
-            Debug.Log("dot!");
             StartCoroutine(DamageOverTime(eventCharacter));
         }
     }
@@ -51,6 +50,7 @@ public class DamageOverTimeUpgrade : UpgradeType
 
         yield return new WaitForSeconds(DOTDuration);
 
-        DOT.Stop();
+        if(DOT != null)
+            DOT.Stop();
     }
 }

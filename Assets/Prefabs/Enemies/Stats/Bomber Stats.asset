@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16334250edfb714db1236322a856f06, type: 3}
   m_Name: Bomber Stats
   m_EditorClassIdentifier: 
-  DifficultyCost: 1
+  DifficultyCost: 4
   Speed: 2
   EnemyMove: 0
   TimeBetweenMovements: 1
-  HealthPoints: 6
+  MaxDistanceFromPlayer: 10
+  HealthPoints: 9
   Damage: 6
   ContactDamage: 0
-  KnockBackForce: 3
   DealContactDamage: 0

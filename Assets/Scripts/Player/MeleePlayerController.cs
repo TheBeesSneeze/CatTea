@@ -30,16 +30,11 @@ public class MeleePlayerController : MonoBehaviour
     private Quaternion swordRotation;
     private bool Attacking;
 
-    //etc
-    protected RangedPlayerController rangedPlayerController;
-
     // le sound
     public AudioSource SwordSlash;
 
     protected void Start()
     {
-        rangedPlayerController = GetComponent<RangedPlayerController>();
-
          StartCoroutine(RotateSword());
     }
 
@@ -49,7 +44,7 @@ public class MeleePlayerController : MonoBehaviour
             return;
 
         //if not already attacking
-        if (Attacking && !rangedPlayerController.PrimaryShooting)
+        if (Attacking && !RangedPlayerController.Instance.PrimaryShooting)
             return;
 
         if (!PlayerController.Instance.CanAttack)
@@ -153,7 +148,7 @@ public class MeleePlayerController : MonoBehaviour
             angle = Mathf.Atan2(PlayerController.Instance.AimingDirection.y, PlayerController.Instance.AimingDirection.x) * Mathf.Rad2Deg;
             angle += 360;
 
-            if (angle != lastAngle)
+            if (angle != lastAngle && !PlayerController.Instance.IgnoreAllInputs)
             {
                 //kinda smoothen the angle
                 float difference = Mathf.Abs(angle - lastAngle);

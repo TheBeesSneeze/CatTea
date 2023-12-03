@@ -45,4 +45,24 @@ public class RangedEnemyBehaviour : EnemyBehaviour
             }
         }
     }
+
+    protected override IEnumerator UpdateAnimation()
+    {
+        if (agent == null)
+            yield break;
+
+        while (true)
+        {
+            Vector2 playerDirection = GetPlayerDirection();
+
+            //Debug.Log(enemyDirection);
+
+            MyAnimator.SetFloat("XMovement", playerDirection.x);
+            MyAnimator.SetFloat("YMovement", playerDirection.y);
+
+            yield return null;
+        }
+    }
+
+    
 }

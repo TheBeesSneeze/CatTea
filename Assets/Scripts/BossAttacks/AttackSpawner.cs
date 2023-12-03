@@ -25,6 +25,6 @@ public class AttackSpawner : BossAttackType
     {
         animator.SetTrigger("FireMortar");
         GameObject attack = Instantiate(AttackPrefab, playerBehaviour.transform);
-        bossBehaviour.AttacksSpawned.Add(attack);
+        //bossBehaviour.AttacksSpawned.Add(attack);
     }
 }
