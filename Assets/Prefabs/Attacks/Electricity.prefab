@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -8859962561865256389}
   m_Layer: 11
   m_Name: Electricity
-  m_TagString: General Attack
+  m_TagString: Enemy Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2369b28f28a03da45b7b48baeac9878e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 4
+  Damage: 3
   KnockbackForce: 0
   DestroyedByWalls: 0
   DestroyedAfterAttack: 0
