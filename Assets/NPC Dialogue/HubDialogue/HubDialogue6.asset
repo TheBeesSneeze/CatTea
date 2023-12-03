@@ -32,4 +32,4 @@ MonoBehaviour:
   PlayerTalkingSprites:
   - {fileID: 21300000, guid: 107864498673b4f478be06f366a49196, type: 3}
   NPCTalkingSprites:
-  - {fileID: 21300000, guid: 635adeaddae701c478c13bb05332cdec, type: 3}
+  - {fileID: 21300000, guid: c1ee8fcf0e23697478703863ed5eda9b, type: 3}
