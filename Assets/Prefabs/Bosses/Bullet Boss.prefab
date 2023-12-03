@@ -255,7 +255,7 @@ MonoBehaviour:
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   colorOverride: {r: 0, g: 0, b: 0, a: 0}
   AttacksSpawned: []
-  StartHealth: 50
+  StartHealth: 60
   MoveUnitsPerSecond: 1.5
   DropUpgradeOnDeath: 1
   DialogueEnded: 0
