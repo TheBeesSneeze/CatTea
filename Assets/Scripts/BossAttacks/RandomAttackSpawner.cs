@@ -32,7 +32,7 @@ public class RandomAttackSpawner : BossAttackType
         Vector2 randomPosition = BossAttackUtilities.GetRandomPosition((Vector2)transform.position, AttackDistance, LM);
         GameObject newBomb = Instantiate(AttackPrefab, randomPosition, Quaternion.identity);
 
-        bossBehaviour.AttacksSpawned.Add(newBomb);
+        //bossBehaviour.AttacksSpawned.Add(newBomb);
 
         animator = bossBehaviour.MyAnimator;
         animator.SetTrigger("FireMortar");
