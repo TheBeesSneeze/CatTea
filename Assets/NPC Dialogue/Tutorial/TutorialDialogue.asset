@@ -18,11 +18,11 @@ MonoBehaviour:
   - "Yeah, hi. I\u2019m kinda lost right now. Do you know where we are?"
   - "This is a recording put here for your convenience. You\u2019re probably very
     lost right now."
-  - "Really? You think so? How am I even alive right now? And where\u2019s my gun?"
+  - Really? You think so? How am I even alive right now? And where is my gun?
   - "You\u2019re probably wondering how you\u2019re alive and where your gun is.
-    Don\u2019t worry, I\u2019m here to help you out! There\u2019s some danger up
-    ahead, but I know you\u2019re prepared. You should still have the Frostrite for
-    your gun, your energy sword and your quick boots."
+    Don\u2019t worry, I\u2019m here to help you out! There is some danger up ahead,
+    but I know you\u2019re prepared. You should still have the Frostrite for your
+    gun, your energy sword and your quick boots."
   - Oh, I do have the Frostrite. They must have forgotten to take it. How do you
     know all this?
   - The sword is easy! Just use the right click to swing! To use your quick boots,
@@ -39,4 +39,4 @@ MonoBehaviour:
   PlayerTalkingSprites:
   - {fileID: 21300000, guid: 107864498673b4f478be06f366a49196, type: 3}
   NPCTalkingSprites:
-  - {fileID: 21300000, guid: 635adeaddae701c478c13bb05332cdec, type: 3}
+  - {fileID: 21300000, guid: 43ef02ad6422168458647252d0dd0092, type: 3}
