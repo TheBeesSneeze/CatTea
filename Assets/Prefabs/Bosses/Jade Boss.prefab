@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7414333415116756248}
   - component: {fileID: 3033391271483458877}
   - component: {fileID: 6597008307900420906}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Jade Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -307,6 +307,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
   DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 0
 --- !u!60 &6429197695491037111
 PolygonCollider2D:
