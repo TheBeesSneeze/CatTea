@@ -229,6 +229,9 @@ public class NPCBehaviour : MonoBehaviour
 
     private void PlayTalkingSound()
     {
+        if (dialogueSoundSource == null)
+            return;
+
         dialogueSoundSource.Stop();
         dialogueSoundSource.pitch = Random.value;
         dialogueSoundSource.Play();

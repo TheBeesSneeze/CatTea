@@ -106,7 +106,7 @@ public class MovementCycle : BossAttackType
 
         moveCoroutine = null;
 
-        if(Vector2.Distance(startPosition, transform.position) > 100)
+        if(Vector2.Distance(startPosition, transform.position) > 50)
         {
             transform.position = startPosition;
         }
