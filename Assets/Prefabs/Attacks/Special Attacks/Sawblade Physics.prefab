@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 158392565024314740}
   - component: {fileID: 4904447309484688576}
   - component: {fileID: 2896165392543653875}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Sawblade Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,6 +231,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
   DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 0
 --- !u!70 &6018928179002979735
 CapsuleCollider2D:
