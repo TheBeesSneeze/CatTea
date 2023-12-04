@@ -27,7 +27,7 @@ public class ParryProjectiles : MonoBehaviour
         //hit other attack
         if (tag.Equals("Enemy Attack") || tag.Equals("General Attack"))
         {
-            Debug.Log("PARRY!");
+            //Debug.Log("PARRY!");
 
             AttackType attack = collision.GetComponent<AttackType>();
 

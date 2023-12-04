@@ -84,7 +84,6 @@ public class EnemyRoom : RoomType
             currentlySpawningEnemies = true;
 
             StartCoroutine(SpawnNewWaveOfEnemies());
-            return;
         }
 
         //end everything!
