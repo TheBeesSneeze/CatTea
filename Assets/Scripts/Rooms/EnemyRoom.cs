@@ -281,6 +281,8 @@ public class EnemyRoom : RoomType
         challengePointsLeft = 0;
         wavesLeft = 0;
 
+        currentlySpawningEnemies = false;
+
         EnemyBehaviour[] allEnemies = GameObject.FindObjectsOfType<EnemyBehaviour>();
 
         foreach(EnemyBehaviour enemy in allEnemies)
