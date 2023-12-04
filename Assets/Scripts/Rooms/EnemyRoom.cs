@@ -84,7 +84,6 @@ public class EnemyRoom : RoomType
             currentlySpawningEnemies = true;
 
             StartCoroutine(SpawnNewWaveOfEnemies());
-            return;
         }
 
         //end everything!
@@ -280,6 +279,8 @@ public class EnemyRoom : RoomType
 
         challengePointsLeft = 0;
         wavesLeft = 0;
+
+        currentlySpawningEnemies = false;
 
         EnemyBehaviour[] allEnemies = GameObject.FindObjectsOfType<EnemyBehaviour>();
 

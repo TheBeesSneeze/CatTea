@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 8863932306315625857}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3291346439667333517
 SpriteRenderer:
@@ -298,4 +298,5 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 1
   CanBeParried: 1
   DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 0
