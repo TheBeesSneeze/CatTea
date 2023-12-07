@@ -115,7 +115,7 @@ Transform:
   m_Children:
   - {fileID: 4756284306589577401}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5735080867915083147
 SpriteRenderer:
@@ -189,6 +189,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
   DestroyAttackAfterSeconds: 2
+  SoundWhenDestroyed: {fileID: 8300000, guid: 40b73062b3c85f84e95afee80570fbdc, type: 3}
   Attacker: 0
 --- !u!70 &1572819201859925890
 CapsuleCollider2D:

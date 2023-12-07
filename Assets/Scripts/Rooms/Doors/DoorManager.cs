@@ -116,17 +116,13 @@ public class DoorManager : MonoBehaviour
 
         open = ThisRoom.CheckRoomCleared();
 
-        if(open)
-        {
-            OpenDoor();
-        }
-
         if (!open)
         {
             CloseDoor();
             return;
         }
 
+        OpenDoor();
         EnterDoor();
     }
 }

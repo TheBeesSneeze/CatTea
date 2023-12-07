@@ -319,12 +319,14 @@ MonoBehaviour:
   TimeBetweenMovements: 0
   MaxDistanceToPlayer: 0
   Room: {fileID: 0}
-  bomb: {fileID: 450806731333310575, guid: 989cf1231ea23ae4496b92af27c64c84, type: 3}
-  explosion: {fileID: 30708773153286463, guid: 35060d375a1389e4281e5813746bd6f4, type: 3}
-  amountOfBombs: 1
+  bomb: {fileID: 30708773153286463, guid: 35060d375a1389e4281e5813746bd6f4, type: 3}
+  explosion: {fileID: 4254857575187743282, guid: f61a03b7b3c8b1e41b1845f5c325afba, type: 3}
+  amountOfBombs: 3
   bombSpawnInterval: 5
+  SecondsBetweenBombSpawns: 0.3
   SecondsUntilExplode: 1
   SecondsAfterExplode: 0.5
+  bombSpawned: 0
 --- !u!58 &1506513746089206941
 CircleCollider2D:
   m_ObjectHideFlags: 0

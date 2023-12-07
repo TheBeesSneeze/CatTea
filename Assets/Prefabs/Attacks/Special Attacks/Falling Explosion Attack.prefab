@@ -137,7 +137,7 @@ MonoBehaviour:
   RotateBomb: 1
   SuspendedTime: 2
   FallingTime: 1.25
-  ExplosionTime: 0.25
+  ExplosionTime: 0.35
   FallingAcceleration: 6
 --- !u!120 &8748063652867474010
 LineRenderer:

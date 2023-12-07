@@ -442,6 +442,8 @@ public class PlayerController : MonoBehaviour
 
         PlayerBehaviour.Instance.BecomeInvincible(slideSeconds / 0.9f, true);
 
+        PlayerBehaviour.Instance.MyAnimator.SetBool("Dashing", true);
+
         myRigidbody.velocity = Vector2.zero;
         myRigidbody.AddForce(MoveDirection * PlayerBehaviour.Instance.DashUnits, ForceMode2D.Impulse);
 
@@ -466,6 +468,8 @@ public class PlayerController : MonoBehaviour
         ignoreMove = true;
         yield return new WaitForSeconds(Seconds);
         ignoreMove = false;
+
+        PlayerBehaviour.Instance.MyAnimator.SetBool("Dashing", false);
 
         //test
         if (MyGamepad != null)

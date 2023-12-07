@@ -7340,7 +7340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105abde1475da8a4b89b7cb8babf321b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundMusic: {fileID: 8300000, guid: 334c22b3bd01e66498f00b46eccc5819, type: 3}
+  BackgroundMusic: {fileID: 8300000, guid: 545a7e1e6c706134f8382a750452e0bd, type: 3}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   OpenDoorsOnStart: 0
   CameraFollowPlayer: 1
@@ -7350,9 +7350,10 @@ MonoBehaviour:
   EnemyDoor: {fileID: 0}
   CameraCenterPoint: {fileID: 3313015836916654082}
   PlayerSpawnPoint: {fileID: 6605955869092887282}
+  RoomClearedMusic: {fileID: 0}
   SpawnUpgradeOnCompletion: 0
   EnemySpawnPool:
-  - {fileID: 7576159590035733606, guid: 0a30ddaa1f1284143a838e1e80cda2be, type: 3}
+  - {fileID: 1125179566908166490, guid: 0db7eb5fa78cb8a478a11bc9d9c157d4, type: 3}
   EnemySpawnPoints:
   - {fileID: 5626841519735396924}
   - {fileID: 3607758089372895653}
@@ -9538,8 +9539,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0017499924, y: -0.003000021, z: 0}
-    m_Extent: {x: 3.49845, y: 3.5047, z: 0}
+    m_Center: {x: -0.00020003319, y: 0.0023499727, z: 0}
+    m_Extent: {x: 3.5021, y: 3.50415, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9679,8 +9680,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0013500452, y: -0.0041999817, z: 0}
-    m_Extent: {x: 3.4969501, y: 3.5034, z: 0}
+    m_Center: {x: 0.0018000603, y: -0.007550001, z: 0}
+    m_Extent: {x: 3.4984, y: 3.49885, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9793,6 +9794,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6029117285792982546}
     m_Modifications:
+    - target: {fileID: 2076167779502998563, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5688280781843762987, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_Name
       value: EnemyDoor
@@ -9835,11 +9840,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 61.65
+      value: 61.752
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 34.67
+      value: 35.113
       objectReference: {fileID: 0}
     - target: {fileID: 8150029701401121680, guid: a3988e2604f8fde4ba4db66131b3cdbb, type: 3}
       propertyPath: m_LocalPosition.z
