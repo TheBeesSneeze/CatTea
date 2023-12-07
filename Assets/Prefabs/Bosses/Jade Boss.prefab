@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7414333415116756248}
   - component: {fileID: 3033391271483458877}
   - component: {fileID: 6597008307900420906}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Jade Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833572816468279668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 137.60022, y: -5.810948, z: 0}
+  m_LocalPosition: {x: 137.60022, y: 81094900, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -307,6 +307,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 0
   DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 0
 --- !u!60 &6429197695491037111
 PolygonCollider2D:

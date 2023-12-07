@@ -24,7 +24,6 @@ public class GunBossAttack : BossAttackType
     {
         finalBossBehaviour = GetComponent<FinalBossBehaviour>();
 
-        playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>(); //this line gets called twice but its ok
         StealPlayerStats();
 
         base.Start();
@@ -36,10 +35,10 @@ public class GunBossAttack : BossAttackType
     public void StealPlayerStats()
     {
         Debug.Log("Stealing stats");
-        projectileSpeed = playerBehaviour.ProjectileSpeed;
-        AttacksPerCycle = playerBehaviour.ShotsPerBurst;
-        AttackInterval = playerBehaviour.TimeBetweenShots;
-        AttackCycleCooldown = playerBehaviour.AmmoRechargeTime * AttacksPerCycle;
+        projectileSpeed = PlayerBehaviour.Instance.ProjectileSpeed;
+        AttacksPerCycle = PlayerBehaviour.Instance.ShotsPerBurst;
+        AttackInterval = PlayerBehaviour.Instance.TimeBetweenShots;
+        AttackCycleCooldown = PlayerBehaviour.Instance.AmmoRechargeTime * AttacksPerCycle;
     }
 
     public override void PerformAttack()

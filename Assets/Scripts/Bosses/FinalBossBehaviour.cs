@@ -120,8 +120,15 @@ public class FinalBossBehaviour : BossBehaviour
     {
         while (true)
         {
-            MyAnimator.SetFloat("XMovement", AimingDirection.x);
-            MyAnimator.SetFloat("YMovement", AimingDirection.y);
+            Vector2 playerPosition = PlayerBehaviour.Instance.transform.position;
+
+            playerPosition -= (Vector2)transform.position;
+            playerPosition = playerPosition.normalized;
+
+            Vector2 aim = playerPosition;
+
+            MyAnimator.SetFloat("XMovement", aim.x);
+            MyAnimator.SetFloat("YMovement", aim.y);
             yield return null;
         }
     }

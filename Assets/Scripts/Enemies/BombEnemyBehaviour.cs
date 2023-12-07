@@ -44,7 +44,11 @@ public class BombEnemyBehaviour : EnemyBehaviour
             Vector3 randomPosition = Random.insideUnitCircle;
             positionAroundPlayer.x += randomPosition.x;
             positionAroundPlayer.y += randomPosition.y;
-            listOfBombs.Add(Instantiate(bomb, positionAroundPlayer, Quaternion.identity));
+
+            GameObject b = Instantiate(bomb, positionAroundPlayer, Quaternion.identity);
+            listOfBombs.Add(b);
+            AttacksSpawned.Add(b);
+
 
             yield return new WaitForSeconds(SecondsBetweenBombSpawns);
         }

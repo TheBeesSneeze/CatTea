@@ -150,7 +150,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!195 &2726794673744757049
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -423,6 +423,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 1
   DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 0
 --- !u!60 &1762388933172983322
 PolygonCollider2D:
@@ -606,6 +607,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 1
   DestroyAttackAfterSeconds: -1
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 0
 --- !u!60 &1776968943366768741
 PolygonCollider2D:
