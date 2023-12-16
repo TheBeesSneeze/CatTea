@@ -104,12 +104,12 @@ public class MovementCycle : BossAttackType
             yield return null;
         }
 
-        moveCoroutine = null;
-
-        if(Vector2.Distance(startPosition, transform.position) > 50)
+        if (Vector2.Distance(startPosition, transform.position) > 40)
         {
             transform.position = startPosition;
         }
+
+        moveCoroutine = null;
     }
 
 

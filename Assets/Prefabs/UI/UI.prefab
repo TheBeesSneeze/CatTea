@@ -57,8 +57,7 @@ MonoBehaviour:
   SecondsToDisappear: 3
   GunSprite: {fileID: 741040410402659925}
   MouseSprite: {fileID: 7689347100604373822}
-  FadeIfTutorialComplete: 1
-  ThisIsForTheGun: 0
+  DestroyIfTutorialComplete: 1
 --- !u!222 &406704048437057661
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -293,7 +292,7 @@ RectTransform:
   - {fileID: 6698081830137735087}
   - {fileID: 7519948838636917816}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -420,8 +419,7 @@ MonoBehaviour:
   SecondsToDisappear: 3
   GunSprite: {fileID: 8001857416063877138}
   MouseSprite: {fileID: 5614856177274192869}
-  FadeIfTutorialComplete: 1
-  ThisIsForTheGun: 0
+  DestroyIfTutorialComplete: 1
 --- !u!222 &4673754978803052001
 CanvasRenderer:
   m_ObjectHideFlags: 0

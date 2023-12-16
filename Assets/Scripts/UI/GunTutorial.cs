@@ -19,36 +19,31 @@ public class GunTutorial : MonoBehaviour
     public Image GunSprite;
     public Image MouseSprite;
 
-    public bool FadeIfTutorialComplete;
+    public bool DestroyIfTutorialComplete;
 
-    public bool ThisIsForTheGun = true;
+    private Coroutine fadeCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(FadeIfTutorialComplete && SaveDataManager.Instance.SaveData.TutorialCompleted)
+        if(DestroyIfTutorialComplete && SaveDataManager.Instance.SaveData.TutorialCompleted)
         {
             Destroy(gameObject);
         }
-
-        if(ThisIsForTheGun)
-            PlayerController.Instance.GunAction.started += OnFirstShoot;
-    }
-
-    public void OnFirstShoot(InputAction.CallbackContext obj)
-    {
-        PlayerController.Instance.GunAction.started -= OnFirstShoot;
-
-        StartCoroutine(FadeAway());
     }
 
     public void ThisIsDueLikeTomorrowPleaseLetMeStopCoding()
     {
-        StartCoroutine(FadeAway());
+        if(fadeCoroutine == null)
+        {
+            fadeCoroutine = StartCoroutine(FadeAway());
+        }
     }
 
     private IEnumerator FadeAway()
     {
+        Debug.Log("fading");
+
         float time = 0;
         while(time < SecondsToDisappear)
         {
