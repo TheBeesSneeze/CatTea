@@ -953,6 +953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1066121460}
   - component: {fileID: 1066121459}
+  - component: {fileID: 1066121461}
   m_Layer: 13
   m_Name: VideoPlayer
   m_TagString: Untagged
@@ -967,7 +968,7 @@ VideoPlayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066121458}
-  m_Enabled: 0
+  m_Enabled: 1
   m_VideoClip: {fileID: 32900000, guid: 6c948c9be34a8a94fb30f32c758402df, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
@@ -1011,6 +1012,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1066121461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066121458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fa78c6998bbfe4593edbd831d9ddb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VideoName: TextlessTitle
 --- !u!1 &1110607708
 GameObject:
   m_ObjectHideFlags: 0
