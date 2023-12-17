@@ -58,9 +58,9 @@ public class BossAttackUtilities : MonoBehaviour
 
         direction = direction * (distance * randomPercent);
 
-        //return centerPoint + direction;
+        return centerPoint + direction;
 
         //FUCK YOU. HERES THE FUNCTION AGAIN BUT ON ONE LINE. ALL THE ABOVE CODE WAS FOR NOTHING
-        return centerPoint + ((rayHitPoint - centerPoint).normalized*(Vector2.Distance(centerPoint, rayHitPoint) * Random.Range(0.25f, 0.75f)));
+        //return centerPoint + ((rayHitPoint - centerPoint).normalized*(Vector2.Distance(centerPoint, rayHitPoint) * Random.Range(0.25f, 0.75f)));
     }
 }

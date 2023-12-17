@@ -9,7 +9,6 @@
 * Uses MoveUnitsPerSecond from BossBehaviour.cs
 * *****************************************************************************/
 
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +18,8 @@ public class MovementCycle : BossAttackType
     public float MaxMovementDistance;
 
     public LayerMask LM;
+
+    public float MaxDistanceFromPlayer = 15;
 
     private Coroutine moveCoroutine;
 
@@ -35,6 +36,34 @@ public class MovementCycle : BossAttackType
         if (moveCoroutine != null)
             return;
 
+        if(Vector2.Distance(transform.position, PlayerBehaviour.Instance.transform.position) > MaxDistanceFromPlayer)
+        {
+            MoveTowardsPlayer();
+            return;
+        }
+
+        MoveRandomly();
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        Vector3 anglePoint;
+        Vector3 endPoint;
+
+        Vector2 direction = PlayerBehaviour.Instance.transform.position - transform.position;
+        direction.Normalize();
+
+        anglePoint = direction * (MaxMovementDistance / 2);
+        anglePoint = anglePoint + transform.position;
+
+        endPoint = direction * MaxMovementDistance;
+        endPoint = endPoint + transform.position;
+
+        moveCoroutine = StartCoroutine(MoveAcross(transform.position, anglePoint, endPoint));
+    }
+
+    private void MoveRandomly()
+    {
         Vector2 anglePoint;
         Vector2 endPoint;
 
