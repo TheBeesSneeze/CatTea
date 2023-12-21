@@ -21,6 +21,9 @@ public class MovementCycle : BossAttackType
 
     public float MaxDistanceFromPlayer = 15;
 
+    [Header("Debug")]
+    public bool DisableMovementOverride=false;
+
     private Coroutine moveCoroutine;
 
     private Vector2 startPosition;
@@ -53,10 +56,14 @@ public class MovementCycle : BossAttackType
         Vector2 direction = PlayerBehaviour.Instance.transform.position - transform.position;
         direction.Normalize();
 
-        anglePoint = direction * (MaxMovementDistance / 2);
+        float distanceToPlayer = Vector2.Distance(transform.position, PlayerBehaviour.Instance.transform.position);
+        float distance = Mathf.Min(distanceToPlayer, MaxMovementDistance);
+        distance *= 0.9f;
+
+        anglePoint = direction * (distance / 2);
         anglePoint = anglePoint + transform.position;
 
-        endPoint = direction * MaxMovementDistance;
+        endPoint = direction * distance;
         endPoint = endPoint + transform.position;
 
         moveCoroutine = StartCoroutine(MoveAcross(transform.position, anglePoint, endPoint));
@@ -67,17 +74,22 @@ public class MovementCycle : BossAttackType
         Vector2 anglePoint;
         Vector2 endPoint;
 
-        do
-        {
-            anglePoint = BossAttackUtilities.GetRandomPosition((Vector2)transform.position, MaxMovementDistance, LM);
-        }
-        while (Vector2.Distance((Vector2)transform.position, anglePoint) < 1);
+        float attempts = 0;
 
         do
         {
+            attempts++;
+            anglePoint = BossAttackUtilities.GetRandomPosition((Vector2)transform.position, MaxMovementDistance, LM);
+        }
+        while (Vector2.Distance((Vector2)transform.position, anglePoint) < 1 && attempts < 15);
+
+        attempts = 0;
+        do
+        {
+            attempts++;
             endPoint = BossAttackUtilities.GetRandomPosition(anglePoint, MaxMovementDistance, LM);
         }
-        while (Vector2.Distance(anglePoint, endPoint) < 3);
+        while (Vector2.Distance(anglePoint, endPoint) < 3 && attempts < 15);
 
         //Debug.Log ("moving boss to " + randomPosition);
 
@@ -93,7 +105,7 @@ public class MovementCycle : BossAttackType
         float totalSecondsToMove = distance / bossBehaviour.MoveUnitsPerSecond;
 
         float time = 0;
-        while (time < totalSecondsToMove && bossBehaviour.HealthPoints > 0)
+        while (time < totalSecondsToMove && bossBehaviour.HealthPoints > 0 && !DisableMovementOverride)
         {
             time += Time.deltaTime;
             float t = time / totalSecondsToMove; // 0 <= t <= 1
@@ -113,13 +125,16 @@ public class MovementCycle : BossAttackType
         moveCoroutine = null;
     }
 
+    /// <summary>
+    /// old, unused i think
+    /// </summary>
     private IEnumerator MoveAcross(Vector2 startPoint, Vector2 endPoint)
     {
         float distance = Vector2.Distance(startPoint, endPoint);
         float totalSecondsToMove = distance / bossBehaviour.MoveUnitsPerSecond;
 
         float time = 0;
-        while(time < totalSecondsToMove)
+        while(time < totalSecondsToMove && !DisableMovementOverride)
         {
             time += Time.deltaTime;
             float t = time / totalSecondsToMove; // 0 <= t <= 1
@@ -185,7 +200,16 @@ public class MovementCycle : BossAttackType
         }
     }
 
-    
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        string layer = LayerMask.LayerToName(collision.gameObject.layer);
+
+        if (layer.Equals("Level"))
+        {
+            Debug.Log("hey guys");
+        }
+    }
+
 
     private void GetOutOfWall(Vector2 wallPosition)
     {
