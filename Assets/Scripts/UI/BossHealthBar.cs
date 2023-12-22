@@ -21,6 +21,9 @@ public class BossHealthBar : MonoBehaviour
 
     private bool animating;
 
+    private Coroutine animateCoroutine;
+
+    private float secondsPerHealthPointStart = 0.2f;
     private float secondsPerHealthPoint = 0.1f;
 
     public void ActivateHealthBar(BossBehaviour boss)
@@ -29,10 +32,10 @@ public class BossHealthBar : MonoBehaviour
 
         healthBar.gameObject.SetActive(true);
 
-        StartCoroutine(AnimateHealthbar());
+        StartCoroutine(AnimateHealthbarStart());
     }
 
-    private IEnumerator AnimateHealthbar()
+    private IEnumerator AnimateHealthbarStart()
     {
         animating = true;
 
@@ -40,7 +43,7 @@ public class BossHealthBar : MonoBehaviour
 
         while(projectedValue < Boss.HealthPoints)
         {
-            projectedValue += Time.deltaTime / secondsPerHealthPoint;
+            projectedValue += Time.deltaTime / secondsPerHealthPointStart;
 
             MaxHealth = Boss.MaxHealthPoints;
             healthBar.maxValue = MaxHealth;
@@ -52,6 +55,35 @@ public class BossHealthBar : MonoBehaviour
         animating = false;
 
         UpdateHealth();
+
+        animateCoroutine = StartCoroutine(AnimateHealthBar());
+    }
+
+    private IEnumerator AnimateHealthBar()
+    {
+        float displayHealth = healthBar.value;
+
+        while (healthBar.gameObject.activeSelf)
+        {
+            if(Boss.HealthPoints <  displayHealth)
+            {
+                displayHealth -= Time.deltaTime/secondsPerHealthPoint;
+                healthBar.value = displayHealth;
+            }
+
+            if (Boss.HealthPoints > displayHealth)
+            {
+                displayHealth += Time.deltaTime / secondsPerHealthPoint;
+                healthBar.value = displayHealth;
+            }
+
+            if (Boss.HealthPoints <= 0)
+                healthBar.gameObject.SetActive(false);
+
+            yield return null;
+        }
+
+        animateCoroutine = null;
     }
 
     public void HideHealthBar()

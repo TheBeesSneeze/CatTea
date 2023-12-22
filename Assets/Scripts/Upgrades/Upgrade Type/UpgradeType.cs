@@ -50,6 +50,7 @@ public class UpgradeType : MonoBehaviour
             //this code lays dormant and does nothing for the rest of the game forever
         }
 
+        StartEffect();
         AssignActivationEvent();
     }
 
@@ -61,6 +62,14 @@ public class UpgradeType : MonoBehaviour
             return;
         }
         upgradeUI.LoadNewUpgrade(this);
+    }
+
+    /// <summary>
+    /// This does nothing right now. I added it post final. I just really regret not having this earlier so here it is. In case I steal this system in the future.
+    /// </summary>
+    public virtual void StartEffect()
+    {
+
     }
 
     /// <summary>

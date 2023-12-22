@@ -157,7 +157,6 @@ GameObject:
   - component: {fileID: 4743146972439546756}
   - component: {fileID: 6588786030348524660}
   - component: {fileID: 2094796279921379945}
-  - component: {fileID: 4264563571890619124}
   - component: {fileID: 178954998834105006}
   - component: {fileID: 6411244363844274505}
   m_Layer: 0
@@ -214,7 +213,7 @@ MonoBehaviour:
   DropUpgradeOnDeath: 1
   DialogueEnded: 0
   MyRoom: {fileID: 0}
-  GunPickupPrefab: {fileID: 7260921618105368807, guid: 3d180967b6b1c53479c5eb57f926f753, type: 3}
+  GunPickupPrefab: {fileID: 6504609596002552055, guid: 3d180967b6b1c53479c5eb57f926f753, type: 3}
 --- !u!114 &2003512905966868139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,27 +292,6 @@ MonoBehaviour:
   AttacksPerCycle: 4
   AttackDistance: 10
   AttackPrefab: {fileID: 4746474391822612515, guid: 0e47defa41437f44bbba39ab4d44bb3b, type: 3}
-  LM:
-    serializedVersion: 2
-    m_Bits: 256
---- !u!114 &4264563571890619124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4651791696064841288}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c1815e34b2011341bb44b5595bcacdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartAttackCycleOnAwake: 1
-  LoopAttack: 1
-  AttackCycleCooldown: 7
-  AttackInterval: 0
-  AttacksPerCycle: 1
-  MaxMovementDistance: 60
   LM:
     serializedVersion: 2
     m_Bits: 256

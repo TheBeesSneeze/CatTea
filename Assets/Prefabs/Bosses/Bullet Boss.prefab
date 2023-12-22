@@ -324,6 +324,7 @@ MonoBehaviour:
   LM:
     serializedVersion: 2
     m_Bits: 256
+  MaxDistanceFromPlayer: 20
 --- !u!114 &877022957958017855
 MonoBehaviour:
   m_ObjectHideFlags: 0

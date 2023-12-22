@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843581a912434c746a86719ca4fbea74, type: 3}
   m_Name: Default Player Stats
   m_EditorClassIdentifier: 
-  Speed: 7
+  Speed: 8
   MaxHealthPoints: 25
   InvincibilitySeconds: 0.1
   DashTime: 0.6

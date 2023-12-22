@@ -40,8 +40,6 @@ public class SwordBossAttack : MonoBehaviour
     private bool swordAttackInProgress;
     private Quaternion swordRotation;
 
-    private MeleePlayerController meleePlayer;
-
     private FinalBossBehaviour finalBossBehaviour;
     private GunBossAttack gunBossAttack;
     private MovementCycle movementCycle;
@@ -62,8 +60,7 @@ public class SwordBossAttack : MonoBehaviour
         gunSpriteRenderer = finalBossBehaviour.GunSprite.GetComponent<SpriteRenderer>();
         swordSpriteRenderer = SwordCollider.GetComponent<SpriteRenderer>();
 
-        meleePlayer = GameObject.FindObjectOfType<MeleePlayerController>();
-        swordAngle = meleePlayer.PrimaryStrikeAngle;
+        swordAngle = MeleePlayerController.Instance.PrimaryStrikeAngle;
 
         defaultMoveSpeed = finalBossBehaviour.MoveUnitsPerSecond;
         defaultSwordPosition = SwordCollider.transform.localPosition;
@@ -195,7 +192,7 @@ public class SwordBossAttack : MonoBehaviour
     private void MoveTowardsPlayer()
     {
         Vector2 bossPosition = finalBossBehaviour.transform.position;
-        Vector2 playerPositon = meleePlayer.transform.position;
+        Vector2 playerPositon = MeleePlayerController.Instance.transform.position;
 
         Vector2 moveTowardPlayerPosition = Vector2.MoveTowards(bossPosition, playerPositon, ApproachPlayerMovementSpeed * Time.deltaTime);
 
@@ -214,6 +211,7 @@ public class SwordBossAttack : MonoBehaviour
     {
         SwordCollider.transform.localPosition = defaultSwordPosition;
         swordSpriteRenderer.enabled = true;
+        movementCycle.DisableMovementOverride = true;
     }
     private void DisableGun()
     {
@@ -231,6 +229,7 @@ public class SwordBossAttack : MonoBehaviour
     /// </summary>
     private void DisableSword() 
     {
+        movementCycle.DisableMovementOverride = false;
         swordSpriteRenderer.enabled = false;
         SwordCollider.enabled = false;
     }

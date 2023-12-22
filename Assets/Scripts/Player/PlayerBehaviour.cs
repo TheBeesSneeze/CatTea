@@ -53,7 +53,6 @@ public class PlayerBehaviour : CharacterBehaviour
     private float secondsUntilDeathScreen = 3f;
 
     //components
-    private RangedPlayerController rangedPlayerController;
 
     private PlayerHealthBar healthBar;
     private PlayerAmmoBar ammoBar;
@@ -75,8 +74,6 @@ public class PlayerBehaviour : CharacterBehaviour
     protected override void Start()
     {
         base.Start();
-
-        rangedPlayerController = GetComponent<RangedPlayerController>();
 
         healthBar = GameObject.FindObjectOfType<PlayerHealthBar>();
         ammoBar = GameObject.FindObjectOfType<PlayerAmmoBar>();
@@ -128,13 +125,13 @@ public class PlayerBehaviour : CharacterBehaviour
     public void OnGunLocked()
     {
         ammoBar.gameObject.SetActive(false);
-        rangedPlayerController.RangedIcon.GetComponent<SpriteRenderer>().enabled = false;
+        RangedPlayerController.Instance.RangedIcon.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void OnGunUnlocked()
     {
         ammoBar.gameObject.SetActive(true);
-        rangedPlayerController.RangedIcon.GetComponent<SpriteRenderer>().enabled = true;
+        RangedPlayerController.Instance.RangedIcon.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public override void SetHealth(float Value)
@@ -185,6 +182,8 @@ public class PlayerBehaviour : CharacterBehaviour
     public override void Die()
     {
         PlayerController.Instance.IgnoreAllInputs = true;
+        PlayerController.Instance.MoveDirection = Vector3.zero;
+        PlayerController.Instance.InputDirection = Vector3.zero;
 
         SaveDataManager.Instance.SaveData.RunNumber++;
         SaveDataManager.Instance.SaveSaveData();
