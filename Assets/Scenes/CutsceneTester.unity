@@ -881,7 +881,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017109594}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 89d08d42426900d40946c8bd34a20ad0, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -899,7 +899,8 @@ VideoPlayer:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: 
+  m_Url: file://C:/Users/tdsch/OneDrive/Documents/Unity/Unity Projects Semester 3/Cat
+    Tea/Assets/StreamingAssets/NYNELIVESCUTSCENEFINAL Compressed.mp4
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
