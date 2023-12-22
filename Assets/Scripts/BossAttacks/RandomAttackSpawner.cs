@@ -35,7 +35,7 @@ public class RandomAttackSpawner : BossAttackType
         //bossBehaviour.AttacksSpawned.Add(newBomb);
 
         animator = bossBehaviour.MyAnimator;
-        animator.SetTrigger("FireMortar");
+        bossBehaviour.MyAnimator.SetTrigger("FireMortar");
     }
 
     

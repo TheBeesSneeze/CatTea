@@ -57,6 +57,7 @@ MonoBehaviour:
   GetDestroyedByOtherAttacks: 0
   CanBeParried: 1
   DestroyAttackAfterSeconds: 9
+  SoundWhenDestroyed: {fileID: 0}
   Attacker: 0
   Speed: 3
   Angle: 0.3
@@ -235,9 +236,9 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 50652535
+  m_SortingLayer: 1
+  m_SortingOrder: -57
   m_Time: 0.1
   m_PreviewTimeScale: 0
   m_Parameters:

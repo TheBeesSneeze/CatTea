@@ -16,7 +16,6 @@ public class FallingBombSpawner : RandomAttackSpawner
     protected override void Start()
     {
         base.Start();
-        animator = GetComponent<Animator>();
     }
     public override void PerformAttack()
     {
@@ -24,7 +23,7 @@ public class FallingBombSpawner : RandomAttackSpawner
 
         if (animator != null)
         {
-            animator.SetTrigger("FireMortar");
+            bossBehaviour.MyAnimator.SetTrigger("FireMortar");
         }
     }
 }

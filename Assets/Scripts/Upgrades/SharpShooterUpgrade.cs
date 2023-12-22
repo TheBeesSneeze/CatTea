@@ -13,12 +13,14 @@ using UnityEngine;
 
 public class SharpShooterUpgrade : UpgradeType
 {
+    public float BulletSpeedMultiplier = 1.5f; 
+
     public LayerMask LM;
 
     private Transform gun;
 
     private LineRenderer lineRenderer;
-    
+
 
     protected override void Start()
     {
@@ -30,8 +32,21 @@ public class SharpShooterUpgrade : UpgradeType
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
 
-        StartCoroutine(DrawAimLine());
+        bool duplicate = CheckForExistingSharpShooter();
+
+        if(!duplicate)
+        {
+            StartCoroutine(DrawAimLine());
+        }
     }
+
+    public override void StartEffect()
+    {
+        Debug.Log(PlayerBehaviour.Instance.ProjectileSpeed);
+        PlayerBehaviour.Instance.ProjectileSpeed *= BulletSpeedMultiplier;
+        Debug.Log(PlayerBehaviour.Instance.ProjectileSpeed);
+    }
+
     public override void UpgradeEffect(AttackType bullet)
     {
         bullet.DestroyedAfterAttack = false;
@@ -86,5 +101,12 @@ public class SharpShooterUpgrade : UpgradeType
         {
             return gun.transform.position + (direction * 50);
         }
+    }
+
+    private bool CheckForExistingSharpShooter()
+    {
+        SharpShooterUpgrade[] sharps = FindObjectsOfType<SharpShooterUpgrade>();
+
+        return (sharps.Length > 1);
     }
 }
